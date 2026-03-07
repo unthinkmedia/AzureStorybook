@@ -1,19 +1,19 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { FluentProvider } from '@fluentui/react-components';
-import { AzureGlobalHeader } from '../../components/GlobalHeader';
+import { SREGlobalHeader } from '../../components/GlobalHeader';
 import { azureLightTheme } from '../../themes';
 
 export default {
-  title: 'Composed/Global Header/AzureGlobalHeader',
-  component: AzureGlobalHeader,
+  title: 'Composed/Global Header/SREGlobalHeader',
+  component: SREGlobalHeader,
   tags: ['autodocs'],
   parameters: {
     layout: 'fullscreen',
     docs: {
       description: {
         component:
-          'The persistent global header bar that sits at the top of every Azure Portal page. Includes the waffle menu, hamburger, branding, search, Copilot button, action icons, and user profile.',
+          'The global header bar for the Azure SRE Agent experience. Features a light background, SRE Agent branding with a PREVIEW badge, Docs link, notification/chat/settings icons, and user avatar.',
       },
     },
   },
@@ -26,41 +26,48 @@ export default {
   ],
   argTypes: {
     portalName: { control: 'text' },
+    badge: { control: 'text' },
     userName: { control: 'text' },
     userEmail: { control: 'text' },
-    organization: { control: 'text' },
     notificationCount: { control: { type: 'number', min: 0, max: 99 } },
-    searchPlaceholder: { control: 'text' },
   },
-} satisfies Meta<typeof AzureGlobalHeader>;
+} satisfies Meta<typeof SREGlobalHeader>;
 
-type Story = StoryObj<typeof AzureGlobalHeader>;
+type Story = StoryObj<typeof SREGlobalHeader>;
 
-/** Default header matching the Azure Portal appearance. */
+/** Default SRE Agent header. */
 export const Default: Story = {
   args: {
-    portalName: 'Microsoft Azure',
+    portalName: 'Azure SRE Agent',
+    badge: 'PREVIEW',
     userEmail: 'alexbritez@microsoft.com',
-    organization: 'MICROSOFT (MICROSOFT.ONMICROSOFT.COM)',
     userName: 'Alex Britez',
-    notificationCount: 1,
-  },
-};
-
-/** Header with no notifications. */
-export const NoNotifications: Story = {
-  args: {
-    ...Default.args,
     notificationCount: 0,
   },
 };
 
-/** Full page simulation showing the header pinned at the top. */
+/** Header with active notifications. */
+export const WithNotifications: Story = {
+  args: {
+    ...Default.args,
+    notificationCount: 3,
+  },
+};
+
+/** Header without the preview badge. */
+export const NoBadge: Story = {
+  args: {
+    ...Default.args,
+    badge: undefined,
+  },
+};
+
+/** Full page simulation showing the SRE header pinned at the top. */
 export const WithPageContent: Story = {
   args: { ...Default.args },
   render: (args) => (
     <div style={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
-      <AzureGlobalHeader {...args} />
+      <SREGlobalHeader {...args} />
       <div
         style={{
           flex: 1,

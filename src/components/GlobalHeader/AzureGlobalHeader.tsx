@@ -17,7 +17,7 @@ import {
   QuestionCircle20Regular,
   PersonFeedback20Regular,
 } from '@fluentui/react-icons';
-import { CopilotIcon } from './CopilotSuggestionsBar';
+import { CopilotIcon } from '../CopilotSuggestionsBar';
 
 /* ------------------------------------------------------------------ */
 /*  Props                                                              */

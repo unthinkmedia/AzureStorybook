@@ -115,7 +115,7 @@ const ContentPlaceholder: React.FC<{ label: string }> = ({ label }) => {
 };
 
 const meta: Meta = {
-  title: 'Templates/Container Layouts',
+  title: 'Container/Azure Container',
   parameters: {
     layout: 'fullscreen',
     docs: {

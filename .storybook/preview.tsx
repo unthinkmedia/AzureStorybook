@@ -26,6 +26,7 @@ const preview: Preview = {
           'Composed',
           'Cards',
           'Templates',
+          'Container',
         ],
       },
     },

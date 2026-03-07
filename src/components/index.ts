@@ -22,8 +22,11 @@ export type { FilterBarProps, FilterTag } from './FilterBar';
 export { FilterPill, AddFilterPill, ClearAllFilters } from './FilterPill';
 export type { FilterPillProps, FilterPillOption, AddFilterPillProps, ClearAllFiltersProps } from './FilterPill';
 
-export { AzureGlobalHeader } from './AzureGlobalHeader';
-export type { AzureGlobalHeaderProps } from './AzureGlobalHeader';
+export { AzureGlobalHeader } from './GlobalHeader';
+export type { AzureGlobalHeaderProps } from './GlobalHeader';
+
+export { SREGlobalHeader } from './GlobalHeader';
+export type { SREGlobalHeaderProps } from './GlobalHeader';
 
 export { SideNavigation } from './SideNavigation';
 export type { SideNavigationProps, NavItem } from './SideNavigation';
@@ -39,3 +42,6 @@ export type { CardButtonProps } from './CardButton';
 
 export { PageTabs } from './PageTabs';
 export type { PageTabsProps, PageTab } from './PageTabs';
+
+export { EssentialsPanel } from './EssentialsPanel';
+export type { EssentialsPanelProps, EssentialItem, EssentialAction } from './EssentialsPanel';

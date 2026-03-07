@@ -9,7 +9,6 @@
     "build": "storybook build -o dist",
     "build:registry": "tsx scripts/generate-registry.ts",
     "build:all": "npm run build:registry && npm run build",
-    "playground:runtime": "tsx scripts/copilot-runtime.ts",
     "extract-tokens": "tsx scripts/extract-tokens.ts",
     "lint": "eslint 'src/**/*.{ts,tsx}'",
     "lint:fix": "eslint 'src/**/*.{ts,tsx}' --fix",
@@ -19,24 +18,18 @@
     "chromatic": "chromatic --exit-zero-on-changes"
   },
   "dependencies": {
-    "@copilotkit/react-core": "^1.53.0",
-    "@copilotkit/react-textarea": "^1.53.0",
-    "@copilotkit/react-ui": "^1.53.0",
-    "@copilotkit/runtime": "^1.53.0",
     "@fluentui/react-components": "^9.56.0",
     "@fluentui/react-icons": "^2.0.260",
+    "@storybook/addon-docs": "^10.2.16",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "scheduler": "^0.27.0"
   },
   "devDependencies": {
     "@storybook/addon-a11y": "^10.2.16",
-    "@storybook/addon-essentials": "^8.5.0",
-    "@storybook/addon-interactions": "^8.5.0",
     "@storybook/addon-themes": "^10.2.16",
-    "@storybook/addon-viewport": "^8.5.0",
     "@storybook/react": "^10.2.16",
     "@storybook/react-vite": "^10.2.16",
-    "@storybook/test": "^8.5.0",
     "@storybook/test-runner": "^0.24.2",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",

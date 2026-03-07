@@ -1,0 +1,158 @@
+import React from 'react';
+import type { Meta, StoryObj } from '@storybook/react';
+import {
+  makeStyles,
+  tokens,
+  Text,
+} from '@fluentui/react-components';
+import {
+  AzureBreadcrumb,
+  PageHeader,
+  AzureServiceIcon,
+  CommandBar,
+} from '../../components';
+import { SREGlobalHeader } from '../../components/GlobalHeader';
+
+// ─── Styles ──────────────────────────────────────────────────────
+
+const useStyles = makeStyles({
+  page: {
+    display: 'flex',
+    flexDirection: 'column',
+    height: '100vh',
+    backgroundColor: tokens.colorNeutralBackground1,
+  },
+
+  headerSection: {
+    display: 'flex',
+    flexDirection: 'column',
+    flexShrink: 0,
+  },
+
+  content: {
+    flex: 1,
+    display: 'flex',
+    flexDirection: 'column',
+    overflow: 'auto',
+    minWidth: 0,
+  },
+
+  body: {
+    display: 'flex',
+    flex: 1,
+    overflow: 'hidden',
+  },
+
+  contentPlaceholder: {
+    flex: 1,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    margin: '16px',
+    borderRadius: '8px',
+    border: `2px dashed ${tokens.colorNeutralStroke2}`,
+    backgroundColor: tokens.colorNeutralBackground2,
+    color: tokens.colorNeutralForeground3,
+  },
+});
+
+// ─── Helpers ─────────────────────────────────────────────────────
+
+const ContentPlaceholder: React.FC<{ label: string }> = ({ label }) => {
+  const styles = useStyles();
+  return (
+    <div className={styles.contentPlaceholder}>
+      <Text size={400} weight="semibold">{label}</Text>
+    </div>
+  );
+};
+
+// ─── Meta ────────────────────────────────────────────────────────
+
+const meta: Meta = {
+  title: 'Container/SRE Container',
+  parameters: {
+    layout: 'fullscreen',
+    docs: {
+      description: {
+        component: `The SRE Agent container uses a light-themed global header with the SRE Agent branding and PREVIEW badge.
+It shares the same layout patterns as the Azure Container but with SRE-specific chrome.
+
+## Layout States
+
+| State | Breadcrumb | Page Title + Copilot | Side Nav | When to use |
+|-------|-----------|---------------------|----------|-------------|
+| **Full Width + Header** | ✅ | ✅ | ❌ | Agent list, agent spaces browse |
+| **Content Only** | ❌ | ❌ | ❌ | Agent detail view, dashboards |
+`,
+      },
+    },
+  },
+  tags: ['autodocs'],
+};
+
+export default meta;
+
+type Story = StoryObj;
+
+// ─── Story 1: Full Width + Header ────────────────────────────────
+
+export const FullWidthWithHeader: Story = {
+  name: 'Full Width + Header',
+  parameters: {
+    docs: {
+      description: {
+        story: 'SRE Agent with breadcrumb and page header. Used for agent listing and management pages.',
+      },
+    },
+  },
+  render: () => {
+    const styles = useStyles();
+    return (
+      <div className={styles.page}>
+        <SREGlobalHeader
+          userName="Alex Britez"
+          userEmail="alexbritez@microsoft.com"
+        />
+        <div className={styles.content}>
+          <AzureBreadcrumb items={[
+            { label: 'Azure SRE Agent', current: true },
+          ]} />
+          <PageHeader
+            title="Azure SRE Agent | Agents"
+            subtitle="Preview"
+            icon={<AzureServiceIcon name="sre-agent" size={28} />}
+            onMore={() => {}}
+          />
+          <ContentPlaceholder label="Agent List Content Area" />
+        </div>
+      </div>
+    );
+  },
+};
+
+// ─── Story 2: Content Only ───────────────────────────────────────
+
+export const ContentOnly: Story = {
+  name: 'Content Only',
+  parameters: {
+    docs: {
+      description: {
+        story: 'SRE header only — no breadcrumb, no page title. Content fills entire viewport below header. Used for agent detail views or embedded dashboards.',
+      },
+    },
+  },
+  render: () => {
+    const styles = useStyles();
+    return (
+      <div className={styles.page}>
+        <SREGlobalHeader
+          userName="Alex Britez"
+          userEmail="alexbritez@microsoft.com"
+          notificationCount={2}
+        />
+        <ContentPlaceholder label="Content Area (Full Viewport)" />
+      </div>
+    );
+  },
+};

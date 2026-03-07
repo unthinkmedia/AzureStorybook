@@ -220,6 +220,22 @@
     ]
   },
   {
+    "name": "EssentialsPanel",
+    "category": "Composed",
+    "storyFile": "src/stories/composed/EssentialsPanel.stories.tsx",
+    "stories": [
+      "ResourceGroup",
+      "VirtualMachine",
+      "Collapsed",
+      "Minimal"
+    ],
+    "isComposed": true,
+    "tags": [
+      "composed",
+      "azure-specific"
+    ]
+  },
+  {
     "name": "FilterBar",
     "category": "Composed",
     "storyFile": "src/stories/composed/FilterBar.stories.tsx",
@@ -272,6 +288,22 @@
       "WithOverflow",
       "WithSubtitle",
       "Default"
+    ],
+    "isComposed": true,
+    "tags": [
+      "composed",
+      "azure-specific"
+    ]
+  },
+  {
+    "name": "SREGlobalHeader",
+    "category": "Composed",
+    "storyFile": "src/stories/composed/SREGlobalHeader.stories.tsx",
+    "stories": [
+      "Default",
+      "WithNotifications",
+      "NoBadge",
+      "WithPageContent"
     ],
     "isComposed": true,
     "tags": [
@@ -377,6 +409,18 @@
     ]
   },
   {
+    "name": "AgentPlayground",
+    "category": "Playground",
+    "storyFile": "src/stories/playground/AgentPlayground.stories.tsx",
+    "stories": [
+      "Default"
+    ],
+    "isComposed": false,
+    "tags": [
+      "playground"
+    ]
+  },
+  {
     "name": "ContainerLayouts",
     "category": "Templates",
     "storyFile": "src/stories/templates/ContainerLayouts.stories.tsx",
@@ -412,6 +456,19 @@
       "WithoutFilters",
       "WithoutCheckboxes",
       "NullStateText"
+    ],
+    "isComposed": true,
+    "tags": [
+      "templates"
+    ]
+  },
+  {
+    "name": "SREContainerLayouts",
+    "category": "Templates",
+    "storyFile": "src/stories/templates/SREContainerLayouts.stories.tsx",
+    "stories": [
+      "FullWidthWithHeader",
+      "ContentOnly"
     ],
     "isComposed": true,
     "tags": [
