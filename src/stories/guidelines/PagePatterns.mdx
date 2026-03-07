@@ -1,0 +1,101 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Guidelines/Page Patterns" />
+
+# Azure Portal Page Patterns
+
+## Page Layout Hierarchy
+
+Every Azure Portal page follows this top-to-bottom structure:
+
+```
+┌─ AzureBreadcrumb ─────────────────────────────────────────┐
+├─ PageTitleBar (icon + title + star + more + AI suggestions)├
+├─ CommandBar (primary actions ‖ secondary actions) ─────────├
+├─ FilterBar (search + filters + active tags) ───────────────├
+├─ Content area (DataGrid / Cards / Dashboard etc.) ─────────├
+└────────────────────────────────────────────────────────────┘
+```
+
+Always compose from the existing building blocks:
+
+```tsx
+import { AzureBreadcrumb } from '@/components/AzureBreadcrumb';
+import { PageTitleBar } from '@/components/PageTitleBar';
+import { CommandBar } from '@/components/CommandBar';
+import { FilterBar } from '@/components/FilterBar';
+```
+
+## Full-Width vs Side Panel
+
+Choose the right layout based on what the user is looking at:
+
+| Layout | When to Use | Examples |
+|--------|-------------|---------|
+| **Full Width** | Browsing, creating, or viewing lists | Home, create wizard, marketplace, all-resources |
+| **Side Panel** | Viewing a specific deployed resource | Resource overview, resource sub-page, detail blade |
+
+- Never add a side panel to create flows, home pages, or browse pages
+- Always add a side panel to resource overview / detail pages
+
+## Composed Components
+
+### AzureBreadcrumb
+Fluent `Breadcrumb` with a Home icon. Used at the top of every page.
+
+### PageTitleBar
+Resource name / page title with icon, favorite star, more-actions menu, and optional Copilot suggestion pills.
+
+### CommandBar
+Fluent `Toolbar` split into primary and secondary action groups.
+- **Primary:** Create, Edit, Delete
+- **Secondary:** Refresh, Export, Filter, Columns
+
+### FilterBar
+`SearchBox` + `Dropdown` filters + active filter `TagGroup`. Sits between the CommandBar and content.
+
+## Common Patterns
+
+### Resource Status Badges
+
+Always use `Badge` with semantic colors for resource state:
+
+```tsx
+import { Badge } from '@fluentui/react-components';
+
+<Badge appearance="filled" color="success">Running</Badge>
+<Badge appearance="filled" color="danger">Stopped</Badge>
+<Badge appearance="filled" color="warning">Deallocated</Badge>
+<Badge appearance="filled" color="informative">Creating</Badge>
+```
+
+### Resource Name Links
+
+Resource names in grids use brand-colored text to indicate interactivity:
+
+```tsx
+color: tokens.colorBrandForeground1,  // #0f6cbd
+cursor: 'pointer',
+':hover': { textDecorationLine: 'underline' },
+```
+
+### KPI / Hero Cards
+
+Large numeric display with caption label and trend indicator:
+
+```tsx
+<Card>
+  <Text size={600} weight="semibold">1,247</Text>
+  <Text size={200}>Active Resources</Text>
+  <Badge color="success" appearance="outline">↑ 12%</Badge>
+</Card>
+```
+
+### Card Grids
+
+```tsx
+display: 'grid',
+gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+gap: '16px',
+padding: '16px',
+```

@@ -1,0 +1,99 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Guidelines/Styling Best Practices" />
+
+# Styling Best Practices
+
+## Always Use Griffel
+
+All component styling must use Griffel's `makeStyles`. Never use plain CSS, CSS Modules, or inline `style` objects for anything beyond simple layout.
+
+```tsx
+import { makeStyles, tokens } from '@fluentui/react-components';
+
+// ✅ Correct
+const useStyles = makeStyles({
+  root: {
+    backgroundColor: tokens.colorNeutralBackground1,
+    padding: '16px',
+    borderRadius: tokens.borderRadiusMedium,
+  },
+});
+
+// ❌ Wrong — plain CSS or inline styles
+<div style={{ backgroundColor: '#ffffff', padding: 16 }} />
+```
+
+## Icons
+
+```tsx
+import { Add24Regular, Delete24Regular } from '@fluentui/react-icons';
+
+// Default: 24px Regular variants
+// Small/compact UI: 20px Regular variants
+// Active/selected state: 24px Filled variants
+```
+
+Always import from `@fluentui/react-icons`, never embed raw SVGs.
+
+## Anti-Patterns
+
+| ❌ Don't | ✅ Do Instead |
+|---------|--------------|
+| Hardcode hex colors (`#ffffff`) | Use `tokens.colorNeutralBackground1` |
+| Use plain CSS or CSS Modules | Use Griffel `makeStyles` |
+| Import from `@fluentui/react` (v8) | Import from `@fluentui/react-components` (v9) |
+| Create custom button/input primitives | Use Fluent v9 `Button`, `Input`, `Card` |
+| Use raw `px` font sizes | Use `tokens.fontSizeBase300` etc. |
+| Skip `tags: ['autodocs']` | Always include for auto-generated docs |
+| Mix `FluentProvider` themes | Use `azureLightTheme` from `src/themes/` |
+| Put composed stories in `components/` | Stories go in `src/stories/composed/` |
+| Create page templates without breadcrumb | Always include `AzureBreadcrumb` at top |
+
+## Layout Conventions
+
+### Full Page
+
+```tsx
+const useStyles = makeStyles({
+  page: {
+    height: '100vh',
+    display: 'flex',
+    flexDirection: 'column',
+    backgroundColor: tokens.colorNeutralBackground2,
+  },
+  content: {
+    flex: '1',
+    overflowY: 'auto',
+    margin: '0 16px 16px',
+    backgroundColor: tokens.colorNeutralBackground1,
+    borderRadius: tokens.borderRadiusMedium,
+    border: `1px solid ${tokens.colorNeutralStroke2}`,
+  },
+});
+```
+
+### Card Grid
+
+```tsx
+const useStyles = makeStyles({
+  grid: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+    gap: '16px',
+    padding: '16px',
+  },
+});
+```
+
+### Side Panel
+
+Section navigation panels use a fixed 220px width inside the main content area. Global navigation lives in the app frame's `slot="navigation"` — never nest two navigation drawers.
+
+## Accessibility
+
+- Every icon-only button must have an `aria-label`
+- Use semantic Badge colors for status (success, danger, warning, informative)
+- Spacing must follow the 4/8/12/16/24/32px scale for consistent tap targets
+- All interactive elements must be keyboard-accessible (Fluent v9 handles this by default)
+- Verify with the Storybook a11y addon panel

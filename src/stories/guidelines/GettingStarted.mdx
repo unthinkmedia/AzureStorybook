@@ -1,0 +1,89 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Guidelines/Getting Started" />
+
+# Getting Started
+
+Welcome to the Azure Storybook — a Fluent UI React v9 component library themed to match the Azure Portal.
+
+## Tech Stack
+
+| Layer | Technology |
+|-------|------------|
+| Framework | React 18 + TypeScript 5.7 |
+| Components | `@fluentui/react-components` (Fluent UI v9) |
+| Icons | `@fluentui/react-icons` |
+| Styling | Griffel (`makeStyles` / `mergeClasses`) |
+| Storybook | 8.5 — CSF3 format with `autodocs` |
+| Bundler | Vite 6 |
+| Theme | Custom Azure themes in `src/themes/azureThemes.ts` |
+
+## Project Structure
+
+```
+src/
+├── components/          # Reusable Azure-specific composed components
+│   ├── AzureBreadcrumb.tsx
+│   ├── CommandBar.tsx
+│   ├── FilterBar.tsx
+│   └── PageTitleBar.tsx
+├── stories/
+│   ├── foundations/     # Design tokens: Colors, Typography, Spacing, Shadows
+│   ├── components/      # Fluent v9 component stories
+│   ├── composed/        # Azure composed component stories
+│   ├── templates/       # Full page templates (ResourceListPage)
+│   └── guidelines/      # Usage best practices (you are here)
+└── themes/              # Azure light, dark, and high-contrast themes
+```
+
+## Adding a New Story
+
+Every story uses CSF3 format:
+
+```tsx
+import type { Meta, StoryObj } from '@storybook/react';
+
+const meta: Meta<typeof Component> = {
+  title: 'Category/ComponentName',
+  component: Component,
+  tags: ['autodocs'],
+};
+
+export default meta;
+type Story = StoryObj<typeof Component>;
+
+export const Default: Story = {
+  args: { /* default props */ },
+};
+```
+
+### Story Categories
+
+| Category | Folder | Purpose |
+|----------|--------|---------|
+| **Foundations** | `stories/foundations/` | Design tokens — colors, typography, spacing, shadows |
+| **Components** | `stories/components/` | Stock Fluent v9 components with Azure theming |
+| **Composed** | `stories/composed/` | Azure-specific composed components |
+| **Templates** | `stories/templates/` | Full-page Azure Portal layouts |
+| **Guidelines** | `stories/guidelines/` | Usage best practices and conventions |
+
+## Naming Conventions
+
+Names should describe **what a thing does**, not where it's used. This keeps the library generic and reusable.
+
+| Layer | ✅ Good | ❌ Bad |
+|---|---|---|
+| Story export | `WithDivider`, `WithOverflow` | `ResourceList`, `CostView` |
+| Component | `FilterBar`, `CommandBar` | `ResourceFilterBar` |
+| CSS class | `leftSection`, `gridCell` | `vmList`, `subscriptionPanel` |
+| File name | `CommandBar.stories.tsx` | `CostManagementBar.stories.tsx` |
+
+## Regenerating the Registry
+
+After adding new stories or components, regenerate the component registry:
+
+```bash
+npm run build:registry
+```
+
+This updates `src/component-registry.json`, which provides machine-readable metadata for LLM context.

@@ -1,0 +1,434 @@
+[
+  {
+    "name": "Button",
+    "category": "Components",
+    "storyFile": "src/stories/components/Button.stories.tsx",
+    "stories": [
+      "Primary",
+      "Secondary",
+      "Outline",
+      "Subtle",
+      "IconOnly",
+      "Disabled",
+      "Sizes",
+      "Compound",
+      "Split",
+      "Toggle"
+    ],
+    "isComposed": false,
+    "tags": [
+      "components"
+    ]
+  },
+  {
+    "name": "Card",
+    "category": "Components",
+    "storyFile": "src/stories/components/Card.stories.tsx",
+    "stories": [
+      "Default",
+      "WithStatusBadge",
+      "WithLargeMetric",
+      "GridLayout"
+    ],
+    "isComposed": false,
+    "tags": [
+      "components"
+    ]
+  },
+  {
+    "name": "CardButton",
+    "category": "Components",
+    "storyFile": "src/stories/components/CardButton.stories.tsx",
+    "stories": [
+      "Square",
+      "Horizontal",
+      "SquareRow",
+      "HorizontalColumn"
+    ],
+    "isComposed": false,
+    "tags": [
+      "components"
+    ]
+  },
+  {
+    "name": "DataDisplay",
+    "category": "Components",
+    "storyFile": "src/stories/components/DataDisplay.stories.tsx",
+    "stories": [
+      "Overview"
+    ],
+    "isComposed": false,
+    "tags": [
+      "components"
+    ]
+  },
+  {
+    "name": "DataGrid",
+    "category": "Components",
+    "storyFile": "src/stories/components/DataGrid.stories.tsx",
+    "stories": [
+      "Default"
+    ],
+    "isComposed": false,
+    "tags": [
+      "components"
+    ]
+  },
+  {
+    "name": "Dialog",
+    "category": "Components",
+    "storyFile": "src/stories/components/Dialog.stories.tsx",
+    "stories": [
+      "Default",
+      "Destructive",
+      "Info"
+    ],
+    "isComposed": false,
+    "tags": [
+      "components"
+    ]
+  },
+  {
+    "name": "FilterPill",
+    "category": "Components",
+    "storyFile": "src/stories/components/FilterPill.stories.tsx",
+    "stories": [
+      "Default",
+      "ColonSeparator",
+      "Dismissible",
+      "Selected",
+      "WithMenu",
+      "WithMenuSingleOption",
+      "ComposedFilterBar",
+      "ScopeAndType"
+    ],
+    "isComposed": false,
+    "tags": [
+      "components"
+    ]
+  },
+  {
+    "name": "Input",
+    "category": "Components",
+    "storyFile": "src/stories/components/Input.stories.tsx",
+    "stories": [
+      "Default",
+      "WithContentBefore",
+      "Disabled",
+      "Validation",
+      "Search",
+      "TextArea",
+      "Spin",
+      "Appearances"
+    ],
+    "isComposed": false,
+    "tags": [
+      "components"
+    ]
+  },
+  {
+    "name": "PageTabs",
+    "category": "Components",
+    "storyFile": "src/stories/components/PageTabs.stories.tsx",
+    "stories": [
+      "Default",
+      "WithIcons",
+      "WithDisabledTab"
+    ],
+    "isComposed": false,
+    "tags": [
+      "components"
+    ]
+  },
+  {
+    "name": "Selection",
+    "category": "Components",
+    "storyFile": "src/stories/components/Selection.stories.tsx",
+    "stories": [
+      "Overview"
+    ],
+    "isComposed": false,
+    "tags": [
+      "components"
+    ]
+  },
+  {
+    "name": "WizardNav",
+    "category": "Components",
+    "storyFile": "src/stories/components/WizardNav.stories.tsx",
+    "stories": [
+      "Vertical",
+      "VerticalMidFlow",
+      "VerticalAllComplete",
+      "VerticalWithError",
+      "Horizontal",
+      "HorizontalMidFlow",
+      "HorizontalAllComplete",
+      "HorizontalWithError"
+    ],
+    "isComposed": false,
+    "tags": [
+      "components"
+    ]
+  },
+  {
+    "name": "AzureBreadcrumb",
+    "category": "Composed",
+    "storyFile": "src/stories/composed/AzureBreadcrumb.stories.tsx",
+    "stories": [
+      "WithMultipleLevels",
+      "SingleLevel"
+    ],
+    "isComposed": true,
+    "tags": [
+      "composed",
+      "azure-specific"
+    ]
+  },
+  {
+    "name": "AzureGlobalHeader",
+    "category": "Composed",
+    "storyFile": "src/stories/composed/AzureGlobalHeader.stories.tsx",
+    "stories": [
+      "Default",
+      "NoNotifications",
+      "WithPageContent"
+    ],
+    "isComposed": true,
+    "tags": [
+      "composed",
+      "azure-specific"
+    ]
+  },
+  {
+    "name": "CommandBar",
+    "category": "Composed",
+    "storyFile": "src/stories/composed/CommandBar.stories.tsx",
+    "stories": [
+      "Default",
+      "WithDivider",
+      "WithFarItems",
+      "WithDropdownMenus",
+      "WithOverflow",
+      "WithDisabledItems",
+      "KitchenSink"
+    ],
+    "isComposed": true,
+    "tags": [
+      "composed",
+      "azure-specific"
+    ]
+  },
+  {
+    "name": "FilterBar",
+    "category": "Composed",
+    "storyFile": "src/stories/composed/FilterBar.stories.tsx",
+    "stories": [
+      "Default",
+      "WithActiveTags"
+    ],
+    "isComposed": true,
+    "tags": [
+      "composed",
+      "azure-specific"
+    ]
+  },
+  {
+    "name": "HealthStatusCard",
+    "category": "Composed",
+    "storyFile": "src/stories/composed/HealthStatusCard.stories.tsx",
+    "stories": [
+      "Default",
+      "WithWarning"
+    ],
+    "isComposed": true,
+    "tags": [
+      "composed",
+      "azure-specific"
+    ]
+  },
+  {
+    "name": "NullState",
+    "category": "Composed",
+    "storyFile": "src/stories/composed/NullState.stories.tsx",
+    "stories": [
+      "WithIllustration",
+      "TextOnly",
+      "IllustrationMinimal"
+    ],
+    "isComposed": true,
+    "tags": [
+      "composed",
+      "azure-specific"
+    ]
+  },
+  {
+    "name": "PageTitleBar",
+    "category": "Composed",
+    "storyFile": "src/stories/composed/PageTitleBar.stories.tsx",
+    "stories": [
+      "WithPipeTitleAndSuggestions",
+      "WithAllSuggestions",
+      "WithOverflow",
+      "WithSubtitle",
+      "Default"
+    ],
+    "isComposed": true,
+    "tags": [
+      "composed",
+      "azure-specific"
+    ]
+  },
+  {
+    "name": "SearchBanner",
+    "category": "Composed",
+    "storyFile": "src/stories/composed/SearchBanner.stories.tsx",
+    "stories": [
+      "Default",
+      "Minimal"
+    ],
+    "isComposed": true,
+    "tags": [
+      "composed",
+      "azure-specific"
+    ]
+  },
+  {
+    "name": "ServiceFlyout",
+    "category": "Composed",
+    "storyFile": "src/stories/composed/ServiceFlyout.stories.tsx",
+    "stories": [
+      "WithCardButton",
+      "WithButton",
+      "WithCreateAction",
+      "ServiceRow",
+      "WithHorizontalCard"
+    ],
+    "isComposed": true,
+    "tags": [
+      "composed",
+      "azure-specific"
+    ]
+  },
+  {
+    "name": "SideNavigation",
+    "category": "Composed",
+    "storyFile": "src/stories/composed/SideNavigation.stories.tsx",
+    "stories": [
+      "Default",
+      "Collapsed",
+      "WithoutSearch",
+      "WideNav",
+      "Interactive",
+      "Minimal"
+    ],
+    "isComposed": true,
+    "tags": [
+      "composed",
+      "azure-specific"
+    ]
+  },
+  {
+    "name": "Colors",
+    "category": "Foundations",
+    "storyFile": "src/stories/foundations/Colors.stories.tsx",
+    "stories": [
+      "AllColors"
+    ],
+    "isComposed": false,
+    "tags": [
+      "foundations"
+    ]
+  },
+  {
+    "name": "Shadows",
+    "category": "Foundations",
+    "storyFile": "src/stories/foundations/Shadows.stories.tsx",
+    "stories": [
+      "AllShadows"
+    ],
+    "isComposed": false,
+    "tags": [
+      "foundations"
+    ]
+  },
+  {
+    "name": "Spacing",
+    "category": "Foundations",
+    "storyFile": "src/stories/foundations/Spacing.stories.tsx",
+    "stories": [
+      "AllSpacing"
+    ],
+    "isComposed": false,
+    "tags": [
+      "foundations"
+    ]
+  },
+  {
+    "name": "Typography",
+    "category": "Foundations",
+    "storyFile": "src/stories/foundations/Typography.stories.tsx",
+    "stories": [
+      "AllTypography"
+    ],
+    "isComposed": false,
+    "tags": [
+      "foundations"
+    ]
+  },
+  {
+    "name": "ContainerLayouts",
+    "category": "Templates",
+    "storyFile": "src/stories/templates/ContainerLayouts.stories.tsx",
+    "stories": [
+      "SidePanelLayout",
+      "FullWidthWithHeader",
+      "ContentOnly"
+    ],
+    "isComposed": true,
+    "tags": [
+      "templates"
+    ]
+  },
+  {
+    "name": "FeatureCardsPage",
+    "category": "Templates",
+    "storyFile": "src/stories/templates/FeatureCardsPage.stories.tsx",
+    "stories": [
+      "Default",
+      "CustomHeading"
+    ],
+    "isComposed": true,
+    "tags": [
+      "templates"
+    ]
+  },
+  {
+    "name": "ResourceListPage",
+    "category": "Templates",
+    "storyFile": "src/stories/templates/ResourceListPage.stories.tsx",
+    "stories": [
+      "Default",
+      "WithoutFilters",
+      "WithoutCheckboxes",
+      "NullStateText"
+    ],
+    "isComposed": true,
+    "tags": [
+      "templates"
+    ]
+  },
+  {
+    "name": "SupportPage",
+    "category": "Templates",
+    "storyFile": "src/stories/templates/SupportPage.stories.tsx",
+    "stories": [
+      "Default",
+      "WithHealthEvents"
+    ],
+    "isComposed": true,
+    "tags": [
+      "templates"
+    ]
+  }
+]

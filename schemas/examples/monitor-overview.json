@@ -1,0 +1,199 @@
+{
+  "page_id": "monitor-overview",
+  "page_type": "overview",
+  "layout": "side_panel",
+  "service_name": "Monitor",
+  "resource_type": null,
+
+  "breadcrumb": {
+    "items": [
+      { "label": "Home", "href": "/" },
+      { "label": "Monitor", "is_current": true }
+    ]
+  },
+
+  "page_header": {
+    "title": "Monitor | Overview",
+    "subtitle": "Microsoft",
+    "icon": "HeartPulse24Regular",
+    "show_star": false,
+    "show_more_actions": true,
+    "copilot_suggestions": [
+      {
+        "label": "Summarize these Monitor services in a table",
+        "prompt": "Summarize all the Monitor services available on this page in a table format"
+      },
+      {
+        "label": "Run an anomaly investigation into my resource",
+        "prompt": "Run an anomaly investigation across my monitored resources to identify unusual patterns"
+      },
+      {
+        "label": "Catch me up on my alerts",
+        "prompt": "Summarize my recent alerts and their current status"
+      }
+    ]
+  },
+
+  "side_nav": {
+    "width_px": 220,
+    "collapsible": true,
+    "search_enabled": true,
+    "items": [
+      { "type": "link", "label": "Overview", "icon": "Home24Regular", "is_selected": true },
+      { "type": "link", "label": "Activity log", "icon": "History24Regular" },
+      { "type": "link", "label": "Alerts", "icon": "Alert24Regular" },
+      { "type": "link", "label": "Issues (preview)", "icon": "Bug24Regular" },
+      { "type": "link", "label": "Metrics", "icon": "DataTrending24Regular" },
+      { "type": "link", "label": "Logs", "icon": "Document24Regular" },
+      { "type": "link", "label": "Change Analysis", "icon": "ArrowRepeatAll24Regular" },
+      { "type": "link", "label": "Service health", "icon": "Heart24Regular" },
+      { "type": "link", "label": "Workbooks", "icon": "Notebook24Regular" },
+      { "type": "link", "label": "Dashboards with Grafana", "icon": "BoardSplit24Regular" },
+      { "type": "link", "label": "Insights", "icon": "Lightbulb24Regular" },
+      { "type": "link", "label": "Managed Services", "icon": "People24Regular" },
+      { "type": "link", "label": "Settings", "icon": "Settings24Regular" },
+      { "type": "link", "label": "Support + Troubleshooting", "icon": "QuestionCircle24Regular" }
+    ]
+  },
+
+  "info_banner": {
+    "intent": "warning",
+    "message": "The Log Analytics agents, used by VM Insights, won't be supported as of August 31, 2024. Plan to migrate to VM Insights on Azure Monitor agent prior to this date.",
+    "action_label": "→",
+    "dismissible": true
+  },
+
+  "body": {
+    "has_tabs": true,
+    "tabs_spec": {
+      "tabs": [
+        { "value": "overview", "label": "Overview" },
+        { "value": "tutorials", "label": "Tutorials" }
+      ],
+      "default_tab": "overview",
+      "size": "medium"
+    },
+    "tab_bodies": [
+      {
+        "tab_value": "overview",
+        "body": {
+          "template": "card_grid",
+          "sections": [
+            {
+              "title": "Insights",
+              "subtitle": "Use curated monitoring views for specific Azure resources.",
+              "view_all_link": "View all insights",
+              "columns": 3,
+              "cards": [
+                {
+                  "title": "Application Insights",
+                  "description": "Monitor your app's availability, performance, errors, and usage.",
+                  "icon": "AppGeneric24Regular",
+                  "actions": [
+                    { "label": "View", "icon": "Open24Regular" },
+                    { "label": "More", "icon": "MoreHorizontal24Regular" }
+                  ]
+                },
+                {
+                  "title": "Container Insights",
+                  "description": "Gain visibility into the performance and health of your controllers, nodes, and containers.",
+                  "icon": "Box24Regular",
+                  "actions": [
+                    { "label": "View", "icon": "Open24Regular" },
+                    { "label": "More", "icon": "MoreHorizontal24Regular" }
+                  ]
+                },
+                {
+                  "title": "VM Insights",
+                  "description": "Monitor the health, performance, and dependencies of your VMs and VM scale sets.",
+                  "icon": "Desktop24Regular",
+                  "actions": [
+                    { "label": "View", "icon": "Open24Regular" },
+                    { "label": "More", "icon": "MoreHorizontal24Regular" }
+                  ]
+                },
+                {
+                  "title": "Network Insights",
+                  "description": "View the health and metrics for all deployed network resources.",
+                  "icon": "Globe24Regular",
+                  "actions": [
+                    { "label": "View", "icon": "Open24Regular" },
+                    { "label": "More", "icon": "MoreHorizontal24Regular" }
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "Detection, triage, and diagnosis",
+              "subtitle": "Visualize, analyze, and respond to monitoring data and events.",
+              "view_all_link": "Learn more about monitoring",
+              "columns": 3,
+              "cards": [
+                {
+                  "title": "Metrics",
+                  "description": "Create charts to monitor and investigate the usage and performance of Azure resources.",
+                  "icon": "DataTrending24Regular",
+                  "actions": [
+                    { "label": "View", "icon": "Open24Regular" },
+                    { "label": "More", "icon": "MoreHorizontal24Regular" }
+                  ]
+                },
+                {
+                  "title": "Alerts",
+                  "description": "Get notified and respond using alerts and actions.",
+                  "icon": "Alert24Regular",
+                  "actions": [
+                    { "label": "View", "icon": "Open24Regular" },
+                    { "label": "More", "icon": "MoreHorizontal24Regular" }
+                  ]
+                },
+                {
+                  "title": "Logs",
+                  "description": "Analyze and diagnose issues with log queries.",
+                  "icon": "Document24Regular",
+                  "actions": [
+                    { "label": "View", "icon": "Open24Regular" },
+                    { "label": "More", "icon": "MoreHorizontal24Regular" }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "tab_value": "tutorials",
+        "body": {
+          "template": "card_grid",
+          "sections": [
+            {
+              "title": "Get started with Monitor",
+              "subtitle": "Learn how to set up and use Azure Monitor.",
+              "columns": 3,
+              "cards": [
+                {
+                  "title": "Quickstart: Monitor an Azure resource",
+                  "description": "Learn how to use Azure Monitor to observe an Azure resource and its data.",
+                  "icon": "Rocket24Regular",
+                  "actions": [{ "label": "Start", "icon": "Open24Regular" }]
+                },
+                {
+                  "title": "Tutorial: Create a metrics alert",
+                  "description": "Set up an alert that triggers when a metric crosses a threshold.",
+                  "icon": "Alert24Regular",
+                  "actions": [{ "label": "Start", "icon": "Open24Regular" }]
+                },
+                {
+                  "title": "Tutorial: Collect and analyze logs",
+                  "description": "Configure log collection and build queries to analyze data.",
+                  "icon": "Document24Regular",
+                  "actions": [{ "label": "Start", "icon": "Open24Regular" }]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

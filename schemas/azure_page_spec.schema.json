@@ -1,0 +1,1861 @@
+{
+  "$defs": {
+    "ActionButton": {
+      "description": "A CTA button on a landing page.",
+      "properties": {
+        "label": {
+          "title": "Label",
+          "type": "string"
+        },
+        "variant": {
+          "default": "primary",
+          "enum": [
+            "primary",
+            "secondary",
+            "outline"
+          ],
+          "title": "Variant",
+          "type": "string"
+        },
+        "icon": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Icon"
+        }
+      },
+      "required": [
+        "label"
+      ],
+      "title": "ActionButton",
+      "type": "object"
+    },
+    "ActiveFilter": {
+      "description": "A currently-applied filter shown as a removable tag.",
+      "properties": {
+        "field": {
+          "title": "Field",
+          "type": "string"
+        },
+        "value": {
+          "title": "Value",
+          "type": "string"
+        },
+        "operator": {
+          "default": "equals",
+          "description": "e.g. 'equals', 'contains', 'gt'",
+          "title": "Operator",
+          "type": "string"
+        }
+      },
+      "required": [
+        "field",
+        "value"
+      ],
+      "title": "ActiveFilter",
+      "type": "object"
+    },
+    "AlertCard": {
+      "description": "An alert/status card in the diagnostics view.",
+      "properties": {
+        "title": {
+          "title": "Title",
+          "type": "string"
+        },
+        "description": {
+          "title": "Description",
+          "type": "string"
+        },
+        "severity": {
+          "$ref": "#/$defs/InfoBannerIntent",
+          "description": "Visual severity"
+        },
+        "action_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "CTA link text, e.g. 'View guidance'",
+          "title": "Action Label"
+        },
+        "count": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Numeric count shown as a link, e.g. '9 Sign-ins...'",
+          "title": "Count"
+        }
+      },
+      "required": [
+        "title",
+        "description",
+        "severity"
+      ],
+      "title": "AlertCard",
+      "type": "object"
+    },
+    "BadgeColor": {
+      "description": "Semantic badge colors \u2014 maps to Fluent Badge `color` prop.",
+      "enum": [
+        "success",
+        "danger",
+        "warning",
+        "informative",
+        "important",
+        "subtle",
+        "brand"
+      ],
+      "title": "BadgeColor",
+      "type": "string"
+    },
+    "BenefitCard": {
+      "description": "A benefit/feature card in a marketing section.",
+      "properties": {
+        "title": {
+          "description": "Benefit heading, e.g. 'REDUCE COST'",
+          "title": "Title",
+          "type": "string"
+        },
+        "description": {
+          "title": "Description",
+          "type": "string"
+        },
+        "icon": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Icon"
+        }
+      },
+      "required": [
+        "title",
+        "description"
+      ],
+      "title": "BenefitCard",
+      "type": "object"
+    },
+    "BodySpec": {
+      "description": "The main content area of the page.\n\nTwo modes:\n1. **Direct** \u2014 no tabs, single body template\n2. **Tabbed** \u2014 PageTabs strip + one template per tab\n\nWhen tabbed, each TabBody.tab_value must correspond 1:1 with a\nTabDefinition.value in tabs_spec.  The builder renders a <PageTabs>\nstrip and swaps the body template based on the selected tab.\n\nLLM prompt: \"Does the body have tabs?  If yes, define each tab and\nits content template.  If no, pick one template and fill it in.\"",
+      "properties": {
+        "has_tabs": {
+          "default": false,
+          "description": "True if the content area has a PageTabs strip",
+          "title": "Has Tabs",
+          "type": "boolean"
+        },
+        "tabs_spec": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/TabsSpec"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "PageTabs strip definition (required if has_tabs is True)"
+        },
+        "tab_bodies": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/TabBody"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "One body template per tab.  Each entry's tab_value must match a TabDefinition.value in tabs_spec.  Order should match tab order.",
+          "title": "Tab Bodies"
+        },
+        "direct_body": {
+          "anyOf": [
+            {
+              "discriminator": {
+                "mapping": {
+                  "card_grid": "#/$defs/CardGridBody",
+                  "dashboard": "#/$defs/DashboardBody",
+                  "data_grid": "#/$defs/DataGridBody",
+                  "diagnostics": "#/$defs/DiagnosticsBody",
+                  "landing_page": "#/$defs/LandingPageBody",
+                  "marketing": "#/$defs/MarketingBody",
+                  "settings_form": "#/$defs/SettingsFormBody"
+                },
+                "propertyName": "template"
+              },
+              "oneOf": [
+                {
+                  "$ref": "#/$defs/DataGridBody"
+                },
+                {
+                  "$ref": "#/$defs/CardGridBody"
+                },
+                {
+                  "$ref": "#/$defs/SettingsFormBody"
+                },
+                {
+                  "$ref": "#/$defs/LandingPageBody"
+                },
+                {
+                  "$ref": "#/$defs/DiagnosticsBody"
+                },
+                {
+                  "$ref": "#/$defs/MarketingBody"
+                },
+                {
+                  "$ref": "#/$defs/DashboardBody"
+                }
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Single body template (required if has_tabs is False)",
+          "title": "Direct Body"
+        }
+      },
+      "title": "BodySpec",
+      "type": "object"
+    },
+    "BreadcrumbItem": {
+      "properties": {
+        "label": {
+          "description": "Display text, e.g. 'Home', 'Resource Manager'",
+          "title": "Label",
+          "type": "string"
+        },
+        "href": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Navigation target (None = current page)",
+          "title": "Href"
+        },
+        "is_current": {
+          "default": false,
+          "description": "True for the last item in the trail",
+          "title": "Is Current",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "label"
+      ],
+      "title": "BreadcrumbItem",
+      "type": "object"
+    },
+    "BreadcrumbSpec": {
+      "description": "Maps to \u2192 Storybook: AzureBreadcrumb (Composed)\n\nLLM prompt: \"List the navigation hierarchy from Home down to the\ncurrent page.\"",
+      "properties": {
+        "storybook_ref": {
+          "$ref": "#/$defs/StorybookRef"
+        },
+        "items": {
+          "description": "Ordered breadcrumb trail.  First item is usually Home.",
+          "items": {
+            "$ref": "#/$defs/BreadcrumbItem"
+          },
+          "minItems": 1,
+          "title": "Items",
+          "type": "array"
+        }
+      },
+      "required": [
+        "items"
+      ],
+      "title": "BreadcrumbSpec",
+      "type": "object"
+    },
+    "CardAction": {
+      "description": "Action link/button at the bottom of a card.",
+      "properties": {
+        "label": {
+          "title": "Label",
+          "type": "string"
+        },
+        "icon": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Icon"
+        },
+        "href": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Href"
+        }
+      },
+      "required": [
+        "label"
+      ],
+      "title": "CardAction",
+      "type": "object"
+    },
+    "CardGridBody": {
+      "description": "Maps to \u2192 Storybook: Card > CardGrid, Card > ResourceCard, Card > HeroCard\n\nUsed for: service overview pages (Monitor), dashboard widgets,\nmarketplace browse, resource overview KPIs.\n\nLLM prompt: \"Break the content into titled sections.  Each section\nhas a grid of cards.  For each card: title, description, icon, and\nany action links (View, More, etc.).\"",
+      "properties": {
+        "template": {
+          "const": "card_grid",
+          "default": "card_grid",
+          "title": "Template",
+          "type": "string"
+        },
+        "storybook_ref": {
+          "$ref": "#/$defs/StorybookRef"
+        },
+        "sections": {
+          "items": {
+            "$ref": "#/$defs/CardGridSection"
+          },
+          "minItems": 1,
+          "title": "Sections",
+          "type": "array"
+        }
+      },
+      "required": [
+        "sections"
+      ],
+      "title": "CardGridBody",
+      "type": "object"
+    },
+    "CardGridSection": {
+      "description": "A titled section containing a grid of cards.",
+      "properties": {
+        "title": {
+          "description": "Section heading, e.g. 'Insights'",
+          "title": "Title",
+          "type": "string"
+        },
+        "subtitle": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Description below heading",
+          "title": "Subtitle"
+        },
+        "view_all_link": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "'View all' link text",
+          "title": "View All Link"
+        },
+        "cards": {
+          "items": {
+            "$ref": "#/$defs/CardItem"
+          },
+          "minItems": 1,
+          "title": "Cards",
+          "type": "array"
+        },
+        "columns": {
+          "default": 3,
+          "description": "Number of card columns (uses CSS grid auto-fill)",
+          "title": "Columns",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "title",
+        "cards"
+      ],
+      "title": "CardGridSection",
+      "type": "object"
+    },
+    "CardItem": {
+      "description": "One card in a card grid section.",
+      "properties": {
+        "title": {
+          "title": "Title",
+          "type": "string"
+        },
+        "description": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Description"
+        },
+        "icon": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Fluent icon name for the card header",
+          "title": "Icon"
+        },
+        "badge": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional status badge text",
+          "title": "Badge"
+        },
+        "badge_color": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/BadgeColor"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "actions": {
+          "items": {
+            "$ref": "#/$defs/CardAction"
+          },
+          "title": "Actions",
+          "type": "array"
+        },
+        "metrics": {
+          "anyOf": [
+            {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "KPI metrics grid, e.g. {'CPU': '45%', 'Memory': '2.3 GB'}",
+          "title": "Metrics"
+        }
+      },
+      "required": [
+        "title"
+      ],
+      "title": "CardItem",
+      "type": "object"
+    },
+    "ColumnDefinition": {
+      "description": "One column in a DataGrid.",
+      "properties": {
+        "key": {
+          "description": "Unique column identifier",
+          "title": "Key",
+          "type": "string"
+        },
+        "label": {
+          "description": "Column header text",
+          "title": "Label",
+          "type": "string"
+        },
+        "sortable": {
+          "default": true,
+          "title": "Sortable",
+          "type": "boolean"
+        },
+        "is_link": {
+          "default": false,
+          "description": "Render cell value as a brand-colored link (e.g. resource name)",
+          "title": "Is Link",
+          "type": "boolean"
+        },
+        "badge_color_map": {
+          "anyOf": [
+            {
+              "additionalProperties": {
+                "$ref": "#/$defs/BadgeColor"
+              },
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "If set, cell values are rendered as Badges.  Keys are cell values, values are badge colors.  e.g. {'Running': 'success', 'Stopped': 'danger'}",
+          "title": "Badge Color Map"
+        },
+        "width": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "CSS width hint, e.g. '200px', '1fr'",
+          "title": "Width"
+        }
+      },
+      "required": [
+        "key",
+        "label"
+      ],
+      "title": "ColumnDefinition",
+      "type": "object"
+    },
+    "CommandAction": {
+      "description": "One action button in the command bar.",
+      "properties": {
+        "label": {
+          "description": "Button text, e.g. 'Create', 'Refresh'",
+          "title": "Label",
+          "type": "string"
+        },
+        "icon": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Fluent icon name, e.g. 'Add24Regular', 'ArrowSync24Regular'",
+          "title": "Icon"
+        },
+        "is_primary": {
+          "default": false,
+          "description": "True for prominent actions (left group) vs. secondary (right group)",
+          "title": "Is Primary",
+          "type": "boolean"
+        },
+        "has_dropdown": {
+          "default": false,
+          "description": "Shows a dropdown chevron (e.g. 'Export \u25be', 'Manage view \u25be')",
+          "title": "Has Dropdown",
+          "type": "boolean"
+        },
+        "disabled": {
+          "default": false,
+          "title": "Disabled",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "label"
+      ],
+      "title": "CommandAction",
+      "type": "object"
+    },
+    "CommandBarSpec": {
+      "description": "Maps to \u2192 Storybook: CommandBar (Composed)\n\nLLM prompt: \"List the toolbar actions.  Split into primary\n(left-aligned, prominent) and secondary (right-aligned, subtle).\nWhich actions have dropdown menus?\"",
+      "properties": {
+        "storybook_ref": {
+          "$ref": "#/$defs/StorybookRef"
+        },
+        "actions": {
+          "description": "All command bar actions in display order",
+          "items": {
+            "$ref": "#/$defs/CommandAction"
+          },
+          "minItems": 1,
+          "title": "Actions",
+          "type": "array"
+        }
+      },
+      "required": [
+        "actions"
+      ],
+      "title": "CommandBarSpec",
+      "type": "object"
+    },
+    "CopilotSuggestion": {
+      "description": "One Copilot suggestion pill shown below the page title.",
+      "properties": {
+        "label": {
+          "description": "Short action description shown in the pill",
+          "title": "Label",
+          "type": "string"
+        },
+        "prompt": {
+          "description": "The full prompt sent to Copilot when clicked. This is the data the LLM should fill in \u2014 the *intent* behind the suggestion.",
+          "title": "Prompt",
+          "type": "string"
+        }
+      },
+      "required": [
+        "label",
+        "prompt"
+      ],
+      "title": "CopilotSuggestion",
+      "type": "object"
+    },
+    "DashboardBody": {
+      "description": "Maps to \u2192 Storybook: Card > CardGrid (multi-column layout)\n\nUsed for: Azure Dashboard, custom dashboards.\n\nLLM prompt: \"Describe each dashboard widget: title, type (resource list,\nKPI, chart, quickstart list, promo), grid position, and sample data.\"",
+      "properties": {
+        "template": {
+          "const": "dashboard",
+          "default": "dashboard",
+          "title": "Template",
+          "type": "string"
+        },
+        "storybook_ref": {
+          "$ref": "#/$defs/StorybookRef"
+        },
+        "dashboard_name": {
+          "description": "Dashboard title, e.g. 'My Dashboard'",
+          "title": "Dashboard Name",
+          "type": "string"
+        },
+        "visibility": {
+          "default": "private",
+          "enum": [
+            "private",
+            "shared"
+          ],
+          "title": "Visibility",
+          "type": "string"
+        },
+        "auto_refresh": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Auto-refresh interval label, e.g. 'Every hour'",
+          "title": "Auto Refresh"
+        },
+        "widgets": {
+          "items": {
+            "$ref": "#/$defs/DashboardWidget"
+          },
+          "minItems": 1,
+          "title": "Widgets",
+          "type": "array"
+        },
+        "grid_columns": {
+          "default": 3,
+          "description": "Number of grid columns",
+          "title": "Grid Columns",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "dashboard_name",
+        "widgets"
+      ],
+      "title": "DashboardBody",
+      "type": "object"
+    },
+    "DashboardWidget": {
+      "description": "One widget tile on a dashboard.",
+      "properties": {
+        "title": {
+          "title": "Title",
+          "type": "string"
+        },
+        "widget_type": {
+          "description": "Type of widget content",
+          "enum": [
+            "resource_list",
+            "quickstart_list",
+            "promo_card",
+            "kpi",
+            "chart"
+          ],
+          "title": "Widget Type",
+          "type": "string"
+        },
+        "col_span": {
+          "default": 1,
+          "description": "Grid column span (1-3)",
+          "title": "Col Span",
+          "type": "integer"
+        },
+        "row_span": {
+          "default": 1,
+          "description": "Grid row span",
+          "title": "Row Span",
+          "type": "integer"
+        },
+        "items": {
+          "description": "Widget content items.  Structure depends on widget_type.  e.g. resource_list: [{'name': 'coherence-preview', 'type': 'Static Web App'}]",
+          "items": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object"
+          },
+          "title": "Items",
+          "type": "array"
+        }
+      },
+      "required": [
+        "title",
+        "widget_type"
+      ],
+      "title": "DashboardWidget",
+      "type": "object"
+    },
+    "DataGridBody": {
+      "description": "Maps to \u2192 Storybook: DataGrid > ResourceList\n\nUsed for: resource lists, resource group tables, audit logs, etc.\nThe LLM fills in columns, sample rows, and pagination config.\n\nLLM prompt: \"Define the table columns.  Which columns are sortable?\nWhich show status badges?  Provide 3-8 sample rows.  Is there pagination?\"",
+      "properties": {
+        "template": {
+          "const": "data_grid",
+          "default": "data_grid",
+          "title": "Template",
+          "type": "string"
+        },
+        "storybook_ref": {
+          "$ref": "#/$defs/StorybookRef"
+        },
+        "columns": {
+          "items": {
+            "$ref": "#/$defs/ColumnDefinition"
+          },
+          "minItems": 1,
+          "title": "Columns",
+          "type": "array"
+        },
+        "rows": {
+          "description": "Sample data rows (3-8 recommended for story)",
+          "items": {
+            "$ref": "#/$defs/RowData"
+          },
+          "title": "Rows",
+          "type": "array"
+        },
+        "selectable": {
+          "default": true,
+          "description": "Show row selection checkboxes",
+          "title": "Selectable",
+          "type": "boolean"
+        },
+        "pagination": {
+          "default": true,
+          "title": "Pagination",
+          "type": "boolean"
+        },
+        "total_count": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Total item count for pagination display, e.g. 28",
+          "title": "Total Count"
+        },
+        "group_by": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Column key to group rows by, e.g. 'resourceGroup'",
+          "title": "Group By"
+        }
+      },
+      "required": [
+        "columns"
+      ],
+      "title": "DataGridBody",
+      "type": "object"
+    },
+    "DiagnosticsBody": {
+      "description": "Maps to \u2192 Storybook: Input > Search + Card > Default + DataDisplay > MessageBar\n\nUsed for: Diagnose and solve problems, troubleshooting pages.\n\nLLM prompt: \"What is the search prompt text?  List the alert cards\nwith their title, description, and severity.\"",
+      "properties": {
+        "template": {
+          "const": "diagnostics",
+          "default": "diagnostics",
+          "title": "Template",
+          "type": "string"
+        },
+        "storybook_ref": {
+          "$ref": "#/$defs/StorybookRef"
+        },
+        "search_heading": {
+          "default": "How can we help you?",
+          "description": "Heading above the search box",
+          "title": "Search Heading",
+          "type": "string"
+        },
+        "search_placeholder": {
+          "default": "Briefly describe the issue",
+          "description": "Search input placeholder",
+          "title": "Search Placeholder",
+          "type": "string"
+        },
+        "info_note": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Informational note below search, e.g. privacy notice",
+          "title": "Info Note"
+        },
+        "alert_section_title": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": "Alerts",
+          "title": "Alert Section Title"
+        },
+        "alerts": {
+          "items": {
+            "$ref": "#/$defs/AlertCard"
+          },
+          "title": "Alerts",
+          "type": "array"
+        }
+      },
+      "title": "DiagnosticsBody",
+      "type": "object"
+    },
+    "FieldType": {
+      "description": "Form field control types used in SettingsForm body template.",
+      "enum": [
+        "toggle",
+        "radio_group",
+        "checkbox",
+        "text_input",
+        "dropdown",
+        "combobox",
+        "slider",
+        "spin_button"
+      ],
+      "title": "FieldType",
+      "type": "string"
+    },
+    "FilterBarSpec": {
+      "description": "Maps to \u2192 Storybook: FilterBar (Composed)\n\nLLM prompt: \"Does this page have a filter bar?  List the filter\ndropdowns and any pre-applied filter tags.\"",
+      "properties": {
+        "storybook_ref": {
+          "$ref": "#/$defs/StorybookRef"
+        },
+        "search_placeholder": {
+          "default": "Filter for any field...",
+          "description": "Search box placeholder text",
+          "title": "Search Placeholder",
+          "type": "string"
+        },
+        "filters": {
+          "items": {
+            "$ref": "#/$defs/FilterDefinition"
+          },
+          "title": "Filters",
+          "type": "array"
+        },
+        "active_filters": {
+          "description": "Pre-applied filters shown as removable tags",
+          "items": {
+            "$ref": "#/$defs/ActiveFilter"
+          },
+          "title": "Active Filters",
+          "type": "array"
+        }
+      },
+      "title": "FilterBarSpec",
+      "type": "object"
+    },
+    "FilterDefinition": {
+      "description": "One dropdown filter control in the filter bar.",
+      "properties": {
+        "field": {
+          "description": "Field name, e.g. 'Subscription', 'Location', 'Status'",
+          "title": "Field",
+          "type": "string"
+        },
+        "placeholder": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Placeholder"
+        },
+        "multi_select": {
+          "default": true,
+          "title": "Multi Select",
+          "type": "boolean"
+        },
+        "options": {
+          "description": "Predefined filter options.  Empty = dynamic / loaded at runtime.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Options",
+          "type": "array"
+        }
+      },
+      "required": [
+        "field"
+      ],
+      "title": "FilterDefinition",
+      "type": "object"
+    },
+    "FormField": {
+      "description": "One form control in a settings section.",
+      "properties": {
+        "type": {
+          "$ref": "#/$defs/FieldType"
+        },
+        "label": {
+          "title": "Label",
+          "type": "string"
+        },
+        "description": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Helper text / tooltip content",
+          "title": "Description"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Current value for toggles ('Yes'/'No'), text inputs, etc.",
+          "title": "Value"
+        },
+        "options": {
+          "description": "Options for radio_group, dropdown, combobox",
+          "items": {
+            "$ref": "#/$defs/FormFieldOption"
+          },
+          "title": "Options",
+          "type": "array"
+        },
+        "info_tooltip": {
+          "default": false,
+          "description": "Show an (i) info icon next to the label",
+          "title": "Info Tooltip",
+          "type": "boolean"
+        },
+        "disabled": {
+          "default": false,
+          "title": "Disabled",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "type",
+        "label"
+      ],
+      "title": "FormField",
+      "type": "object"
+    },
+    "FormFieldOption": {
+      "description": "Option for radio groups, dropdowns, etc.",
+      "properties": {
+        "label": {
+          "title": "Label",
+          "type": "string"
+        },
+        "value": {
+          "title": "Value",
+          "type": "string"
+        },
+        "is_default": {
+          "default": false,
+          "title": "Is Default",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "label",
+        "value"
+      ],
+      "title": "FormFieldOption",
+      "type": "object"
+    },
+    "FormSection": {
+      "description": "A titled group of form fields.",
+      "properties": {
+        "title": {
+          "description": "Section heading, e.g. 'Default user role permissions'",
+          "title": "Title",
+          "type": "string"
+        },
+        "learn_more_link": {
+          "default": false,
+          "description": "Show a 'Learn more' link below the heading",
+          "title": "Learn More Link",
+          "type": "boolean"
+        },
+        "fields": {
+          "items": {
+            "$ref": "#/$defs/FormField"
+          },
+          "minItems": 1,
+          "title": "Fields",
+          "type": "array"
+        }
+      },
+      "required": [
+        "title",
+        "fields"
+      ],
+      "title": "FormSection",
+      "type": "object"
+    },
+    "InfoBannerIntent": {
+      "enum": [
+        "info",
+        "warning",
+        "error",
+        "success"
+      ],
+      "title": "InfoBannerIntent",
+      "type": "string"
+    },
+    "InfoBannerSpec": {
+      "description": "Maps to \u2192 Fluent MessageBar (Storybook: DataDisplay > MessageBar)\n\nLLM prompt: \"Is there an important banner at the top of the content\narea?  What does it say?  Is it info / warning / error?\"",
+      "properties": {
+        "storybook_ref": {
+          "$ref": "#/$defs/StorybookRef"
+        },
+        "intent": {
+          "$ref": "#/$defs/InfoBannerIntent",
+          "description": "Severity / visual intent"
+        },
+        "message": {
+          "description": "Banner text",
+          "title": "Message",
+          "type": "string"
+        },
+        "action_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional CTA link text, e.g. 'Learn more', 'View guidance'",
+          "title": "Action Label"
+        },
+        "dismissible": {
+          "default": true,
+          "title": "Dismissible",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "intent",
+        "message"
+      ],
+      "title": "InfoBannerSpec",
+      "type": "object"
+    },
+    "LandingCard": {
+      "description": "An illustration card on a landing page.",
+      "properties": {
+        "title": {
+          "title": "Title",
+          "type": "string"
+        },
+        "description": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Description"
+        },
+        "illustration": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Illustration asset name or placeholder description",
+          "title": "Illustration"
+        },
+        "actions": {
+          "items": {
+            "$ref": "#/$defs/ActionButton"
+          },
+          "title": "Actions",
+          "type": "array"
+        }
+      },
+      "required": [
+        "title"
+      ],
+      "title": "LandingCard",
+      "type": "object"
+    },
+    "LandingPageBody": {
+      "description": "Maps to \u2192 Storybook: Card > Default + Button > Primary/Secondary\n\nUsed for: Resource Manager overview, service landing pages,\nempty states, getting-started pages.\n\nLLM prompt: \"What is the centered heading?  Describe 1-3 illustration\ncards with their titles, descriptions, and action buttons.\"",
+      "properties": {
+        "template": {
+          "const": "landing_page",
+          "default": "landing_page",
+          "title": "Template",
+          "type": "string"
+        },
+        "storybook_ref": {
+          "$ref": "#/$defs/StorybookRef"
+        },
+        "heading": {
+          "description": "Main centered heading",
+          "title": "Heading",
+          "type": "string"
+        },
+        "learn_more_link": {
+          "default": false,
+          "title": "Learn More Link",
+          "type": "boolean"
+        },
+        "cards": {
+          "items": {
+            "$ref": "#/$defs/LandingCard"
+          },
+          "minItems": 1,
+          "title": "Cards",
+          "type": "array"
+        },
+        "layout": {
+          "default": "side_by_side",
+          "description": "Card arrangement",
+          "enum": [
+            "side_by_side",
+            "stacked"
+          ],
+          "title": "Layout",
+          "type": "string"
+        }
+      },
+      "required": [
+        "heading",
+        "cards"
+      ],
+      "title": "LandingPageBody",
+      "type": "object"
+    },
+    "LayoutType": {
+      "description": "Top-level layout decision.\n\nside_panel  \u2013 resource detail / service blade (220 px side nav + content)\nfull_width  \u2013 home, create wizard, browse-all, marketplace\ndashboard   \u2013 multi-column widget grid (Azure Dashboard)",
+      "enum": [
+        "side_panel",
+        "full_width",
+        "dashboard"
+      ],
+      "title": "LayoutType",
+      "type": "string"
+    },
+    "MarketingBody": {
+      "description": "Maps to \u2192 Storybook: Card > Default + DataDisplay > Overview\n\nUsed for: feature upsell pages, password reset, premium feature promos.\n\nLLM prompt: \"What is the hero heading?  Describe the feature pitch\nparagraph.  List benefit cards with titles and descriptions.\"",
+      "properties": {
+        "template": {
+          "const": "marketing",
+          "default": "marketing",
+          "title": "Template",
+          "type": "string"
+        },
+        "storybook_ref": {
+          "$ref": "#/$defs/StorybookRef"
+        },
+        "hero_heading": {
+          "title": "Hero Heading",
+          "type": "string"
+        },
+        "hero_description": {
+          "title": "Hero Description",
+          "type": "string"
+        },
+        "hero_icon": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Large icon/illustration for the hero section",
+          "title": "Hero Icon"
+        },
+        "benefits_heading": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Heading above benefit cards, e.g. 'Why use self-service password reset?'",
+          "title": "Benefits Heading"
+        },
+        "benefits": {
+          "items": {
+            "$ref": "#/$defs/BenefitCard"
+          },
+          "title": "Benefits",
+          "type": "array"
+        },
+        "upsell_banner": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "CTA banner text, e.g. 'Get a free Premium trial to use this feature \u2192'",
+          "title": "Upsell Banner"
+        }
+      },
+      "required": [
+        "hero_heading",
+        "hero_description"
+      ],
+      "title": "MarketingBody",
+      "type": "object"
+    },
+    "NavItem": {
+      "description": "One item in the side navigation panel.",
+      "properties": {
+        "type": {
+          "$ref": "#/$defs/NavItemType",
+          "default": "link"
+        },
+        "label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Display text (required for link and group_header)",
+          "title": "Label"
+        },
+        "icon": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Fluent icon name, e.g. 'Home24Regular'",
+          "title": "Icon"
+        },
+        "is_selected": {
+          "default": false,
+          "description": "Currently active nav item",
+          "title": "Is Selected",
+          "type": "boolean"
+        },
+        "children": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/NavItem"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Nested items for expandable groups",
+          "title": "Children"
+        }
+      },
+      "title": "NavItem",
+      "type": "object"
+    },
+    "NavItemType": {
+      "description": "Side-nav item types.",
+      "enum": [
+        "link",
+        "divider",
+        "group_header"
+      ],
+      "title": "NavItemType",
+      "type": "string"
+    },
+    "PageHeaderSpec": {
+      "description": "Maps to \u2192 Storybook: PageTitleBar (Composed)\n\nLLM prompt: \"What is the page title?  What icon represents this\nservice?  Should there be a star/favorite button?  List 0-5\nCopilot suggestions that would be useful on this page.\"",
+      "properties": {
+        "storybook_ref": {
+          "$ref": "#/$defs/StorybookRef"
+        },
+        "title": {
+          "description": "Page title, e.g. 'Monitor | Overview'",
+          "title": "Title",
+          "type": "string"
+        },
+        "subtitle": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Secondary text below title, e.g. 'Microsoft', 'Default Directory'",
+          "title": "Subtitle"
+        },
+        "icon": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Fluent icon name (24Regular), e.g. 'Heart24Regular', 'People24Regular'",
+          "title": "Icon"
+        },
+        "show_star": {
+          "default": false,
+          "description": "Show a favorite/star toggle button",
+          "title": "Show Star",
+          "type": "boolean"
+        },
+        "show_more_actions": {
+          "default": false,
+          "description": "Show a '...' more-actions overflow button",
+          "title": "Show More Actions",
+          "type": "boolean"
+        },
+        "copilot_suggestions": {
+          "description": "Copilot suggestion pills.  Leave empty for pages that don't have Copilot integration.  Typically 0-5 items.",
+          "items": {
+            "$ref": "#/$defs/CopilotSuggestion"
+          },
+          "title": "Copilot Suggestions",
+          "type": "array"
+        }
+      },
+      "required": [
+        "title"
+      ],
+      "title": "PageHeaderSpec",
+      "type": "object"
+    },
+    "PageType": {
+      "description": "Semantic page type \u2014 drives default component selection.",
+      "enum": [
+        "browse",
+        "detail",
+        "settings",
+        "create",
+        "landing",
+        "diagnostics",
+        "marketing",
+        "overview"
+      ],
+      "title": "PageType",
+      "type": "string"
+    },
+    "RowData": {
+      "description": "One row of sample data for the DataGrid.  Keys match ColumnDefinition.key.",
+      "properties": {
+        "cells": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Column key \u2192 cell value",
+          "title": "Cells",
+          "type": "object"
+        }
+      },
+      "required": [
+        "cells"
+      ],
+      "title": "RowData",
+      "type": "object"
+    },
+    "SettingsFormBody": {
+      "description": "Maps to \u2192 Storybook: Input, Selection (Composed form pattern)\n\nUsed for: User settings, resource configuration, policy settings.\n\nLLM prompt: \"Break the settings into sections.  For each section,\nlist the form controls: toggles, radio groups, text inputs, dropdowns.\nInclude current values and available options.\"",
+      "properties": {
+        "template": {
+          "const": "settings_form",
+          "default": "settings_form",
+          "title": "Template",
+          "type": "string"
+        },
+        "storybook_ref": {
+          "$ref": "#/$defs/StorybookRef"
+        },
+        "sections": {
+          "items": {
+            "$ref": "#/$defs/FormSection"
+          },
+          "minItems": 1,
+          "title": "Sections",
+          "type": "array"
+        },
+        "show_save_cancel": {
+          "default": true,
+          "description": "Show Save / Cancel buttons at the bottom",
+          "title": "Show Save Cancel",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "sections"
+      ],
+      "title": "SettingsFormBody",
+      "type": "object"
+    },
+    "SideNavSpec": {
+      "description": "Maps to \u2192 Storybook: SideNavigation (Composed)\n\nLLM prompt: \"List all navigation items in the left sidebar.\nMark which one is currently selected.  Group items under\nexpandable headers if applicable.\"",
+      "properties": {
+        "storybook_ref": {
+          "$ref": "#/$defs/StorybookRef"
+        },
+        "width_px": {
+          "default": 220,
+          "description": "Sidebar width in pixels",
+          "title": "Width Px",
+          "type": "integer"
+        },
+        "collapsible": {
+          "default": true,
+          "description": "Can the sidebar be collapsed?",
+          "title": "Collapsible",
+          "type": "boolean"
+        },
+        "search_enabled": {
+          "default": false,
+          "description": "Show a search box at the top of the nav",
+          "title": "Search Enabled",
+          "type": "boolean"
+        },
+        "items": {
+          "description": "Ordered list of navigation items",
+          "items": {
+            "$ref": "#/$defs/NavItem"
+          },
+          "minItems": 1,
+          "title": "Items",
+          "type": "array"
+        }
+      },
+      "required": [
+        "items"
+      ],
+      "title": "SideNavSpec",
+      "type": "object"
+    },
+    "StorybookRef": {
+      "description": "Points the LLM (and builder) at the exact Storybook component / story\nto use.  Every structural section carries one of these so generated\ncode always traces back to a documented component.\n\nThe `component` and `story` values must match entries in\nsrc/component-registry.json.  The `import_path` is the story file\npath from the registry (e.g. 'src/stories/composed/CommandBar.stories.tsx').",
+      "properties": {
+        "component": {
+          "description": "Component name matching the 'name' field in component-registry.json, e.g. 'AzureBreadcrumb', 'CommandBar', 'DataGrid', 'PageTabs'",
+          "title": "Component",
+          "type": "string"
+        },
+        "story": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Specific story variant matching one of the 'stories' entries in component-registry.json, e.g. 'Default', 'WithActiveTags'",
+          "title": "Story"
+        },
+        "import_path": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Story file path matching the 'storyFile' field in component-registry.json, e.g. 'src/stories/composed/CommandBar.stories.tsx'",
+          "title": "Import Path"
+        }
+      },
+      "required": [
+        "component"
+      ],
+      "title": "StorybookRef",
+      "type": "object"
+    },
+    "TabBody": {
+      "description": "Associates a tab (by value) with its body content template.\n\nThe `tab_value` must match one of the TabDefinition.value entries\nin tabs_spec.  Each tab gets exactly one body template \u2014 the LLM\npicks the template type and fills in its fields.",
+      "properties": {
+        "tab_value": {
+          "description": "Must match a TabDefinition.value from tabs_spec \u2014 this is the key that binds the tab to its content.",
+          "title": "Tab Value",
+          "type": "string"
+        },
+        "body": {
+          "description": "The body template rendered when this tab is active",
+          "discriminator": {
+            "mapping": {
+              "card_grid": "#/$defs/CardGridBody",
+              "dashboard": "#/$defs/DashboardBody",
+              "data_grid": "#/$defs/DataGridBody",
+              "diagnostics": "#/$defs/DiagnosticsBody",
+              "landing_page": "#/$defs/LandingPageBody",
+              "marketing": "#/$defs/MarketingBody",
+              "settings_form": "#/$defs/SettingsFormBody"
+            },
+            "propertyName": "template"
+          },
+          "oneOf": [
+            {
+              "$ref": "#/$defs/DataGridBody"
+            },
+            {
+              "$ref": "#/$defs/CardGridBody"
+            },
+            {
+              "$ref": "#/$defs/SettingsFormBody"
+            },
+            {
+              "$ref": "#/$defs/LandingPageBody"
+            },
+            {
+              "$ref": "#/$defs/DiagnosticsBody"
+            },
+            {
+              "$ref": "#/$defs/MarketingBody"
+            },
+            {
+              "$ref": "#/$defs/DashboardBody"
+            }
+          ],
+          "title": "Body"
+        }
+      },
+      "required": [
+        "tab_value",
+        "body"
+      ],
+      "title": "TabBody",
+      "type": "object"
+    },
+    "TabDefinition": {
+      "description": "One tab in the PageTabs strip.\n\nMirrors the PageTab TypeScript interface:\n  { value: string; label: string; icon?: ReactElement; disabled?: boolean }",
+      "properties": {
+        "value": {
+          "description": "Unique identifier for this tab \u2014 used as the key in tab_bodies. Convention: lowercase-kebab, e.g. 'overview', 'getting-started'",
+          "title": "Value",
+          "type": "string"
+        },
+        "label": {
+          "description": "Display text, e.g. 'Overview', 'Getting started'",
+          "title": "Label",
+          "type": "string"
+        },
+        "icon": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Fluent icon name (20Regular), e.g. 'Home20Regular', 'Settings20Regular'",
+          "title": "Icon"
+        },
+        "disabled": {
+          "default": false,
+          "description": "Disable this tab",
+          "title": "Disabled",
+          "type": "boolean"
+        },
+        "badge_count": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional count badge on the tab, e.g. 5 for '5 alerts'",
+          "title": "Badge Count"
+        }
+      },
+      "required": [
+        "value",
+        "label"
+      ],
+      "title": "TabDefinition",
+      "type": "object"
+    },
+    "TabsSpec": {
+      "description": "Maps to \u2192 Storybook: PageTabs (Components/PageTabs)\n\nThe PageTabs component renders a horizontal tab strip with an\nunderline indicator.  Each tab's `value` is the key that maps\nto a body template in `BodySpec.tab_bodies`.\n\nLLM prompt: \"Does the page have tabs?  List each tab with a\nunique value, display label, optional icon, and which one is\nselected by default.\"",
+      "properties": {
+        "storybook_ref": {
+          "$ref": "#/$defs/StorybookRef"
+        },
+        "tabs": {
+          "items": {
+            "$ref": "#/$defs/TabDefinition"
+          },
+          "minItems": 2,
+          "title": "Tabs",
+          "type": "array"
+        },
+        "default_tab": {
+          "description": "The `value` of the tab selected by default. Must match one of the tab values.",
+          "title": "Default Tab",
+          "type": "string"
+        },
+        "size": {
+          "default": "medium",
+          "enum": [
+            "small",
+            "medium",
+            "large"
+          ],
+          "title": "Size",
+          "type": "string"
+        }
+      },
+      "required": [
+        "tabs",
+        "default_tab"
+      ],
+      "title": "TabsSpec",
+      "type": "object"
+    }
+  },
+  "description": "Complete specification for one Azure Portal page.\n\nThis is the root object the LLM fills in.  Each field maps to a\nvisible section of the page and references the Storybook component\nthat renders it.\n\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502  breadcrumb                             \u2502  \u2192 AzureBreadcrumb\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524\n\u2502  page_header  (+ copilot_suggestions)   \u2502  \u2192 PageTitleBar\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524\n\u2502        \u2502  info_banner (optional)         \u2502  \u2192 MessageBar\n\u2502  side  \u2502  command_bar (optional)         \u2502  \u2192 CommandBar\n\u2502  _nav  \u2502  filter_bar (optional)          \u2502  \u2192 FilterBar\n\u2502        \u2502  tabs (optional)                \u2502  \u2192 TabList\n\u2502(opt.)  \u2502  body  (template)               \u2502  \u2192 DataGrid / Card / Form / \u2026\n\u2502        \u2502                                 \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n\nLLM workflow:\n1. Pick layout type (side_panel / full_width / dashboard)\n2. Pick page type (browse / detail / settings / \u2026)\n3. Fill in each section top-to-bottom\n4. Pick body template and fill in its fields",
+  "properties": {
+    "page_id": {
+      "description": "Unique identifier for the page, e.g. 'monitor-overview', 'rg-list'",
+      "title": "Page Id",
+      "type": "string"
+    },
+    "page_type": {
+      "$ref": "#/$defs/PageType"
+    },
+    "layout": {
+      "$ref": "#/$defs/LayoutType"
+    },
+    "service_name": {
+      "description": "Azure service name, e.g. 'Monitor', 'Resource Manager', 'Microsoft Entra ID'",
+      "title": "Service Name",
+      "type": "string"
+    },
+    "resource_type": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Resource type if applicable, e.g. 'Resource groups', 'Users', 'Virtual machines'",
+      "title": "Resource Type"
+    },
+    "breadcrumb": {
+      "$ref": "#/$defs/BreadcrumbSpec"
+    },
+    "page_header": {
+      "$ref": "#/$defs/PageHeaderSpec"
+    },
+    "side_nav": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/SideNavSpec"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Present when layout is 'side_panel'.  Omit for full_width."
+    },
+    "info_banner": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/InfoBannerSpec"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Optional warning/info banner at the top of the content area"
+    },
+    "command_bar": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/CommandBarSpec"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Optional action toolbar below the header"
+    },
+    "filter_bar": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/FilterBarSpec"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Optional search + filter controls (typical on browse pages)"
+    },
+    "body": {
+      "$ref": "#/$defs/BodySpec",
+      "description": "Main content area \u2014 pick a template and fill in its fields"
+    }
+  },
+  "required": [
+    "page_id",
+    "page_type",
+    "layout",
+    "service_name",
+    "breadcrumb",
+    "page_header",
+    "body"
+  ],
+  "title": "PageSpec",
+  "type": "object"
+}

@@ -1,0 +1,100 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Guidelines/Token Usage" />
+
+# Design Token Usage
+
+Always use Fluent UI design tokens instead of hardcoded values. This ensures all components
+respond correctly to theme switching (light, dark, high contrast).
+
+## Color Tokens
+
+```tsx
+import { tokens } from '@fluentui/react-components';
+
+// ✅ Correct
+backgroundColor: tokens.colorNeutralBackground1,   // #ffffff (light)
+color: tokens.colorNeutralForeground1,              // #242424 (text)
+borderColor: tokens.colorNeutralStroke2,             // #e0e0e0
+
+// ❌ Wrong — never hardcode colors
+backgroundColor: '#ffffff',
+color: '#242424',
+```
+
+### Key Semantic Tokens
+
+| Token | Light Value | Usage |
+|-------|-------------|-------|
+| `colorNeutralBackground1` | #ffffff | Primary surface |
+| `colorNeutralBackground2` | #fafafa | Subtle/page background |
+| `colorNeutralForeground1` | #242424 | Primary text |
+| `colorNeutralStroke2` | #e0e0e0 | Standard borders |
+| `colorBrandForeground1` | #0f6cbd | Brand-colored text, links |
+| `colorPaletteGreenForeground1` | — | Success state |
+| `colorPaletteRedForeground1` | #d13438 | Danger/error state |
+| `colorPaletteYellowForeground1` | — | Warning state |
+
+### Azure Brand Ramp
+
+| Step | Hex | Usage |
+|------|-----|-------|
+| 60 | #0f548c | Brand darker |
+| 70 | #115ea3 | Brand dark (hover) |
+| **80** | **#0f6cbd** | **Primary brand** |
+| 90 | #2886de | Brand light |
+| 160 | #ebf3fc | Lightest brand tint |
+
+## Typography Tokens
+
+| Purpose | Token | Resolves To |
+|---------|-------|-------------|
+| Small / caption | `tokens.fontSizeBase200` | 12px |
+| Body text | `tokens.fontSizeBase300` | 14px |
+| Subtitle | `tokens.fontSizeBase400` | 16px |
+| Page title | `tokens.fontSizeBase500` | 20px |
+| Hero heading | `tokens.fontSizeBase600` | 24px |
+| Font family | `tokens.fontFamilyBase` | Segoe UI stack |
+| Regular weight | `tokens.fontWeightRegular` | 400 |
+| Semibold weight | `tokens.fontWeightSemibold` | 600 |
+
+## Spacing
+
+Use 4px-based increments:
+
+| Use Case | Value |
+|----------|-------|
+| Tight internal padding | 4px |
+| Default padding, gaps | 8px |
+| Comfortable padding | 12px |
+| Standard section padding | 16px |
+| Generous section padding | 24px |
+| Large section spacing | 32px |
+
+## Borders & Radius
+
+```tsx
+// Standard border
+border: `1px solid ${tokens.colorNeutralStroke2}`,
+
+// Border radius
+tokens.borderRadiusSmall    // 2px — badges, tags
+tokens.borderRadiusMedium   // 4px — cards, inputs, buttons
+tokens.borderRadiusLarge    // 8px — panels, dialogs
+```
+
+## Shadow Elevation
+
+| Level | Token | Usage |
+|-------|-------|-------|
+| Rest | `tokens.shadow2` | Subtle card resting state |
+| Raised | `tokens.shadow4` | Elevated cards, panels |
+| High | `tokens.shadow8` | Dropdowns, popovers |
+| Overlay | `tokens.shadow16` | Dialogs |
+| Modal | `tokens.shadow28` | Full-screen overlays |
+
+## Dark & High Contrast
+
+The `FluentProvider` handles all token resolution automatically.
+Write styles using tokens, and dark/high-contrast themes work without extra code.
+Never add theme-specific logic — let the token system do the work.

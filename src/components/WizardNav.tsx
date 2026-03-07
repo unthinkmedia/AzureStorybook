@@ -1,0 +1,364 @@
+import React from 'react';
+import { makeStyles, tokens, mergeClasses } from '@fluentui/react-components';
+import {
+  Checkmark16Filled,
+  Circle16Regular,
+  ErrorCircle16Regular,
+} from '@fluentui/react-icons';
+
+/* -------------------------------------------------------------------------- */
+/*  Types                                                                     */
+/* -------------------------------------------------------------------------- */
+
+export type WizardStepStatus =
+  | 'not-started'
+  | 'current'
+  | 'completed'
+  | 'error';
+
+export interface WizardStep {
+  /** Unique key for the step */
+  key: string;
+  /** Display label */
+  label: string;
+  /** Step status — defaults to 'not-started' */
+  status?: WizardStepStatus;
+  /** Optional sublabel / description shown beneath the label */
+  description?: string;
+}
+
+export interface WizardNavProps {
+  /** Ordered list of wizard steps */
+  steps: WizardStep[];
+  /** Layout orientation */
+  orientation?: 'vertical' | 'horizontal';
+  /** Called when a completed (previously visited) step is clicked */
+  onStepClick?: (key: string) => void;
+  /** Additional className on the root */
+  className?: string;
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Styles                                                                    */
+/* -------------------------------------------------------------------------- */
+
+const CIRCLE_SIZE = 32;
+const CONNECTOR_THICKNESS = 2;
+
+const useStyles = makeStyles({
+  /* ── Root ── */
+  root: {
+    display: 'flex',
+    userSelect: 'none',
+  },
+  vertical: {
+    flexDirection: 'column',
+    gap: '0',
+  },
+  horizontal: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+  },
+
+  /* ── Step wrapper ── */
+  step: {
+    display: 'flex',
+    alignItems: 'flex-start',
+    position: 'relative',
+  },
+  stepVertical: {
+    flexDirection: 'row',
+    gap: '12px',
+  },
+  stepHorizontal: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    flex: 1,
+    minWidth: '80px',
+  },
+
+  /* ── Indicator column (circle + connector) ── */
+  indicatorCol: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    flexShrink: 0,
+  },
+  indicatorRow: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    flexShrink: 0,
+    width: '100%',
+    justifyContent: 'center',
+  },
+
+  /* ── Circle ── */
+  circle: {
+    width: `${CIRCLE_SIZE}px`,
+    height: `${CIRCLE_SIZE}px`,
+    borderRadius: '50%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontSize: '14px',
+    fontWeight: 600,
+    flexShrink: 0,
+    transitionProperty: 'background, color, border-color',
+    transitionDuration: '150ms',
+    zIndex: 1,
+  },
+  circleCurrent: {
+    backgroundColor: tokens.colorBrandBackground,
+    color: tokens.colorNeutralForegroundOnBrand,
+    border: 'none',
+  },
+  circleCompleted: {
+    backgroundColor: '#107c10',
+    color: '#ffffff',
+    border: 'none',
+    cursor: 'pointer',
+    ':hover': {
+      backgroundColor: '#0e6b0e',
+    },
+  },
+  circleNotStarted: {
+    backgroundColor: tokens.colorNeutralBackground1,
+    color: tokens.colorNeutralForeground3,
+    border: `${CONNECTOR_THICKNESS}px solid ${tokens.colorNeutralStroke1}`,
+  },
+  circleError: {
+    backgroundColor: '#d13438',
+    color: '#ffffff',
+    border: 'none',
+  },
+
+  /* ── Connector lines ── */
+  connectorVertical: {
+    width: `${CONNECTOR_THICKNESS}px`,
+    minHeight: '24px',
+    flex: 1,
+    backgroundColor: tokens.colorNeutralStroke1,
+  },
+  connectorVerticalCompleted: {
+    backgroundColor: '#107c10',
+  },
+  connectorHorizontalWrapper: {
+    flex: 1,
+    display: 'flex',
+    alignItems: 'center',
+    minWidth: '24px',
+  },
+  connectorHorizontal: {
+    height: `${CONNECTOR_THICKNESS}px`,
+    width: '100%',
+    backgroundColor: tokens.colorNeutralStroke1,
+  },
+  connectorHorizontalCompleted: {
+    backgroundColor: '#107c10',
+  },
+
+  /* ── Labels ── */
+  labelBlock: {
+    display: 'flex',
+    flexDirection: 'column',
+    paddingTop: '4px',
+    paddingBottom: '16px',
+  },
+  labelBlockHorizontal: {
+    alignItems: 'center',
+    textAlign: 'center',
+    paddingTop: '8px',
+    paddingBottom: '0',
+  },
+  label: {
+    fontSize: '14px',
+    fontWeight: 600,
+    lineHeight: '20px',
+    color: tokens.colorNeutralForeground1,
+  },
+  labelNotStarted: {
+    color: tokens.colorNeutralForeground3,
+    fontWeight: 400,
+  },
+  description: {
+    fontSize: '12px',
+    fontWeight: 400,
+    lineHeight: '16px',
+    color: tokens.colorNeutralForeground3,
+    marginTop: '2px',
+  },
+});
+
+/* -------------------------------------------------------------------------- */
+/*  Step indicator                                                            */
+/* -------------------------------------------------------------------------- */
+
+const StepCircle: React.FC<{
+  index: number;
+  status: WizardStepStatus;
+  className: string;
+}> = ({ index, status, className }) => {
+  if (status === 'completed') {
+    return (
+      <div className={className}>
+        <Checkmark16Filled />
+      </div>
+    );
+  }
+  if (status === 'error') {
+    return (
+      <div className={className}>
+        <ErrorCircle16Regular />
+      </div>
+    );
+  }
+  return <div className={className}>{index + 1}</div>;
+};
+
+/* -------------------------------------------------------------------------- */
+/*  Component                                                                 */
+/* -------------------------------------------------------------------------- */
+
+export const WizardNav: React.FC<WizardNavProps> = ({
+  steps,
+  orientation = 'vertical',
+  onStepClick,
+  className,
+}) => {
+  const styles = useStyles();
+  const isVertical = orientation === 'vertical';
+
+  return (
+    <nav
+      className={mergeClasses(
+        styles.root,
+        isVertical ? styles.vertical : styles.horizontal,
+        className,
+      )}
+      aria-label="Wizard navigation"
+    >
+      {steps.map((step, i) => {
+        const status = step.status ?? 'not-started';
+        const isLast = i === steps.length - 1;
+        const clickable = status === 'completed' && !!onStepClick;
+
+        const circleClass = mergeClasses(
+          styles.circle,
+          status === 'current' && styles.circleCurrent,
+          status === 'completed' && styles.circleCompleted,
+          status === 'not-started' && styles.circleNotStarted,
+          status === 'error' && styles.circleError,
+        );
+
+        const handleClick = clickable
+          ? () => onStepClick!(step.key)
+          : undefined;
+
+        if (isVertical) {
+          return (
+            <div
+              key={step.key}
+              className={mergeClasses(styles.step, styles.stepVertical)}
+            >
+              {/* Indicator column: circle + connector */}
+              <div className={styles.indicatorCol}>
+                <StepCircle
+                  index={i}
+                  status={status}
+                  className={circleClass}
+                />
+                {!isLast && (
+                  <div
+                    className={mergeClasses(
+                      styles.connectorVertical,
+                      status === 'completed' &&
+                        styles.connectorVerticalCompleted,
+                    )}
+                  />
+                )}
+              </div>
+
+              {/* Label */}
+              <div
+                className={styles.labelBlock}
+                onClick={handleClick}
+                style={{ cursor: clickable ? 'pointer' : undefined }}
+                role={clickable ? 'button' : undefined}
+                tabIndex={clickable ? 0 : undefined}
+                aria-current={status === 'current' ? 'step' : undefined}
+              >
+                <span
+                  className={mergeClasses(
+                    styles.label,
+                    status === 'not-started' && styles.labelNotStarted,
+                  )}
+                >
+                  {step.label}
+                </span>
+                {step.description && (
+                  <span className={styles.description}>
+                    {step.description}
+                  </span>
+                )}
+              </div>
+            </div>
+          );
+        }
+
+        /* ── Horizontal ── */
+        return (
+          <React.Fragment key={step.key}>
+            <div className={mergeClasses(styles.step, styles.stepHorizontal)}>
+              {/* Circle */}
+              <StepCircle
+                index={i}
+                status={status}
+                className={circleClass}
+              />
+              {/* Label below */}
+              <div
+                className={mergeClasses(
+                  styles.labelBlock,
+                  styles.labelBlockHorizontal,
+                )}
+                onClick={handleClick}
+                style={{ cursor: clickable ? 'pointer' : undefined }}
+                role={clickable ? 'button' : undefined}
+                tabIndex={clickable ? 0 : undefined}
+                aria-current={status === 'current' ? 'step' : undefined}
+              >
+                <span
+                  className={mergeClasses(
+                    styles.label,
+                    status === 'not-started' && styles.labelNotStarted,
+                  )}
+                >
+                  {step.label}
+                </span>
+                {step.description && (
+                  <span className={styles.description}>
+                    {step.description}
+                  </span>
+                )}
+              </div>
+            </div>
+            {/* Horizontal connector between steps */}
+            {!isLast && (
+              <div className={styles.connectorHorizontalWrapper}>
+                <div
+                  className={mergeClasses(
+                    styles.connectorHorizontal,
+                    status === 'completed' &&
+                      styles.connectorHorizontalCompleted,
+                  )}
+                  style={{ marginTop: `${CIRCLE_SIZE / 2}px` }}
+                />
+              </div>
+            )}
+          </React.Fragment>
+        );
+      })}
+    </nav>
+  );
+};

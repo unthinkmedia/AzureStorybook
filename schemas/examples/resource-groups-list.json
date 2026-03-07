@@ -1,0 +1,103 @@
+{
+  "page_id": "resource-groups-list",
+  "page_type": "browse",
+  "layout": "side_panel",
+  "service_name": "Resource Manager",
+  "resource_type": "Resource groups",
+
+  "breadcrumb": {
+    "items": [
+      { "label": "Home", "href": "/" },
+      { "label": "Resource Manager", "href": "/resource-manager" },
+      { "label": "Resource groups", "is_current": true }
+    ]
+  },
+
+  "page_header": {
+    "title": "Resource Manager | Resource groups",
+    "subtitle": "Microsoft",
+    "icon": "Apps24Regular",
+    "show_star": false,
+    "show_more_actions": true,
+    "copilot_suggestions": [
+      {
+        "label": "Export resource groups using Bicep or Terraform",
+        "prompt": "Export my resource groups as infrastructure-as-code templates using Bicep or Terraform"
+      },
+      {
+        "label": "How to manage changes with deployment tools?",
+        "prompt": "Explain how I can manage infrastructure changes using deployment tools like Bicep, Terraform, or ARM templates"
+      },
+      {
+        "label": "Summarize my costs by service",
+        "prompt": "Summarize the costs across all my resource groups broken down by Azure service"
+      }
+    ]
+  },
+
+  "side_nav": {
+    "width_px": 220,
+    "collapsible": true,
+    "search_enabled": true,
+    "items": [
+      { "type": "link", "label": "Resource Manager", "icon": "Home24Regular" },
+      { "type": "link", "label": "All resources", "icon": "Grid24Regular" },
+      { "type": "link", "label": "Favorite resources", "icon": "Star24Regular" },
+      { "type": "link", "label": "Recent resources", "icon": "Clock24Regular" },
+      { "type": "link", "label": "Resource groups", "icon": "Folder24Regular", "is_selected": true },
+      { "type": "link", "label": "Tags", "icon": "Tag24Regular" },
+      { "type": "link", "label": "Organization", "icon": "Organization24Regular", "children": [] },
+      { "type": "link", "label": "Tools", "icon": "Wrench24Regular", "children": [] },
+      { "type": "link", "label": "Deployments", "icon": "Rocket24Regular", "children": [] },
+      { "type": "link", "label": "Help", "icon": "QuestionCircle24Regular", "children": [] }
+    ]
+  },
+
+  "command_bar": {
+    "actions": [
+      { "label": "Create", "icon": "Add24Regular", "is_primary": true },
+      { "label": "Manage view", "icon": "Eye24Regular", "is_primary": true, "has_dropdown": true },
+      { "label": "Refresh", "icon": "ArrowSync24Regular", "is_primary": true },
+      { "label": "Export to CSV", "icon": "ArrowDownload24Regular" },
+      { "label": "Open query", "icon": "DocumentSearch24Regular" },
+      { "label": "Assign tags", "icon": "Tag24Regular" },
+      { "label": "Add to service group", "icon": "Add24Regular", "has_dropdown": true },
+      { "label": "Group by none", "has_dropdown": true }
+    ]
+  },
+
+  "filter_bar": {
+    "search_placeholder": "Filter for any field...",
+    "filters": [
+      { "field": "Subscription", "multi_select": true, "options": [] },
+      { "field": "Location", "multi_select": true, "options": ["East US", "West US", "Central US", "West US 2"] }
+    ],
+    "active_filters": [
+      { "field": "Subscription", "value": "17 selected", "operator": "equals" },
+      { "field": "Location", "value": "all", "operator": "equals" }
+    ]
+  },
+
+  "body": {
+    "has_tabs": false,
+    "direct_body": {
+      "template": "data_grid",
+      "columns": [
+        { "key": "name", "label": "Name", "sortable": true, "is_link": true },
+        { "key": "subscription", "label": "Subscription", "sortable": true, "is_link": true },
+        { "key": "location", "label": "Location", "sortable": true }
+      ],
+      "rows": [
+        { "cells": { "name": "aznhassan-hackathon", "subscription": "PXT Staging Cloud", "location": "East US" } },
+        { "cells": { "name": "AzSecPackAutoConfigRG", "subscription": "PXT Staging Cloud", "location": "East US" } },
+        { "cells": { "name": "cloud-shell-storage-westus", "subscription": "PXT Staging Cloud", "location": "West US" } },
+        { "cells": { "name": "coherence-preview-rg", "subscription": "PXT Staging Cloud", "location": "West US 2" } },
+        { "cells": { "name": "dashboards", "subscription": "PXT Staging Cloud", "location": "East US" } },
+        { "cells": { "name": "DefaultResourceGroup-CUS", "subscription": "PXT Staging Cloud", "location": "Central US" } }
+      ],
+      "selectable": true,
+      "pagination": true,
+      "total_count": 28
+    }
+  }
+}
