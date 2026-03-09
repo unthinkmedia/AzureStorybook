@@ -13,7 +13,7 @@ export default {
     docs: {
       description: {
         component:
-          'The global header bar for the Azure SRE Agent experience. Features a light background, SRE Agent branding with a PREVIEW badge, Docs link, notification/chat/settings icons, and user avatar.',
+          'The global header bar for the Azure SRE Agent experience. Features a light background, SRE Agent branding with a PREVIEW badge, Docs link, notification/chat/settings icons, and user avatar. Use this when building SRE Agent pages — this header replaces AzureGlobalHeader for the SRE-specific experience.',
       },
     },
   },
@@ -43,6 +43,15 @@ export const Default: Story = {
     userEmail: 'alexbritez@microsoft.com',
     userName: 'Alex Britez',
     notificationCount: 0,
+  },
+
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'SRE Agent header with PREVIEW badge, Docs link, notification/chat/settings icons, and user avatar on a light background.',
+      },
+    },
   },
 };
 

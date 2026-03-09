@@ -21,6 +21,14 @@ const meta: Meta<typeof Button> = {
   title: 'Components/Button',
   component: Button,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Fluent UI Button handles user actions with multiple appearances (primary, secondary, outline, subtle, transparent) and sizes. Use this when you need clickable actions in toolbars, dialogs, forms, or inline flows. Choose this over native HTML buttons to ensure consistent Azure Portal styling and accessibility.',
+      },
+    },
+  },
   argTypes: {
     appearance: {
       control: 'select',
@@ -36,14 +44,25 @@ const meta: Meta<typeof Button> = {
 export default meta;
 type Story = StoryObj<typeof Button>;
 
+/** Primary button — the main call-to-action on a page or dialog. */
 export const Primary: Story = {
   args: {
     appearance: 'primary',
     children: 'Create resource',
     icon: <Add24Regular />,
   },
+
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Primary appearance button — the highest emphasis call-to-action. Use primary for the single most important action on a page, dialog, or command bar.',
+      },
+    },
+  },
 };
 
+/** Secondary button — lower emphasis action alongside a primary button. */
 export const Secondary: Story = {
   args: {
     appearance: 'secondary',
@@ -51,6 +70,7 @@ export const Secondary: Story = {
   },
 };
 
+/** Outline button — bordered with transparent background. */
 export const Outline: Story = {
   args: {
     appearance: 'outline',
@@ -59,6 +79,7 @@ export const Outline: Story = {
   },
 };
 
+/** Subtle button — minimal chrome, blends with surrounding content. */
 export const Subtle: Story = {
   args: {
     appearance: 'subtle',
@@ -67,6 +88,7 @@ export const Subtle: Story = {
   },
 };
 
+/** Icon-only button — compact action trigger with aria-label for accessibility. */
 export const IconOnly: Story = {
   args: {
     appearance: 'subtle',
@@ -75,6 +97,7 @@ export const IconOnly: Story = {
   },
 };
 
+/** Disabled state — visually muted and non-interactive. */
 export const Disabled: Story = {
   args: {
     appearance: 'primary',
@@ -83,6 +106,7 @@ export const Disabled: Story = {
   },
 };
 
+/** Side-by-side comparison of small, medium, and large button sizes. */
 export const Sizes: Story = {
   render: () => (
     <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>

@@ -13,6 +13,14 @@ const meta: Meta<typeof Input> = {
   title: 'Components/Input',
   component: Input,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Fluent UI Input, SearchBox, Textarea, SpinButton, and related text entry controls. Use this when you need to capture text input in forms — resource names, search queries, descriptions, or numeric values. Choose this over native inputs for consistent Azure Portal field styling, validation states, and content-before/after slots.',
+      },
+    },
+  },
   argTypes: {
     size: { control: 'select', options: ['small', 'medium', 'large'] },
     appearance: { control: 'select', options: ['outline', 'underline', 'filled-darker', 'filled-lighter'] },
@@ -24,6 +32,7 @@ const meta: Meta<typeof Input> = {
 export default meta;
 type Story = StoryObj<typeof Input>;
 
+/** Basic text input inside a required Field with placeholder text. */
 export const Default: Story = {
   args: { placeholder: 'Enter resource name...' },
   decorators: [
@@ -33,8 +42,18 @@ export const Default: Story = {
       </Field>
     ),
   ],
+
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Text input inside a required Field with placeholder text. This is the simplest input pattern used across Azure Portal forms.',
+      },
+    },
+  },
 };
 
+/** Input with a leading icon — useful for API key or password fields. */
 export const WithContentBefore: Story = {
   args: {
     contentBefore: <Key24Regular />,
@@ -50,6 +69,7 @@ export const WithContentBefore: Story = {
   ],
 };
 
+/** Disabled input showing a read-only value. */
 export const Disabled: Story = {
   args: { value: 'my-resource-group', disabled: true },
   decorators: [
@@ -61,6 +81,7 @@ export const Disabled: Story = {
   ],
 };
 
+/** Validation states: success, warning, and error with messages. */
 export const Validation: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 16, maxWidth: 400 }}>
@@ -77,12 +98,14 @@ export const Validation: Story = {
   ),
 };
 
+/** SearchBox — dedicated search input with built-in clear button. */
 export const Search: Story = {
   render: () => (
     <SearchBox placeholder="Search all resources..." style={{ width: 320 }} />
   ),
 };
 
+/** Multiline Textarea for longer text input with vertical resize. */
 export const TextArea: Story = {
   render: () => (
     <Field label="Description">
@@ -91,6 +114,7 @@ export const TextArea: Story = {
   ),
 };
 
+/** SpinButton for numeric input with increment/decrement controls. */
 export const Spin: Story = {
   render: () => (
     <Field label="Instance count">
@@ -99,6 +123,7 @@ export const Spin: Story = {
   ),
 };
 
+/** All four input appearances: outline, underline, filled-darker, filled-lighter. */
 export const Appearances: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 12, maxWidth: 400 }}>

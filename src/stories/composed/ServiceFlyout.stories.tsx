@@ -101,12 +101,18 @@ export default {
   title: 'Composed/ServiceFlyout',
   component: ServiceFlyout,
   tags: ['autodocs'],
+  argTypes: {
+    name: { control: 'text', description: 'Service name displayed in flyout header' },
+    icon: { control: 'text', description: 'Azure service icon name' },
+    description: { control: 'text', description: 'Service description text' },
+    favorited: { control: 'boolean', description: 'Whether the service is favorited' },
+  },
   parameters: {
     layout: 'padded',
     docs: {
       description: {
         component:
-          'A hover-activated flyout panel that displays service details — name, quick actions, description, Copilot prompt, training links, and useful links. Wraps any trigger element (CardButton, Button, etc.).',
+          'A hover-activated flyout panel that displays service details — name, quick actions, description, Copilot prompt, training links, and useful links. Wraps any trigger element (CardButton, Button, etc.). Use this when you need a hover-reveal info panel for service tiles on the Azure Portal home page or service directory.',
       },
     },
   },
@@ -138,6 +144,15 @@ export const WithCardButton: Story = {
       </ServiceFlyout>
     </div>
   ),
+
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'ServiceFlyout wrapping a square CardButton. Hover over the card to see the flyout panel with service name, quick actions, description, Copilot prompt, and links.',
+      },
+    },
+  },
 };
 
 /** Flyout wrapping a standard Fluent Button. Works with any trigger element. */

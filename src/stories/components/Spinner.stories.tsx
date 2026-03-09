@@ -1,58 +1,67 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import {
   Spinner,
-  Text,
   tokens,
 } from '@fluentui/react-components';
-import type { ReactNode } from 'react';
 
-const Section = ({ title, children }: { title: string; children: ReactNode }) => (
-  <div style={{ marginBottom: tokens.spacingVerticalXXL }}>
-    <Text as="h3" size={400} weight="semibold" block style={{ marginBottom: tokens.spacingVerticalS }}>{title}</Text>
-    {children}
-  </div>
-);
-
-const SpinnerPage = () => (
-  <div style={{ padding: tokens.spacingHorizontalXXL, maxWidth: 800 }}>
-    <Text as="h2" size={600} weight="semibold" block style={{ marginBottom: tokens.spacingVerticalXXL }}>Spinner</Text>
-
-    <Section title="Sizes">
-      <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
-        <Spinner size="tiny" label="Tiny" />
-        <Spinner size="extra-small" label="Extra Small" />
-        <Spinner size="small" label="Small" />
-        <Spinner size="medium" label="Medium" />
-        <Spinner size="large" label="Large" />
-      </div>
-    </Section>
-
-    <Section title="With Label">
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-        <Spinner size="medium" label="Loading resources..." />
-        <Spinner size="small" label="Deploying..." labelPosition="after" />
-      </div>
-    </Section>
-
-    <Section title="Appearances">
-      <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
-        <Spinner size="medium" appearance="primary" label="Primary" />
-        <div style={{ background: tokens.colorNeutralBackground1, padding: 16, borderRadius: 4 }}>
-          <Spinner size="medium" appearance="inverted" label="Inverted" />
-        </div>
-      </div>
-    </Section>
-  </div>
-);
-
-const meta: Meta = {
+const meta: Meta<typeof Spinner> = {
   title: 'Components/Spinner',
-  component: SpinnerPage,
+  component: Spinner,
   tags: ['autodocs'],
-  parameters: { layout: 'fullscreen' },
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Fluent UI Spinner shows an indeterminate loading indicator with optional label. Use this when content is loading and you cannot determine a progress percentage — such as fetching resource data, waiting for API responses, or initial page load. Choose this over ProgressBar when completion percentage is unknown.',
+      },
+    },
+  },
+  argTypes: {
+    size: { control: 'select', options: ['tiny', 'extra-small', 'small', 'medium', 'large', 'extra-large', 'huge'] },
+    appearance: { control: 'select', options: ['primary', 'inverted'] },
+    labelPosition: { control: 'select', options: ['above', 'below', 'before', 'after'] },
+  },
 };
 
 export default meta;
-type Story = StoryObj;
+type Story = StoryObj<typeof Spinner>;
 
-export const Overview: Story = {};
+/** Default medium spinner with a loading label. */
+export const Default: Story = {
+  args: {
+    size: 'medium',
+    label: 'Loading resources...',
+  },
+};
+
+/** All spinner sizes from tiny to large. */
+export const Sizes: Story = {
+  render: () => (
+    <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
+      <Spinner size="tiny" label="Tiny" />
+      <Spinner size="extra-small" label="Extra Small" />
+      <Spinner size="small" label="Small" />
+      <Spinner size="medium" label="Medium" />
+      <Spinner size="large" label="Large" />
+    </div>
+  ),
+};
+
+/** Spinner with label in different positions. */
+export const LabelPositions: Story = {
+  render: () => (
+    <div style={{ display: 'flex', gap: 24, alignItems: 'center' }}>
+      <Spinner size="medium" label="Loading..." labelPosition="below" />
+      <Spinner size="small" label="Deploying..." labelPosition="after" />
+    </div>
+  ),
+};
+
+/** Inverted appearance for contrast on dark backgrounds. */
+export const Inverted: Story = {
+  render: () => (
+    <div style={{ background: tokens.colorNeutralBackground1, padding: 16, borderRadius: 4 }}>
+      <Spinner size="medium" appearance="inverted" label="Inverted" />
+    </div>
+  ),
+};

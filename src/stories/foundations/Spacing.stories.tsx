@@ -47,10 +47,19 @@ const meta: Meta = {
   title: 'Foundations/Spacing',
   component: SpacingPage,
   tags: ['autodocs'],
-  parameters: { layout: 'fullscreen' },
+  parameters: {
+    layout: 'fullscreen',
+    docs: {
+      description: {
+        component:
+          'Azure design token spacing scale and border radius values from the Coherence CDN theme. Use this when you need consistent padding, margins, gaps, or border radius values matching the Azure Portal.',
+      },
+    },
+  },
 };
 
 export default meta;
 type Story = StoryObj;
 
+/** All Azure spacing scale values and border radius tokens with visual previews. */
 export const AllSpacing: Story = {};

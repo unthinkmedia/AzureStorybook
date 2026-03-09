@@ -50,6 +50,17 @@ const useStyles = makeStyles({
     minWidth: 0,
   },
 
+  /* Constrained inner wrapper — centres content with a max-width */
+  contentInner: {
+    maxWidth: '1200px',
+    width: '100%',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    paddingLeft: '24px',
+    paddingRight: '24px',
+    boxSizing: 'border-box' as const,
+  },
+
   /* Placeholder content area to visualize the container */
   contentPlaceholder: {
     flex: 1,
@@ -231,7 +242,7 @@ export const ContentOnly: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Global header only — no breadcrumb, no page title, no side navigation. The content area fills the entire viewport below the header. Used for maximized views, dashboards, or embedded experiences.',
+        story: 'Global header only — no breadcrumb, no page title, no side navigation. Content is centred within a `max-width: 1200px` container. Used for home pages, dashboards, or portal-style landing views.',
       },
     },
   },
@@ -240,7 +251,11 @@ export const ContentOnly: Story = {
     return (
       <div className={styles.page}>
         <AzureGlobalHeader />
-        <ContentPlaceholder label="Content Area (Full Viewport)" />
+        <div className={styles.content}>
+          <div className={styles.contentInner}>
+            <ContentPlaceholder label="Content Area (max-width: 1200px, centred)" />
+          </div>
+        </div>
       </div>
     );
   },

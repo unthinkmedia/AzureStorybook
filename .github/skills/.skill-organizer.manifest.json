@@ -4,6 +4,7 @@
   ],
   "manualFolders": [
     "azure-storybook-ui",
-    "iconcloud-browser"
+    "iconcloud-browser",
+    "storybook-llm-audit"
   ]
 }

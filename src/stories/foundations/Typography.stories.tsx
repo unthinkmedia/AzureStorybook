@@ -85,10 +85,17 @@ const meta: Meta = {
   title: 'Foundations/Typography',
   component: TypographyPage,
   tags: ['autodocs'],
-  parameters: { layout: 'fullscreen' },
+  parameters: { layout: 'fullscreen',
+    docs: {
+      description: {
+        component:
+          'Azure design token typography reference — font sizes, weights, line heights, and font families (Segoe UI, Bahnschrift, Consolas). Use this when you need to verify the correct font specifications for Azure Portal text rendering.',
+      },
+    } },
 };
 
 export default meta;
 type Story = StoryObj;
 
+/** All font sizes, weights, and font families used in the Azure Portal. */
 export const AllTypography: Story = {};

@@ -13,7 +13,7 @@ export default {
     docs: {
       description: {
         component:
-          'The persistent global header bar that sits at the top of every Azure Portal page. Includes the waffle menu, hamburger, branding, search, Copilot button, action icons, and user profile.',
+          'The persistent global header bar that sits at the top of every Azure Portal page. Includes the waffle menu, hamburger, branding, search, Copilot button, action icons, and user profile. Use this when building any full-page Azure Portal layout — this header must appear at the top of every page.',
       },
     },
   },
@@ -44,6 +44,15 @@ export const Default: Story = {
     organization: 'MICROSOFT (MICROSOFT.ONMICROSOFT.COM)',
     userName: 'Alex Britez',
     notificationCount: 1,
+  },
+
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Default Azure Portal header bar with branding, search, Copilot, notifications, and user profile. This is the top-level chrome that appears on every page.',
+      },
+    },
   },
 };
 

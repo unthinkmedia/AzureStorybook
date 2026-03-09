@@ -8,11 +8,24 @@ export default {
   title: 'Composed/PageHeader',
   component: PageHeader,
   tags: ['autodocs'],
+  argTypes: {
+    title: { control: 'text', description: 'Page title — use pipe (|) to separate service name from section' },
+    subtitle: { control: 'text', description: 'Subtitle text below the title' },
+  },
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Azure Portal PageHeader — icon, title with pipe separator, subtitle, pin/more actions, and Copilot suggestion pills. Use this when building the top section of any Azure Portal blade. Combines branding, navigation context, and AI suggestions in a single row.',
+      },
+    },
+  },
 } satisfies Meta<typeof PageHeader>;
 
 type Story = StoryObj<typeof PageHeader>;
 
 /** Pipe-separated title with subtitle, pin, ellipsis, Copilot suggestions with overflow, and dismiss. */
+/** Full-featured header: icon, pipe-separated title, subtitle, pin, more, and Copilot pills. */
 export const WithPipeTitleAndSuggestions: Story = {
   args: {
     title: 'Service name | Section',
@@ -28,6 +41,15 @@ export const WithPipeTitleAndSuggestions: Story = {
       ],
       maxVisible: 2,
       onDismiss: () => {},
+    },
+  },
+
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Full-featured header with service icon, pipe-separated title, subtitle, pin/more action buttons, and Copilot suggestion pills with +N overflow.',
+      },
     },
   },
 };

@@ -39,6 +39,12 @@ const meta: Meta<typeof PageTabs> = {
   component: PageTabs,
   parameters: {
     layout: 'fullscreen',
+    docs: {
+      description: {
+        component:
+          'Horizontal tab strip for switching between sub-views within a page. Use this when a resource or service page has multiple logical sections (Overview, Settings, Monitoring) that the user switches between. Choose this over a side navigation when the sections are peer-level and the list is short (2–6 tabs).',
+      },
+    }
   },
 };
 
@@ -53,6 +59,7 @@ const defaultTabs: PageTab[] = [
   { value: 'settings', label: 'Settings' },
 ];
 
+/** Basic tab strip with three text-only tabs and content switching. */
 export const Default: Story = {
   render: () => {
     const styles = useStyles();
@@ -69,8 +76,18 @@ export const Default: Story = {
       </div>
     );
   },
+
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Three text-only tabs with content switching. Demonstrates controlled tab selection with useState.',
+      },
+    },
+  },
 };
 
+/** Tabs with leading icons for visual identification. */
 export const WithIcons: Story = {
   render: () => {
     const styles = useStyles();
@@ -95,6 +112,7 @@ export const WithIcons: Story = {
   },
 };
 
+/** Tab strip with one disabled tab that cannot be selected. */
 export const WithDisabledTab: Story = {
   render: () => {
     const styles = useStyles();

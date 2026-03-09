@@ -18,11 +18,16 @@ export default {
   title: 'Composed/CommandBar',
   component: CommandBar,
   tags: ['autodocs'],
+  argTypes: {
+    items: { control: 'object', description: 'Array of action groups, each with an array of action items' },
+    farItems: { control: 'object', description: 'Actions pushed to the right edge of the bar' },
+    overflowItems: { control: 'object', description: 'Actions collected into a "…" overflow menu' },
+  },
   parameters: {
     docs: {
       description: {
         component:
-          'Azure Portal-style command bar with grouped actions, dividers, dropdown menus, overflow, far-side items, and disabled states.',
+          'Azure Portal-style command bar with grouped actions, dividers, dropdown menus, overflow, far-side items, and disabled states. Use this when you need a toolbar above a data grid or content area that provides contextual actions like Add, Edit, Delete, Refresh, Export.',
       },
     },
   },
@@ -31,7 +36,16 @@ export default {
 type Story = StoryObj<typeof CommandBar>;
 
 /** Minimal command bar with a single group of actions — no dividers, no far items. */
-export const Default: Story = {};
+export const Default: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Minimal command bar with a single action group. No dividers, far items, or overflow — the simplest possible toolbar configuration.',
+      },
+    },
+  },
+};
 
 /** Two action groups separated by a vertical divider to visually distinguish
  *  primary actions from secondary/contextual actions. */

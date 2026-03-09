@@ -5,69 +5,77 @@ import {
   InteractionTagPrimary,
   InteractionTagSecondary,
   TagGroup,
-  Text,
-  tokens,
 } from '@fluentui/react-components';
-import type { ReactNode } from 'react';
 
-const Section = ({ title, children }: { title: string; children: ReactNode }) => (
-  <div style={{ marginBottom: tokens.spacingVerticalXXL }}>
-    <Text as="h3" size={400} weight="semibold" block style={{ marginBottom: tokens.spacingVerticalS }}>{title}</Text>
-    {children}
-  </div>
-);
-
-const TagPage = () => (
-  <div style={{ padding: tokens.spacingHorizontalXXL, maxWidth: 800 }}>
-    <Text as="h2" size={600} weight="semibold" block style={{ marginBottom: tokens.spacingVerticalXXL }}>Tag</Text>
-
-    <Section title="Tag Group">
-      <TagGroup>
-        <Tag>Environment: Production</Tag>
-        <Tag>Region: East US</Tag>
-        <Tag>Team: Platform</Tag>
-      </TagGroup>
-    </Section>
-
-    <Section title="Interaction Tag (Dismissible)">
-      <TagGroup>
-        <InteractionTag>
-          <InteractionTagPrimary>Editable tag</InteractionTagPrimary>
-          <InteractionTagSecondary aria-label="Remove" />
-        </InteractionTag>
-        <InteractionTag>
-          <InteractionTagPrimary>Another tag</InteractionTagPrimary>
-          <InteractionTagSecondary aria-label="Remove" />
-        </InteractionTag>
-      </TagGroup>
-    </Section>
-
-    <Section title="Appearances">
-      <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-        <Tag appearance="filled">Filled</Tag>
-        <Tag appearance="outline">Outline</Tag>
-        <Tag appearance="brand">Brand</Tag>
-      </div>
-    </Section>
-
-    <Section title="Sizes">
-      <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-        <Tag size="small">Small</Tag>
-        <Tag size="medium">Medium</Tag>
-        <Tag size="extra-small">Extra Small</Tag>
-      </div>
-    </Section>
-  </div>
-);
-
-const meta: Meta = {
+const meta: Meta<typeof Tag> = {
   title: 'Components/Tag',
-  component: TagPage,
+  component: Tag,
   tags: ['autodocs'],
-  parameters: { layout: 'fullscreen' },
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Fluent UI Tag and InteractionTag display labels for categorization, filtering, or metadata. Use this when you need to show Azure resource tags, filter selections, or category labels. Choose this over Badge when the label needs to be dismissible, editable, or part of a TagGroup with add/remove behavior.',
+      },
+    },
+  },
+  argTypes: {
+    appearance: { control: 'select', options: ['filled', 'outline', 'brand'] },
+    size: { control: 'select', options: ['extra-small', 'small', 'medium'] },
+    shape: { control: 'select', options: ['rounded', 'circular'] },
+    dismissible: { control: 'boolean' },
+  },
 };
 
 export default meta;
-type Story = StoryObj;
+type Story = StoryObj<typeof Tag>;
 
-export const Overview: Story = {};
+/** Group of tags for Azure resource metadata (key:value pairs). */
+export const TagGroupStory: Story = {
+  name: 'Tag Group',
+  render: () => (
+    <TagGroup>
+      <Tag>Environment: Production</Tag>
+      <Tag>Region: East US</Tag>
+      <Tag>Team: Platform</Tag>
+    </TagGroup>
+  ),
+};
+
+/** Dismissible interaction tags with a remove button. */
+export const Dismissible: Story = {
+  render: () => (
+    <TagGroup>
+      <InteractionTag>
+        <InteractionTagPrimary>Editable tag</InteractionTagPrimary>
+        <InteractionTagSecondary aria-label="Remove" />
+      </InteractionTag>
+      <InteractionTag>
+        <InteractionTagPrimary>Another tag</InteractionTagPrimary>
+        <InteractionTagSecondary aria-label="Remove" />
+      </InteractionTag>
+    </TagGroup>
+  ),
+};
+
+/** All three appearance variants: filled, outline, brand. */
+export const Appearances: Story = {
+  render: () => (
+    <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+      <Tag appearance="filled">Filled</Tag>
+      <Tag appearance="outline">Outline</Tag>
+      <Tag appearance="brand">Brand</Tag>
+    </div>
+  ),
+};
+
+/** Size comparison: extra-small, small, and medium. */
+export const Sizes: Story = {
+  render: () => (
+    <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+      <Tag size="extra-small">Extra Small</Tag>
+      <Tag size="small">Small</Tag>
+      <Tag size="medium">Medium</Tag>
+    </div>
+  ),
+};

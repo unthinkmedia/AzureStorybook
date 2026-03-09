@@ -278,6 +278,18 @@ export default {
   tags: ['autodocs'],
   parameters: {
     layout: 'fullscreen',
+    docs: {
+      description: {
+        component:
+          'Full-page Help + Support template with search banner, health status card, and support resource links. Use this when building the Support or Help page for an Azure service experience.',
+      },
+    },
+  },
+  argTypes: {
+    heading: { control: 'text', description: 'Search banner heading' },
+    bannerDescription: { control: 'text', description: 'Search banner description text' },
+    healthMessage: { control: 'text', description: 'Health status message' },
+    healthLinkText: { control: 'text', description: 'Health status link text' },
   },
 } satisfies Meta<typeof SupportPage>;
 
@@ -286,6 +298,15 @@ type Story = StoryObj<typeof SupportPage>;
 /** Default Help + Support page. */
 export const Default: Story = {
   args: {},
+
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Complete Help + Support page with top bar, search banner, health status card, and support resource links.',
+      },
+    },
+  },
 };
 
 /** With active health events. */

@@ -8,11 +8,16 @@ export default {
   title: 'Composed/SideNavigation',
   component: SideNavigation,
   tags: ['autodocs'],
+  argTypes: {
+    defaultCollapsed: { control: 'boolean', description: 'Start in collapsed (icon-only) state' },
+    searchEnabled: { control: 'boolean', description: 'Show search bar at the top' },
+    width: { control: { type: 'number', min: 160, max: 400 }, description: 'Panel width in pixels' },
+  },
   parameters: {
     docs: {
       description: {
         component:
-          'Azure Portal-style collapsible side navigation panel with search, expandable groups, selected state, and keyboard shortcut footer.',
+          'Azure Portal-style collapsible side navigation panel with search, expandable groups, selected state, and keyboard shortcut footer. Use this when building resource detail pages or service blades that have a left-side navigation tree with grouped sub-pages.',
       },
     },
     layout: 'fullscreen',
@@ -32,7 +37,16 @@ export default {
 type Story = StoryObj<typeof SideNavigation>;
 
 /** Default Azure Resource Manager side navigation with all groups pre-populated. */
-export const Default: Story = {};
+export const Default: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Full Azure Resource Manager side navigation with grouped items (Tools, Deployments, Help), search bar, and keyboard shortcut footer.',
+      },
+    },
+  },
+};
 
 /** Starts in collapsed state — only icons visible. Click the expand button to open. */
 export const Collapsed: Story = {

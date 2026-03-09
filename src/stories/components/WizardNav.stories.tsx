@@ -64,7 +64,7 @@ const meta: Meta<typeof WizardNav> = {
     docs: {
       description: {
         component:
-          'A step indicator for multi-step create/deploy wizard flows. Supports both vertical (sidebar) and horizontal (top bar) orientations, matching the Azure Portal wizard blade pattern.',
+          'A step indicator for multi-step create/deploy wizard flows. Supports both vertical (sidebar) and horizontal (top bar) orientations, matching the Azure Portal wizard blade pattern. Use this when building create, deploy, or configuration wizards that guide users through sequential steps.',
       },
     },
   },
@@ -77,13 +77,24 @@ type Story = StoryObj<typeof WizardNav>;
 /*  Vertical stories                                                          */
 /* -------------------------------------------------------------------------- */
 
+/** Vertical wizard in a create flow — second step is current. */
 export const Vertical: Story = {
   args: {
     steps: createFlowSteps,
     orientation: 'vertical',
   },
+
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Vertical wizard in a five-step create flow with the second step as current. Use vertical orientation for sidebar placement in create blades.',
+      },
+    },
+  },
 };
 
+/** Vertical wizard mid-flow with step description text. */
 export const VerticalMidFlow: Story = {
   name: 'Vertical — Mid-flow',
   args: {
@@ -92,6 +103,7 @@ export const VerticalMidFlow: Story = {
   },
 };
 
+/** All steps completed — shows check marks on every step. */
 export const VerticalAllComplete: Story = {
   name: 'Vertical — All Complete',
   args: {
@@ -100,6 +112,7 @@ export const VerticalAllComplete: Story = {
   },
 };
 
+/** Error state on the second step with validation message. */
 export const VerticalWithError: Story = {
   name: 'Vertical — Error State',
   args: {
@@ -112,6 +125,7 @@ export const VerticalWithError: Story = {
 /*  Horizontal stories                                                        */
 /* -------------------------------------------------------------------------- */
 
+/** Horizontal wizard layout — same create flow as a top bar. */
 export const Horizontal: Story = {
   args: {
     steps: createFlowSteps,
@@ -119,6 +133,7 @@ export const Horizontal: Story = {
   },
 };
 
+/** Horizontal mid-flow with step description. */
 export const HorizontalMidFlow: Story = {
   name: 'Horizontal — Mid-flow',
   args: {
@@ -127,6 +142,7 @@ export const HorizontalMidFlow: Story = {
   },
 };
 
+/** Horizontal layout with all steps completed. */
 export const HorizontalAllComplete: Story = {
   name: 'Horizontal — All Complete',
   args: {
@@ -135,6 +151,7 @@ export const HorizontalAllComplete: Story = {
   },
 };
 
+/** Horizontal layout with error state on second step. */
 export const HorizontalWithError: Story = {
   name: 'Horizontal — Error State',
   args: {

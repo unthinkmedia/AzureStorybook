@@ -148,7 +148,7 @@ const meta: Meta<typeof NullState> = {
     docs: {
       description: {
         component:
-          'Empty / null-state pattern used inside browse blades and data grids when there are no items to display. Two variants: an illustration-centered state with title, description, and action buttons, or a simple inline text message.',
+          'Empty / null-state pattern used inside browse blades and data grids when there are no items to display. Two variants: an illustration-centered state with title, description, and action buttons, or a simple inline text message. Use this when a resource list, query result, or data grid has zero items to display.',
       },
     },
   },
@@ -171,6 +171,15 @@ export const WithIllustration: Story = {
     description: 'Manage your resource graph queries.',
     primaryActionLabel: 'Resource Graph Explorer',
     onLearnMore: () => {},
+  },
+
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Centered empty state with illustration, title, description, primary action button, and learn-more link. The full-featured null state for browse blades.',
+      },
+    },
   },
 };
 

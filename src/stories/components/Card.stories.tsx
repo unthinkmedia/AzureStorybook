@@ -39,6 +39,19 @@ const meta: Meta<typeof Card> = {
   title: 'Components/Card',
   component: Card,
   tags: ['autodocs'],
+  argTypes: {
+    size: { control: 'select', options: ['small', 'medium', 'large'], description: 'Card size variant' },
+    orientation: { control: 'select', options: ['horizontal', 'vertical'], description: 'Layout direction' },
+    appearance: { control: 'select', options: ['filled', 'filled-alternative', 'outline', 'subtle'], description: 'Visual style' },
+  },
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Fluent UI Card is a surface container for grouping related information and actions with optional selection behavior. Use this when you need to present a bounded content block — such as a resource summary, metric tile, or action shortcut. Choose this over plain divs when you need hover elevation, focus ring, and selection states.',
+      },
+    },
+  },
 };
 
 export default meta;
@@ -61,6 +74,15 @@ export const Default: Story = {
       </CardFooter>
     </Card>
   ),
+
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Basic Card with icon, title, and description text. Cards are surface containers that group related information.',
+      },
+    },
+  },
 };
 
 /** Card with a status badge in the header and inline metrics below. */

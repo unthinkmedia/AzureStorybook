@@ -1,0 +1,835 @@
+{
+  "generatedAt": "2026-03-07T13:07:01.070Z",
+  "version": "1.0.0",
+  "registry": [
+    {
+      "name": "Button",
+      "category": "Components",
+      "storyFile": "src/stories/components/Button.stories.tsx",
+      "stories": [
+        "Primary",
+        "Secondary",
+        "Outline",
+        "Subtle",
+        "IconOnly",
+        "Disabled",
+        "Sizes",
+        "Compound",
+        "Split",
+        "Toggle"
+      ],
+      "isComposed": false,
+      "tags": [
+        "components"
+      ]
+    },
+    {
+      "name": "Card",
+      "category": "Components",
+      "storyFile": "src/stories/components/Card.stories.tsx",
+      "stories": [
+        "Default",
+        "WithStatusBadge",
+        "WithLargeMetric",
+        "GridLayout"
+      ],
+      "isComposed": false,
+      "tags": [
+        "components"
+      ]
+    },
+    {
+      "name": "CardButton",
+      "category": "Components",
+      "storyFile": "src/stories/components/CardButton.stories.tsx",
+      "stories": [
+        "Square",
+        "Horizontal",
+        "SquareRow",
+        "HorizontalColumn"
+      ],
+      "isComposed": false,
+      "tags": [
+        "components"
+      ]
+    },
+    {
+      "name": "DataDisplay",
+      "category": "Components",
+      "storyFile": "src/stories/components/DataDisplay.stories.tsx",
+      "stories": [
+        "Overview"
+      ],
+      "isComposed": false,
+      "tags": [
+        "components"
+      ]
+    },
+    {
+      "name": "DataGrid",
+      "category": "Components",
+      "storyFile": "src/stories/components/DataGrid.stories.tsx",
+      "stories": [
+        "Default"
+      ],
+      "isComposed": false,
+      "tags": [
+        "components"
+      ]
+    },
+    {
+      "name": "Dialog",
+      "category": "Components",
+      "storyFile": "src/stories/components/Dialog.stories.tsx",
+      "stories": [
+        "Default",
+        "Destructive",
+        "Info"
+      ],
+      "isComposed": false,
+      "tags": [
+        "components"
+      ]
+    },
+    {
+      "name": "FilterPill",
+      "category": "Components",
+      "storyFile": "src/stories/components/FilterPill.stories.tsx",
+      "stories": [
+        "Default",
+        "ColonSeparator",
+        "Dismissible",
+        "Selected",
+        "WithMenu",
+        "WithMenuSingleOption",
+        "ComposedFilterBar",
+        "ScopeAndType"
+      ],
+      "isComposed": false,
+      "tags": [
+        "components"
+      ]
+    },
+    {
+      "name": "Input",
+      "category": "Components",
+      "storyFile": "src/stories/components/Input.stories.tsx",
+      "stories": [
+        "Default",
+        "WithContentBefore",
+        "Disabled",
+        "Validation",
+        "Search",
+        "TextArea",
+        "Spin",
+        "Appearances"
+      ],
+      "isComposed": false,
+      "tags": [
+        "components"
+      ]
+    },
+    {
+      "name": "PageTabs",
+      "category": "Components",
+      "storyFile": "src/stories/components/PageTabs.stories.tsx",
+      "stories": [
+        "Default",
+        "WithIcons",
+        "WithDisabledTab"
+      ],
+      "isComposed": false,
+      "tags": [
+        "components"
+      ]
+    },
+    {
+      "name": "Selection",
+      "category": "Components",
+      "storyFile": "src/stories/components/Selection.stories.tsx",
+      "stories": [
+        "Overview"
+      ],
+      "isComposed": false,
+      "tags": [
+        "components"
+      ]
+    },
+    {
+      "name": "WizardNav",
+      "category": "Components",
+      "storyFile": "src/stories/components/WizardNav.stories.tsx",
+      "stories": [
+        "Vertical",
+        "VerticalMidFlow",
+        "VerticalAllComplete",
+        "VerticalWithError",
+        "Horizontal",
+        "HorizontalMidFlow",
+        "HorizontalAllComplete",
+        "HorizontalWithError"
+      ],
+      "isComposed": false,
+      "tags": [
+        "components"
+      ]
+    },
+    {
+      "name": "AzureBreadcrumb",
+      "category": "Composed",
+      "storyFile": "src/stories/composed/AzureBreadcrumb.stories.tsx",
+      "stories": [
+        "WithMultipleLevels",
+        "SingleLevel"
+      ],
+      "isComposed": true,
+      "tags": [
+        "composed",
+        "azure-specific"
+      ]
+    },
+    {
+      "name": "AzureGlobalHeader",
+      "category": "Composed",
+      "storyFile": "src/stories/composed/AzureGlobalHeader.stories.tsx",
+      "stories": [
+        "Default",
+        "NoNotifications",
+        "WithPageContent"
+      ],
+      "isComposed": true,
+      "tags": [
+        "composed",
+        "azure-specific"
+      ]
+    },
+    {
+      "name": "CommandBar",
+      "category": "Composed",
+      "storyFile": "src/stories/composed/CommandBar.stories.tsx",
+      "stories": [
+        "Default",
+        "WithDivider",
+        "WithFarItems",
+        "WithDropdownMenus",
+        "WithOverflow",
+        "WithDisabledItems",
+        "KitchenSink"
+      ],
+      "isComposed": true,
+      "tags": [
+        "composed",
+        "azure-specific"
+      ]
+    },
+    {
+      "name": "EssentialsPanel",
+      "category": "Composed",
+      "storyFile": "src/stories/composed/EssentialsPanel.stories.tsx",
+      "stories": [
+        "ResourceGroup",
+        "VirtualMachine",
+        "Collapsed",
+        "Minimal"
+      ],
+      "isComposed": true,
+      "tags": [
+        "composed",
+        "azure-specific"
+      ]
+    },
+    {
+      "name": "FilterBar",
+      "category": "Composed",
+      "storyFile": "src/stories/composed/FilterBar.stories.tsx",
+      "stories": [
+        "Default",
+        "WithActiveTags"
+      ],
+      "isComposed": true,
+      "tags": [
+        "composed",
+        "azure-specific"
+      ]
+    },
+    {
+      "name": "HealthStatusCard",
+      "category": "Composed",
+      "storyFile": "src/stories/composed/HealthStatusCard.stories.tsx",
+      "stories": [
+        "Default",
+        "WithWarning"
+      ],
+      "isComposed": true,
+      "tags": [
+        "composed",
+        "azure-specific"
+      ]
+    },
+    {
+      "name": "NullState",
+      "category": "Composed",
+      "storyFile": "src/stories/composed/NullState.stories.tsx",
+      "stories": [
+        "WithIllustration",
+        "TextOnly",
+        "IllustrationMinimal"
+      ],
+      "isComposed": true,
+      "tags": [
+        "composed",
+        "azure-specific"
+      ]
+    },
+    {
+      "name": "PageTitleBar",
+      "category": "Composed",
+      "storyFile": "src/stories/composed/PageTitleBar.stories.tsx",
+      "stories": [
+        "WithPipeTitleAndSuggestions",
+        "WithAllSuggestions",
+        "WithOverflow",
+        "WithSubtitle",
+        "Default"
+      ],
+      "isComposed": true,
+      "tags": [
+        "composed",
+        "azure-specific"
+      ]
+    },
+    {
+      "name": "SREGlobalHeader",
+      "category": "Composed",
+      "storyFile": "src/stories/composed/SREGlobalHeader.stories.tsx",
+      "stories": [
+        "Default",
+        "WithNotifications",
+        "NoBadge",
+        "WithPageContent"
+      ],
+      "isComposed": true,
+      "tags": [
+        "composed",
+        "azure-specific"
+      ]
+    },
+    {
+      "name": "SearchBanner",
+      "category": "Composed",
+      "storyFile": "src/stories/composed/SearchBanner.stories.tsx",
+      "stories": [
+        "Default",
+        "Minimal"
+      ],
+      "isComposed": true,
+      "tags": [
+        "composed",
+        "azure-specific"
+      ]
+    },
+    {
+      "name": "ServiceFlyout",
+      "category": "Composed",
+      "storyFile": "src/stories/composed/ServiceFlyout.stories.tsx",
+      "stories": [
+        "WithCardButton",
+        "WithButton",
+        "WithCreateAction",
+        "ServiceRow",
+        "WithHorizontalCard"
+      ],
+      "isComposed": true,
+      "tags": [
+        "composed",
+        "azure-specific"
+      ]
+    },
+    {
+      "name": "SideNavigation",
+      "category": "Composed",
+      "storyFile": "src/stories/composed/SideNavigation.stories.tsx",
+      "stories": [
+        "Default",
+        "Collapsed",
+        "WithoutSearch",
+        "WideNav",
+        "Interactive",
+        "Minimal"
+      ],
+      "isComposed": true,
+      "tags": [
+        "composed",
+        "azure-specific"
+      ]
+    },
+    {
+      "name": "Colors",
+      "category": "Foundations",
+      "storyFile": "src/stories/foundations/Colors.stories.tsx",
+      "stories": [
+        "AllColors"
+      ],
+      "isComposed": false,
+      "tags": [
+        "foundations"
+      ]
+    },
+    {
+      "name": "Shadows",
+      "category": "Foundations",
+      "storyFile": "src/stories/foundations/Shadows.stories.tsx",
+      "stories": [
+        "AllShadows"
+      ],
+      "isComposed": false,
+      "tags": [
+        "foundations"
+      ]
+    },
+    {
+      "name": "Spacing",
+      "category": "Foundations",
+      "storyFile": "src/stories/foundations/Spacing.stories.tsx",
+      "stories": [
+        "AllSpacing"
+      ],
+      "isComposed": false,
+      "tags": [
+        "foundations"
+      ]
+    },
+    {
+      "name": "Typography",
+      "category": "Foundations",
+      "storyFile": "src/stories/foundations/Typography.stories.tsx",
+      "stories": [
+        "AllTypography"
+      ],
+      "isComposed": false,
+      "tags": [
+        "foundations"
+      ]
+    },
+    {
+      "name": "AgentPlayground",
+      "category": "Playground",
+      "storyFile": "src/stories/playground/AgentPlayground.stories.tsx",
+      "stories": [
+        "Default"
+      ],
+      "isComposed": false,
+      "tags": [
+        "playground"
+      ]
+    },
+    {
+      "name": "ContainerLayouts",
+      "category": "Templates",
+      "storyFile": "src/stories/templates/ContainerLayouts.stories.tsx",
+      "stories": [
+        "SidePanelLayout",
+        "FullWidthWithHeader",
+        "ContentOnly"
+      ],
+      "isComposed": true,
+      "tags": [
+        "templates"
+      ]
+    },
+    {
+      "name": "FeatureCardsPage",
+      "category": "Templates",
+      "storyFile": "src/stories/templates/FeatureCardsPage.stories.tsx",
+      "stories": [
+        "Default",
+        "CustomHeading"
+      ],
+      "isComposed": true,
+      "tags": [
+        "templates"
+      ]
+    },
+    {
+      "name": "ResourceListPage",
+      "category": "Templates",
+      "storyFile": "src/stories/templates/ResourceListPage.stories.tsx",
+      "stories": [
+        "Default",
+        "WithoutFilters",
+        "WithoutCheckboxes",
+        "NullStateText"
+      ],
+      "isComposed": true,
+      "tags": [
+        "templates"
+      ]
+    },
+    {
+      "name": "SREContainerLayouts",
+      "category": "Templates",
+      "storyFile": "src/stories/templates/SREContainerLayouts.stories.tsx",
+      "stories": [
+        "FullWidthWithHeader",
+        "ContentOnly"
+      ],
+      "isComposed": true,
+      "tags": [
+        "templates"
+      ]
+    },
+    {
+      "name": "SupportPage",
+      "category": "Templates",
+      "storyFile": "src/stories/templates/SupportPage.stories.tsx",
+      "stories": [
+        "Default",
+        "WithHealthEvents"
+      ],
+      "isComposed": true,
+      "tags": [
+        "templates"
+      ]
+    }
+  ],
+  "componentDocs": {
+    "Avatar": {
+      "description": "",
+      "stories": [
+        "Overview"
+      ]
+    },
+    "Badge": {
+      "description": "",
+      "stories": [
+        "Overview"
+      ]
+    },
+    "Button": {
+      "description": "",
+      "stories": [
+        "Primary",
+        "Secondary",
+        "Outline",
+        "Subtle",
+        "IconOnly",
+        "Disabled",
+        "Sizes",
+        "Compound",
+        "Split",
+        "Toggle"
+      ]
+    },
+    "Card": {
+      "description": "",
+      "stories": [
+        "Default",
+        "WithStatusBadge",
+        "WithLargeMetric",
+        "GridLayout"
+      ]
+    },
+    "CardButton": {
+      "description": "A card-style button combining card and button attributes. Supports a **square** variant (icon-on-top, 104×104) for service shortcuts and a **horizontal** variant (icon-left, text-right) for resource links. Gains a shadow on hover and a brand-colored ring on focus.",
+      "stories": [
+        "Square",
+        "Horizontal",
+        "SquareRow",
+        "HorizontalColumn"
+      ]
+    },
+    "DataDisplay": {
+      "description": "",
+      "stories": [
+        "Overview"
+      ]
+    },
+    "DataGrid": {
+      "description": "",
+      "stories": [
+        "Default"
+      ]
+    },
+    "Dialog": {
+      "description": "",
+      "stories": [
+        "Default",
+        "Destructive",
+        "Info"
+      ]
+    },
+    "FilterPill": {
+      "description": "Azure Portal-style filter pill buttons. Click a pill to open a popover with checkbox selections and Apply/Cancel actions. Pills can be composed into a filter bar row.",
+      "stories": [
+        "Default",
+        "ColonSeparator",
+        "Dismissible",
+        "Selected",
+        "WithMenu",
+        "WithMenuSingleOption",
+        "ComposedFilterBar",
+        "ScopeAndType"
+      ]
+    },
+    "Input": {
+      "description": "",
+      "stories": [
+        "Default",
+        "WithContentBefore",
+        "Disabled",
+        "Validation",
+        "Search",
+        "TextArea",
+        "Spin",
+        "Appearances"
+      ]
+    },
+    "MessageBar": {
+      "description": "",
+      "stories": [
+        "Overview"
+      ]
+    },
+    "PageTabs": {
+      "description": "",
+      "stories": [
+        "Default",
+        "WithIcons",
+        "WithDisabledTab"
+      ]
+    },
+    "ProgressBar": {
+      "description": "",
+      "stories": [
+        "Overview"
+      ]
+    },
+    "Selection": {
+      "description": "",
+      "stories": [
+        "Overview"
+      ]
+    },
+    "Spinner": {
+      "description": "",
+      "stories": [
+        "Overview"
+      ]
+    },
+    "Tag": {
+      "description": "",
+      "stories": [
+        "Overview"
+      ]
+    },
+    "Tooltip": {
+      "description": "",
+      "stories": [
+        "Overview"
+      ]
+    },
+    "WizardNav": {
+      "description": "A step indicator for multi-step create/deploy wizard flows. Supports both vertical (sidebar) and horizontal (top bar) orientations, matching the Azure Portal wizard blade pattern.",
+      "stories": [
+        "Vertical",
+        "VerticalMidFlow",
+        "VerticalAllComplete",
+        "VerticalWithError",
+        "Horizontal",
+        "HorizontalMidFlow",
+        "HorizontalAllComplete",
+        "HorizontalWithError"
+      ]
+    },
+    "AzureBreadcrumb": {
+      "description": "",
+      "stories": [
+        "WithMultipleLevels",
+        "SingleLevel"
+      ]
+    },
+    "AzureGlobalHeader": {
+      "description": "The persistent global header bar that sits at the top of every Azure Portal page. Includes the waffle menu, hamburger, branding, search, Copilot button, action icons, and user profile.",
+      "stories": [
+        "Default",
+        "NoNotifications",
+        "WithPageContent"
+      ]
+    },
+    "CommandBar": {
+      "description": "Azure Portal-style command bar with grouped actions, dividers, dropdown menus, overflow, far-side items, and disabled states.",
+      "stories": [
+        "Default",
+        "WithDivider",
+        "WithFarItems",
+        "WithDropdownMenus",
+        "WithOverflow",
+        "WithDisabledItems",
+        "KitchenSink"
+      ]
+    },
+    "EssentialsPanel": {
+      "description": "",
+      "stories": [
+        "ResourceGroup",
+        "VirtualMachine",
+        "Collapsed",
+        "Minimal"
+      ]
+    },
+    "FilterBar": {
+      "description": "",
+      "stories": [
+        "Default",
+        "WithActiveTags"
+      ]
+    },
+    "HealthStatusCard": {
+      "description": "",
+      "stories": [
+        "Default",
+        "WithWarning"
+      ]
+    },
+    "NullState": {
+      "description": "Empty / null-state pattern used inside browse blades and data grids when there are no items to display. Two variants: an illustration-centered state with title, description, and action buttons, or a simple inline text message.",
+      "stories": [
+        "WithIllustration",
+        "TextOnly",
+        "IllustrationMinimal"
+      ]
+    },
+    "PageTitleBar": {
+      "description": "",
+      "stories": [
+        "WithPipeTitleAndSuggestions",
+        "WithAllSuggestions",
+        "WithOverflow",
+        "WithSubtitle",
+        "Default"
+      ]
+    },
+    "SREGlobalHeader": {
+      "description": "The global header bar for the Azure SRE Agent experience. Features a light background, SRE Agent branding with a PREVIEW badge, Docs link, notification/chat/settings icons, and user avatar.",
+      "stories": [
+        "Default",
+        "WithNotifications",
+        "NoBadge",
+        "WithPageContent"
+      ]
+    },
+    "SearchBanner": {
+      "description": "",
+      "stories": [
+        "Default",
+        "Minimal"
+      ]
+    },
+    "ServiceFlyout": {
+      "description": "A hover-activated flyout panel that displays service details — name, quick actions, description, Copilot prompt, training links, and useful links. Wraps any trigger element (CardButton, Button, etc.).",
+      "stories": [
+        "WithCardButton",
+        "WithButton",
+        "WithCreateAction",
+        "ServiceRow",
+        "WithHorizontalCard"
+      ]
+    },
+    "SideNavigation": {
+      "description": "Azure Portal-style collapsible side navigation panel with search, expandable groups, selected state, and keyboard shortcut footer.",
+      "stories": [
+        "Default",
+        "Collapsed",
+        "WithoutSearch",
+        "WideNav",
+        "Interactive",
+        "Minimal"
+      ]
+    },
+    "Colors": {
+      "description": "",
+      "stories": [
+        "AllColors"
+      ]
+    },
+    "Shadows": {
+      "description": "",
+      "stories": [
+        "AllShadows"
+      ]
+    },
+    "Spacing": {
+      "description": "",
+      "stories": [
+        "AllSpacing"
+      ]
+    },
+    "Typography": {
+      "description": "",
+      "stories": [
+        "AllTypography"
+      ]
+    },
+    "ContainerLayouts": {
+      "description": "The main application container has several layout configurations depending on the page context. Each layout shares the same global header but differs in which chrome elements (breadcrumb, page title, side navigation) are shown. ## Layout States | State | Breadcrumb | Page Title + Copilot | Side Nav | When to use | |-------|-----------|---------------------|----------|-------------| | **Side Panel** | ✅ | ✅ | ✅ | Resource Manager, specific service with sub-pages | | **Full Width + Header** | ✅ | ✅ | ❌ | Service browse pages (Load Balancers, VMs, etc.) | | **Content Only** | ❌ | ❌ | ❌ | Maximized view, embedded experiences, dashboards |",
+      "stories": [
+        "SidePanelLayout",
+        "FullWidthWithHeader",
+        "ContentOnly"
+      ]
+    },
+    "FeatureCardsPage": {
+      "description": "A centered landing page template that presents a set of illustrated feature cards, each with a title, description, external link, and primary call-to-action button. Use this for hub pages that guide users to choose between several top-level actions or workflows — for example, moving resources, selecting a deployment option, or picking a getting-started path.",
+      "stories": [
+        "Default",
+        "CustomHeading"
+      ]
+    },
+    "ResourceListPage": {
+      "description": "",
+      "stories": [
+        "Default",
+        "WithoutFilters",
+        "WithoutCheckboxes",
+        "NullStateText"
+      ]
+    },
+    "SREContainerLayouts": {
+      "description": "The SRE Agent container uses a light-themed global header with the SRE Agent branding and PREVIEW badge. It shares the same layout patterns as the Azure Container but with SRE-specific chrome. ## Layout States | State | Breadcrumb | Page Title + Copilot | Side Nav | When to use | |-------|-----------|---------------------|----------|-------------| | **Full Width + Header** | ✅ | ✅ | ❌ | Agent list, agent spaces browse | | **Content Only** | ❌ | ❌ | ❌ | Agent detail view, dashboards |",
+      "stories": [
+        "FullWidthWithHeader",
+        "ContentOnly"
+      ]
+    },
+    "SupportPage": {
+      "description": "",
+      "stories": [
+        "Default",
+        "WithHealthEvents"
+      ]
+    }
+  },
+  "context": {
+    "azure-theme": "# Azure Theme Reference for LLMs\n\n## Brand Ramp\n| Step | Hex | Usage |\n|------|-----|-------|\n| 10 | #061724 | Darkest brand shade |\n| 20 | #082338 | |\n| 30 | #0a2e4a | |\n| 40 | #0c3b5e | |\n| 50 | #0e4775 | |\n| 60 | #0f548c | Brand darker |\n| 70 | #115ea3 | Brand dark (hover) |\n| 80 | #0f6cbd | **Primary brand** |\n| 90 | #2886de | Brand light |\n| 100 | #479ef5 | |\n| 110 | #62abf5 | |\n| 120 | #77b7f7 | |\n| 130 | #96c6fa | |\n| 140 | #b4d6fa | Brand lighter |\n| 150 | #cfe4fa | |\n| 160 | #ebf3fc | Lightest brand tint |\n\n## Key Semantic Tokens\n- Background: `colorNeutralBackground1` (#ffffff)\n- Foreground: `colorNeutralForeground1` (#242424)\n- Subtle bg: `colorNeutralBackground2` (#fafafa)\n- Border: `colorNeutralStroke2` (#e0e0e0)\n- Brand foreground: `colorBrandForeground1` (#0f6cbd)\n- Success: `colorPaletteGreenForeground1`\n- Danger: `colorPaletteRedForeground1` (#d13438)\n- Warning: `colorPaletteYellowForeground1`\n\n## Typography\n- Font family: `'Segoe UI', 'Segoe UI Web (West European)', -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', sans-serif`\n- Base size: 14px\n- Scale: 10 / 12 / 14 / 16 / 20 / 24 / 28 / 32 / 40 / 68\n\n## Spacing Scale\n2px / 4px / 6px / 8px / 10px / 12px / 16px / 20px / 24px / 32px / 40px\n\n## Border Radius\nnone (0) / small (2px) / medium (4px) / large (8px) / xLarge (12px) / circular (10000px)\n\n## Shadow Elevation\nshadow2, shadow4, shadow8, shadow16, shadow28, shadow64, shadow2brand\n",
+    "component-patterns": "# Component Patterns — Azure Portal\n\n## Page Layout Hierarchy\n```\nAzureBreadcrumb    (Home > Subscription > Resource Group > Resource)\nPageTitleBar       (Icon + Title + Star + More + Copilot Suggestions)\nCommandBar         (Create | Edit | Delete || Refresh | Export | Filter | Columns)\nFilterBar          (SearchBox + Dropdown filters + Active filter tags)\nDataGrid           (Sortable columns with resource data)\n```\n\n## Composed Components (src/components/)\n\n### AzureBreadcrumb\n- Fluent `Breadcrumb` with Home icon\n- Used at top of every page\n\n### PageTitleBar\n- Resource name/page title with icon, star, more-actions\n- Optional Copilot suggestion pills (Tag components)\n\n### CommandBar\n- Fluent `Toolbar` with primary + secondary action groups\n- Primary: Create, Edit, Delete\n- Secondary: Refresh, Export, Filter, Columns\n\n### FilterBar\n- SearchBox + Dropdown filters + active filter TagGroup\n- Sits between CommandBar and DataGrid\n\n## Azure-Specific Patterns\n\n### Resource Status\nAlways use Badge with semantic colors:\n- Running → `color=\"success\"`\n- Stopped → `color=\"danger\"`\n- Deallocated → `color=\"warning\"`\n- Creating → `color=\"informative\"`\n\n### Resource Names as Links\nResource names in grids use brand-colored text (`#0f6cbd`) to indicate clickability.\n\n### KPI / Hero Cards\nUse Card with large numeric display, caption label, trend indicator.\n\n### Card Grids\n`grid-template-columns: repeat(auto-fill, minmax(280px, 1fr))` with 16px gap.\n",
+    "styling-guide": "# Styling Guide — Azure Storybook\n\n## CSS-in-JS (Griffel)\nAlways use `makeStyles` for component styles:\n```tsx\nimport { makeStyles, tokens } from '@fluentui/react-components';\n\nconst useStyles = makeStyles({\n  root: {\n    backgroundColor: tokens.colorNeutralBackground1,\n    padding: '16px',\n    borderRadius: tokens.borderRadiusMedium,\n  },\n});\n```\n\n## Token Usage\n- Never hardcode colors — always use `tokens.*` from Fluent\n- For brand-specific values not in tokens, use the Azure brand ramp hex values\n- For spacing, use 4px increments (4, 8, 12, 16, 24, 32)\n- For border radius: `tokens.borderRadiusSmall` (2px), `tokens.borderRadiusMedium` (4px), `tokens.borderRadiusLarge` (8px)\n\n## Icons\n- Import from `@fluentui/react-icons`\n- Default to `24Regular` variants: `Add24Regular`, `Delete24Regular`\n- Use `20Regular` for small/compact UI\n- Use `24Filled` for active/selected states\n\n## Layout Conventions\n- Full-page layouts: `height: 100vh`, flex column\n- Content area: flex: 1, overflow: auto\n- Card grids: CSS Grid with auto-fill, minmax 280px\n- Side panels: fixed 220px width, flex-shrink: 0\n\n## Dark Theme\nThe FluentProvider handles all token resolution automatically.\nWrite styles using tokens, and dark/HC themes work without extra code.\n"
+  },
+  "guidelines": [
+    {
+      "name": "GettingStarted",
+      "content": "import { Meta } from '@storybook/addon-docs/blocks';\n\n<Meta title=\"Guidelines/Getting Started\" />\n\n# Getting Started\n\nWelcome to the Azure Storybook — a Fluent UI React v9 component library themed to match the Azure Portal.\n\n## Tech Stack\n\n| Layer | Technology |\n|-------|------------|\n| Framework | React 18 + TypeScript 5.7 |\n| Components | `@fluentui/react-components` (Fluent UI v9) |\n| Icons | `@fluentui/react-icons` |\n| Styling | Griffel (`makeStyles` / `mergeClasses`) |\n| Storybook | 8.5 — CSF3 format with `autodocs` |\n| Bundler | Vite 6 |\n| Theme | Custom Azure themes in `src/themes/azureThemes.ts` |\n\n## Project Structure\n\n```\nsrc/\n├── components/          # Reusable Azure-specific composed components\n│   ├── AzureBreadcrumb.tsx\n│   ├── CommandBar.tsx\n│   ├── FilterBar.tsx\n│   └── PageTitleBar.tsx\n├── stories/\n│   ├── foundations/     # Design tokens: Colors, Typography, Spacing, Shadows\n│   ├── components/      # Fluent v9 component stories\n│   ├── composed/        # Azure composed component stories\n│   ├── templates/       # Full page templates (ResourceListPage)\n│   └── guidelines/      # Usage best practices (you are here)\n└── themes/              # Azure light, dark, and high-contrast themes\n```\n\n## Adding a New Story\n\nEvery story uses CSF3 format:\n\n```tsx\nimport type { Meta, StoryObj } from '@storybook/react';\n\nconst meta: Meta<typeof Component> = {\n  title: 'Category/ComponentName',\n  component: Component,\n  tags: ['autodocs'],\n};\n\nexport default meta;\ntype Story = StoryObj<typeof Component>;\n\nexport const Default: Story = {\n  args: { /* default props */ },\n};\n```\n\n### Story Categories\n\n| Category | Folder | Purpose |\n|----------|--------|---------|\n| **Foundations** | `stories/foundations/` | Design tokens — colors, typography, spacing, shadows |\n| **Components** | `stories/components/` | Stock Fluent v9 components with Azure theming |\n| **Composed** | `stories/composed/` | Azure-specific composed components |\n| **Templates** | `stories/templates/` | Full-page Azure Portal layouts |\n| **Guidelines** | `stories/guidelines/` | Usage best practices and conventions |\n\n## Naming Conventions\n\nNames should describe **what a thing does**, not where it's used. This keeps the library generic and reusable.\n\n| Layer | ✅ Good | ❌ Bad |\n|---|---|---|\n| Story export | `WithDivider`, `WithOverflow` | `ResourceList`, `CostView` |\n| Component | `FilterBar`, `CommandBar` | `ResourceFilterBar` |\n| CSS class | `leftSection`, `gridCell` | `vmList`, `subscriptionPanel` |\n| File name | `CommandBar.stories.tsx` | `CostManagementBar.stories.tsx` |\n\n## Regenerating the Registry\n\nAfter adding new stories or components, regenerate the component registry:\n\n```bash\nnpm run build:registry\n```\n\nThis updates `src/component-registry.json`, which provides machine-readable metadata for LLM context.\n"
+    },
+    {
+      "name": "PagePatterns",
+      "content": "import { Meta } from '@storybook/addon-docs/blocks';\n\n<Meta title=\"Guidelines/Page Patterns\" />\n\n# Azure Portal Page Patterns\n\n## Page Layout Hierarchy\n\nEvery Azure Portal page follows this top-to-bottom structure:\n\n```\n┌─ AzureBreadcrumb ─────────────────────────────────────────┐\n├─ PageTitleBar (icon + title + star + more + AI suggestions)├\n├─ CommandBar (primary actions ‖ secondary actions) ─────────├\n├─ FilterBar (search + filters + active tags) ───────────────├\n├─ Content area (DataGrid / Cards / Dashboard etc.) ─────────├\n└────────────────────────────────────────────────────────────┘\n```\n\nAlways compose from the existing building blocks:\n\n```tsx\nimport { AzureBreadcrumb } from '@/components/AzureBreadcrumb';\nimport { PageTitleBar } from '@/components/PageTitleBar';\nimport { CommandBar } from '@/components/CommandBar';\nimport { FilterBar } from '@/components/FilterBar';\n```\n\n## Full-Width vs Side Panel\n\nChoose the right layout based on what the user is looking at:\n\n| Layout | When to Use | Examples |\n|--------|-------------|---------|\n| **Full Width** | Browsing, creating, or viewing lists | Home, create wizard, marketplace, all-resources |\n| **Side Panel** | Viewing a specific deployed resource | Resource overview, resource sub-page, detail blade |\n\n- Never add a side panel to create flows, home pages, or browse pages\n- Always add a side panel to resource overview / detail pages\n\n## Composed Components\n\n### AzureBreadcrumb\nFluent `Breadcrumb` with a Home icon. Used at the top of every page.\n\n### PageTitleBar\nResource name / page title with icon, favorite star, more-actions menu, and optional Copilot suggestion pills.\n\n### CommandBar\nFluent `Toolbar` split into primary and secondary action groups.\n- **Primary:** Create, Edit, Delete\n- **Secondary:** Refresh, Export, Filter, Columns\n\n### FilterBar\n`SearchBox` + `Dropdown` filters + active filter `TagGroup`. Sits between the CommandBar and content.\n\n## Common Patterns\n\n### Resource Status Badges\n\nAlways use `Badge` with semantic colors for resource state:\n\n```tsx\nimport { Badge } from '@fluentui/react-components';\n\n<Badge appearance=\"filled\" color=\"success\">Running</Badge>\n<Badge appearance=\"filled\" color=\"danger\">Stopped</Badge>\n<Badge appearance=\"filled\" color=\"warning\">Deallocated</Badge>\n<Badge appearance=\"filled\" color=\"informative\">Creating</Badge>\n```\n\n### Resource Name Links\n\nResource names in grids use brand-colored text to indicate interactivity:\n\n```tsx\ncolor: tokens.colorBrandForeground1,  // #0f6cbd\ncursor: 'pointer',\n':hover': { textDecorationLine: 'underline' },\n```\n\n### KPI / Hero Cards\n\nLarge numeric display with caption label and trend indicator:\n\n```tsx\n<Card>\n  <Text size={600} weight=\"semibold\">1,247</Text>\n  <Text size={200}>Active Resources</Text>\n  <Badge color=\"success\" appearance=\"outline\">↑ 12%</Badge>\n</Card>\n```\n\n### Card Grids\n\n```tsx\ndisplay: 'grid',\ngridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',\ngap: '16px',\npadding: '16px',\n```\n"
+    },
+    {
+      "name": "StylingBestPractices",
+      "content": "import { Meta } from '@storybook/addon-docs/blocks';\n\n<Meta title=\"Guidelines/Styling Best Practices\" />\n\n# Styling Best Practices\n\n## Always Use Griffel\n\nAll component styling must use Griffel's `makeStyles`. Never use plain CSS, CSS Modules, or inline `style` objects for anything beyond simple layout.\n\n```tsx\nimport { makeStyles, tokens } from '@fluentui/react-components';\n\n// ✅ Correct\nconst useStyles = makeStyles({\n  root: {\n    backgroundColor: tokens.colorNeutralBackground1,\n    padding: '16px',\n    borderRadius: tokens.borderRadiusMedium,\n  },\n});\n\n// ❌ Wrong — plain CSS or inline styles\n<div style={{ backgroundColor: '#ffffff', padding: 16 }} />\n```\n\n## Icons\n\n```tsx\nimport { Add24Regular, Delete24Regular } from '@fluentui/react-icons';\n\n// Default: 24px Regular variants\n// Small/compact UI: 20px Regular variants\n// Active/selected state: 24px Filled variants\n```\n\nAlways import from `@fluentui/react-icons`, never embed raw SVGs.\n\n## Anti-Patterns\n\n| ❌ Don't | ✅ Do Instead |\n|---------|--------------|\n| Hardcode hex colors (`#ffffff`) | Use `tokens.colorNeutralBackground1` |\n| Use plain CSS or CSS Modules | Use Griffel `makeStyles` |\n| Import from `@fluentui/react` (v8) | Import from `@fluentui/react-components` (v9) |\n| Create custom button/input primitives | Use Fluent v9 `Button`, `Input`, `Card` |\n| Use raw `px` font sizes | Use `tokens.fontSizeBase300` etc. |\n| Skip `tags: ['autodocs']` | Always include for auto-generated docs |\n| Mix `FluentProvider` themes | Use `azureLightTheme` from `src/themes/` |\n| Put composed stories in `components/` | Stories go in `src/stories/composed/` |\n| Create page templates without breadcrumb | Always include `AzureBreadcrumb` at top |\n\n## Layout Conventions\n\n### Full Page\n\n```tsx\nconst useStyles = makeStyles({\n  page: {\n    height: '100vh',\n    display: 'flex',\n    flexDirection: 'column',\n    backgroundColor: tokens.colorNeutralBackground2,\n  },\n  content: {\n    flex: '1',\n    overflowY: 'auto',\n    margin: '0 16px 16px',\n    backgroundColor: tokens.colorNeutralBackground1,\n    borderRadius: tokens.borderRadiusMedium,\n    border: `1px solid ${tokens.colorNeutralStroke2}`,\n  },\n});\n```\n\n### Card Grid\n\n```tsx\nconst useStyles = makeStyles({\n  grid: {\n    display: 'grid',\n    gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',\n    gap: '16px',\n    padding: '16px',\n  },\n});\n```\n\n### Side Panel\n\nSection navigation panels use a fixed 220px width inside the main content area. Global navigation lives in the app frame's `slot=\"navigation\"` — never nest two navigation drawers.\n\n## Accessibility\n\n- Every icon-only button must have an `aria-label`\n- Use semantic Badge colors for status (success, danger, warning, informative)\n- Spacing must follow the 4/8/12/16/24/32px scale for consistent tap targets\n- All interactive elements must be keyboard-accessible (Fluent v9 handles this by default)\n- Verify with the Storybook a11y addon panel\n"
+    },
+    {
+      "name": "TokenUsage",
+      "content": "import { Meta } from '@storybook/addon-docs/blocks';\n\n<Meta title=\"Guidelines/Token Usage\" />\n\n# Design Token Usage\n\nAlways use Fluent UI design tokens instead of hardcoded values. This ensures all components\nrespond correctly to theme switching (light, dark, high contrast).\n\n## Color Tokens\n\n```tsx\nimport { tokens } from '@fluentui/react-components';\n\n// ✅ Correct\nbackgroundColor: tokens.colorNeutralBackground1,   // #ffffff (light)\ncolor: tokens.colorNeutralForeground1,              // #242424 (text)\nborderColor: tokens.colorNeutralStroke2,             // #e0e0e0\n\n// ❌ Wrong — never hardcode colors\nbackgroundColor: '#ffffff',\ncolor: '#242424',\n```\n\n### Key Semantic Tokens\n\n| Token | Light Value | Usage |\n|-------|-------------|-------|\n| `colorNeutralBackground1` | #ffffff | Primary surface |\n| `colorNeutralBackground2` | #fafafa | Subtle/page background |\n| `colorNeutralForeground1` | #242424 | Primary text |\n| `colorNeutralStroke2` | #e0e0e0 | Standard borders |\n| `colorBrandForeground1` | #0f6cbd | Brand-colored text, links |\n| `colorPaletteGreenForeground1` | — | Success state |\n| `colorPaletteRedForeground1` | #d13438 | Danger/error state |\n| `colorPaletteYellowForeground1` | — | Warning state |\n\n### Azure Brand Ramp\n\n| Step | Hex | Usage |\n|------|-----|-------|\n| 60 | #0f548c | Brand darker |\n| 70 | #115ea3 | Brand dark (hover) |\n| **80** | **#0f6cbd** | **Primary brand** |\n| 90 | #2886de | Brand light |\n| 160 | #ebf3fc | Lightest brand tint |\n\n## Typography Tokens\n\n| Purpose | Token | Resolves To |\n|---------|-------|-------------|\n| Small / caption | `tokens.fontSizeBase200` | 12px |\n| Body text | `tokens.fontSizeBase300` | 14px |\n| Subtitle | `tokens.fontSizeBase400` | 16px |\n| Page title | `tokens.fontSizeBase500` | 20px |\n| Hero heading | `tokens.fontSizeBase600` | 24px |\n| Font family | `tokens.fontFamilyBase` | Segoe UI stack |\n| Regular weight | `tokens.fontWeightRegular` | 400 |\n| Semibold weight | `tokens.fontWeightSemibold` | 600 |\n\n## Spacing\n\nUse 4px-based increments:\n\n| Use Case | Value |\n|----------|-------|\n| Tight internal padding | 4px |\n| Default padding, gaps | 8px |\n| Comfortable padding | 12px |\n| Standard section padding | 16px |\n| Generous section padding | 24px |\n| Large section spacing | 32px |\n\n## Borders & Radius\n\n```tsx\n// Standard border\nborder: `1px solid ${tokens.colorNeutralStroke2}`,\n\n// Border radius\ntokens.borderRadiusSmall    // 2px — badges, tags\ntokens.borderRadiusMedium   // 4px — cards, inputs, buttons\ntokens.borderRadiusLarge    // 8px — panels, dialogs\n```\n\n## Shadow Elevation\n\n| Level | Token | Usage |\n|-------|-------|-------|\n| Rest | `tokens.shadow2` | Subtle card resting state |\n| Raised | `tokens.shadow4` | Elevated cards, panels |\n| High | `tokens.shadow8` | Dropdowns, popovers |\n| Overlay | `tokens.shadow16` | Dialogs |\n| Modal | `tokens.shadow28` | Full-screen overlays |\n\n## Dark & High Contrast\n\nThe `FluentProvider` handles all token resolution automatically.\nWrite styles using tokens, and dark/high-contrast themes work without extra code.\nNever add theme-specific logic — let the token system do the work.\n"
+    }
+  ]
+}

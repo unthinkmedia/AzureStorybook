@@ -432,7 +432,13 @@ const meta: Meta<ResourceListPageProps> = {
   title: 'Templates/Resource List Page',
   component: ResourceListPage,
   tags: ['autodocs'],
-  parameters: { layout: 'fullscreen' },
+  parameters: { layout: 'fullscreen',
+    docs: {
+      description: {
+        component:
+          'Full-page resource list template combining CommandBar, FilterPill row, sortable DataGrid with row actions and checkboxes, and a pagination footer. Use this when building a browse blade for any Azure resource type — resource groups, VMs, storage accounts, etc.',
+      },
+    } },
   argTypes: {
     showFilters: { control: 'boolean' },
     showCheckboxes: { control: 'boolean' },
@@ -447,6 +453,15 @@ export const Default: Story = {
   args: {
     showFilters: true,
     showCheckboxes: true,
+  },
+
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Full resource group browse page with command bar, filter pills, sortable DataGrid with checkboxes and row actions, and pagination footer.',
+      },
+    },
   },
 };
 

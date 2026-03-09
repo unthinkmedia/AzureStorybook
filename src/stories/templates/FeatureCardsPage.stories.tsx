@@ -340,7 +340,7 @@ export default {
     docs: {
       description: {
         component:
-          'A centered landing page template that presents a set of illustrated feature cards, each with a title, description, external link, and primary call-to-action button. Use this for hub pages that guide users to choose between several top-level actions or workflows — for example, moving resources, selecting a deployment option, or picking a getting-started path.',
+          'A centered landing page template that presents a set of illustrated feature cards, each with a title, description, external link, and primary call-to-action button. Use this when you need a hub page that guides users to choose between several top-level actions or workflows — for example, moving resources, selecting a deployment option, or picking a getting-started path.',
       },
     },
   },
@@ -351,6 +351,15 @@ type Story = StoryObj<typeof FeatureCardsPage>;
 /** Default feature cards landing page (Move Resources example). */
 export const Default: Story = {
   args: {},
+
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Move Resources landing page with three illustrated feature cards: move across subscriptions, resource groups, or regions.',
+      },
+    },
+  },
 };
 
 /** Custom heading and subtitle. */

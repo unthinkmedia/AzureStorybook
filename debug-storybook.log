@@ -1,40 +1,31 @@
-[23:07:15.649] [INFO] storybook v10.2.16
-[23:07:15.911] [DEBUG] Getting package.json info for /Users/alexbritez/Library/CloudStorage/OneDrive-Microsoft/Documents/_work/Azure/AzureStorybook/package.json...
-[23:07:15.912] [WARN] You are currently using Storybook [1m10.2.16[22m but you have packages which are incompatible with it:
-
-- @storybook/addon-essentials@8.6.14 which depends on 8.6.14
- Repo: https://github.com/storybookjs/storybook/tree/next/code/addons/essentials
-- @storybook/addon-interactions@8.6.14 which depends on 8.6.14
- Repo: https://github.com/storybookjs/storybook/tree/next/code/addons/interactions
-- @storybook/addon-viewport@8.6.18 which depends on ^8.6.18
- Repo: https://github.com/storybookjs/storybook/tree/next/code/addons/viewport
-- @storybook/test@8.6.18 which depends on 8.6.18
- Repo: https://github.com/storybookjs/storybook/tree/next/code/lib/test
-
-Please consider updating your packages or contacting the maintainers for compatibility details.
-
-For more details on compatibility guidance, see:
-https://github.com/storybookjs/storybook/issues/32836
-[23:07:16.306] [DEBUG] Serving static files from [36mpublic[39m at [36m/[39m
-[23:07:16.310] [INFO] Starting...
-[23:07:16.522] [ERROR] [38;2;241;97;97mSB_CORE-SERVER_0004 (NoMatchingExportError): There was an exports mismatch error when trying to build Storybook.
-Please check whether the versions of your Storybook packages match whenever possible, as this might be the cause.
-
-Problematic example:
-{ "@storybook/react": "7.5.3", "@storybook/react-vite": "7.4.5", "storybook": "7.3.0" }
-
-Correct example:
-{ "@storybook/react": "7.5.3", "@storybook/react-vite": "7.5.3", "storybook": "7.5.3" }
-
-Please run `npx storybook doctor` for guidance on how to fix this issue.
-
-More info: 
-[39m
-    at buildOrThrow (file://./node_modules/storybook/dist/core-server/index.js:4511:9)
-    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[08:31:56.505] [INFO] storybook v10.2.16
+[08:31:56.897] [DEBUG] Getting package.json info for /Users/alexbritez/Library/CloudStorage/OneDrive-Microsoft/Documents/_work/Azure/AzureStorybook/package.json...
+[08:31:57.355] [DEBUG] Serving static files from [36mpublic[39m at [36m/[39m
+[08:31:57.357] [INFO] Starting...
+[08:31:57.722] [DEBUG] Starting preview..
+[08:31:57.746] [WARN] 🚨 Unable to index files:
+- ./src/stories/components/PageTabs.stories.tsx: Unexpected token (41:25)
+- ./src/stories/composed/CommandBar.stories.tsx: Unexpected token (39:31)
+- ./src/stories/composed/FilterBar.stories.tsx: Unexpected token (24:31)
+- ./src/stories/composed/SideNavigation.stories.tsx: Unexpected token (40:31)
+- ./src/stories/foundations/Colors.stories.tsx: Unexpected token (56:25)
+[08:31:57.748] [ERROR] Failed to build the preview
+[08:31:57.749] [ERROR] Error: [38;2;241;97;97mUnable to index files:
+- ./src/stories/components/PageTabs.stories.tsx: Unexpected token (41:25)
+- ./src/stories/composed/CommandBar.stories.tsx: Unexpected token (39:31)
+- ./src/stories/composed/FilterBar.stories.tsx: Unexpected token (24:31)
+- ./src/stories/composed/SideNavigation.stories.tsx: Unexpected token (40:31)
+- ./src/stories/foundations/Colors.stories.tsx: Unexpected token (56:25)[39m
+    at _StoryIndexGenerator.getIndexAndStats (file://./node_modules/storybook/dist/core-server/index.js:6087:15)
+    at async _StoryIndexGenerator.getIndex (file://./node_modules/storybook/dist/core-server/index.js:6076:13)
+    at async getOptimizeDeps (file://./node_modules/@storybook/builder-vite/dist/index.js:1857:15)
+    at async createViteServer (file://./node_modules/@storybook/builder-vite/dist/index.js:1884:19)
+    at async Module.start (file://./node_modules/@storybook/builder-vite/dist/index.js:1912:17)
+    at async storybookDevServer (file://./node_modules/storybook/dist/core-server/index.js:7295:83)
+    at async buildOrThrow (file://./node_modules/storybook/dist/core-server/index.js:4506:12)
     at async buildDevStandalone (file://./node_modules/storybook/dist/core-server/index.js:7710:41)
     at async withTelemetry (file://./node_modules/storybook/dist/_node-chunks/chunk-CSGMAQQ4.js:218:12)
     at async dev (file://./node_modules/storybook/dist/bin/core.js:2734:3)
-    at async _Command.<anonymous> (file://./node_modules/storybook/dist/bin/core.js:2804:92)
-[23:07:16.524] [WARN] Broken build, fix the error above.
+[08:31:57.751] [WARN] Broken build, fix the error above.
 You may need to refresh the browser.
+[08:32:18.158] [PROMPT] Would you like to send anonymous crash reports to improve Storybook and fix bugs faster? {"choice":true}

@@ -43,6 +43,16 @@ const useStyles = makeStyles({
     overflow: 'hidden',
   },
 
+  contentInner: {
+    maxWidth: '1200px',
+    width: '100%',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    paddingLeft: '24px',
+    paddingRight: '24px',
+    boxSizing: 'border-box' as const,
+  },
+
   contentPlaceholder: {
     flex: 1,
     display: 'flex',
@@ -138,7 +148,7 @@ export const ContentOnly: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'SRE header only — no breadcrumb, no page title. Content fills entire viewport below header. Used for agent detail views or embedded dashboards.',
+        story: 'SRE header only — no breadcrumb, no page title. Content is centred within a `max-width: 1200px` container. Used for agent detail views or embedded dashboards.',
       },
     },
   },
@@ -151,7 +161,11 @@ export const ContentOnly: Story = {
           userEmail="alexbritez@microsoft.com"
           notificationCount={2}
         />
-        <ContentPlaceholder label="Content Area (Full Viewport)" />
+        <div className={styles.content}>
+          <div className={styles.contentInner}>
+            <ContentPlaceholder label="Content Area (max-width: 1200px, centred)" />
+          </div>
+        </div>
       </div>
     );
   },

@@ -98,7 +98,18 @@ const meta: Meta<typeof DataGrid> = {
   title: 'Components/DataGrid',
   component: DataGrid,
   tags: ['autodocs'],
-  parameters: { layout: 'padded' },
+  argTypes: {
+    sortable: { control: 'boolean', description: 'Enable column sorting' },
+    resizableColumns: { control: 'boolean', description: 'Enable column resizing' },
+    selectionMode: { control: 'select', options: ['none', 'single', 'multiselect'], description: 'Row selection mode' },
+  },
+  parameters: { layout: 'padded',
+    docs: {
+      description: {
+        component:
+          'Fluent UI DataGrid provides a sortable, accessible table for tabular data with custom cell rendering. Use this when you need to display resource lists, audit logs, or any structured data with column sorting. Choose this over native HTML tables for keyboard navigation, column resizing, and consistent Azure Portal styling.',
+      },
+    } },
 };
 
 export default meta;
@@ -122,4 +133,13 @@ export const Default: Story = {
       </DataGridBody>
     </DataGrid>
   ),
+
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Sortable grid displaying Azure resources with status badges and row action buttons. Demonstrates column sorting, custom cell rendering, and accessible row structure.',
+      },
+    },
+  },
 };

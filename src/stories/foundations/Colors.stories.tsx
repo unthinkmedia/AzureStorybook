@@ -54,10 +54,17 @@ const meta: Meta = {
   tags: ['autodocs'],
   parameters: {
     layout: 'fullscreen',
+    docs: {
+      description: {
+        component:
+          'Azure design token color ramps extracted from the Coherence CDN theme — brand, danger, success, warning, caution, and neutral palettes. Use this when you need to reference the exact hex values used in the Azure Portal for any color decision.',
+      },
+    }
   },
 };
 
 export default meta;
 type Story = StoryObj;
 
+/** All Azure brand, status, and neutral color ramps with hex values. */
 export const AllColors: Story = {};

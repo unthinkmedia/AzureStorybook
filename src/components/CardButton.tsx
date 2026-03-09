@@ -47,7 +47,7 @@ export interface CardButtonProps {
 const useStyles = makeStyles({
   /* — Shared — */
   base: {
-    border: `1px solid ${tokens.colorNeutralStroke2}`,
+    border: `1px solid transparent`,
     borderRadius: tokens.borderRadiusMedium,
     backgroundColor: tokens.colorNeutralBackground1,
     cursor: 'pointer',

@@ -35,10 +35,19 @@ const meta: Meta = {
   title: 'Foundations/Shadows',
   component: ShadowsPage,
   tags: ['autodocs'],
-  parameters: { layout: 'fullscreen' },
+  parameters: {
+    layout: 'fullscreen',
+    docs: {
+      description: {
+        component:
+          'Azure design token shadow values extracted from the Coherence CDN theme. Use this when you need to reference the exact box-shadow values for elevation levels in the Azure Portal.',
+      },
+    },
+  },
 };
 
 export default meta;
 type Story = StoryObj;
 
+/** All Azure elevation shadow tokens with visual previews. */
 export const AllShadows: Story = {};

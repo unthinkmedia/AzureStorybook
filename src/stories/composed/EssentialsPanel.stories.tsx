@@ -5,6 +5,17 @@ export default {
   title: 'Composed/EssentialsPanel',
   component: EssentialsPanel,
   tags: ['autodocs'],
+  argTypes: {
+    defaultExpanded: { control: 'boolean', description: 'Whether the panel starts expanded' },
+  },
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Azure Portal Essentials panel — a collapsible two-column summary of key resource properties (subscription, location, status, tags). Use this when displaying a resource overview page to show the most important metadata at a glance, matching the Azure Portal resource blade pattern.',
+      },
+    },
+  },
 } satisfies Meta<typeof EssentialsPanel>;
 
 type Story = StoryObj<typeof EssentialsPanel>;
@@ -45,6 +56,15 @@ export const ResourceGroup: Story = {
       { label: 'View Cost' },
       { label: 'JSON View' },
     ],
+  },
+
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Two-column Essentials panel for a resource group — Subscription, Subscription ID, Tags on the left; Deployments, Location on the right. Includes View Cost and JSON View actions.',
+      },
+    },
   },
 };
 

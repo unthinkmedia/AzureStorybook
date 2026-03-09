@@ -54,10 +54,17 @@ const meta: Meta = {
   title: 'Components/DataDisplay',
   component: DataDisplayIndex,
   tags: ['autodocs'],
-  parameters: { layout: 'fullscreen' },
+  parameters: { layout: 'fullscreen',
+    docs: {
+      description: {
+        component:
+          'Overview of data-presentation primitives: Badge, Avatar, Tag, Tooltip, Spinner, ProgressBar, and MessageBar. Use this when you need a quick reference to all available status and feedback components in one place. Each component has its own dedicated page under Components.',
+      },
+    } },
 };
 
 export default meta;
 type Story = StoryObj;
 
+/** Gallery of all data-display primitives in a single view. */
 export const Overview: Story = {};

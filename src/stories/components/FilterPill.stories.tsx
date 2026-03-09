@@ -15,7 +15,7 @@ export default {
     docs: {
       description: {
         component:
-          'Azure Portal-style filter pill buttons. Click a pill to open a popover with checkbox selections and Apply/Cancel actions. Pills can be composed into a filter bar row.',
+          'Azure Portal-style filter pill buttons. Click a pill to open a popover with checkbox selections and Apply/Cancel actions. Pills can be composed into a filter bar row. Use this when building filter rows above data grids — such as Subscription, Location, or Status filters on browse blades.',
       },
     },
   },
