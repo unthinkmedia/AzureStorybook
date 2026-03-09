@@ -2,7 +2,6 @@ import React from 'react';
 import { makeStyles, tokens, mergeClasses } from '@fluentui/react-components';
 import {
   Checkmark16Filled,
-  Circle16Regular,
   ErrorCircle16Regular,
 } from '@fluentui/react-icons';
 

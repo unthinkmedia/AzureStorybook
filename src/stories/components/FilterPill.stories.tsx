@@ -113,16 +113,6 @@ const InteractiveFilterBar = () => {
   const [showSubcategory, setShowSubcategory] = useState(true);
   const [showCommitments, setShowCommitments] = useState(true);
 
-  const scopeValue =
-    scopeSelection.length === 2
-      ? 'All'
-      : scopeSelection.includes('this-scope')
-        ? 'This scope'
-        : 'All';
-
-  const typeValue =
-    typeSelection.length === 0 ? 'None' : typeSelection.includes('all') ? 'All' : typeSelection.join(', ');
-
   const statusOptions = [
     { key: 'active', label: 'Active' },
     { key: 'completed', label: 'Completed' },

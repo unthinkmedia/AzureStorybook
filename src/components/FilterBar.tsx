@@ -7,9 +7,7 @@ import {
   TagGroup,
   Dropdown,
   Option,
-  Field,
 } from '@fluentui/react-components';
-import { Dismiss12Regular } from '@fluentui/react-icons';
 
 export interface FilterTag {
   id: string;
@@ -51,7 +49,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
     { label: 'Location', options: ['East US', 'West US 2', 'Central US', 'North Europe'] },
   ],
   activeTags = [],
-  onRemoveTag,
+  onRemoveTag: _onRemoveTag,
   onSearch,
 }) => {
   const styles = useStyles();

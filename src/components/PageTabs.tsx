@@ -9,7 +9,6 @@ import {
 import type {
   SelectTabData,
   SelectTabEvent,
-  TabValue,
 } from '@fluentui/react-components';
 
 /* -------------------------------------------------------------------------- */

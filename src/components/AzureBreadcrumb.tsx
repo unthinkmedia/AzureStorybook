@@ -35,7 +35,7 @@ export const AzureBreadcrumb: React.FC<AzureBreadcrumbProps> = ({ items }) => {
         <BreadcrumbItem>
           <BreadcrumbButton icon={<Home24Regular />}>Home</BreadcrumbButton>
         </BreadcrumbItem>
-        {items.map((item, i) => (
+        {items.map((item, _i) => (
           <React.Fragment key={item.label}>
             <BreadcrumbDivider />
             <BreadcrumbItem>

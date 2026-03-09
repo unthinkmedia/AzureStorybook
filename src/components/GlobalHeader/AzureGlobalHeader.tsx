@@ -4,11 +4,9 @@ import {
   tokens,
   mergeClasses,
   Input,
-  Button,
   Avatar,
   Tooltip,
   Badge,
-  Text,
 } from '@fluentui/react-components';
 import {
   Search20Regular,
