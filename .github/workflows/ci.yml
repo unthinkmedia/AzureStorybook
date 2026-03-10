@@ -29,27 +29,6 @@ jobs:
           name: storybook-dist
           path: storybook-static/
 
-  chromatic:
-    runs-on: ubuntu-latest
-    needs: build
-    if: github.event_name == 'push' || github.event_name == 'pull_request'
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: npm
-
-      - run: npm ci
-
-      - uses: chromaui/action@latest
-        with:
-          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-          buildScriptName: build
-
   deploy:
     runs-on: ubuntu-latest
     needs: build
