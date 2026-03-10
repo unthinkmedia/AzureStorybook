@@ -5,7 +5,7 @@ const azureTheme = create({
   base: 'light',
 
   // Brand
-  brandTitle: 'Azure Storybook',
+  brandTitle: 'Azure Vibe Storybook',
   brandUrl: 'https://azure.microsoft.com',
   brandTarget: '_blank',
 
