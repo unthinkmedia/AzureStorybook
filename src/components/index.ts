@@ -17,7 +17,7 @@ export { CommandBar } from './CommandBar';
 export type { CommandBarProps, CommandBarItem, CommandBarGroup } from './CommandBar';
 
 export { FilterBar } from './FilterBar';
-export type { FilterBarProps, FilterTag } from './FilterBar';
+export type { FilterBarProps, FilterBarFilter } from './FilterBar';
 
 export { FilterPill, AddFilterPill, ClearAllFilters } from './FilterPill';
 export type { FilterPillProps, FilterPillOption, AddFilterPillProps, ClearAllFiltersProps } from './FilterPill';

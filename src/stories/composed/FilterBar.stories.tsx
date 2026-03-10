@@ -5,14 +5,11 @@ export default {
   title: 'Composed/FilterBar',
   component: FilterBar,
   tags: ['autodocs'],
-  argTypes: {
-    activeTags: { control: 'object', description: 'Array of active filter tags with id and label' },
-  },
   parameters: {
     docs: {
       description: {
         component:
-          'Simple filter bar with search input and active tag chips. Use this when you need a lightweight row of active filters above a data grid or list. Choose this over FilterPill when you need a simpler text-search-based filter row without popover menus.',
+          'Azure Portal-style filter bar with search input, filter pills, and an Add filter button. Each pill shows a label, separator, and value — matching the native Azure Portal filter row pattern.',
       },
     },
   },
@@ -20,24 +17,72 @@ export default {
 
 type Story = StoryObj<typeof FilterBar>;
 
-/** Default filter bar with search input and no active filters. */
+/** Default filter bar matching the Azure Portal pattern. */
 export const Default: Story = {
   parameters: {
     docs: {
       description: {
         story:
-          'Empty filter bar with just the search input and no active tags. The minimal starting state before any filters are applied.',
+          'Default filter bar with Subscription (selected), Resource Group, Type, and Location pills — the standard Azure Portal all-resources filter layout.',
       },
     },
   },
 };
 
-/** Filter bar with two active tag filters applied. */
-export const WithActiveTags: Story = {
+/** Filter bar with popover menus on each pill. */
+export const WithOptions: Story = {
   args: {
-    activeTags: [
-      { id: '1', label: 'Type: Virtual Machine' },
-      { id: '2', label: 'Location: East US' },
+    filters: [
+      {
+        label: 'Subscription',
+        value: '3 selected',
+        selected: true,
+        options: [
+          { key: 'sub1', label: 'Azure subscription 1' },
+          { key: 'sub2', label: 'Azure subscription 2' },
+          { key: 'sub3', label: 'Visual Studio Enterprise' },
+        ],
+        selectedKeys: ['sub1', 'sub2', 'sub3'],
+      },
+      {
+        label: 'Resource Group',
+        value: 'all',
+        dismissible: true,
+        options: [
+          { key: 'rg1', label: 'rg-production' },
+          { key: 'rg2', label: 'rg-staging' },
+          { key: 'rg3', label: 'rg-dev' },
+        ],
+      },
+      {
+        label: 'Type',
+        value: 'all',
+        dismissible: true,
+        options: [
+          { key: 'vm', label: 'Virtual Machine' },
+          { key: 'app', label: 'App Service' },
+          { key: 'sql', label: 'SQL Database' },
+          { key: 'storage', label: 'Storage Account' },
+        ],
+      },
+      {
+        label: 'Location',
+        value: 'all',
+        dismissible: true,
+        options: [
+          { key: 'eastus', label: 'East US' },
+          { key: 'westus2', label: 'West US 2' },
+          { key: 'centralus', label: 'Central US' },
+        ],
+      },
     ],
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Filter pills with popover checkbox menus for selecting values. Click a pill to open its filter options.',
+      },
+    },
   },
 };
