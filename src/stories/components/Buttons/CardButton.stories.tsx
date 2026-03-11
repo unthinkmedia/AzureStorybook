@@ -1,8 +1,8 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { FluentProvider, makeStyles, tokens } from '@fluentui/react-components';
-import { CardButton } from '../../components/CardButton';
-import { azureLightTheme } from '../../themes';
+import { CardButton } from '../../../components/Buttons/CardButton';
+import { azureLightTheme } from '../../../themes';
 
 const useStyles = makeStyles({
   row: {
@@ -23,7 +23,7 @@ const useStyles = makeStyles({
 });
 
 export default {
-  title: 'Components/CardButton',
+  title: 'Components/Buttons/CardButton',
   component: CardButton,
   tags: ['autodocs'],
   argTypes: {

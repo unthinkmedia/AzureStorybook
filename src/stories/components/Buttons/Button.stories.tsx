@@ -18,7 +18,7 @@ import {
 } from '@fluentui/react-icons';
 
 const meta: Meta<typeof Button> = {
-  title: 'Components/Button',
+  title: 'Components/Buttons/Button',
   component: Button,
   tags: ['autodocs'],
   parameters: {

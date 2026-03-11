@@ -7,7 +7,7 @@ import {
   Tooltip,
 } from '@fluentui/react-components';
 import { Open16Regular } from '@fluentui/react-icons';
-import { AzureServiceIcon } from './AzureServiceIcon';
+import { AzureServiceIcon } from '../AzureServiceIcon';
 
 /* ------------------------------------------------------------------ */
 /*  Types                                                              */

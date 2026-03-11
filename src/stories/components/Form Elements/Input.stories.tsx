@@ -10,7 +10,7 @@ import {
 import { Search24Regular, Key24Regular } from '@fluentui/react-icons';
 
 const meta: Meta<typeof Input> = {
-  title: 'Components/Input',
+  title: 'Components/Form Elements/Input',
   component: Input,
   tags: ['autodocs'],
   parameters: {

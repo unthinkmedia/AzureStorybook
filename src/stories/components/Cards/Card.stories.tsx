@@ -36,7 +36,7 @@ const useStyles = makeStyles({
 });
 
 const meta: Meta<typeof Card> = {
-  title: 'Components/Card',
+  title: 'Components/Cards/Card',
   component: Card,
   tags: ['autodocs'],
   argTypes: {

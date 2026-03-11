@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { RadioGroup, Radio, Field } from '@fluentui/react-components';
 
 const meta: Meta<typeof RadioGroup> = {
-  title: 'Components/Selection/RadioGroup',
+  title: 'Components/Form Elements/RadioGroup',
   component: RadioGroup,
   tags: ['autodocs'],
   parameters: {

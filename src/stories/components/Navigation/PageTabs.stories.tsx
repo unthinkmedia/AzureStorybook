@@ -35,7 +35,7 @@ const TabContent: React.FC<{ tab: string }> = ({ tab }) => {
 /* ─── Meta ────────────────────────────────────────────────────── */
 
 const meta: Meta<typeof PageTabs> = {
-  title: 'Components/PageTabs',
+  title: 'Components/Navigation/PageTabs',
   component: PageTabs,
   parameters: {
     layout: 'fullscreen',

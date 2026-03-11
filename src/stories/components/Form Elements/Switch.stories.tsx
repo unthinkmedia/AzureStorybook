@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Switch, Field } from '@fluentui/react-components';
 
 const meta: Meta<typeof Switch> = {
-  title: 'Components/Selection/Switch',
+  title: 'Components/Form Elements/Switch',
   component: Switch,
   tags: ['autodocs'],
   parameters: {

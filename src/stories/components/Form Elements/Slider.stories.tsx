@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Slider, Field } from '@fluentui/react-components';
 
 const meta: Meta<typeof Slider> = {
-  title: 'Components/Selection/Slider',
+  title: 'Components/Form Elements/Slider',
   component: Slider,
   tags: ['autodocs'],
   parameters: {

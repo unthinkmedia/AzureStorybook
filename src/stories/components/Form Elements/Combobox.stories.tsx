@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Combobox, Option, Field } from '@fluentui/react-components';
 
 const meta: Meta<typeof Combobox> = {
-  title: 'Components/Selection/Combobox',
+  title: 'Components/Form Elements/Combobox',
   component: Combobox,
   tags: ['autodocs'],
   parameters: {

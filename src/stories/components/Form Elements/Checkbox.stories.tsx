@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Checkbox, Field } from '@fluentui/react-components';
 
 const meta: Meta<typeof Checkbox> = {
-  title: 'Components/Selection/Checkbox',
+  title: 'Components/Form Elements/Checkbox',
   component: Checkbox,
   tags: ['autodocs'],
   parameters: {

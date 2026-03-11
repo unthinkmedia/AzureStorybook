@@ -2,7 +2,7 @@ import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { FluentProvider, Button, makeStyles, tokens } from '@fluentui/react-components';
 import { ServiceFlyout } from '../../components/ServiceFlyout';
-import { CardButton } from '../../components/CardButton';
+import { CardButton } from '../../components/Buttons/CardButton';
 import { azureLightTheme } from '../../themes';
 
 /* ------------------------------------------------------------------ */

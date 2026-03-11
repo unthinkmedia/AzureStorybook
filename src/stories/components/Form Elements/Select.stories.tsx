@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Select, Field } from '@fluentui/react-components';
 
 const meta: Meta<typeof Select> = {
-  title: 'Components/Selection/Select',
+  title: 'Components/Form Elements/Select',
   component: Select,
   tags: ['autodocs'],
   parameters: {

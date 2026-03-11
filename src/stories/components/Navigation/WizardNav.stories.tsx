@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { WizardNav } from '../../components/WizardNav';
-import type { WizardStep } from '../../components/WizardNav';
+import { WizardNav } from '../../components/Navigation/WizardNav';
+import type { WizardStep } from '../../components/Navigation/WizardNav';
 
 /* -------------------------------------------------------------------------- */
 /*  Shared step data                                                          */
@@ -51,7 +51,7 @@ const withErrorSteps: WizardStep[] = [
 /* -------------------------------------------------------------------------- */
 
 const meta: Meta<typeof WizardNav> = {
-  title: 'Components/WizardNav',
+  title: 'Components/Navigation/WizardNav',
   component: WizardNav,
   tags: ['autodocs'],
   argTypes: {

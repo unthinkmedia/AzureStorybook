@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Dropdown, Option, Field } from '@fluentui/react-components';
 
 const meta: Meta<typeof Dropdown> = {
-  title: 'Components/Selection/Dropdown',
+  title: 'Components/Form Elements/Dropdown',
   component: Dropdown,
   tags: ['autodocs'],
   parameters: {

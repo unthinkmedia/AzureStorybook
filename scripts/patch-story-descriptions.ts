@@ -132,9 +132,9 @@ const storyDescriptions: Record<string, StoryDesc> = {
     exportName: 'Default',
     description: 'SRE Agent header with PREVIEW badge, Docs link, notification/chat/settings icons, and user avatar on a light background.',
   },
-  'HealthStatusCard': {
+  'StatusCard': {
     exportName: 'Default',
-    description: 'Default health status card showing no active Azure health events with a link to view service health.',
+    description: 'Default status card showing no active health events with a link to view details.',
   },
   'SearchBanner': {
     exportName: 'Default',

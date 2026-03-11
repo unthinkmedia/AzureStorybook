@@ -31,7 +31,7 @@ const useStyles = makeStyles({
   },
 });
 
-export interface HealthStatusCardProps {
+export interface StatusCardProps {
   /** Icon element to display */
   icon?: React.ReactNode;
   /** Status message text */
@@ -42,7 +42,12 @@ export interface HealthStatusCardProps {
   onLinkClick?: () => void;
 }
 
-export const HealthStatusCard: React.FC<HealthStatusCardProps> = ({
+/**
+ * A compact status card showing an icon, message, and optional link.
+ * Use this when you need to display a brief status summary — e.g. health
+ * checks, system alerts, or inline notifications within a page.
+ */
+export const StatusCard: React.FC<StatusCardProps> = ({
   icon = <HeartPulseRegular />,
   message,
   linkText,

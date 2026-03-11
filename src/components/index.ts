@@ -31,26 +31,38 @@ export type { SREGlobalHeaderProps } from './GlobalHeader';
 export { SideNavigation } from './SideNavigation';
 export type { SideNavigationProps, NavItem } from './SideNavigation';
 
-export { WizardNav } from './WizardNav';
-export type { WizardNavProps, WizardStep, WizardStepStatus } from './WizardNav';
+export { WizardNav } from './Navigation/WizardNav';
+export type { WizardNavProps, WizardStep, WizardStepStatus } from './Navigation/WizardNav';
 
 export { ServiceFlyout } from './ServiceFlyout';
 export type { ServiceFlyoutProps, ServiceFlyoutAction } from './ServiceFlyout';
 
-export { CardButton } from './CardButton';
-export type { CardButtonProps } from './CardButton';
+export { CardButton } from './Buttons';
+export type { CardButtonProps } from './Buttons';
 
-export { PageTabs } from './PageTabs';
-export type { PageTabsProps, PageTab } from './PageTabs';
+export { Button, CompoundButton, ToggleButton } from './Buttons';
+export type { ButtonProps, CompoundButtonProps, ToggleButtonProps } from './Buttons';
+
+export { InfoCard, InfoCard as ServiceCard } from './Cards';
+export type { InfoCardProps, InfoCardProps as ServiceCardProps } from './Cards';
+
+export { StatusCard } from './Cards';
+export type { StatusCardProps } from './Cards';
+
+export { PageTabs } from './Navigation/PageTabs';
+export type { PageTabsProps, PageTab } from './Navigation/PageTabs';
 
 export { EssentialsPanel } from './EssentialsPanel';
 export type { EssentialsPanelProps, EssentialItem, EssentialAction } from './EssentialsPanel';
 
+export { InfoTable } from './InfoTable';
+export type { InfoTableProps, InfoTableItem } from './InfoTable';
+
 export { DataGrid, DataGridHeader, DataGridRow, DataGridHeaderCell, DataGridBody, DataGridCell, createTableColumn } from './DataGrid';
 export type { DataGridProps, TableColumnDefinition } from './DataGrid';
 
-export { HealthStatusCard } from './HealthStatusCard';
-export type { HealthStatusCardProps } from './HealthStatusCard';
+export { StatusCard as HealthStatusCard } from './Cards';
+export type { StatusCardProps as HealthStatusCardProps } from './Cards';
 
 export { NullState } from './NullState';
 export type { NullStateProps } from './NullState';

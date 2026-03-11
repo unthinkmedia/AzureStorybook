@@ -51,6 +51,35 @@
     ]
   },
   {
+    "name": "InfoCard",
+    "category": "Components",
+    "storyFile": "src/stories/components/InfoCard.stories.tsx",
+    "stories": [
+      "WithCTA",
+      "WithCTANoIcon",
+      "TitleLink",
+      "TitleLinkNoIcon",
+      "AllVariants"
+    ],
+    "isComposed": false,
+    "tags": [
+      "components"
+    ]
+  },
+  {
+    "name": "StatusCard",
+    "category": "Components",
+    "storyFile": "src/stories/components/StatusCard.stories.tsx",
+    "stories": [
+      "Default",
+      "WithWarning"
+    ],
+    "isComposed": false,
+    "tags": [
+      "components"
+    ]
+  },
+  {
     "name": "DataDisplay",
     "category": "Components",
     "storyFile": "src/stories/components/DataDisplay.stories.tsx",
@@ -250,12 +279,14 @@
     ]
   },
   {
-    "name": "HealthStatusCard",
+    "name": "InfoTable",
     "category": "Composed",
-    "storyFile": "src/stories/composed/HealthStatusCard.stories.tsx",
+    "storyFile": "src/stories/composed/InfoTable.stories.tsx",
     "stories": [
-      "Default",
-      "WithWarning"
+      "TenantOverview",
+      "SingleColumn",
+      "ResourceInfo",
+      "ThreeColumns"
     ],
     "isComposed": true,
     "tags": [
@@ -263,6 +294,7 @@
       "azure-specific"
     ]
   },
+
   {
     "name": "NullState",
     "category": "Composed",
