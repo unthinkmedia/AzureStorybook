@@ -6,8 +6,8 @@ import {
   Rocket20Regular,
   Settings20Regular,
 } from '@fluentui/react-icons';
-import { PageTabs } from '../../components';
-import type { PageTab } from '../../components';
+import { PageTabs } from '../../../components';
+import type { PageTab } from '../../../components';
 
 /* ─── Styles ──────────────────────────────────────────────────── */
 

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { WizardNav } from '../../components/Navigation/WizardNav';
-import type { WizardStep } from '../../components/Navigation/WizardNav';
+import { WizardNav } from '../../../components/Navigation/WizardNav';
+import type { WizardStep } from '../../../components/Navigation/WizardNav';
 
 /* -------------------------------------------------------------------------- */
 /*  Shared step data                                                          */
