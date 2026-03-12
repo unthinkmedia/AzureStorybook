@@ -9,7 +9,6 @@ npm install
 npm run dev        # Start Storybook dev server
 ```
 
-<!-- test -->
 
 ## Scripts
 
