@@ -1,4 +1,5 @@
 import type { Preview } from '@storybook/react';
+import { useState, useEffect } from 'react';
 import { FluentProvider } from '@fluentui/react-components';
 import { resolveTheme } from '../src/themes/themeRegistry';
 import '../src/themes/products';
@@ -11,6 +12,7 @@ import {
 } from './addons/theme-switcher/constants';
 import { DocsContainer as BaseDocsContainer } from '@storybook/addon-docs/blocks';
 import { themes } from 'storybook/theming';
+import { GLOBALS_UPDATED } from 'storybook/internal/core-events';
 
 import './preview.css';
 
@@ -26,18 +28,30 @@ export const globalTypes = {
 };
 
 const CustomDocsContainer = ({ children, context, ...rest }: any) => {
-  let productId = DEFAULT_PRODUCT;
-  let appearance: AppearanceMode = DEFAULT_APPEARANCE as AppearanceMode;
-  try {
-    const story = context.storyById();
-    const storyContext = context.getStoryContext(story);
-    productId = (storyContext.globals[PRODUCT_THEME_GLOBAL] as string) ?? DEFAULT_PRODUCT;
-    appearance = ((storyContext.globals[APPEARANCE_MODE_GLOBAL] as string) ?? DEFAULT_APPEARANCE) as AppearanceMode;
-  } catch {
-    // MDX-only pages without stories — use defaults
-  }
+  const getInitialGlobals = () => {
+    try {
+      const story = context.storyById();
+      return context.getStoryContext(story).globals;
+    } catch {
+      return {};
+    }
+  };
+
+  const [globals, setGlobals] = useState(() => getInitialGlobals());
+
+  useEffect(() => {
+    const handler = (changed: { globals: Record<string, unknown> }) => {
+      setGlobals(changed.globals);
+    };
+    context.channel.on(GLOBALS_UPDATED, handler);
+    return () => context.channel.off(GLOBALS_UPDATED, handler);
+  }, [context.channel]);
+
+  const productId = (globals[PRODUCT_THEME_GLOBAL] as string) ?? DEFAULT_PRODUCT;
+  const appearance = ((globals[APPEARANCE_MODE_GLOBAL] as string) ?? DEFAULT_APPEARANCE) as AppearanceMode;
   const fluentTheme = resolveTheme(productId, appearance);
   const docsTheme = appearance === 'dark' || appearance === 'high-contrast' ? themes.dark : themes.light;
+
   return (
     <BaseDocsContainer context={context} theme={docsTheme} {...rest}>
       <FluentProvider theme={fluentTheme}>{children}</FluentProvider>
