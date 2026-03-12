@@ -1,0 +1,53 @@
+# F4 Scope Fidelity Re-Run — 2026-03-12
+
+## Inputs reviewed
+- Plan: `.sisyphus/plans/product-theme-switcher.md` (Tasks 1-14, Must NOT sections, commit strategy)
+- Git history: `git log --oneline`
+- Commit stats: `git show --stat HEAD~3..HEAD`
+- Full file list: `git diff HEAD~4..HEAD --name-only`
+- Changed implementation files read directly for scope matching
+
+## Task-by-task compliance (1-14)
+1. Task 1 (`src/themes/types.ts`): COMPLIANT
+2. Task 2 (`vitest.config.ts`, `package.json`, test scaffold now replaced): COMPLIANT
+3. Task 3 (`README.md`, `.copilot-instructions.md` Storybook 10 text): COMPLIANT
+4. Task 4 (research evidence file): COMPLIANT
+5. Task 5 (`src/themes/themeRegistry.ts`): COMPLIANT
+6. Task 6 (`src/themes/products/azure.ts`, `src/themes/products/index.ts`): COMPLIANT
+7. Task 7 (`src/themes/products/logic-apps.ts`): COMPLIANT
+8. Task 8 (`src/themes/__tests__/themeRegistry.test.ts`): COMPLIANT
+9. Task 9 (`.storybook/addons/theme-switcher/*`, `.storybook/main.ts`): COMPLIANT
+10. Task 10 (`.storybook/preview.tsx` globals decorator + backward-compat attribute): COMPLIANT
+11. Task 11 (`src/themes/index.ts` exports): COMPLIANT
+12. Task 12 (`scripts/generate-llm-bundle.ts`, `llm-context/azure-theme.md`, bundle v2.0.0): COMPLIANT
+13. Task 13 (build verification artifacts + build outputs): COMPLIANT
+14. Task 14 (Chromatic modes config in preview): COMPLIANT
+
+## Prior F4 concern determinations
+1) **Concern: Task 9 said addon files but `main.ts` was modified**
+- Determination: **FALSE POSITIVE**
+- Evidence: Plan Task 9 explicitly requires updating `.storybook/main.ts` to remove `@storybook/addon-themes` and register local addon.
+
+2) **Concern: `debug-storybook.log` and `.sisyphus/` files flagged as unaccounted**
+- Determination: **MIXED**
+  - `.sisyphus/*`: **FALSE POSITIVE** for scope-fidelity contamination per rerun rules (orchestrator metadata/evidence; excluded from scope-violation accounting).
+  - `debug-storybook.log`: **GENUINE UNACCOUNTED CHANGE** in implementation commit range.
+- Evidence:
+  - `git diff HEAD~4..HEAD --name-only` includes `debug-storybook.log` and `.sisyphus/*`.
+  - `git log --oneline -- debug-storybook.log` shows commit `3547415` touched this file (not just local untracked state).
+
+3) **Concern: README `<!-- test -->` comment unaccounted**
+- Determination: **GENUINE PREVIOUS ISSUE, NOW FIXED**
+- Evidence: commit `18dbac7` removes the stray comment from `README.md`.
+
+## Forbidden-path check
+Checked commit range `HEAD~4..HEAD` against:
+- `src/components/`
+- `src/stories/`
+- `src/themes/azureThemes.ts`
+- `src/themes/coherenceTokens.ts`
+
+Result: **No forbidden files modified**.
+
+## Final result
+Tasks [14/14 compliant] | Contamination [1 issues] | Unaccounted [1 files] | VERDICT: REJECT

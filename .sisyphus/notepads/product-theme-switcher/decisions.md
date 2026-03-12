@@ -29,3 +29,8 @@
 
 - Version: 1.0.0 → 2.0.0 (breaking schema change — adds themeRegistry)
 - Hardcode theme registry data in script (avoid complex import resolution)
+
+## [2026-03-12] F4 rerun decision
+
+- For scope verdict accounting: exclude `.sisyphus/*` from contamination and unaccounted counts (orchestrator metadata), but include any non-`.sisyphus` committed files from `git diff HEAD~4..HEAD --name-only`.
+- Final F4 rerun verdict stays `REJECT` until `debug-storybook.log` is removed from implementation commit range or explicitly justified in plan scope.

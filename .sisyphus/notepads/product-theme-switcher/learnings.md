@@ -116,3 +116,18 @@
 - Added `parameters.chromatic.modes` in `.storybook/preview.tsx` so Chromatic can snapshot all 6 product × appearance combinations from the shared preview config instead of duplicating stories.
 - Mode globals are keyed by `PRODUCT_THEME_GLOBAL` / `APPEARANCE_MODE_GLOBAL`, which resolve to the toolbar globals `productTheme` and `appearanceMode`.
 - Installed Chromatic package version is `11.29.0`; the modes config builds cleanly with Storybook 10.2.16 via `npm run build`.
+
+## [2026-03-12] F3 — Manual QA verification
+
+- Storybook manual QA used `npm run dev -- --port 6200` and Playwright MCP against live Storybook UI.
+- Evidence screenshots saved under `.sisyphus/evidence/final-qa/` for scenarios s1 through s6.
+- Verified toolbar exposes two globals dropdowns with defaults `Product=Azure` and `Appearance=Light`.
+- Verified Azure light/dark/high-contrast and Logic Apps dark/high-contrast states by reading rendered FluentProvider computed colors in the preview iframe.
+- Product switch to Logic Apps changed brand background token/button color from Azure dark `rgb(17, 94, 163)` to Logic Apps dark `rgb(46, 96, 217)` without runtime errors.
+- In-app sidebar navigation from Badge docs to Badge story preserved `appearanceMode=dark`; direct `page.goto()` navigation did NOT preserve globals unless `globals=` query params were included, so persistence QA must use Storybook UI navigation rather than raw URL replacement.
+
+## [2026-03-12] F4 rerun learning
+
+- Scope-fidelity reruns must distinguish orchestrator artifacts (`.sisyphus/*`) from implementation scope contamination.
+- `git diff HEAD~4..HEAD --name-only` is the authoritative source for committed unaccounted files; local unstaged assumptions are insufficient.
+- Task 9 plan text explicitly includes `.storybook/main.ts` changes, so prior concern classifying it as out-of-scope was a false positive.
