@@ -49,8 +49,16 @@ export type { InfoCardProps, InfoCardProps as ServiceCardProps } from './Cards';
 export { StatusCard } from './Cards';
 export type { StatusCardProps } from './Cards';
 
-export { PageTabs } from './Navigation/PageTabs';
-export type { PageTabsProps, PageTab } from './Navigation/PageTabs';
+export {
+  DataGrid,
+  DataGridHeader,
+  DataGridRow,
+  DataGridHeaderCell,
+  DataGridBody,
+  DataGridCell,
+  createTableColumn,
+} from './DataGrid';
+export type { DataGridProps, TableColumnDefinition } from './DataGrid';
 
 export { EssentialsPanel } from './EssentialsPanel';
 export type { EssentialsPanelProps, EssentialItem, EssentialAction } from './EssentialsPanel';
@@ -58,14 +66,14 @@ export type { EssentialsPanelProps, EssentialItem, EssentialAction } from './Ess
 export { InfoTable } from './InfoTable';
 export type { InfoTableProps, InfoTableItem } from './InfoTable';
 
-export { DataGrid, DataGridHeader, DataGridRow, DataGridHeaderCell, DataGridBody, DataGridCell, createTableColumn } from './DataGrid';
-export type { DataGridProps, TableColumnDefinition } from './DataGrid';
-
-export { StatusCard as HealthStatusCard } from './Cards';
-export type { StatusCardProps as HealthStatusCardProps } from './Cards';
-
 export { NullState } from './NullState';
 export type { NullStateProps } from './NullState';
 
 export { SearchBanner } from './SearchBanner';
 export type { SearchBannerProps } from './SearchBanner';
+
+export { PageTabs } from './Navigation/PageTabs';
+export type { PageTabsProps, PageTab } from './Navigation/PageTabs';
+
+export { StatusCard as HealthStatusCard } from './Cards';
+export type { StatusCardProps as HealthStatusCardProps } from './Cards';
