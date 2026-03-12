@@ -1,23 +1,29 @@
 ---
 name: npm-release
-description: Release a new version of @azure-fluent-storybook/components to npm. Use this skill whenever the user wants to publish, release, bump, or ship a new version to npm. Also use when they say "release", "publish to npm", "bump version", "new version", "cut a release", "ship it", or ask about the release process for this package.
+description: Release a new version of @azure-fluent-storybook/components to npm. Use this skill whenever the user wants to publish, release, bump, or ship a new version to npm. Also use when they say "release", "publish to npm", "bump version", "new version", "cut a release", "ship it", "publish manually", or ask about the release process for this package.
 ---
 
 # npm Release Skill
 
-Handles the full release workflow for the `@azure-fluent-storybook/components` package. The package is published to npm via GitHub Actions CI — pushing a `v*` tag triggers the publish job automatically.
+Handles the full release workflow for the `@azure-fluent-storybook/components` package.
 
-## Release Workflow
+There are **two publish methods**:
+1. **Manual** (preferred) — publish from the local machine using `npm publish`
+2. **CI/Automated** — push a `v*` tag to trigger GitHub Actions (requires a Classic Automation npm token in the `NPM_TOKEN` secret)
 
-### 1. Pre-flight Checks
+**Default to manual publish** unless the user explicitly asks for CI-based publishing.
 
-Before releasing, verify everything is clean and ready:
+---
+
+## Manual Publish Workflow
+
+### Step 1: Pre-flight Checks
 
 ```bash
 # Ensure you're on main and up to date
 git checkout main && git pull origin main
 
-# Check for uncommitted changes
+# Check for uncommitted changes — never release from a dirty tree
 git status
 
 # Verify the build passes
@@ -27,11 +33,25 @@ npm run build:lib
 npm run lint
 ```
 
-If there are uncommitted changes, commit or stash them first. Never release from a dirty working tree.
+If there are uncommitted changes, commit them first.
 
-### 2. Bump the Version
+### Step 2: Check npm Login
 
-Use `npm version` to bump the version. This updates `package.json` and creates a git tag automatically.
+```bash
+npm whoami
+```
+
+If this returns an error, the user needs to log in:
+
+```bash
+npm login
+```
+
+This opens a browser for authentication. **Wait for the user to complete login** before proceeding. Verify with `npm whoami` again.
+
+### Step 3: Bump the Version
+
+Use `npm version` to bump. This updates `package.json` and creates a git tag.
 
 Choose the right bump type based on what changed:
 - **patch** (0.1.1 → 0.1.2): Bug fixes, docs updates, minor tweaks
@@ -44,27 +64,79 @@ npm version patch   # or minor, or major
 
 If the user doesn't specify a bump type, ask them what changed and suggest the appropriate level.
 
-### 3. Push the Tag
+### Step 4: Build the Library
 
-Push both the commit and the tag to trigger CI:
+```bash
+npm run build:lib
+```
+
+Verify the dist output looks correct:
+
+```bash
+ls -la dist/
+```
+
+### Step 5: Publish
+
+```bash
+npm publish --access public
+```
+
+If the npm account has 2FA enabled, this will prompt for a one-time password (OTP). The user must enter it in the terminal.
+
+**Do NOT use `--provenance`** for local publishes — that flag only works in GitHub Actions with `id-token: write` permission.
+
+### Step 6: Push to Git
+
+After successful publish, push the version commit and tag:
 
 ```bash
 git push origin main --tags
 ```
 
-### 4. Verify the Release
-
-After pushing, CI handles the rest. To confirm:
+### Step 7: Verify
 
 ```bash
-# Check the GitHub Actions run (opens browser)
-gh run list --workflow=ci.yml --limit 3
-
-# Once CI completes, verify the package is live
 npm view @azure-fluent-storybook/components version
 ```
 
-The npm registry can take 1-2 minutes to propagate after publish. If `npm view` returns 404 immediately after CI succeeds, wait and retry.
+The registry can take 1-2 minutes to propagate. If the old version shows, wait and retry.
+
+---
+
+## CI Publish Workflow (Automated)
+
+> **Note:** CI publish requires a **Classic Automation** npm token (not Granular) stored as the `NPM_TOKEN` GitHub Actions secret. Granular tokens fail with `EOTP` because they can't bypass 2FA.
+
+### Steps
+
+1. Run pre-flight checks (same as manual Step 1)
+2. Bump version: `npm version patch|minor|major`
+3. Push with tags: `git push origin main --tags`
+4. Monitor CI: `gh run list --workflow=ci.yml --limit 3`
+5. Verify: `npm view @azure-fluent-storybook/components version`
+
+If CI fails, check logs with:
+```bash
+gh run view <run-id> --log-failed | tail -30
+```
+
+Common CI failures:
+- **EOTP**: Token is Granular, not Classic Automation. Regenerate as Classic Automation token.
+- **E404 on PUT**: Token expired or doesn't have write access to the scope.
+- **id-token permission**: The publish job needs `id-token: write` in its permissions block.
+
+---
+
+## Troubleshooting
+
+| Error | Cause | Fix |
+|-------|-------|-----|
+| `npm error 401 Unauthorized` | Not logged in locally | Run `npm login` |
+| `EOTP` | 2FA required, token can't bypass | Use Classic Automation token for CI, or publish manually with OTP |
+| `E404 Not Found` on PUT | Token doesn't have write access | Regenerate token with correct scope |
+| `ENEEDAUTH` | No auth token configured | Run `npm login` or set `NPM_TOKEN` |
+| Version already exists | Trying to republish same version | Bump version first |
 
 ## Package Details
 
@@ -75,8 +147,8 @@ The npm registry can take 1-2 minutes to propagate after publish. If `npm view` 
 | Access | public (scoped) |
 | Build tool | tsup |
 | CI workflow | `.github/workflows/ci.yml` → `publish` job |
-| Trigger | Push of `v*` tag |
-| Secret | `NPM_TOKEN` (GitHub Actions secret) |
+| CI trigger | Push of `v*` tag |
+| CI secret | `NPM_TOKEN` (Classic Automation token) |
 
 ## CI Pipeline on Tag Push
 
