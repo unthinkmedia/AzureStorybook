@@ -1,6 +1,6 @@
 {
   "name": "@azure-fluent-storybook/components",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Azure Portal–styled Fluent v9 components and themes",
   "license": "MIT",
   "type": "module",
