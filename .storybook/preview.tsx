@@ -47,34 +47,20 @@ const CustomDocsContainer = ({ children, context, ...rest }: any) => {
 
   const [globals, setGlobals] = useState(() => parseGlobalsFromUrl());
 
-  const productId = (globals[PRODUCT_THEME_GLOBAL] as string) ?? DEFAULT_PRODUCT;
-  const appearance = ((globals[APPEARANCE_MODE_GLOBAL] as string) ?? DEFAULT_APPEARANCE) as AppearanceMode;
   useEffect(() => {
     const handler = (changed: { globals: Record<string, unknown> }) => {
-      setGlobals(changed.globals);
+      setGlobals(changed.globals as Record<string, string>);
     };
     context.channel.on(GLOBALS_UPDATED, handler);
     return () => context.channel.off(GLOBALS_UPDATED, handler);
   }, [context.channel]);
 
-  useEffect(() => {
-    const isDark = appearance === 'dark' || appearance === 'high-contrast';
-    const bgColor = isDark ? themes.dark.appContentBg : '';
-    const textColor = isDark ? themes.dark.textColor : '';
-
-    const targets = document.querySelectorAll('.sbdocs-wrapper, .sbdocs');
-    targets.forEach((el) => {
-      const htmlEl = el as HTMLElement;
-      htmlEl.style.background = bgColor;
-      htmlEl.style.color = textColor;
-    });
-  }, [appearance]);
-
+  const productId = (globals[PRODUCT_THEME_GLOBAL] as string) ?? DEFAULT_PRODUCT;
+  const appearance = ((globals[APPEARANCE_MODE_GLOBAL] as string) ?? DEFAULT_APPEARANCE) as AppearanceMode;
   const fluentTheme = resolveTheme(productId, appearance);
-  const docsTheme = appearance === 'dark' || appearance === 'high-contrast' ? themes.dark : themes.light;
 
   return (
-    <BaseDocsContainer context={context} theme={docsTheme} {...rest}>
+    <BaseDocsContainer context={context} theme={themes.light} {...rest}>
       <FluentProvider theme={fluentTheme}>{children}</FluentProvider>
     </BaseDocsContainer>
   );
