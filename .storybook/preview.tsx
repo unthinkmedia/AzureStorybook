@@ -28,17 +28,27 @@ export const globalTypes = {
 };
 
 const CustomDocsContainer = ({ children, context, ...rest }: any) => {
-  const getInitialGlobals = () => {
+  const parseGlobalsFromUrl = (): Record<string, string> => {
     try {
-      const story = context.storyById();
-      return context.getStoryContext(story).globals;
+      const search = window.parent?.location?.search ?? window.location.search;
+      const params = new URLSearchParams(search);
+      const globalsParam = params.get('globals');
+      if (!globalsParam) return {};
+      return Object.fromEntries(
+        globalsParam.split(/[;,]/).map(pair => {
+          const [key, ...rest] = pair.split(':');
+          return [key, rest.join(':')];
+        })
+      );
     } catch {
       return {};
     }
   };
 
-  const [globals, setGlobals] = useState(() => getInitialGlobals());
+  const [globals, setGlobals] = useState(() => parseGlobalsFromUrl());
 
+  const productId = (globals[PRODUCT_THEME_GLOBAL] as string) ?? DEFAULT_PRODUCT;
+  const appearance = ((globals[APPEARANCE_MODE_GLOBAL] as string) ?? DEFAULT_APPEARANCE) as AppearanceMode;
   useEffect(() => {
     const handler = (changed: { globals: Record<string, unknown> }) => {
       setGlobals(changed.globals);
@@ -48,22 +58,18 @@ const CustomDocsContainer = ({ children, context, ...rest }: any) => {
   }, [context.channel]);
 
   useEffect(() => {
-    const isDark = globals[APPEARANCE_MODE_GLOBAL] === 'dark' || globals[APPEARANCE_MODE_GLOBAL] === 'high-contrast';
+    const isDark = appearance === 'dark' || appearance === 'high-contrast';
     const bgColor = isDark ? themes.dark.appContentBg : '';
+    const textColor = isDark ? themes.dark.textColor : '';
 
-    const wrapper = document.querySelector('.sbdocs-wrapper') as HTMLElement | null;
-    if (wrapper) {
-      wrapper.style.background = bgColor;
-    }
+    const targets = document.querySelectorAll('.sbdocs-wrapper, .sbdocs');
+    targets.forEach((el) => {
+      const htmlEl = el as HTMLElement;
+      htmlEl.style.background = bgColor;
+      htmlEl.style.color = textColor;
+    });
+  }, [appearance]);
 
-    const sbdocs = document.querySelector('.sbdocs') as HTMLElement | null;
-    if (sbdocs) {
-      sbdocs.style.background = bgColor;
-    }
-  }, [globals[APPEARANCE_MODE_GLOBAL]]);
-
-  const productId = (globals[PRODUCT_THEME_GLOBAL] as string) ?? DEFAULT_PRODUCT;
-  const appearance = ((globals[APPEARANCE_MODE_GLOBAL] as string) ?? DEFAULT_APPEARANCE) as AppearanceMode;
   const fluentTheme = resolveTheme(productId, appearance);
   const docsTheme = appearance === 'dark' || appearance === 'high-contrast' ? themes.dark : themes.light;
 
