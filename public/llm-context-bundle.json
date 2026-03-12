@@ -1,11 +1,43 @@
 {
-  "generatedAt": "2026-03-12T20:50:14.198Z",
+  "generatedAt": "2026-03-12T21:35:28.291Z",
   "version": "2.0.0",
   "registry": [
     {
+      "name": "Avatar",
+      "category": "Components",
+      "storyFile": "src/stories/components/Avatar.stories.tsx",
+      "stories": [
+        "Default",
+        "Sizes",
+        "WithPresence",
+        "Anonymous",
+        "SquareShape",
+        "ActiveState"
+      ],
+      "isComposed": false,
+      "tags": [
+        "components"
+      ]
+    },
+    {
+      "name": "Badge",
+      "category": "Components",
+      "storyFile": "src/stories/components/Badge.stories.tsx",
+      "stories": [
+        "StatusBadges",
+        "Appearances",
+        "Counter",
+        "Presence"
+      ],
+      "isComposed": false,
+      "tags": [
+        "components"
+      ]
+    },
+    {
       "name": "Button",
       "category": "Components",
-      "storyFile": "src/stories/components/Button.stories.tsx",
+      "storyFile": "src/stories/components/Buttons/Button.stories.tsx",
       "stories": [
         "Primary",
         "Secondary",
@@ -24,24 +56,9 @@
       ]
     },
     {
-      "name": "Card",
-      "category": "Components",
-      "storyFile": "src/stories/components/Card.stories.tsx",
-      "stories": [
-        "Default",
-        "WithStatusBadge",
-        "WithLargeMetric",
-        "GridLayout"
-      ],
-      "isComposed": false,
-      "tags": [
-        "components"
-      ]
-    },
-    {
       "name": "CardButton",
       "category": "Components",
-      "storyFile": "src/stories/components/CardButton.stories.tsx",
+      "storyFile": "src/stories/components/Buttons/CardButton.stories.tsx",
       "stories": [
         "Square",
         "Horizontal",
@@ -54,9 +71,24 @@
       ]
     },
     {
+      "name": "Card",
+      "category": "Components",
+      "storyFile": "src/stories/components/Cards/Card.stories.tsx",
+      "stories": [
+        "Default",
+        "WithStatusBadge",
+        "WithLargeMetric",
+        "GridLayout"
+      ],
+      "isComposed": false,
+      "tags": [
+        "components"
+      ]
+    },
+    {
       "name": "InfoCard",
       "category": "Components",
-      "storyFile": "src/stories/components/InfoCard.stories.tsx",
+      "storyFile": "src/stories/components/Cards/InfoCard.stories.tsx",
       "stories": [
         "WithCTA",
         "WithCTANoIcon",
@@ -72,7 +104,7 @@
     {
       "name": "StatusCard",
       "category": "Components",
-      "storyFile": "src/stories/components/StatusCard.stories.tsx",
+      "storyFile": "src/stories/components/Cards/StatusCard.stories.tsx",
       "stories": [
         "Default",
         "WithWarning"
@@ -140,9 +172,52 @@
       ]
     },
     {
+      "name": "Checkbox",
+      "category": "Components",
+      "storyFile": "src/stories/components/Form Elements/Checkbox.stories.tsx",
+      "stories": [
+        "Default",
+        "Group",
+        "Disabled",
+        "Mixed"
+      ],
+      "isComposed": false,
+      "tags": [
+        "components"
+      ]
+    },
+    {
+      "name": "Combobox",
+      "category": "Components",
+      "storyFile": "src/stories/components/Form Elements/Combobox.stories.tsx",
+      "stories": [
+        "Default",
+        "Freeform",
+        "Disabled"
+      ],
+      "isComposed": false,
+      "tags": [
+        "components"
+      ]
+    },
+    {
+      "name": "Dropdown",
+      "category": "Components",
+      "storyFile": "src/stories/components/Form Elements/Dropdown.stories.tsx",
+      "stories": [
+        "Default",
+        "MultiSelect",
+        "Disabled"
+      ],
+      "isComposed": false,
+      "tags": [
+        "components"
+      ]
+    },
+    {
       "name": "Input",
       "category": "Components",
-      "storyFile": "src/stories/components/Input.stories.tsx",
+      "storyFile": "src/stories/components/Form Elements/Input.stories.tsx",
       "stories": [
         "Default",
         "WithContentBefore",
@@ -159,9 +234,83 @@
       ]
     },
     {
+      "name": "RadioGroup",
+      "category": "Components",
+      "storyFile": "src/stories/components/Form Elements/RadioGroup.stories.tsx",
+      "stories": [
+        "Default",
+        "Horizontal",
+        "Disabled"
+      ],
+      "isComposed": false,
+      "tags": [
+        "components"
+      ]
+    },
+    {
+      "name": "Select",
+      "category": "Components",
+      "storyFile": "src/stories/components/Form Elements/Select.stories.tsx",
+      "stories": [
+        "Default",
+        "Disabled"
+      ],
+      "isComposed": false,
+      "tags": [
+        "components"
+      ]
+    },
+    {
+      "name": "Slider",
+      "category": "Components",
+      "storyFile": "src/stories/components/Form Elements/Slider.stories.tsx",
+      "stories": [
+        "Default",
+        "Percentage",
+        "Disabled"
+      ],
+      "isComposed": false,
+      "tags": [
+        "components"
+      ]
+    },
+    {
+      "name": "Switch",
+      "category": "Components",
+      "storyFile": "src/stories/components/Form Elements/Switch.stories.tsx",
+      "stories": [
+        "Enabled",
+        "Off",
+        "Comparison",
+        "Locked"
+      ],
+      "isComposed": false,
+      "tags": [
+        "components"
+      ]
+    },
+    {
+      "name": "MessageBar",
+      "category": "Components",
+      "storyFile": "src/stories/components/MessageBar.stories.tsx",
+      "stories": [
+        "Info",
+        "Success",
+        "Warning",
+        "Error",
+        "WithDismiss",
+        "WithActions",
+        "SquareShape"
+      ],
+      "isComposed": false,
+      "tags": [
+        "components"
+      ]
+    },
+    {
       "name": "PageTabs",
       "category": "Components",
-      "storyFile": "src/stories/components/PageTabs.stories.tsx",
+      "storyFile": "src/stories/components/Navigation/PageTabs.stories.tsx",
       "stories": [
         "Default",
         "WithIcons",
@@ -173,21 +322,9 @@
       ]
     },
     {
-      "name": "Selection",
-      "category": "Components",
-      "storyFile": "src/stories/components/Selection.stories.tsx",
-      "stories": [
-        "Overview"
-      ],
-      "isComposed": false,
-      "tags": [
-        "components"
-      ]
-    },
-    {
       "name": "WizardNav",
       "category": "Components",
-      "storyFile": "src/stories/components/WizardNav.stories.tsx",
+      "storyFile": "src/stories/components/Navigation/WizardNav.stories.tsx",
       "stories": [
         "Vertical",
         "VerticalMidFlow",
@@ -197,6 +334,66 @@
         "HorizontalMidFlow",
         "HorizontalAllComplete",
         "HorizontalWithError"
+      ],
+      "isComposed": false,
+      "tags": [
+        "components"
+      ]
+    },
+    {
+      "name": "ProgressBar",
+      "category": "Components",
+      "storyFile": "src/stories/components/ProgressBar.stories.tsx",
+      "stories": [
+        "Determinate",
+        "Indeterminate",
+        "Colors",
+        "Thickness"
+      ],
+      "isComposed": false,
+      "tags": [
+        "components"
+      ]
+    },
+    {
+      "name": "Spinner",
+      "category": "Components",
+      "storyFile": "src/stories/components/Spinner.stories.tsx",
+      "stories": [
+        "Default",
+        "Sizes",
+        "LabelPositions",
+        "Inverted"
+      ],
+      "isComposed": false,
+      "tags": [
+        "components"
+      ]
+    },
+    {
+      "name": "Tag",
+      "category": "Components",
+      "storyFile": "src/stories/components/Tag.stories.tsx",
+      "stories": [
+        "TagGroupStory",
+        "Dismissible",
+        "Appearances",
+        "Sizes"
+      ],
+      "isComposed": false,
+      "tags": [
+        "components"
+      ]
+    },
+    {
+      "name": "Tooltip",
+      "category": "Components",
+      "storyFile": "src/stories/components/Tooltip.stories.tsx",
+      "stories": [
+        "OnBadge",
+        "OnButton",
+        "Positioning",
+        "Inverted"
       ],
       "isComposed": false,
       "tags": [
@@ -273,7 +470,7 @@
       "storyFile": "src/stories/composed/FilterBar.stories.tsx",
       "stories": [
         "Default",
-        "WithActiveTags"
+        "WithOptions"
       ],
       "isComposed": true,
       "tags": [
@@ -440,18 +637,6 @@
       "isComposed": false,
       "tags": [
         "foundations"
-      ]
-    },
-    {
-      "name": "AgentPlayground",
-      "category": "Playground",
-      "storyFile": "src/stories/playground/AgentPlayground.stories.tsx",
-      "stories": [
-        "Default"
-      ],
-      "isComposed": false,
-      "tags": [
-        "playground"
       ]
     },
     {
@@ -946,7 +1131,7 @@
       {
         "id": "logic-apps",
         "displayName": "Logic Apps",
-        "description": "Azure Logic Apps workflow automation product theme (placeholder tokens)"
+        "description": "Azure Logic Apps — workflow automation product theme (placeholder tokens)"
       }
     ],
     "appearances": [

@@ -1,0 +1,9 @@
+# F4 Final Scope Fidelity Check — 2026-03-12
+
+- Verified latest 5 feature commits match the expected Wave 2 / Wave 3 / Wave 4 / README fix / debug-log fix sequence.
+- Verified `debug-storybook.log` is no longer tracked and is present in `.gitignore`.
+- Verified no forbidden files were modified in `HEAD~5..HEAD`.
+- Verified the stray README `<!-- test -->` comment is gone.
+- Rejection reason: Task 8 is not fully compliant with the plan; `src/themes/__tests__/themeRegistry.test.ts` does not cover all 6 required product × appearance combinations (missing Logic Apps dark and Logic Apps high-contrast coverage).
+
+Tasks [13/14 compliant] | Contamination [CLEAN/0 issues] | Unaccounted [CLEAN/0 files] | VERDICT: REJECT
