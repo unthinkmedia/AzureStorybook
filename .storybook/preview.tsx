@@ -59,6 +59,9 @@ const CustomDocsContainer = ({ children, context, ...rest }: any) => {
   const appearance = ((globals[APPEARANCE_MODE_GLOBAL] as string) ?? DEFAULT_APPEARANCE) as AppearanceMode;
   const fluentTheme = resolveTheme(productId, appearance);
 
+  // Sync data-azure-theme so preview.css dark-mode CSS rules apply to .sbdocs-preview
+  document.documentElement.setAttribute('data-azure-theme', appearance);
+
   return (
     <BaseDocsContainer context={context} theme={themes.light} {...rest}>
       <FluentProvider theme={fluentTheme}>{children}</FluentProvider>
