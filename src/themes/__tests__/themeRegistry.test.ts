@@ -63,9 +63,10 @@ describe('themeRegistry', () => {
     const azureLight = resolveTheme('azure', 'light');
     const sreAgentLight = resolveTheme('sre-agent', 'light');
 
-    // SRE Agent has rounder corners
-    expect(sreAgentLight.borderRadiusMedium).toBe('6px');
-    expect(azureLight.borderRadiusMedium).not.toBe('6px');
+    // SRE Agent has rounder corners (24px container radius)
+    expect(sreAgentLight.borderRadiusMedium).toBe('8px');
+    expect(sreAgentLight.borderRadiusXLarge).toBe('24px');
+    expect(azureLight.borderRadiusMedium).not.toBe('8px');
 
     // SRE Agent has thicker strokes
     expect(sreAgentLight.strokeWidthThin).toBe('1.5px');
