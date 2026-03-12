@@ -5,13 +5,7 @@ description: Release a new version of @azure-fluent-storybook/components to npm.
 
 # npm Release Skill
 
-Handles the full release workflow for the `@azure-fluent-storybook/components` package.
-
-There are **two publish methods**:
-1. **Manual** (preferred) — publish from the local machine using `npm publish`
-2. **CI/Automated** — push a `v*` tag to trigger GitHub Actions (requires a Classic Automation npm token in the `NPM_TOKEN` secret)
-
-**Default to manual publish** unless the user explicitly asks for CI-based publishing.
+Handles the full release workflow for the `@azure-fluent-storybook/components` package. Publishing is done **manually** from the local machine — there is no CI-based publish.
 
 ---
 
@@ -104,38 +98,14 @@ The registry can take 1-2 minutes to propagate. If the old version shows, wait a
 
 ---
 
-## CI Publish Workflow (Automated)
-
-> **Note:** CI publish requires a **Classic Automation** npm token (not Granular) stored as the `NPM_TOKEN` GitHub Actions secret. Granular tokens fail with `EOTP` because they can't bypass 2FA.
-
-### Steps
-
-1. Run pre-flight checks (same as manual Step 1)
-2. Bump version: `npm version patch|minor|major`
-3. Push with tags: `git push origin main --tags`
-4. Monitor CI: `gh run list --workflow=ci.yml --limit 3`
-5. Verify: `npm view @azure-fluent-storybook/components version`
-
-If CI fails, check logs with:
-```bash
-gh run view <run-id> --log-failed | tail -30
-```
-
-Common CI failures:
-- **EOTP**: Token is Granular, not Classic Automation. Regenerate as Classic Automation token.
-- **E404 on PUT**: Token expired or doesn't have write access to the scope.
-- **id-token permission**: The publish job needs `id-token: write` in its permissions block.
-
----
-
 ## Troubleshooting
 
 | Error | Cause | Fix |
 |-------|-------|-----|
 | `npm error 401 Unauthorized` | Not logged in locally | Run `npm login` |
-| `EOTP` | 2FA required, token can't bypass | Use Classic Automation token for CI, or publish manually with OTP |
-| `E404 Not Found` on PUT | Token doesn't have write access | Regenerate token with correct scope |
-| `ENEEDAUTH` | No auth token configured | Run `npm login` or set `NPM_TOKEN` |
+| `EOTP` | 2FA required | Enter OTP when prompted during `npm publish` |
+| `E404 Not Found` on PUT | Token doesn't have write access | Run `npm login` to re-authenticate |
+| `ENEEDAUTH` | No auth token configured | Run `npm login` |
 | Version already exists | Trying to republish same version | Bump version first |
 
 ## Package Details
@@ -146,18 +116,6 @@ Common CI failures:
 | Registry | https://registry.npmjs.org |
 | Access | public (scoped) |
 | Build tool | tsup |
-| CI workflow | `.github/workflows/ci.yml` → `publish` job |
-| CI trigger | Push of `v*` tag |
-| CI secret | `NPM_TOKEN` (Classic Automation token) |
-
-## CI Pipeline on Tag Push
-
-When a `v*` tag is pushed, the CI runs these jobs:
-
-1. **build** — `npm ci` → `npm run lint` → `npm run build:all`
-2. **chromatic** — visual regression tests
-3. **deploy** — Storybook to Azure Static Web Apps
-4. **publish** — `npm run build:lib` → `npm publish --provenance --access public`
 
 ## Troubleshooting
 
