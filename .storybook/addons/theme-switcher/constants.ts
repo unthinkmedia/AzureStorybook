@@ -6,7 +6,7 @@ export const DEFAULT_APPEARANCE = 'light';
 
 export const PRODUCT_THEMES = [
   { id: 'azure', displayName: 'Azure' },
-  { id: 'logic-apps', displayName: 'Logic Apps' },
+  { id: 'sre-agent', displayName: 'SRE Agent' },
 ] as const;
 
 export const APPEARANCE_MODES = [

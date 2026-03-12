@@ -3,10 +3,9 @@ import { registerProductTheme } from '../themeRegistry';
 import type { BrandVariants } from '@fluentui/react-components';
 
 /**
- * Logic Apps brand color ramp — placeholder values for system validation.
- * TODO: Replace with official Logic Apps brand guidelines when finalized.
+ * SRE Agent brand color ramp for site reliability engineering experiences.
  */
-const logicAppsBrand: BrandVariants = {
+const sreAgentBrand: BrandVariants = {
   10: '#090E1F',
   20: '#101C3D',
   30: '#15295E',
@@ -14,7 +13,7 @@ const logicAppsBrand: BrandVariants = {
   50: '#1F45A0',
   60: '#2554C0',
   70: '#2E60D9',
-  80: '#4F6BED', // Primary — Logic Apps brand purple-blue
+  80: '#4F6BED', // Primary — SRE Agent brand purple-blue
   90: '#6B83F0',
   100: '#879BF3',
   110: '#9DAFFA',
@@ -26,18 +25,53 @@ const logicAppsBrand: BrandVariants = {
 };
 
 /**
- * Logic Apps product theme — workflow automation product.
- * Uses stock Fluent v9 light/dark themes with Logic Apps brand ramp.
- * TODO: Add Logic Apps-specific token overrides when brand guidelines are finalized.
+ * SRE Agent product theme — site reliability engineering product.
+ * Uses Fluent v9 light/dark themes with SRE Agent brand ramp and structural token overrides.
  */
-export const logicAppsProductTheme: ProductThemeDefinition = {
-  id: 'logic-apps',
-  displayName: 'Logic Apps',
-  description: 'Azure Logic Apps — workflow automation product theme (placeholder tokens)',
-  brand: logicAppsBrand,
-  lightOverrides: undefined,
-  darkOverrides: undefined,
+export const sreAgentProductTheme: ProductThemeDefinition = {
+  id: 'sre-agent',
+  displayName: 'SRE Agent',
+  description: 'SRE Agent — site reliability engineering product theme',
+  brand: sreAgentBrand,
+  lightOverrides: {
+    // Rounder corners — SRE Agent uses softer, more rounded UI
+    borderRadiusSmall: '4px',
+    borderRadiusMedium: '6px',
+    borderRadiusLarge: '10px',
+    borderRadiusXLarge: '14px',
+
+    // Slightly thicker strokes for a bolder feel
+    strokeWidthThin: '1.5px',
+    strokeWidthThick: '2.5px',
+
+    // Tighter spacing scale — more compact UI
+    spacingHorizontalS: '6px',
+    spacingHorizontalM: '10px',
+    spacingHorizontalL: '14px',
+    spacingVerticalS: '6px',
+    spacingVerticalM: '10px',
+    spacingVerticalL: '14px',
+
+    // Slightly heavier font weights for emphasis
+    fontWeightSemibold: 650,
+  },
+  darkOverrides: {
+    // Same structural overrides as light
+    borderRadiusSmall: '4px',
+    borderRadiusMedium: '6px',
+    borderRadiusLarge: '10px',
+    borderRadiusXLarge: '14px',
+    strokeWidthThin: '1.5px',
+    strokeWidthThick: '2.5px',
+    spacingHorizontalS: '6px',
+    spacingHorizontalM: '10px',
+    spacingHorizontalL: '14px',
+    spacingVerticalS: '6px',
+    spacingVerticalM: '10px',
+    spacingVerticalL: '14px',
+    fontWeightSemibold: 650,
+  },
   highContrastOverrides: undefined,
 };
 
-registerProductTheme(logicAppsProductTheme);
+registerProductTheme(sreAgentProductTheme);

@@ -9,13 +9,13 @@ export type AppearanceMode = 'light' | 'dark' | 'high-contrast';
 /**
  * Defines a product-specific theme in the Azure Storybook theme system.
  *
- * Each product (e.g., Azure Portal, Logic Apps) provides a brand ramp and optional
+ * Each product (e.g., Azure Portal, SRE Agent) provides a brand ramp and optional
  * token overrides that are spread on top of the Fluent v9 base theme for each
  * appearance mode. This allows products to fully customize the token set while
  * sharing the same component library.
  */
 export interface ProductThemeDefinition {
-  /** Unique identifier for this product theme (e.g., 'azure', 'logic-apps'). */
+  /** Unique identifier for this product theme (e.g., 'azure', 'sre-agent'). */
   id: string;
   /** Human-readable name shown in the Storybook toolbar dropdown. */
   displayName: string;
@@ -60,7 +60,7 @@ export type ThemeRegistry = Map<string, ProductThemeDefinition>;
 export interface ResolvedThemeResult {
   /** The fully resolved Fluent v9 Theme object, ready for use in FluentProvider. */
   theme: Theme;
-  /** The product ID that was resolved (e.g., 'azure', 'logic-apps'). */
+  /** The product ID that was resolved (e.g., 'azure', 'sre-agent'). */
   productId: string;
   /** The appearance mode that was resolved. */
   appearance: AppearanceMode;

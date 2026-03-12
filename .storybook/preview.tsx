@@ -45,21 +45,21 @@ const preview: Preview = {
             [APPEARANCE_MODE_GLOBAL]: 'high-contrast',
           },
         },
-        'logicapps-light': {
+        'sreagent-light': {
           globals: {
-            [PRODUCT_THEME_GLOBAL]: 'logic-apps',
+            [PRODUCT_THEME_GLOBAL]: 'sre-agent',
             [APPEARANCE_MODE_GLOBAL]: 'light',
           },
         },
-        'logicapps-dark': {
+        'sreagent-dark': {
           globals: {
-            [PRODUCT_THEME_GLOBAL]: 'logic-apps',
+            [PRODUCT_THEME_GLOBAL]: 'sre-agent',
             [APPEARANCE_MODE_GLOBAL]: 'dark',
           },
         },
-        'logicapps-hc': {
+        'sreagent-hc': {
           globals: {
-            [PRODUCT_THEME_GLOBAL]: 'logic-apps',
+            [PRODUCT_THEME_GLOBAL]: 'sre-agent',
             [APPEARANCE_MODE_GLOBAL]: 'high-contrast',
           },
         },

@@ -82,9 +82,9 @@ function run() {
         description: 'Default Azure Portal theme — Coherence design system tokens',
       },
       {
-        id: 'logic-apps',
-        displayName: 'Logic Apps',
-        description: 'Azure Logic Apps — workflow automation product theme (placeholder tokens)',
+        id: 'sre-agent',
+        displayName: 'SRE Agent',
+        description: 'SRE Agent — site reliability engineering product theme',
       },
     ],
     appearances: ['light', 'dark', 'high-contrast'],

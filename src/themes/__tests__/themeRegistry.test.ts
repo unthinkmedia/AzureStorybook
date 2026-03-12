@@ -9,7 +9,7 @@ describe('themeRegistry', () => {
     const themes = getAllProductThemes();
 
     expect(themes).toHaveLength(2);
-    expect(themes.map((theme) => theme.id)).toEqual(['azure', 'logic-apps']);
+    expect(themes.map((theme) => theme.id)).toEqual(['azure', 'sre-agent']);
   });
 
   it("resolveTheme('azure', 'light') uses the Azure light background override", () => {
@@ -51,12 +51,24 @@ describe('themeRegistry', () => {
     expect(theme.colorStrokeFocus2).toBeTruthy();
   });
 
-  it("resolveTheme('logic-apps', 'light') differs from Azure light branding", () => {
+  it("resolveTheme('sre-agent', 'light') differs from Azure light branding", () => {
     const azureLightTheme = resolveTheme('azure', 'light');
-    const logicAppsLightTheme = resolveTheme('logic-apps', 'light');
+    const sreAgentLightTheme = resolveTheme('sre-agent', 'light');
 
-    expect(logicAppsLightTheme.colorBrandBackground).toBeTruthy();
-    expect(logicAppsLightTheme.colorBrandBackground).not.toBe(azureLightTheme.colorBrandBackground);
+    expect(sreAgentLightTheme.colorBrandBackground).toBeTruthy();
+    expect(sreAgentLightTheme.colorBrandBackground).not.toBe(azureLightTheme.colorBrandBackground);
+  });
+
+  it("resolveTheme('sre-agent', 'light') applies non-color token overrides", () => {
+    const azureLight = resolveTheme('azure', 'light');
+    const sreAgentLight = resolveTheme('sre-agent', 'light');
+
+    // SRE Agent has rounder corners
+    expect(sreAgentLight.borderRadiusMedium).toBe('6px');
+    expect(azureLight.borderRadiusMedium).not.toBe('6px');
+
+    // SRE Agent has thicker strokes
+    expect(sreAgentLight.strokeWidthThin).toBe('1.5px');
   });
 
   it("resolveTheme('nonexistent', 'light') throws an error", () => {
@@ -77,9 +89,9 @@ describe('themeRegistry', () => {
           "id": "azure",
         },
         {
-          "description": "Azure Logic Apps — workflow automation product theme (placeholder tokens)",
-          "displayName": "Logic Apps",
-          "id": "logic-apps",
+          "description": "SRE Agent — site reliability engineering product theme",
+          "displayName": "SRE Agent",
+          "id": "sre-agent",
         },
       ]
     `);

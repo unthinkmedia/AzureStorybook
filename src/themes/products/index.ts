@@ -1,5 +1,5 @@
 import './azure';
-import './logic-apps';
+import './sre-agent';
 
 export { azureProductTheme } from './azure';
-export { logicAppsProductTheme } from './logic-apps';
+export { sreAgentProductTheme } from './sre-agent';

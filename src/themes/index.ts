@@ -20,4 +20,4 @@ export {
 
 // New theme system — product themes
 export { azureProductTheme } from './products/azure';
-export { logicAppsProductTheme } from './products/logic-apps';
+export { sreAgentProductTheme } from './products/sre-agent';

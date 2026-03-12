@@ -64,7 +64,7 @@ import type { AppearanceMode } from '@azure-fluent-storybook/components';
 
 // Resolve a theme for any product × appearance combination
 const theme = resolveTheme('azure', 'light'); // → Fluent Theme object
-const theme = resolveTheme('logic-apps', 'dark'); // → Logic Apps dark theme
+const theme = resolveTheme('sre-agent', 'dark'); // → SRE Agent dark theme
 const theme = resolveTheme('azure', 'high-contrast'); // → High contrast theme
 ```
 
@@ -73,7 +73,7 @@ const theme = resolveTheme('azure', 'high-contrast'); // → High contrast theme
 | ID           | Display Name | Description                                                 |
 | ------------ | ------------ | ----------------------------------------------------------- |
 | `azure`      | Azure        | Default Azure Portal theme — Coherence design system tokens |
-| `logic-apps` | Logic Apps   | Azure Logic Apps workflow automation product theme          |
+| `sre-agent` | SRE Agent   | SRE Agent site reliability engineering product theme |
 
 ### Available Appearances
 
