@@ -9,6 +9,8 @@ import {
   DEFAULT_PRODUCT,
   DEFAULT_APPEARANCE,
 } from './addons/theme-switcher/constants';
+import { DocsContainer as BaseDocsContainer } from '@storybook/addon-docs/blocks';
+import { themes } from 'storybook/theming';
 
 import './preview.css';
 
@@ -21,6 +23,26 @@ export const globalTypes = {
     name: 'Appearance',
     defaultValue: DEFAULT_APPEARANCE,
   },
+};
+
+const CustomDocsContainer = ({ children, context, ...rest }: any) => {
+  let productId = DEFAULT_PRODUCT;
+  let appearance: AppearanceMode = DEFAULT_APPEARANCE as AppearanceMode;
+  try {
+    const story = context.storyById();
+    const storyContext = context.getStoryContext(story);
+    productId = (storyContext.globals[PRODUCT_THEME_GLOBAL] as string) ?? DEFAULT_PRODUCT;
+    appearance = ((storyContext.globals[APPEARANCE_MODE_GLOBAL] as string) ?? DEFAULT_APPEARANCE) as AppearanceMode;
+  } catch {
+    // MDX-only pages without stories — use defaults
+  }
+  const fluentTheme = resolveTheme(productId, appearance);
+  const docsTheme = appearance === 'dark' || appearance === 'high-contrast' ? themes.dark : themes.light;
+  return (
+    <BaseDocsContainer context={context} theme={docsTheme} {...rest}>
+      <FluentProvider theme={fluentTheme}>{children}</FluentProvider>
+    </BaseDocsContainer>
+  );
 };
 
 const preview: Preview = {
@@ -73,6 +95,7 @@ const preview: Preview = {
     },
     docs: {
       toc: true,
+      container: CustomDocsContainer,
     },
     options: {
       storySort: {
