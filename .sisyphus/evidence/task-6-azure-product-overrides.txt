@@ -1,0 +1,3 @@
+Command: grep -c 'color' src/themes/products/azure.ts
+Output:
+50

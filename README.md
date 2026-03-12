@@ -1,6 +1,6 @@
 # Azure Storybook
 
-Fluent UI React v9 component library themed as Azure Portal, built with Storybook 8.
+Fluent UI React v9 component library themed as Azure Portal, built with Storybook 10.
 
 ## Quick Start
 
@@ -94,7 +94,7 @@ Required secrets:
 
 - React 18 + TypeScript 5.7
 - Fluent UI React v9 (`@fluentui/react-components`)
-- Storybook 8.5 + Vite 6
+- Storybook 10 + Vite 6
 - Griffel CSS-in-JS
 - Chromatic visual regression
 - Azure Static Web Apps

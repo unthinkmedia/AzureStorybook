@@ -221,7 +221,7 @@ Max Concurrent: 4 (Waves 1, 2)
 > EVERY task MUST have: Recommended Agent Profile + Parallelization info + QA Scenarios.
 
 
-- [ ] 1. Create Theme Type System (`src/themes/types.ts`)
+- [x] 1. Create Theme Type System (`src/themes/types.ts`)
 
   **What to do**:
   - Create `src/themes/types.ts` with the following TypeScript interfaces:
@@ -287,7 +287,7 @@ Max Concurrent: 4 (Waves 1, 2)
   - Files: `src/themes/types.ts`
   - Pre-commit: `npx tsc --noEmit`
 
-- [ ] 2. Set Up Vitest Test Infrastructure
+- [x] 2. Set Up Vitest Test Infrastructure
 
   **What to do**:
   - Install `vitest` and `@testing-library/react` as dev dependencies: `npm install -D vitest`
@@ -352,7 +352,7 @@ Max Concurrent: 4 (Waves 1, 2)
   - Files: `vitest.config.ts`, `package.json`, `src/themes/__tests__/themeRegistry.test.ts`
   - Pre-commit: `npx vitest run`
 
-- [ ] 3. Fix README Storybook Version
+- [x] 3. Fix README Storybook Version
 
   **What to do**:
   - Update `README.md` references from "Storybook 8.5" or "Storybook 8" to match actual installed version (10.x per package-lock.json)
@@ -400,7 +400,7 @@ Max Concurrent: 4 (Waves 1, 2)
   - Files: `README.md`, `.copilot-instructions.md`
   - Pre-commit: —
 
-- [ ] 4. Research Storybook 10 Addon API
+- [x] 4. Research Storybook 10 Addon API
 
   **What to do**:
   - Inspect `node_modules/storybook/dist/manager-api/index.d.ts` and related type files to understand the Storybook 10 addon API
@@ -465,7 +465,7 @@ Max Concurrent: 4 (Waves 1, 2)
 
 ---
 
-- [ ] 5. Build Theme Registry and Resolver Function (`src/themes/themeRegistry.ts`)
+- [x] 5. Build Theme Registry and Resolver Function (`src/themes/themeRegistry.ts`)
 
   **What to do**:
   - Create `src/themes/themeRegistry.ts` implementing:
@@ -554,7 +554,7 @@ Max Concurrent: 4 (Waves 1, 2)
   - Files: `src/themes/themeRegistry.ts`, `src/themes/products/azure.ts`, `src/themes/products/logic-apps.ts`, `src/themes/products/index.ts`
   - Pre-commit: `npx tsc --noEmit`
 
-- [ ] 6. Create Azure Product Theme File (`src/themes/products/azure.ts`)
+- [x] 6. Create Azure Product Theme File (`src/themes/products/azure.ts`)
 
   **What to do**:
   - Create `src/themes/products/azure.ts` that:
@@ -652,7 +652,7 @@ Max Concurrent: 4 (Waves 1, 2)
   - Files: `src/themes/products/azure.ts`, `src/themes/products/index.ts`
   - Pre-commit: `npx tsc --noEmit`
 
-- [ ] 7. Create Logic Apps Product Theme (`src/themes/products/logic-apps.ts`)
+- [x] 7. Create Logic Apps Product Theme (`src/themes/products/logic-apps.ts`)
 
   **What to do**:
   - Create `src/themes/products/logic-apps.ts` that:
@@ -741,7 +741,7 @@ Max Concurrent: 4 (Waves 1, 2)
   - Files: `src/themes/products/logic-apps.ts`
   - Pre-commit: `npx tsc --noEmit`
 
-- [ ] 8. Write Theme Resolution Unit Tests (`src/themes/__tests__/themeRegistry.test.ts`)
+- [x] 8. Write Theme Resolution Unit Tests (`src/themes/__tests__/themeRegistry.test.ts`)
 
   **What to do**:
   - Replace the placeholder test created in Task 2 with comprehensive tests in `src/themes/__tests__/themeRegistry.test.ts`:
