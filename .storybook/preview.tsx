@@ -47,6 +47,21 @@ const CustomDocsContainer = ({ children, context, ...rest }: any) => {
     return () => context.channel.off(GLOBALS_UPDATED, handler);
   }, [context.channel]);
 
+  useEffect(() => {
+    const isDark = globals[APPEARANCE_MODE_GLOBAL] === 'dark' || globals[APPEARANCE_MODE_GLOBAL] === 'high-contrast';
+    const bgColor = isDark ? themes.dark.appContentBg : '';
+
+    const wrapper = document.querySelector('.sbdocs-wrapper') as HTMLElement | null;
+    if (wrapper) {
+      wrapper.style.background = bgColor;
+    }
+
+    const sbdocs = document.querySelector('.sbdocs') as HTMLElement | null;
+    if (sbdocs) {
+      sbdocs.style.background = bgColor;
+    }
+  }, [globals[APPEARANCE_MODE_GLOBAL]]);
+
   const productId = (globals[PRODUCT_THEME_GLOBAL] as string) ?? DEFAULT_PRODUCT;
   const appearance = ((globals[APPEARANCE_MODE_GLOBAL] as string) ?? DEFAULT_APPEARANCE) as AppearanceMode;
   const fluentTheme = resolveTheme(productId, appearance);
