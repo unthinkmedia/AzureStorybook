@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-03-07T13:07:01.070Z",
-  "version": "1.0.0",
+  "generatedAt": "2026-03-12T20:36:45.995Z",
+  "version": "2.0.0",
   "registry": [
     {
       "name": "Button",
@@ -47,6 +47,35 @@
         "Horizontal",
         "SquareRow",
         "HorizontalColumn"
+      ],
+      "isComposed": false,
+      "tags": [
+        "components"
+      ]
+    },
+    {
+      "name": "InfoCard",
+      "category": "Components",
+      "storyFile": "src/stories/components/InfoCard.stories.tsx",
+      "stories": [
+        "WithCTA",
+        "WithCTANoIcon",
+        "TitleLink",
+        "TitleLinkNoIcon",
+        "AllVariants"
+      ],
+      "isComposed": false,
+      "tags": [
+        "components"
+      ]
+    },
+    {
+      "name": "StatusCard",
+      "category": "Components",
+      "storyFile": "src/stories/components/StatusCard.stories.tsx",
+      "stories": [
+        "Default",
+        "WithWarning"
       ],
       "isComposed": false,
       "tags": [
@@ -253,12 +282,14 @@
       ]
     },
     {
-      "name": "HealthStatusCard",
+      "name": "InfoTable",
       "category": "Composed",
-      "storyFile": "src/stories/composed/HealthStatusCard.stories.tsx",
+      "storyFile": "src/stories/composed/InfoTable.stories.tsx",
       "stories": [
-        "Default",
-        "WithWarning"
+        "TenantOverview",
+        "SingleColumn",
+        "ResourceInfo",
+        "ThreeColumns"
       ],
       "isComposed": true,
       "tags": [
@@ -494,19 +525,27 @@
   ],
   "componentDocs": {
     "Avatar": {
-      "description": "",
+      "description": "Fluent UI Avatar renders a person or entity image with fallback initials and optional presence badge. Use this when you need to display a user photo, initials, or entity icon in headers, lists, comments, or cards. Choose this over a plain image tag to get consistent sizing, fallback behavior, and presence indicators.",
       "stories": [
-        "Overview"
+        "Default",
+        "Sizes",
+        "WithPresence",
+        "Anonymous",
+        "SquareShape",
+        "ActiveState"
       ]
     },
     "Badge": {
-      "description": "",
+      "description": "Fluent UI Badge displays a small visual indicator for status, count, or category. Use this when you need to show notification counts, status labels (Running, Stopped, Error), or category tags. Choose this over plain text or custom spans for consistent color, size, and rounded-pill styling.",
       "stories": [
-        "Overview"
+        "StatusBadges",
+        "Appearances",
+        "Counter",
+        "Presence"
       ]
     },
     "Button": {
-      "description": "",
+      "description": "Fluent UI Button handles user actions with multiple appearances (primary, secondary, outline, subtle, transparent) and sizes. Use this when you need clickable actions in toolbars, dialogs, forms, or inline flows. Choose this over native HTML buttons to ensure consistent Azure Portal styling and accessibility.",
       "stories": [
         "Primary",
         "Secondary",
@@ -520,17 +559,8 @@
         "Toggle"
       ]
     },
-    "Card": {
-      "description": "",
-      "stories": [
-        "Default",
-        "WithStatusBadge",
-        "WithLargeMetric",
-        "GridLayout"
-      ]
-    },
     "CardButton": {
-      "description": "A card-style button combining card and button attributes. Supports a **square** variant (icon-on-top, 104×104) for service shortcuts and a **horizontal** variant (icon-left, text-right) for resource links. Gains a shadow on hover and a brand-colored ring on focus.",
+      "description": "A card-style button combining card and button attributes. Supports a **square** variant (icon-on-top, 104×104) for service shortcuts and a **horizontal** variant (icon-left, text-right) for resource links. Gains a shadow on hover and a brand-colored ring on focus. Use this when you need clickable square tiles for Azure Portal home-page service shortcuts or horizontal cards for resource link lists.",
       "stories": [
         "Square",
         "Horizontal",
@@ -538,20 +568,46 @@
         "HorizontalColumn"
       ]
     },
+    "Card": {
+      "description": "Fluent UI Card is a surface container for grouping related information and actions with optional selection behavior. Use this when you need to present a bounded content block — such as a resource summary, metric tile, or action shortcut. Choose this over plain divs when you need hover elevation, focus ring, and selection states.",
+      "stories": [
+        "Default",
+        "WithStatusBadge",
+        "WithLargeMetric",
+        "GridLayout"
+      ]
+    },
+    "InfoCard": {
+      "description": "An informational card that displays a title, description, and optional icon with an action link. Supports two interaction modes:\\n\\n",
+      "stories": [
+        "WithCTA",
+        "WithCTANoIcon",
+        "TitleLink",
+        "TitleLinkNoIcon",
+        "AllVariants"
+      ]
+    },
+    "StatusCard": {
+      "description": "A compact status card showing an icon, message, and optional link. Use this when you need to display a brief status summary — e.g. health checks, system alerts, or inline notifications within a page.",
+      "stories": [
+        "Default",
+        "WithWarning"
+      ]
+    },
     "DataDisplay": {
-      "description": "",
+      "description": "Overview of data-presentation primitives: Badge, Avatar, Tag, Tooltip, Spinner, ProgressBar, and MessageBar. Use this when you need a quick reference to all available status and feedback components in one place. Each component has its own dedicated page under Components.",
       "stories": [
         "Overview"
       ]
     },
     "DataGrid": {
-      "description": "",
+      "description": "Fluent UI DataGrid provides a sortable, accessible table for tabular data with custom cell rendering. Use this when you need to display resource lists, audit logs, or any structured data with column sorting. Choose this over native HTML tables for keyboard navigation, column resizing, and consistent Azure Portal styling.",
       "stories": [
         "Default"
       ]
     },
     "Dialog": {
-      "description": "",
+      "description": "Fluent UI Dialog presents a modal overlay for confirmations, forms, or information display. Use this when you need to capture user input (create resource, confirm deletion) or show details that require focused attention. Choose this over inline forms when the action is disruptive or requires explicit user acknowledgment.",
       "stories": [
         "Default",
         "Destructive",
@@ -559,7 +615,7 @@
       ]
     },
     "FilterPill": {
-      "description": "Azure Portal-style filter pill buttons. Click a pill to open a popover with checkbox selections and Apply/Cancel actions. Pills can be composed into a filter bar row.",
+      "description": "Azure Portal-style filter pill buttons. Click a pill to open a popover with checkbox selections and Apply/Cancel actions. Pills can be composed into a filter bar row. Use this when building filter rows above data grids — such as Subscription, Location, or Status filters on browse blades.",
       "stories": [
         "Default",
         "ColonSeparator",
@@ -571,8 +627,33 @@
         "ScopeAndType"
       ]
     },
+    "Checkbox": {
+      "description": "Fluent UI Checkbox allows users to toggle a boolean option on or off. Use this when you need multi-select in forms — enabling features, accepting terms, or selecting items from a list. Choose this over Switch when the setting is part of a group of related options or when the label is a noun/phrase rather than an on/off state.",
+      "stories": [
+        "Default",
+        "Group",
+        "Disabled",
+        "Mixed"
+      ]
+    },
+    "Combobox": {
+      "description": "Fluent UI Combobox combines a text input with a filterable dropdown list. Use this when the user needs to search through a large set of options — subscriptions, resource names, or SKUs. Choose this over Dropdown when the option list is large enough that typing to filter is faster than scrolling.",
+      "stories": [
+        "Default",
+        "Freeform",
+        "Disabled"
+      ]
+    },
+    "Dropdown": {
+      "description": "Fluent UI Dropdown provides a custom-styled single or multi-select picker with a popover option list. Use this when you need richer option rendering than native Select — icons, descriptions, or grouped options. Choose this over Select when you need custom option templates or multi-select capability.",
+      "stories": [
+        "Default",
+        "MultiSelect",
+        "Disabled"
+      ]
+    },
     "Input": {
-      "description": "",
+      "description": "Fluent UI Input, SearchBox, Textarea, SpinButton, and related text entry controls. Use this when you need to capture text input in forms — resource names, search queries, descriptions, or numeric values. Choose this over native inputs for consistent Azure Portal field styling, validation states, and content-before/after slots.",
       "stories": [
         "Default",
         "WithContentBefore",
@@ -584,52 +665,60 @@
         "Appearances"
       ]
     },
-    "MessageBar": {
-      "description": "",
+    "RadioGroup": {
+      "description": "Fluent UI RadioGroup presents a set of mutually exclusive options. Use this when the user must choose exactly one value from a small set (2–6 options) — such as pricing tiers, regions, or replication modes. Choose this over Dropdown when all options should be visible at once without requiring a click to expand.",
       "stories": [
-        "Overview"
+        "Default",
+        "Horizontal",
+        "Disabled"
+      ]
+    },
+    "Select": {
+      "description": "Fluent UI Select renders a native HTML select element with Fluent styling. Use this when you need a simple single-choice picker for a known set of options — regions, subscription names, or resource types. Choose this over Dropdown when you want the browser-native select behavior and don\\",
+      "stories": [
+        "Default",
+        "Disabled"
+      ]
+    },
+    "Slider": {
+      "description": "Fluent UI Slider lets users select a numeric value within a range by dragging a thumb. Use this when the user needs to pick a value from a continuous or stepped range — instance counts, throughput limits, or scaling thresholds. Choose this over SpinButton when the visual position within the range matters more than precise numeric entry.",
+      "stories": [
+        "Default",
+        "Percentage",
+        "Disabled"
+      ]
+    },
+    "Switch": {
+      "description": "Fluent UI Switch toggles a binary setting on or off with immediate effect. Use this when a setting takes effect instantly without requiring a form submit — such as enabling public access, toggling diagnostics, or activating a feature flag. Choose this over Checkbox when the action is an on/off toggle with immediate effect.",
+      "stories": [
+        "Enabled",
+        "Off",
+        "Comparison",
+        "Locked"
+      ]
+    },
+    "MessageBar": {
+      "description": "Fluent UI MessageBar shows inline status messages with intent-based styling (info, success, warning, error). Use this when you need to communicate status, alerts, or guidance within a page section. Choose this over Tooltip or Dialog when the message should be persistent and visible without user interaction.",
+      "stories": [
+        "Info",
+        "Success",
+        "Warning",
+        "Error",
+        "WithDismiss",
+        "WithActions",
+        "SquareShape"
       ]
     },
     "PageTabs": {
-      "description": "",
+      "description": "Horizontal tab strip for switching between sub-views within a page. Use this when a resource or service page has multiple logical sections (Overview, Settings, Monitoring) that the user switches between. Choose this over a side navigation when the sections are peer-level and the list is short (2–6 tabs).",
       "stories": [
         "Default",
         "WithIcons",
         "WithDisabledTab"
       ]
     },
-    "ProgressBar": {
-      "description": "",
-      "stories": [
-        "Overview"
-      ]
-    },
-    "Selection": {
-      "description": "",
-      "stories": [
-        "Overview"
-      ]
-    },
-    "Spinner": {
-      "description": "",
-      "stories": [
-        "Overview"
-      ]
-    },
-    "Tag": {
-      "description": "",
-      "stories": [
-        "Overview"
-      ]
-    },
-    "Tooltip": {
-      "description": "",
-      "stories": [
-        "Overview"
-      ]
-    },
     "WizardNav": {
-      "description": "A step indicator for multi-step create/deploy wizard flows. Supports both vertical (sidebar) and horizontal (top bar) orientations, matching the Azure Portal wizard blade pattern.",
+      "description": "A step indicator for multi-step create/deploy wizard flows. Supports both vertical (sidebar) and horizontal (top bar) orientations, matching the Azure Portal wizard blade pattern. Use this when building create, deploy, or configuration wizards that guide users through sequential steps.",
       "stories": [
         "Vertical",
         "VerticalMidFlow",
@@ -641,15 +730,51 @@
         "HorizontalWithError"
       ]
     },
+    "ProgressBar": {
+      "description": "Fluent UI ProgressBar shows determinate or indeterminate progress with color-coded states. Use this when you need to indicate operation progress — deployment status, upload completion, or background task tracking. Choose this over Spinner when you can report a specific completion percentage.",
+      "stories": [
+        "Determinate",
+        "Indeterminate",
+        "Colors",
+        "Thickness"
+      ]
+    },
+    "Spinner": {
+      "description": "Fluent UI Spinner shows an indeterminate loading indicator with optional label. Use this when content is loading and you cannot determine a progress percentage — such as fetching resource data, waiting for API responses, or initial page load. Choose this over ProgressBar when completion percentage is unknown.",
+      "stories": [
+        "Default",
+        "Sizes",
+        "LabelPositions",
+        "Inverted"
+      ]
+    },
+    "Tag": {
+      "description": "Fluent UI Tag and InteractionTag display labels for categorization, filtering, or metadata. Use this when you need to show Azure resource tags, filter selections, or category labels. Choose this over Badge when the label needs to be dismissible, editable, or part of a TagGroup with add/remove behavior.",
+      "stories": [
+        "TagGroupStory",
+        "Dismissible",
+        "Appearances",
+        "Sizes"
+      ]
+    },
+    "Tooltip": {
+      "description": "Fluent UI Tooltip provides supplementary text on hover or focus for icons, badges, and buttons. Use this when a UI element needs additional explanation that should not take up permanent space. Choose this over MessageBar when the information is contextual to a single element and should only appear on demand.",
+      "stories": [
+        "OnBadge",
+        "OnButton",
+        "Positioning",
+        "Inverted"
+      ]
+    },
     "AzureBreadcrumb": {
-      "description": "",
+      "description": "Azure Portal-style breadcrumb trail showing the current navigation hierarchy. Use this when you need to show the user where they are in the portal navigation tree — from root service down to sub-resource. Place above the PageHeader in every detail or browse blade.",
       "stories": [
         "WithMultipleLevels",
         "SingleLevel"
       ]
     },
     "AzureGlobalHeader": {
-      "description": "The persistent global header bar that sits at the top of every Azure Portal page. Includes the waffle menu, hamburger, branding, search, Copilot button, action icons, and user profile.",
+      "description": "The persistent global header bar that sits at the top of every Azure Portal page. Includes the waffle menu, hamburger, branding, search, Copilot button, action icons, and user profile. Use this when building any full-page Azure Portal layout — this header must appear at the top of every page.",
       "stories": [
         "Default",
         "NoNotifications",
@@ -657,7 +782,7 @@
       ]
     },
     "CommandBar": {
-      "description": "Azure Portal-style command bar with grouped actions, dividers, dropdown menus, overflow, far-side items, and disabled states.",
+      "description": "Azure Portal-style command bar with grouped actions, dividers, dropdown menus, overflow, far-side items, and disabled states. Use this when you need a toolbar above a data grid or content area that provides contextual actions like Add, Edit, Delete, Refresh, Export.",
       "stories": [
         "Default",
         "WithDivider",
@@ -669,7 +794,7 @@
       ]
     },
     "EssentialsPanel": {
-      "description": "",
+      "description": "Azure Portal Essentials panel — a collapsible two-column summary of key resource properties (subscription, location, status, tags). Use this when displaying a resource overview page to show the most important metadata at a glance, matching the Azure Portal resource blade pattern.",
       "stories": [
         "ResourceGroup",
         "VirtualMachine",
@@ -678,21 +803,23 @@
       ]
     },
     "FilterBar": {
-      "description": "",
+      "description": "Azure Portal-style filter bar with search input, filter pills, and an Add filter button. Each pill shows a label, separator, and value — matching the native Azure Portal filter row pattern.",
       "stories": [
         "Default",
-        "WithActiveTags"
+        "WithOptions"
       ]
     },
-    "HealthStatusCard": {
-      "description": "",
+    "InfoTable": {
+      "description": "A responsive multi-column information table for displaying key-value property pairs. Automatically stacks to a single column on narrow viewports. Commonly used in Azure Portal resource overview pages, Entra ID tenant info panels, and any context where structured metadata needs to be displayed at a glance.",
       "stories": [
-        "Default",
-        "WithWarning"
+        "TenantOverview",
+        "SingleColumn",
+        "ResourceInfo",
+        "ThreeColumns"
       ]
     },
     "NullState": {
-      "description": "Empty / null-state pattern used inside browse blades and data grids when there are no items to display. Two variants: an illustration-centered state with title, description, and action buttons, or a simple inline text message.",
+      "description": "Empty / null-state pattern used inside browse blades and data grids when there are no items to display. Two variants: an illustration-centered state with title, description, and action buttons, or a simple inline text message. Use this when a resource list, query result, or data grid has zero items to display.",
       "stories": [
         "WithIllustration",
         "TextOnly",
@@ -700,7 +827,7 @@
       ]
     },
     "PageTitleBar": {
-      "description": "",
+      "description": "Azure Portal PageHeader — icon, title with pipe separator, subtitle, pin/more actions, and Copilot suggestion pills. Use this when building the top section of any Azure Portal blade. Combines branding, navigation context, and AI suggestions in a single row.",
       "stories": [
         "WithPipeTitleAndSuggestions",
         "WithAllSuggestions",
@@ -710,7 +837,7 @@
       ]
     },
     "SREGlobalHeader": {
-      "description": "The global header bar for the Azure SRE Agent experience. Features a light background, SRE Agent branding with a PREVIEW badge, Docs link, notification/chat/settings icons, and user avatar.",
+      "description": "The global header bar for the Azure SRE Agent experience. Features a light background, SRE Agent branding with a PREVIEW badge, Docs link, notification/chat/settings icons, and user avatar. Use this when building SRE Agent pages — this header replaces AzureGlobalHeader for the SRE-specific experience.",
       "stories": [
         "Default",
         "WithNotifications",
@@ -719,14 +846,14 @@
       ]
     },
     "SearchBanner": {
-      "description": "",
+      "description": "A branded search banner with heading, description, and input field. Use this when you need a prominent search area at the top of support, help, or documentation hub pages.",
       "stories": [
         "Default",
         "Minimal"
       ]
     },
     "ServiceFlyout": {
-      "description": "A hover-activated flyout panel that displays service details — name, quick actions, description, Copilot prompt, training links, and useful links. Wraps any trigger element (CardButton, Button, etc.).",
+      "description": "A hover-activated flyout panel that displays service details — name, quick actions, description, Copilot prompt, training links, and useful links. Wraps any trigger element (CardButton, Button, etc.). Use this when you need a hover-reveal info panel for service tiles on the Azure Portal home page or service directory.",
       "stories": [
         "WithCardButton",
         "WithButton",
@@ -736,7 +863,7 @@
       ]
     },
     "SideNavigation": {
-      "description": "Azure Portal-style collapsible side navigation panel with search, expandable groups, selected state, and keyboard shortcut footer.",
+      "description": "Azure Portal-style collapsible side navigation panel with search, expandable groups, selected state, and keyboard shortcut footer. Use this when building resource detail pages or service blades that have a left-side navigation tree with grouped sub-pages.",
       "stories": [
         "Default",
         "Collapsed",
@@ -747,25 +874,25 @@
       ]
     },
     "Colors": {
-      "description": "",
+      "description": "Azure design token color ramps extracted from the Coherence CDN theme — brand, danger, success, warning, caution, and neutral palettes. Use this when you need to reference the exact hex values used in the Azure Portal for any color decision.",
       "stories": [
         "AllColors"
       ]
     },
     "Shadows": {
-      "description": "",
+      "description": "Azure design token shadow values extracted from the Coherence CDN theme. Use this when you need to reference the exact box-shadow values for elevation levels in the Azure Portal.",
       "stories": [
         "AllShadows"
       ]
     },
     "Spacing": {
-      "description": "",
+      "description": "Azure design token spacing scale and border radius values from the Coherence CDN theme. Use this when you need consistent padding, margins, gaps, or border radius values matching the Azure Portal.",
       "stories": [
         "AllSpacing"
       ]
     },
     "Typography": {
-      "description": "",
+      "description": "Azure design token typography reference — font sizes, weights, line heights, and font families (Segoe UI, Bahnschrift, Consolas). Use this when you need to verify the correct font specifications for Azure Portal text rendering.",
       "stories": [
         "AllTypography"
       ]
@@ -779,14 +906,14 @@
       ]
     },
     "FeatureCardsPage": {
-      "description": "A centered landing page template that presents a set of illustrated feature cards, each with a title, description, external link, and primary call-to-action button. Use this for hub pages that guide users to choose between several top-level actions or workflows — for example, moving resources, selecting a deployment option, or picking a getting-started path.",
+      "description": "A centered landing page template that presents a set of illustrated feature cards, each with a title, description, external link, and primary call-to-action button. Use this when you need a hub page that guides users to choose between several top-level actions or workflows — for example, moving resources, selecting a deployment option, or picking a getting-started path.",
       "stories": [
         "Default",
         "CustomHeading"
       ]
     },
     "ResourceListPage": {
-      "description": "",
+      "description": "Full-page resource list template combining CommandBar, FilterPill row, sortable DataGrid with row actions and checkboxes, and a pagination footer. Use this when building a browse blade for any Azure resource type — resource groups, VMs, storage accounts, etc.",
       "stories": [
         "Default",
         "WithoutFilters",
@@ -802,15 +929,36 @@
       ]
     },
     "SupportPage": {
-      "description": "",
+      "description": "Full-page Help + Support template with search banner, health status card, and support resource links. Use this when building the Support or Help page for an Azure service experience.",
       "stories": [
         "Default",
         "WithHealthEvents"
       ]
     }
   },
+  "themeRegistry": {
+    "products": [
+      {
+        "id": "azure",
+        "displayName": "Azure",
+        "description": "Default Azure Portal theme — Coherence design system tokens"
+      },
+      {
+        "id": "logic-apps",
+        "displayName": "Logic Apps",
+        "description": "Azure Logic Apps workflow automation product theme (placeholder tokens)"
+      }
+    ],
+    "appearances": [
+      "light",
+      "dark",
+      "high-contrast"
+    ],
+    "resolver": "resolveTheme(productId, appearanceMode) → Theme",
+    "note": "Import from @azure-fluent-storybook/components: { resolveTheme, registerProductTheme }"
+  },
   "context": {
-    "azure-theme": "# Azure Theme Reference for LLMs\n\n## Brand Ramp\n| Step | Hex | Usage |\n|------|-----|-------|\n| 10 | #061724 | Darkest brand shade |\n| 20 | #082338 | |\n| 30 | #0a2e4a | |\n| 40 | #0c3b5e | |\n| 50 | #0e4775 | |\n| 60 | #0f548c | Brand darker |\n| 70 | #115ea3 | Brand dark (hover) |\n| 80 | #0f6cbd | **Primary brand** |\n| 90 | #2886de | Brand light |\n| 100 | #479ef5 | |\n| 110 | #62abf5 | |\n| 120 | #77b7f7 | |\n| 130 | #96c6fa | |\n| 140 | #b4d6fa | Brand lighter |\n| 150 | #cfe4fa | |\n| 160 | #ebf3fc | Lightest brand tint |\n\n## Key Semantic Tokens\n- Background: `colorNeutralBackground1` (#ffffff)\n- Foreground: `colorNeutralForeground1` (#242424)\n- Subtle bg: `colorNeutralBackground2` (#fafafa)\n- Border: `colorNeutralStroke2` (#e0e0e0)\n- Brand foreground: `colorBrandForeground1` (#0f6cbd)\n- Success: `colorPaletteGreenForeground1`\n- Danger: `colorPaletteRedForeground1` (#d13438)\n- Warning: `colorPaletteYellowForeground1`\n\n## Typography\n- Font family: `'Segoe UI', 'Segoe UI Web (West European)', -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', sans-serif`\n- Base size: 14px\n- Scale: 10 / 12 / 14 / 16 / 20 / 24 / 28 / 32 / 40 / 68\n\n## Spacing Scale\n2px / 4px / 6px / 8px / 10px / 12px / 16px / 20px / 24px / 32px / 40px\n\n## Border Radius\nnone (0) / small (2px) / medium (4px) / large (8px) / xLarge (12px) / circular (10000px)\n\n## Shadow Elevation\nshadow2, shadow4, shadow8, shadow16, shadow28, shadow64, shadow2brand\n",
+    "azure-theme": "# Azure Theme Reference for LLMs\n\n## Brand Ramp\n\n| Step | Hex     | Usage               |\n| ---- | ------- | ------------------- |\n| 10   | #061724 | Darkest brand shade |\n| 20   | #082338 |                     |\n| 30   | #0a2e4a |                     |\n| 40   | #0c3b5e |                     |\n| 50   | #0e4775 |                     |\n| 60   | #0f548c | Brand darker        |\n| 70   | #115ea3 | Brand dark (hover)  |\n| 80   | #0f6cbd | **Primary brand**   |\n| 90   | #2886de | Brand light         |\n| 100  | #479ef5 |                     |\n| 110  | #62abf5 |                     |\n| 120  | #77b7f7 |                     |\n| 130  | #96c6fa |                     |\n| 140  | #b4d6fa | Brand lighter       |\n| 150  | #cfe4fa |                     |\n| 160  | #ebf3fc | Lightest brand tint |\n\n## Key Semantic Tokens\n\n- Background: `colorNeutralBackground1` (#ffffff)\n- Foreground: `colorNeutralForeground1` (#242424)\n- Subtle bg: `colorNeutralBackground2` (#fafafa)\n- Border: `colorNeutralStroke2` (#e0e0e0)\n- Brand foreground: `colorBrandForeground1` (#0f6cbd)\n- Success: `colorPaletteGreenForeground1`\n- Danger: `colorPaletteRedForeground1` (#d13438)\n- Warning: `colorPaletteYellowForeground1`\n\n## Typography\n\n- Font family: `'Segoe UI', 'Segoe UI Web (West European)', -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', sans-serif`\n- Base size: 14px\n- Scale: 10 / 12 / 14 / 16 / 20 / 24 / 28 / 32 / 40 / 68\n\n## Spacing Scale\n\n2px / 4px / 6px / 8px / 10px / 12px / 16px / 20px / 24px / 32px / 40px\n\n## Border Radius\n\nnone (0) / small (2px) / medium (4px) / large (8px) / xLarge (12px) / circular (10000px)\n\n## Shadow Elevation\n\nshadow2, shadow4, shadow8, shadow16, shadow28, shadow64, shadow2brand\n\n---\n\n## Two-Axis Theme System (v2.0.0)\n\nThe theme system supports independent selection of **Product Theme** and **Appearance Mode**.\n\n### Usage\n\n```typescript\nimport { resolveTheme } from '@azure-fluent-storybook/components';\nimport type { AppearanceMode } from '@azure-fluent-storybook/components';\n\n// Resolve a theme for any product × appearance combination\nconst theme = resolveTheme('azure', 'light'); // → Fluent Theme object\nconst theme = resolveTheme('logic-apps', 'dark'); // → Logic Apps dark theme\nconst theme = resolveTheme('azure', 'high-contrast'); // → High contrast theme\n```\n\n### Available Products\n\n| ID           | Display Name | Description                                                 |\n| ------------ | ------------ | ----------------------------------------------------------- |\n| `azure`      | Azure        | Default Azure Portal theme — Coherence design system tokens |\n| `logic-apps` | Logic Apps   | Azure Logic Apps workflow automation product theme          |\n\n### Available Appearances\n\n| ID              | Description                      |\n| --------------- | -------------------------------- |\n| `light`         | Light mode                       |\n| `dark`          | Dark mode                        |\n| `high-contrast` | WCAG AAA compliant high contrast |\n\n### Adding a New Product Theme\n\n1. Create `src/themes/products/my-product.ts` following the pattern in `products/azure.ts`\n2. Register it: `registerProductTheme({ id: 'my-product', displayName: 'My Product', brand: myBrand, ... })`\n3. Add import to `src/themes/products/index.ts`\n4. Add to `PRODUCT_THEMES` in `.storybook/addons/theme-switcher/constants.ts`\n\n### LLM Context Bundle\n\nThe `themeRegistry` field in `llm-context-bundle.json` lists all registered products and appearances for MCP/AI consumption.\n",
     "component-patterns": "# Component Patterns — Azure Portal\n\n## Page Layout Hierarchy\n```\nAzureBreadcrumb    (Home > Subscription > Resource Group > Resource)\nPageTitleBar       (Icon + Title + Star + More + Copilot Suggestions)\nCommandBar         (Create | Edit | Delete || Refresh | Export | Filter | Columns)\nFilterBar          (SearchBox + Dropdown filters + Active filter tags)\nDataGrid           (Sortable columns with resource data)\n```\n\n## Composed Components (src/components/)\n\n### AzureBreadcrumb\n- Fluent `Breadcrumb` with Home icon\n- Used at top of every page\n\n### PageTitleBar\n- Resource name/page title with icon, star, more-actions\n- Optional Copilot suggestion pills (Tag components)\n\n### CommandBar\n- Fluent `Toolbar` with primary + secondary action groups\n- Primary: Create, Edit, Delete\n- Secondary: Refresh, Export, Filter, Columns\n\n### FilterBar\n- SearchBox + Dropdown filters + active filter TagGroup\n- Sits between CommandBar and DataGrid\n\n## Azure-Specific Patterns\n\n### Resource Status\nAlways use Badge with semantic colors:\n- Running → `color=\"success\"`\n- Stopped → `color=\"danger\"`\n- Deallocated → `color=\"warning\"`\n- Creating → `color=\"informative\"`\n\n### Resource Names as Links\nResource names in grids use brand-colored text (`#0f6cbd`) to indicate clickability.\n\n### KPI / Hero Cards\nUse Card with large numeric display, caption label, trend indicator.\n\n### Card Grids\n`grid-template-columns: repeat(auto-fill, minmax(280px, 1fr))` with 16px gap.\n",
     "styling-guide": "# Styling Guide — Azure Storybook\n\n## CSS-in-JS (Griffel)\nAlways use `makeStyles` for component styles:\n```tsx\nimport { makeStyles, tokens } from '@fluentui/react-components';\n\nconst useStyles = makeStyles({\n  root: {\n    backgroundColor: tokens.colorNeutralBackground1,\n    padding: '16px',\n    borderRadius: tokens.borderRadiusMedium,\n  },\n});\n```\n\n## Token Usage\n- Never hardcode colors — always use `tokens.*` from Fluent\n- For brand-specific values not in tokens, use the Azure brand ramp hex values\n- For spacing, use 4px increments (4, 8, 12, 16, 24, 32)\n- For border radius: `tokens.borderRadiusSmall` (2px), `tokens.borderRadiusMedium` (4px), `tokens.borderRadiusLarge` (8px)\n\n## Icons\n- Import from `@fluentui/react-icons`\n- Default to `24Regular` variants: `Add24Regular`, `Delete24Regular`\n- Use `20Regular` for small/compact UI\n- Use `24Filled` for active/selected states\n\n## Layout Conventions\n- Full-page layouts: `height: 100vh`, flex column\n- Content area: flex: 1, overflow: auto\n- Card grids: CSS Grid with auto-fill, minmax 280px\n- Side panels: fixed 220px width, flex-shrink: 0\n\n## Dark Theme\nThe FluentProvider handles all token resolution automatically.\nWrite styles using tokens, and dark/HC themes work without extra code.\n"
   },

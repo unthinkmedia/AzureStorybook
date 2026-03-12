@@ -10,11 +10,6 @@ import * as path from 'node:path';
 
 const ROOT = path.resolve(import.meta.dirname, '..');
 
-function readIfExists(filePath: string): string | null {
-  const abs = path.resolve(ROOT, filePath);
-  return fs.existsSync(abs) ? fs.readFileSync(abs, 'utf-8') : null;
-}
-
 function run() {
   // 1. Component registry
   const registryPath = path.join(ROOT, 'src', 'component-registry.json');
@@ -63,7 +58,7 @@ function run() {
 
         // Extract component description
         const descMatch = content.match(
-          /description:\s*\{[\s\S]*?component:\s*['"`]([\s\S]*?)['"`]/
+          /description:\s*\{[\s\S]*?component:\s*['"`]([\s\S]*?)['"`]/,
         );
         // Extract story exports
         const storyNames = [
@@ -79,12 +74,30 @@ function run() {
   }
   scanStories(storiesDir);
 
-  // 5. Build the bundle
+  const themeRegistry = {
+    products: [
+      {
+        id: 'azure',
+        displayName: 'Azure',
+        description: 'Default Azure Portal theme — Coherence design system tokens',
+      },
+      {
+        id: 'logic-apps',
+        displayName: 'Logic Apps',
+        description: 'Azure Logic Apps workflow automation product theme (placeholder tokens)',
+      },
+    ],
+    appearances: ['light', 'dark', 'high-contrast'],
+    resolver: 'resolveTheme(productId, appearanceMode) → Theme',
+    note: 'Import from @azure-fluent-storybook/components: { resolveTheme, registerProductTheme }',
+  };
+
   const bundle = {
     generatedAt: new Date().toISOString(),
-    version: '1.0.0',
+    version: '2.0.0',
     registry,
     componentDocs,
+    themeRegistry,
     context: contextFiles,
     guidelines: guidelines.map((g) => ({ name: g.name, content: g.content })),
   };
@@ -106,6 +119,8 @@ function run() {
   console.log(`  Context files: ${Object.keys(contextFiles).length}`);
   console.log(`  Guidelines: ${guidelines.length}`);
   console.log(`  Component docs: ${Object.keys(componentDocs).length}`);
+  console.log(`  Theme products: ${themeRegistry.products.length}`);
+  console.log(`  Appearances: ${themeRegistry.appearances.length}`);
   const withDesc = Object.values(componentDocs).filter((d) => d.description).length;
   console.log(`  With descriptions: ${withDesc}/${Object.keys(componentDocs).length}`);
 }

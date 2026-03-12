@@ -1,0 +1,6 @@
+Command:
+npx storybook dev --port 6099 --no-open --quiet & sleep 20 && curl -s -o /dev/null -w "%{http_code}" http://localhost:6099 && kill %1
+
+Output:
+┌  storybook v10.2.16
+200

@@ -1,10 +1,27 @@
-import React from 'react';
 import type { Preview } from '@storybook/react';
 import { FluentProvider } from '@fluentui/react-components';
-import { withThemeByDataAttribute } from '@storybook/addon-themes';
-import { azureLightTheme, azureDarkTheme, azureHighContrastTheme } from '../src/themes';
+import { resolveTheme } from '../src/themes/themeRegistry';
+import '../src/themes/products';
+import type { AppearanceMode } from '../src/themes/types';
+import {
+  PRODUCT_THEME_GLOBAL,
+  APPEARANCE_MODE_GLOBAL,
+  DEFAULT_PRODUCT,
+  DEFAULT_APPEARANCE,
+} from './addons/theme-switcher/constants';
 
 import './preview.css';
+
+export const globalTypes = {
+  productTheme: {
+    name: 'Product Theme',
+    defaultValue: DEFAULT_PRODUCT,
+  },
+  appearanceMode: {
+    name: 'Appearance',
+    defaultValue: DEFAULT_APPEARANCE,
+  },
+};
 
 const preview: Preview = {
   parameters: {
@@ -33,27 +50,18 @@ const preview: Preview = {
   },
   tags: ['autodocs'],
   decorators: [
-    withThemeByDataAttribute({
-      themes: {
-        'Azure Light': 'light',
-        'Azure Dark': 'dark',
-        'High Contrast': 'high-contrast',
-      },
-      defaultTheme: 'Azure Light',
-      attributeName: 'data-azure-theme',
-    }),
     (Story, context) => {
-      const themeMap: Record<string, typeof azureLightTheme> = {
-        light: azureLightTheme,
-        dark: azureDarkTheme,
-        'high-contrast': azureHighContrastTheme,
-      };
-      const el = document.documentElement;
-      const currentTheme = el.getAttribute('data-azure-theme') || 'light';
-      const fluentTheme = themeMap[currentTheme] || azureLightTheme;
+      const productId =
+        (context.globals[PRODUCT_THEME_GLOBAL] as string | undefined) ?? DEFAULT_PRODUCT;
+      const appearance = ((context.globals[APPEARANCE_MODE_GLOBAL] as string | undefined) ??
+        DEFAULT_APPEARANCE) as AppearanceMode;
+      const theme = resolveTheme(productId, appearance);
+
+      // Backward compat: sync data-azure-theme attribute for any external CSS/tooling
+      document.documentElement.setAttribute('data-azure-theme', appearance);
 
       return (
-        <FluentProvider theme={fluentTheme}>
+        <FluentProvider theme={theme}>
           <Story />
         </FluentProvider>
       );

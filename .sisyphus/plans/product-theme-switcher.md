@@ -832,7 +832,7 @@ Max Concurrent: 4 (Waves 1, 2)
   - Files: `src/themes/__tests__/themeRegistry.test.ts`
   - Pre-commit: `npx vitest run`
 
-- [ ] 9. Build Custom Storybook Toolbar Addon (`.storybook/addons/theme-switcher/`)
+- [x] 9. Build Custom Storybook Toolbar Addon (`.storybook/addons/theme-switcher/`)
 
   **What to do**:
   - Create `.storybook/addons/theme-switcher/manager.tsx` — the toolbar addon registered in the Storybook manager UI:
@@ -947,7 +947,7 @@ Max Concurrent: 4 (Waves 1, 2)
   - Files: `.storybook/addons/theme-switcher/manager.tsx`, `.storybook/addons/theme-switcher/constants.ts`, `.storybook/main.ts`
   - Pre-commit: `npm run build`
 
-- [ ] 10. Refactor Preview Decorator to Use Globals (`.storybook/preview.tsx`)
+- [x] 10. Refactor Preview Decorator to Use Globals (`.storybook/preview.tsx`)
 
   **What to do**:
   - Rewrite `.storybook/preview.tsx` to replace the fragile DOM-attribute-based theme selection with Storybook globals:
@@ -1065,7 +1065,7 @@ Max Concurrent: 4 (Waves 1, 2)
   - Files: `.storybook/preview.tsx`
   - Pre-commit: `npm run build`
 
-- [ ] 11. Update Package Exports (`src/themes/index.ts`, `src/index.ts`)
+- [x] 11. Update Package Exports (`src/themes/index.ts`, `src/index.ts`)
 
   **What to do**:
   - Update `src/themes/index.ts` to export the new theme system:
@@ -1151,7 +1151,7 @@ Max Concurrent: 4 (Waves 1, 2)
   - Files: `src/themes/index.ts`
   - Pre-commit: `npm run build:lib`
 
-- [ ] 12. Update LLM Bundle Generation (`scripts/generate-llm-bundle.ts`, `llm-context/azure-theme.md`)
+- [x] 12. Update LLM Bundle Generation (`scripts/generate-llm-bundle.ts`, `llm-context/azure-theme.md`)
 
   **What to do**:
   - **Update `scripts/generate-llm-bundle.ts`**:

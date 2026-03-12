@@ -1,0 +1,34 @@
+=== Task 11: Theme Registry Exports ===
+
+VERIFICATION: src/themes/index.ts exports
+
+Export line count: 6 export statements
+
+Key exports present:
+1. ✅ azureLightTheme (backward compat)
+2. ✅ ProductThemeDefinition (new type)
+3. ✅ resolveTheme (new function)
+4. ✅ registerProductTheme (new function)
+5. ✅ getAllProductThemes (new function)
+6. ✅ getProductTheme (new function)
+7. ✅ getThemeRegistrySnapshot (new function)
+8. ✅ azureProductTheme (new product theme)
+9. ✅ logicAppsProductTheme (new product theme)
+
+File content:
+---
+// Existing exports (backward compat — DO NOT REMOVE)
+export { azureBrand, azureLightTheme, azureDarkTheme, azureHighContrastTheme } from './azureThemes';
+
+// New theme system — types
+export type { ProductThemeDefinition, AppearanceMode, ThemeRegistry, ResolvedThemeResult } from './types';
+
+// New theme system — registry functions
+export { resolveTheme, registerProductTheme, getAllProductThemes, getProductTheme, getThemeRegistrySnapshot } from './themeRegistry';
+
+// New theme system — product themes
+export { azureProductTheme } from './products/azure';
+export { logicAppsProductTheme } from './products/logic-apps';
+---
+
+Status: ✅ ALL EXPORTS VERIFIED
