@@ -84,7 +84,7 @@ function run() {
       {
         id: 'logic-apps',
         displayName: 'Logic Apps',
-        description: 'Azure Logic Apps workflow automation product theme (placeholder tokens)',
+        description: 'Azure Logic Apps — workflow automation product theme (placeholder tokens)',
       },
     ],
     appearances: ['light', 'dark', 'high-contrast'],
