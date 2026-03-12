@@ -25,6 +25,46 @@ export const globalTypes = {
 
 const preview: Preview = {
   parameters: {
+    chromatic: {
+      modes: {
+        'azure-light': {
+          globals: {
+            [PRODUCT_THEME_GLOBAL]: 'azure',
+            [APPEARANCE_MODE_GLOBAL]: 'light',
+          },
+        },
+        'azure-dark': {
+          globals: {
+            [PRODUCT_THEME_GLOBAL]: 'azure',
+            [APPEARANCE_MODE_GLOBAL]: 'dark',
+          },
+        },
+        'azure-hc': {
+          globals: {
+            [PRODUCT_THEME_GLOBAL]: 'azure',
+            [APPEARANCE_MODE_GLOBAL]: 'high-contrast',
+          },
+        },
+        'logicapps-light': {
+          globals: {
+            [PRODUCT_THEME_GLOBAL]: 'logic-apps',
+            [APPEARANCE_MODE_GLOBAL]: 'light',
+          },
+        },
+        'logicapps-dark': {
+          globals: {
+            [PRODUCT_THEME_GLOBAL]: 'logic-apps',
+            [APPEARANCE_MODE_GLOBAL]: 'dark',
+          },
+        },
+        'logicapps-hc': {
+          globals: {
+            [PRODUCT_THEME_GLOBAL]: 'logic-apps',
+            [APPEARANCE_MODE_GLOBAL]: 'high-contrast',
+          },
+        },
+      },
+    },
     controls: {
       matchers: {
         color: /(background|color)$/i,

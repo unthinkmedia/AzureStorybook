@@ -1250,7 +1250,7 @@ Max Concurrent: 4 (Waves 1, 2)
   - Files: `scripts/generate-llm-bundle.ts`, `llm-context/azure-theme.md`
   - Pre-commit: `npm run build:llm`
 
-- [ ] 13. Full Build Regression Verification
+- [x] 13. Full Build Regression Verification
 
   **What to do**:
   - Run ALL build commands in sequence and verify each succeeds:
@@ -1332,7 +1332,7 @@ Max Concurrent: 4 (Waves 1, 2)
   - Files: — (no source changes unless fix needed)
   - Pre-commit: `npm run build:all`
 
-- [ ] 14. Chromatic Visual Regression Setup for Theme Matrix
+- [x] 14. Chromatic Visual Regression Setup for Theme Matrix
 
   **What to do**:
   - Configure Chromatic to capture visual snapshots across the product × appearance matrix (6 combinations):

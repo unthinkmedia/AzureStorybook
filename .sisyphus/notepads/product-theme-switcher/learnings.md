@@ -110,3 +110,9 @@
 - Added `globalTypes` defaults wired to `DEFAULT_PRODUCT` and `DEFAULT_APPEARANCE`, while preserving existing parameters, tags, story sort, and `import './preview.css'`.
 - Kept backward compatibility by continuing to sync `document.documentElement.setAttribute('data-azure-theme', appearance)` before rendering `FluentProvider`.
 - Verified `.storybook/preview.tsx` is diagnostics-clean and `./node_modules/.bin/tsc --noEmit` passes; evidence saved to task-10 preview files.
+
+## [2026-03-12] Task 14 — Chromatic theme matrix modes
+
+- Added `parameters.chromatic.modes` in `.storybook/preview.tsx` so Chromatic can snapshot all 6 product × appearance combinations from the shared preview config instead of duplicating stories.
+- Mode globals are keyed by `PRODUCT_THEME_GLOBAL` / `APPEARANCE_MODE_GLOBAL`, which resolve to the toolbar globals `productTheme` and `appearanceMode`.
+- Installed Chromatic package version is `11.29.0`; the modes config builds cleanly with Storybook 10.2.16 via `npm run build`.
