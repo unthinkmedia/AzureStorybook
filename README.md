@@ -89,6 +89,70 @@ Required secrets:
 - `AZURE_STATIC_WEB_APPS_API_TOKEN` — SWA deployment token
 - `CHROMATIC_PROJECT_TOKEN` — Chromatic project token
 
+## Agentation Integration
+
+> Stakeholders can annotate UI issues directly in the deployed Storybook. Annotations automatically become GitHub Issues assigned to GitHub Copilot for automated fix PRs.
+
+### Architecture
+
+```
+Browser (Storybook)
+  → POST /api/feedback  (SWA managed function)
+  → GitHub repository_dispatch
+  → GitHub Actions (.github/workflows/agentation-feedback.yml)
+  → GitHub Issue (assigned to Copilot)
+  → Copilot PR
+```
+
+### Environment Variables
+
+Set the following in **Azure Portal → Static Web App → Configuration → Application Settings**:
+
+| Variable | Required | Description |
+| --- | --- | --- |
+| `GITHUB_TOKEN` | ✅ Yes | GitHub token with `contents: write` scope. Used by the `/api/feedback` proxy to trigger `repository_dispatch`. |
+
+**Recommended token types** (in order of preference):
+1. **GitHub App installation token** — longest-lived, fine-grained permissions
+2. **Fine-grained PAT** — set expiry to 1 year, scope to `unthinkmedia/AzureStorybook`, permission: `Contents: Read and write`
+3. **Classic PAT** — `repo` scope (broader than needed but works)
+
+> ⚠️ Never commit the token. Set it only in Azure Portal or as a GitHub Actions secret.
+
+### How Stakeholders Use It
+
+1. Visit the deployed Storybook at the Azure SWA URL
+2. Click the **Agentation toolbar** icon in the story canvas
+3. Click on any UI element to annotate it — add a comment describing the issue
+4. Click **"Send Annotations"** to submit all annotations as a single GitHub Issue
+5. The issue is auto-assigned to Copilot, which will create a fix PR
+
+### Local Development
+
+To run the API function locally alongside Storybook:
+
+**Option A: Azure Functions Core Tools**
+```bash
+# Terminal 1 — Storybook
+npm run dev
+
+# Terminal 2 — API function
+cd api
+npm install
+# Create local settings (not committed)
+echo '{"IsEncrypted":false,"Values":{"FUNCTIONS_WORKER_RUNTIME":"node","GITHUB_TOKEN":"your-token-here"}}' > local.settings.json
+npx func start
+```
+
+**Option B: SWA CLI (proxies both together)**
+```bash
+npm install -g @azure/static-web-apps-cli
+npm run build
+swa start storybook-static --api-location api
+```
+
+> `api/local.settings.json` is already in `.gitignore` — safe to create locally.
+
 ## Tech Stack
 
 - React 18 + TypeScript 5.7
