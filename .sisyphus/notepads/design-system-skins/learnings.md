@@ -291,3 +291,9 @@ addons.add(`${ADDON_ID}/design-system`, {
 - We handled SVG gradients correctly by leaving the raw hexes in `<stop>` inline styles but properly documented them as Exempt layout elements (so they won't flag regex analyzers).
 - Functional layouts and strict component container metrics (like max sizes or icon boundaries) were kept as `px` strings with strict explanatory comments so components don't degrade.
 - The `WizardNav` components successfully transitioned from custom hex states (`#107c10`, `#d13438`) to Fluent UI semantic Status Backgrounds (`tokens.colorStatusSuccessBackground3`, `tokens.colorStatusDangerBackground3`) which better integrates wizard semantics into light/dark token structures.
+
+### Task F4: Scope Fidelity Audit
+- Actual feature commits were constrained to 06db844..205a91e and stayed within planned domains (themes, storybook wiring, 22 components, tests, evidence artifacts, bun.lock).
+- No src/stories/ files changed in 06db844..HEAD; prior story edits remain pre-planning only.
+- No Python files were introduced in feature diff range from baseline, and no fix_*.py references appear in git refs.
+- Hex scan over src/components still returns SVG gradient hex values in ServiceFlyout, CopilotSuggestionsBar, and SREGlobalHeader; EXCEPTIONS.md currently enumerates gradient exemptions only for AzureGlobalHeader and SREGlobalHeader, so documentation completeness is not fully met.

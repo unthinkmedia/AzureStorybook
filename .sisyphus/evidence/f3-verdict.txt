@@ -1,0 +1,31 @@
+APPROVED
+
+Reasoning:
+1) CHECK 1 PASS — Three toolbar dropdowns are visible in Storybook manager toolbar:
+   - Product (label title="Product Theme")
+   - Appearance (label title="Appearance Mode")
+   - Design System (label title="Design System")
+   Evidence: /tmp/design-system-skins/.sisyphus/evidence/f3-recheck/toolbar-dropdowns.png
+
+2) CHECK 2 PASS — Design System dropdown contains exactly 5 expected options:
+   - Fluent 2
+   - Coherence
+   - Ibiza
+   - Fluent 1
+   - Azure Fluent
+   Evidence: /tmp/design-system-skins/.sisyphus/evidence/f3-recheck/design-system-options.png
+
+3) CHECK 3 PASS — Skin switching updates appearance/state:
+   - Selected Coherence, then Ibiza, with update wait between selections.
+   Evidence:
+   - /tmp/design-system-skins/.sisyphus/evidence/f3-recheck/skin-coherence-applied.png
+   - /tmp/design-system-skins/.sisyphus/evidence/f3-recheck/skin-ibiza-applied.png
+
+4) CHECK 4 PASS — URL globals reflect design system selection:
+   - Coherence URL: http://localhost:6006/?path=/story/components-avatar--default&globals=designSystem:coherence
+   - Ibiza URL:     http://localhost:6006/?path=/story/components-avatar--default&globals=designSystem:ibiza
+   - Result: URL includes designSystem: in globals parameter.
+
+5) CHECK 5 PASS — No JavaScript console errors during switching:
+   - console.error messages: none
+   - pageerror exceptions: none

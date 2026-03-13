@@ -1,0 +1,61 @@
+{
+  "targetUrl": "http://localhost:6006/?path=/story/components-avatar--default",
+  "checks": {
+    "check1_toolbarDropdownsVisible": {
+      "pass": false,
+      "details": "Missing one or more custom toolbar dropdowns (Product Theme / Appearance Mode / Design System) in manager shell."
+    },
+    "check2_designSystemHasFiveOptions": {
+      "pass": false,
+      "details": "Design System dropdown not found in toolbar."
+    },
+    "check3_skinSwitchChangesAppearance": {
+      "pass": false,
+      "details": "Could not switch to Coherence/Ibiza because Design System dropdown not found."
+    },
+    "check4_urlReflectsCoherenceSelection": {
+      "pass": false,
+      "details": "Could not validate URL globals for Coherence because Design System dropdown not found.",
+      "coherenceUrl": "http://localhost:6006/?path=/story/components-avatar--default"
+    },
+    "check5_noConsoleErrors": {
+      "pass": true,
+      "details": "No console errors captured during load/attempted switching.",
+      "errors": []
+    }
+  },
+  "observed": {
+    "toolbarState": {
+      "hasProduct": false,
+      "hasAppearance": false,
+      "hasDesign": false,
+      "allSelects": [
+        {
+          "id": "control-size",
+          "className": "css-1fsw97j",
+          "optionCount": 15
+        },
+        {
+          "id": "control-shape",
+          "className": "css-1fsw97j",
+          "optionCount": 3
+        },
+        {
+          "id": "control-active",
+          "className": "css-1fsw97j",
+          "optionCount": 4
+        },
+        {
+          "id": "control-color",
+          "className": "css-1fsw97j",
+          "optionCount": 33
+        }
+      ],
+      "bodyContainsLabels": {
+        "product": false,
+        "appearance": false,
+        "designSystem": false
+      }
+    }
+  }
+}
