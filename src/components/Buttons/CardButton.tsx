@@ -1,11 +1,5 @@
 import React, { useState } from 'react';
-import {
-  makeStyles,
-  mergeClasses,
-  shorthands,
-  tokens,
-  Tooltip,
-} from '@fluentui/react-components';
+import { makeStyles, mergeClasses, shorthands, tokens, Tooltip } from '@fluentui/react-components';
 import { Open16Regular } from '@fluentui/react-icons';
 import { AzureServiceIcon } from '../AzureServiceIcon';
 
@@ -64,7 +58,7 @@ const useStyles = makeStyles({
   },
 
   focused: {
-    boxShadow: `0 0 0 2px ${tokens.colorBrandStroke1}`,
+    boxShadow: `0 0 0 ${tokens.strokeWidthThick} ${tokens.colorBrandStroke1}`,
     ...shorthands.borderColor(tokens.colorBrandStroke1),
   },
 
@@ -74,10 +68,10 @@ const useStyles = makeStyles({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: '8px',
-    width: '104px',
-    height: '104px',
-    padding: '16px 8px',
+    gap: tokens.spacingVerticalS,
+    width: '104px', // layout constant
+    height: '104px', // layout constant
+    padding: `${tokens.spacingVerticalL} ${tokens.spacingHorizontalS}`,
   },
 
   squareLabel: {
@@ -91,7 +85,7 @@ const useStyles = makeStyles({
     display: '-webkit-box',
     WebkitLineClamp: 2,
     WebkitBoxOrient: 'vertical',
-    maxWidth: '88px',
+    maxWidth: '88px', // layout constant
     wordBreak: 'break-word',
   },
 
@@ -100,10 +94,10 @@ const useStyles = makeStyles({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    gap: '16px',
-    padding: '16px 20px',
-    minWidth: '280px',
-    maxWidth: '400px',
+    gap: tokens.spacingHorizontalL,
+    padding: `${tokens.spacingVerticalL} ${tokens.spacingHorizontalXL}`,
+    minWidth: '280px', // functional layout min/max
+    maxWidth: '400px', // functional layout min/max
     textAlign: 'left',
   },
 
@@ -114,14 +108,14 @@ const useStyles = makeStyles({
   horizontalContent: {
     display: 'flex',
     flexDirection: 'column',
-    gap: '2px',
+    gap: tokens.spacingVerticalXXS,
     minWidth: 0,
   },
 
   horizontalTitle: {
     display: 'inline-flex',
     alignItems: 'center',
-    gap: '4px',
+    gap: tokens.spacingHorizontalXS,
     fontSize: tokens.fontSizeBase300,
     fontWeight: tokens.fontWeightSemibold,
     color: tokens.colorNeutralForeground1,
@@ -129,7 +123,7 @@ const useStyles = makeStyles({
   },
 
   externalIcon: {
-    fontSize: '14px',
+    fontSize: tokens.fontSizeBase300,
     color: tokens.colorNeutralForeground3,
     flexShrink: 0,
   },
@@ -186,19 +180,13 @@ export const CardButton: React.FC<CardButtonProps> = ({
         </>
       ) : (
         <>
-          <AzureServiceIcon
-            name={icon}
-            size={resolvedIconSize}
-            className={styles.horizontalIcon}
-          />
+          <AzureServiceIcon name={icon} size={resolvedIconSize} className={styles.horizontalIcon} />
           <div className={styles.horizontalContent}>
             <span className={styles.horizontalTitle}>
               {label}
               {external && <Open16Regular className={styles.externalIcon} />}
             </span>
-            {description && (
-              <span className={styles.horizontalDescription}>{description}</span>
-            )}
+            {description && <span className={styles.horizontalDescription}>{description}</span>}
           </div>
         </>
       )}

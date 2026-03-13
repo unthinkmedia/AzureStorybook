@@ -1,43 +1,37 @@
 import React, { useState } from 'react';
-import {
-  Button,
-  Text,
-  Input,
-  makeStyles,
-  tokens,
-} from '@fluentui/react-components';
+import { Button, Text, Input, makeStyles, tokens } from '@fluentui/react-components';
 import { SearchRegular } from '@fluentui/react-icons';
 
 const useStyles = makeStyles({
   banner: {
     display: 'flex',
     flexDirection: 'column',
-    gap: '8px',
-    padding: '24px 32px 32px 32px',
+    gap: tokens.spacingVerticalS,
+    padding: `${tokens.spacingVerticalXXL} ${tokens.spacingHorizontalXXXL} ${tokens.spacingVerticalXXXL} ${tokens.spacingHorizontalXXXL}`,
     backgroundColor: tokens.colorNeutralBackground3,
-    borderTop: `4px solid ${tokens.colorBrandBackground}`,
+    borderTop: `${tokens.strokeWidthThick} solid ${tokens.colorBrandBackground}`,
   },
   heading: {
     fontSize: tokens.fontSizeBase500,
     fontWeight: tokens.fontWeightSemibold,
     color: tokens.colorNeutralForeground1,
     lineHeight: tokens.lineHeightBase500,
-    marginBottom: '0px',
+    marginBottom: '0',
   },
   description: {
     fontSize: tokens.fontSizeBase300,
     color: tokens.colorNeutralForeground2,
     lineHeight: tokens.lineHeightBase300,
-    marginBottom: '4px',
+    marginBottom: tokens.spacingVerticalXS,
   },
   searchRow: {
     display: 'flex',
     alignItems: 'center',
-    gap: '8px',
+    gap: tokens.spacingHorizontalS,
   },
   searchInput: {
     flex: 1,
-    maxWidth: '540px',
+    maxWidth: '540px', // functional layout max-width
   },
 });
 
@@ -79,9 +73,7 @@ export const SearchBanner: React.FC<SearchBannerProps> = ({
       <Text className={styles.heading} as="h2">
         {heading}
       </Text>
-      {description && (
-        <Text className={styles.description}>{description}</Text>
-      )}
+      {description && <Text className={styles.description}>{description}</Text>}
       <div className={styles.searchRow}>
         <Input
           className={styles.searchInput}

@@ -1,11 +1,5 @@
 import React, { useState, useRef, useCallback, useEffect } from 'react';
-import {
-  makeStyles,
-  tokens,
-  mergeClasses,
-  Text,
-  Link,
-} from '@fluentui/react-components';
+import { makeStyles, tokens, mergeClasses, Text, Link } from '@fluentui/react-components';
 import {
   Star24Regular,
   Star24Filled,
@@ -72,35 +66,35 @@ const useStyles = makeStyles({
   },
 
   flyout: {
-    width: `${FLYOUT_WIDTH}px`,
+    width: `${FLYOUT_WIDTH}px`, // functional layout
     backgroundColor: tokens.colorNeutralBackground1,
-    border: `1px solid ${tokens.colorNeutralStroke2}`,
+    border: `${tokens.strokeWidthThin} solid ${tokens.colorNeutralStroke2}`,
     borderRadius: tokens.borderRadiusMedium,
     boxShadow: '0 4px 16px rgba(0, 0, 0, 0.14)',
     overflow: 'hidden',
     pointerEvents: 'auto',
-    maxHeight: '0px',
+    maxHeight: '0px', // animation collapse endpoint
     opacity: 0,
     transition: 'max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease',
   },
 
   flyoutVisible: {
-    maxHeight: '500px',
+    maxHeight: '500px', // animation expand endpoint
     opacity: 1,
   },
 
   header: {
     display: 'flex',
     alignItems: 'flex-start',
-    gap: '12px',
-    padding: '16px 16px 12px',
+    gap: tokens.spacingHorizontalM,
+    padding: `${tokens.spacingVerticalL} ${tokens.spacingHorizontalL} ${tokens.spacingVerticalM}`,
   },
 
   titleArea: {
     flex: 1,
     display: 'flex',
     flexDirection: 'column',
-    gap: '2px',
+    gap: tokens.spacingVerticalXXS,
   },
 
   title: {
@@ -114,8 +108,8 @@ const useStyles = makeStyles({
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
-    width: '28px',
-    height: '28px',
+    width: '28px', // functional icon size
+    height: '28px', // functional icon size
     padding: 0,
     border: 'none',
     borderRadius: tokens.borderRadiusMedium,
@@ -131,19 +125,19 @@ const useStyles = makeStyles({
   quickActions: {
     display: 'flex',
     alignItems: 'center',
-    gap: '12px',
-    padding: '0 16px 8px',
+    gap: tokens.spacingHorizontalM,
+    padding: `0 ${tokens.spacingHorizontalL} ${tokens.spacingVerticalS}`,
   },
 
   quickAction: {
     display: 'inline-flex',
     alignItems: 'center',
-    gap: '4px',
+    gap: tokens.spacingHorizontalXS,
     fontSize: tokens.fontSizeBase200,
     color: tokens.colorBrandForegroundLink,
     backgroundColor: 'transparent',
     border: 'none',
-    padding: '4px 0',
+    padding: `${tokens.spacingVerticalXS} 0`,
     cursor: 'pointer',
     fontFamily: tokens.fontFamilyBase,
     ':hover': {
@@ -155,24 +149,24 @@ const useStyles = makeStyles({
   quickActionIcon: {
     display: 'inline-flex',
     alignItems: 'center',
-    fontSize: '16px',
+    fontSize: tokens.fontSizeBase400,
     color: tokens.colorBrandForegroundLink,
   },
 
   chevron: {
-    fontSize: '12px',
+    fontSize: tokens.fontSizeBase200,
     color: tokens.colorBrandForegroundLink,
-    marginLeft: '-2px',
+    marginLeft: `calc(${tokens.spacingHorizontalXXS} * -1)`,
   },
 
   divider: {
-    height: '1px',
+    height: tokens.strokeWidthThin,
     backgroundColor: tokens.colorNeutralStroke2,
-    margin: '0 16px',
+    margin: `0 ${tokens.spacingHorizontalL}`,
   },
 
   section: {
-    padding: '12px 16px',
+    padding: `${tokens.spacingVerticalM} ${tokens.spacingHorizontalL}`,
   },
 
   sectionTitle: {
@@ -180,7 +174,7 @@ const useStyles = makeStyles({
     fontWeight: tokens.fontWeightSemibold,
     color: tokens.colorNeutralForeground1,
     lineHeight: tokens.lineHeightBase300,
-    marginBottom: '4px',
+    marginBottom: tokens.spacingVerticalXS,
     display: 'block',
   },
 
@@ -193,8 +187,8 @@ const useStyles = makeStyles({
   copilotRow: {
     display: 'flex',
     alignItems: 'center',
-    gap: '8px',
-    padding: '12px 16px',
+    gap: tokens.spacingHorizontalS,
+    padding: `${tokens.spacingVerticalM} ${tokens.spacingHorizontalL}`,
   },
 
   copilotText: {
@@ -204,14 +198,14 @@ const useStyles = makeStyles({
   },
 
   linksSection: {
-    padding: '12px 16px 16px',
+    padding: `${tokens.spacingVerticalM} ${tokens.spacingHorizontalL} ${tokens.spacingVerticalL}`,
   },
 
   linksSectionTitle: {
     fontSize: tokens.fontSizeBase300,
     fontWeight: tokens.fontWeightSemibold,
     color: tokens.colorNeutralForeground1,
-    marginBottom: '4px',
+    marginBottom: tokens.spacingVerticalXS,
     display: 'block',
   },
 
@@ -219,18 +213,18 @@ const useStyles = makeStyles({
     display: 'block',
     fontSize: tokens.fontSizeBase200,
     lineHeight: tokens.lineHeightBase300,
-    marginTop: '2px',
+    marginTop: tokens.spacingVerticalXXS,
   },
 
   trainingSection: {
-    padding: '12px 16px',
+    padding: `${tokens.spacingVerticalM} ${tokens.spacingHorizontalL}`,
   },
 
   trainingTitle: {
     fontSize: tokens.fontSizeBase300,
     fontWeight: tokens.fontWeightSemibold,
     color: tokens.colorNeutralForeground1,
-    marginBottom: '4px',
+    marginBottom: tokens.spacingVerticalXS,
     display: 'block',
   },
 
@@ -247,10 +241,17 @@ const useStyles = makeStyles({
 const CopilotSmallIcon: React.FC = () => (
   <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
     <defs>
-      <linearGradient id="copilot-grad-flyout" x1="0" y1="0" x2="20" y2="20" gradientUnits="userSpaceOnUse">
-        <stop stopColor="#6264A7" />
-        <stop offset="0.5" stopColor="#A45EDB" />
-        <stop offset="1" stopColor="#E0588E" />
+      <linearGradient
+        id="copilot-grad-flyout"
+        x1="0"
+        y1="0"
+        x2="20"
+        y2="20"
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop stopColor="#6264A7" /> {/* SVG gradient — exempt */}
+        <stop offset="0.5" stopColor="#A45EDB" /> {/* SVG gradient — exempt */}
+        <stop offset="1" stopColor="#E0588E" /> {/* SVG gradient — exempt */}
       </linearGradient>
     </defs>
     <path
@@ -310,9 +311,10 @@ export const ServiceFlyout: React.FC<ServiceFlyoutProps> = ({
       left = rect.left - FLYOUT_GAP - FLYOUT_WIDTH;
     } else {
       // Neither side fits — pin to whichever edge has more room
-      left = vw - rect.right > rect.left
-        ? Math.min(rect.right + FLYOUT_GAP, vw - FLYOUT_WIDTH - 8)
-        : Math.max(rect.left - FLYOUT_GAP - FLYOUT_WIDTH, 8);
+      left =
+        vw - rect.right > rect.left
+          ? Math.min(rect.right + FLYOUT_GAP, vw - FLYOUT_WIDTH - 8)
+          : Math.max(rect.left - FLYOUT_GAP - FLYOUT_WIDTH, 8);
     }
 
     // Default: align flyout top with trigger top.
@@ -360,12 +362,7 @@ export const ServiceFlyout: React.FC<ServiceFlyoutProps> = ({
   };
 
   return (
-    <div
-      ref={wrapperRef}
-      className={styles.wrapper}
-      onMouseEnter={show}
-      onMouseLeave={hide}
-    >
+    <div ref={wrapperRef} className={styles.wrapper} onMouseEnter={show} onMouseLeave={hide}>
       {children}
 
       <div
@@ -376,10 +373,7 @@ export const ServiceFlyout: React.FC<ServiceFlyoutProps> = ({
         onMouseLeave={hide}
       >
         <div
-          className={mergeClasses(
-            styles.flyout,
-            visible && styles.flyoutVisible,
-          )}
+          className={mergeClasses(styles.flyout, visible && styles.flyoutVisible)}
           role="tooltip"
         >
           {/* Header */}
@@ -410,9 +404,7 @@ export const ServiceFlyout: React.FC<ServiceFlyoutProps> = ({
                   }}
                 >
                   {action.icon && (
-                    <span className={styles.quickActionIcon}>
-                      {actionIcon(action.icon)}
-                    </span>
+                    <span className={styles.quickActionIcon}>{actionIcon(action.icon)}</span>
                   )}
                   {action.label}
                   {action.hasMenu && <ChevronDown16Regular className={styles.chevron} />}
@@ -460,11 +452,7 @@ export const ServiceFlyout: React.FC<ServiceFlyoutProps> = ({
             <div className={styles.linksSection}>
               <Text className={styles.linksSectionTitle}>Useful links</Text>
               {links.map((link) => (
-                <Link
-                  key={link.label}
-                  className={styles.linkItem}
-                  href={link.href ?? '#'}
-                >
+                <Link key={link.label} className={styles.linkItem} href={link.href ?? '#'}>
                   {link.label} ↗
                 </Link>
               ))}

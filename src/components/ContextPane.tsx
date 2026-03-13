@@ -1,11 +1,5 @@
 import React, { useCallback, useEffect, useRef } from 'react';
-import {
-  makeStyles,
-  tokens,
-  mergeClasses,
-  Text,
-  Button,
-} from '@fluentui/react-components';
+import { makeStyles, tokens, mergeClasses, Text, Button } from '@fluentui/react-components';
 import { Dismiss24Regular } from '@fluentui/react-icons';
 
 /* ------------------------------------------------------------------ */
@@ -95,15 +89,15 @@ const useStyles = makeStyles({
     display: 'flex',
     alignItems: 'flex-start',
     justifyContent: 'space-between',
-    padding: '16px 16px 12px 24px',
-    borderBottom: `1px solid ${tokens.colorNeutralStroke2}`,
+    padding: `${tokens.spacingVerticalL} ${tokens.spacingHorizontalL} ${tokens.spacingVerticalM} ${tokens.spacingHorizontalXXL}`,
+    borderBottom: `${tokens.strokeWidthThin} solid ${tokens.colorNeutralStroke2}`,
     flexShrink: 0,
   },
 
   headerText: {
     display: 'flex',
     flexDirection: 'column',
-    gap: '2px',
+    gap: tokens.spacingVerticalXXS,
     minWidth: 0,
     flex: 1,
   },
@@ -124,15 +118,15 @@ const useStyles = makeStyles({
   body: {
     flex: 1,
     overflowY: 'auto',
-    padding: '20px 24px',
+    padding: `${tokens.spacingVerticalXL} ${tokens.spacingHorizontalXXL}`,
   },
 
   footer: {
     display: 'flex',
     alignItems: 'center',
-    gap: '8px',
-    padding: '12px 24px',
-    borderTop: `1px solid ${tokens.colorNeutralStroke2}`,
+    gap: tokens.spacingHorizontalS,
+    padding: `${tokens.spacingVerticalM} ${tokens.spacingHorizontalXXL}`,
+    borderTop: `${tokens.strokeWidthThin} solid ${tokens.colorNeutralStroke2}`,
     flexShrink: 0,
   },
 });
@@ -208,9 +202,7 @@ export const ContextPane: React.FC<ContextPaneProps> = ({
         <div className={styles.header}>
           <div className={styles.headerText}>
             <h2 className={styles.title}>{title}</h2>
-            {subtitle && (
-              <Text className={styles.subtitle}>{subtitle}</Text>
-            )}
+            {subtitle && <Text className={styles.subtitle}>{subtitle}</Text>}
           </div>
           <Button
             appearance="subtle"
@@ -222,16 +214,10 @@ export const ContextPane: React.FC<ContextPaneProps> = ({
         </div>
 
         {/* Body */}
-        <div className={styles.body}>
-          {children}
-        </div>
+        <div className={styles.body}>{children}</div>
 
         {/* Footer */}
-        {footer && (
-          <div className={styles.footer}>
-            {footer}
-          </div>
-        )}
+        {footer && <div className={styles.footer}>{footer}</div>}
       </div>
     </div>
   );

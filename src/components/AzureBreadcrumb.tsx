@@ -21,9 +21,9 @@ export interface AzureBreadcrumbProps {
 
 const useStyles = makeStyles({
   root: {
-    padding: '8px 16px',
+    padding: `${tokens.spacingVerticalS} ${tokens.spacingHorizontalL}`,
     backgroundColor: tokens.colorNeutralBackground1,
-    borderBottom: `1px solid ${tokens.colorNeutralStroke2}`,
+    borderBottom: `${tokens.strokeWidthThin} solid ${tokens.colorNeutralStroke2}`,
   },
 });
 

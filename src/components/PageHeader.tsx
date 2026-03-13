@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@fluentui/react-components';
+import { makeStyles, tokens } from '@fluentui/react-components';
 import { PageTitleBar } from './PageTitleBar';
 import type { PageTitleBarProps } from './PageTitleBar';
 import { CopilotSuggestionsBar } from './CopilotSuggestionsBar';
@@ -20,16 +20,16 @@ export interface PageHeaderProps extends PageTitleBarProps {
 
 const useStyles = makeStyles({
   root: {
-    padding: '12px 24px',
+    padding: `${tokens.spacingVerticalM} ${tokens.spacingHorizontalXXL}`,
     display: 'flex',
     alignItems: 'flex-start',
-    gap: '8px',
-    minHeight: '48px',
+    gap: tokens.spacingHorizontalS,
+    minHeight: '48px', // functional layout
     overflow: 'hidden',
   },
   suggestions: {
     /* Offset to vertically center with the 28px title line (not title+subtitle). */
-    marginTop: '2px',
+    marginTop: tokens.spacingVerticalXXS,
     flex: 1,
     minWidth: 0,
     overflow: 'hidden',
@@ -40,10 +40,7 @@ const useStyles = makeStyles({
 /*  Component                                                                 */
 /* -------------------------------------------------------------------------- */
 
-export const PageHeader: React.FC<PageHeaderProps> = ({
-  copilotSuggestions,
-  ...titleProps
-}) => {
+export const PageHeader: React.FC<PageHeaderProps> = ({ copilotSuggestions, ...titleProps }) => {
   const styles = useStyles();
 
   return (

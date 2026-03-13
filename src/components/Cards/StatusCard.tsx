@@ -1,18 +1,13 @@
 import React from 'react';
-import {
-  Link,
-  Text,
-  makeStyles,
-  tokens,
-} from '@fluentui/react-components';
+import { Link, Text, makeStyles, tokens } from '@fluentui/react-components';
 import { HeartPulseRegular } from '@fluentui/react-icons';
 
 const useStyles = makeStyles({
   card: {
     display: 'flex',
     alignItems: 'center',
-    gap: '12px',
-    padding: '16px',
+    gap: tokens.spacingHorizontalM,
+    padding: tokens.spacingHorizontalL,
     border: `1px solid ${tokens.colorNeutralStroke2}`,
     borderRadius: tokens.borderRadiusMedium,
     backgroundColor: tokens.colorNeutralBackground1,
@@ -23,7 +18,7 @@ const useStyles = makeStyles({
     justifyContent: 'center',
     flexShrink: 0,
     color: tokens.colorBrandForeground1,
-    fontSize: '20px',
+    fontSize: tokens.fontSizeBase500,
   },
   message: {
     fontSize: tokens.fontSizeBase300,

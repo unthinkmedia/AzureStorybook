@@ -58,16 +58,16 @@ const useStyles = makeStyles({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
-    padding: '0 8px',
-    minHeight: '36px',
-    borderBottom: `1px solid ${tokens.colorNeutralStroke2}`,
+    padding: `0 ${tokens.spacingHorizontalS}`,
+    minHeight: tokens.spacingHorizontalXXXL, // closest available token
+    borderBottom: `${tokens.strokeWidthThin} solid ${tokens.colorNeutralStroke2}`,
     backgroundColor: tokens.colorNeutralBackground1,
     flexShrink: 0,
   },
   leftSection: {
     display: 'flex',
     alignItems: 'center',
-    gap: '0px',
+    gap: '0',
     overflow: 'hidden',
     flexShrink: 1,
     minWidth: 0,
@@ -75,7 +75,7 @@ const useStyles = makeStyles({
   rightSection: {
     display: 'flex',
     alignItems: 'center',
-    gap: '0px',
+    gap: '0',
     flexShrink: 0,
     marginLeft: 'auto',
   },
@@ -85,9 +85,9 @@ const useStyles = makeStyles({
   },
   button: {
     minWidth: 'auto',
-    padding: '4px 8px',
-    height: '32px',
-    fontSize: '13px',
+    padding: `${tokens.spacingVerticalXS} ${tokens.spacingHorizontalS}`,
+    height: tokens.spacingHorizontalXXXL, // closest available token
+    fontSize: tokens.fontSizeBase200,
     fontWeight: 400,
     color: tokens.colorNeutralForeground2,
     borderRadius: tokens.borderRadiusMedium,
@@ -109,11 +109,11 @@ const useStyles = makeStyles({
   menuButton: {
     display: 'inline-flex',
     alignItems: 'center',
-    gap: '4px',
+    gap: tokens.spacingHorizontalXS,
     minWidth: 'auto',
-    padding: '4px 8px',
-    height: '32px',
-    fontSize: '13px',
+    padding: `${tokens.spacingVerticalXS} ${tokens.spacingHorizontalS}`,
+    height: tokens.spacingHorizontalXXXL, // closest available token
+    fontSize: tokens.fontSizeBase200,
     fontWeight: 400,
     color: tokens.colorNeutralForeground2,
     backgroundColor: 'transparent',
@@ -137,13 +137,13 @@ const useStyles = makeStyles({
     },
   },
   chevron: {
-    fontSize: '12px',
+    fontSize: tokens.fontSizeBase200,
     color: 'inherit',
   },
   overflowButton: {
-    minWidth: '32px',
-    padding: '4px 6px',
-    height: '32px',
+    minWidth: tokens.spacingHorizontalXXXL, // closest available token
+    padding: `${tokens.spacingVerticalXS} ${tokens.spacingHorizontalSNudge}`,
+    height: tokens.spacingHorizontalXXXL, // closest available token
     color: tokens.colorNeutralForeground2,
     ':hover': {
       color: tokens.colorNeutralForeground1,
@@ -151,13 +151,13 @@ const useStyles = makeStyles({
     },
   },
   divider: {
-    height: '20px',
-    margin: '0 4px',
+    height: tokens.spacingHorizontalXL, // closest available token
+    margin: `0 ${tokens.spacingHorizontalXS}`,
   },
   iconSlot: {
     display: 'inline-flex',
     alignItems: 'center',
-    fontSize: '20px',
+    fontSize: tokens.fontSizeBase500,
     color: 'inherit',
   },
 });

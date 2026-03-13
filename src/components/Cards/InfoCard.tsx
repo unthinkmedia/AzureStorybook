@@ -1,10 +1,5 @@
 import React, { useState } from 'react';
-import {
-  makeStyles,
-  mergeClasses,
-  shorthands,
-  tokens,
-} from '@fluentui/react-components';
+import { makeStyles, mergeClasses, shorthands, tokens } from '@fluentui/react-components';
 import { Open16Regular } from '@fluentui/react-icons';
 import { AzureServiceIcon } from '../AzureServiceIcon';
 
@@ -50,9 +45,9 @@ const useStyles = makeStyles({
     backgroundColor: tokens.colorNeutralBackground1,
     border: `1px solid ${tokens.colorNeutralStroke2}`,
     borderRadius: tokens.borderRadiusMedium,
-    padding: '20px',
-    minWidth: '260px',
-    maxWidth: '400px',
+    padding: tokens.spacingHorizontalXL,
+    minWidth: '260px', // functional layout min/max
+    maxWidth: '400px', // functional layout min/max
     fontFamily: tokens.fontFamilyBase,
     transitionProperty: 'box-shadow, border-color',
     transitionDuration: '0.15s',
@@ -68,18 +63,18 @@ const useStyles = makeStyles({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'flex-start',
-    gap: '12px',
+    gap: tokens.spacingHorizontalM,
   },
 
   iconWrapper: {
     flexShrink: 0,
-    paddingTop: '2px',
+    paddingTop: tokens.spacingVerticalXXS,
   },
 
   textContent: {
     display: 'flex',
     flexDirection: 'column',
-    gap: '4px',
+    gap: tokens.spacingVerticalXS,
     minWidth: 0,
     flex: 1,
   },
@@ -105,10 +100,10 @@ const useStyles = makeStyles({
       color: tokens.colorBrandForegroundLinkHover,
     },
     ':focus-visible': {
-      outlineWidth: '2px',
+      outlineWidth: tokens.strokeWidthThick,
       outlineStyle: 'solid',
       outlineColor: tokens.colorBrandStroke1,
-      outlineOffset: '2px',
+      outlineOffset: '2px', // no token for outline-offset
       borderRadius: tokens.borderRadiusSmall,
     },
   },
@@ -121,14 +116,14 @@ const useStyles = makeStyles({
   },
 
   footer: {
-    marginTop: '16px',
+    marginTop: tokens.spacingVerticalL,
     paddingTop: '0',
   },
 
   ctaLink: {
     display: 'inline-flex',
     alignItems: 'center',
-    gap: '4px',
+    gap: tokens.spacingHorizontalXS,
     fontSize: tokens.fontSizeBase200,
     fontWeight: tokens.fontWeightRegular,
     color: tokens.colorBrandForegroundLink,
@@ -143,16 +138,16 @@ const useStyles = makeStyles({
       color: tokens.colorBrandForegroundLinkHover,
     },
     ':focus-visible': {
-      outlineWidth: '2px',
+      outlineWidth: tokens.strokeWidthThick,
       outlineStyle: 'solid',
       outlineColor: tokens.colorBrandStroke1,
-      outlineOffset: '2px',
+      outlineOffset: '2px', // no token for outline-offset
       borderRadius: tokens.borderRadiusSmall,
     },
   },
 
   externalIcon: {
-    fontSize: '14px',
+    fontSize: tokens.fontSizeBase300,
     flexShrink: 0,
   },
 });
@@ -212,11 +207,7 @@ export const InfoCard: React.FC<InfoCardProps> = ({
 
   return (
     <div
-      className={mergeClasses(
-        styles.card,
-        hovered && styles.hovered,
-        className,
-      )}
+      className={mergeClasses(styles.card, hovered && styles.hovered, className)}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >

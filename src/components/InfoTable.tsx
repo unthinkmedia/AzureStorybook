@@ -60,20 +60,20 @@ const useStyles = makeStyles({
   root: {
     display: 'flex',
     flexWrap: 'wrap',
-    gap: '0 32px',
+    gap: `0 ${tokens.spacingHorizontalXXXL}`,
     width: '100%',
   },
   column: {
-    flex: '1 1 320px',
+    flex: '1 1 320px', // functional layout min/max
     display: 'grid',
     gridTemplateColumns: 'max-content minmax(0, 1fr)',
     alignContent: 'start',
     overflow: 'hidden',
   },
   label: {
-    paddingTop: '10px',
-    paddingBottom: '10px',
-    paddingRight: '24px',
+    paddingTop: tokens.spacingVerticalMNudge,
+    paddingBottom: tokens.spacingVerticalMNudge,
+    paddingRight: tokens.spacingHorizontalXXL,
     fontSize: tokens.fontSizeBase300,
     lineHeight: tokens.lineHeightBase300,
     color: tokens.colorNeutralForeground1,
@@ -81,15 +81,15 @@ const useStyles = makeStyles({
     whiteSpace: 'nowrap',
   },
   value: {
-    paddingTop: '10px',
-    paddingBottom: '10px',
-    paddingRight: '32px',
+    paddingTop: tokens.spacingVerticalMNudge,
+    paddingBottom: tokens.spacingVerticalMNudge,
+    paddingRight: tokens.spacingHorizontalXXXL,
     fontSize: tokens.fontSizeBase300,
     lineHeight: tokens.lineHeightBase300,
     color: tokens.colorNeutralForeground1,
     display: 'flex',
     alignItems: 'center',
-    gap: '8px',
+    gap: tokens.spacingHorizontalS,
     overflow: 'hidden',
     textOverflow: 'ellipsis',
   },
@@ -99,9 +99,9 @@ const useStyles = makeStyles({
   },
   copyButton: {
     minWidth: 'auto',
-    padding: '2px',
-    height: '24px',
-    width: '24px',
+    padding: tokens.spacingHorizontalXXS,
+    height: '24px', // layout constant
+    width: '24px', // layout constant
   },
 });
 
@@ -109,11 +109,7 @@ const useStyles = makeStyles({
 /*  Component                                                                 */
 /* -------------------------------------------------------------------------- */
 
-export const InfoTable: React.FC<InfoTableProps> = ({
-  items,
-  columns = 2,
-  className,
-}) => {
+export const InfoTable: React.FC<InfoTableProps> = ({ items, columns = 2, className }) => {
   const styles = useStyles();
   const groups = splitColumns(items, columns);
 

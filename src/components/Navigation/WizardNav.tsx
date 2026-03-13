@@ -1,19 +1,12 @@
 import React from 'react';
 import { makeStyles, tokens, mergeClasses } from '@fluentui/react-components';
-import {
-  Checkmark16Filled,
-  ErrorCircle16Regular,
-} from '@fluentui/react-icons';
+import { Checkmark16Filled, ErrorCircle16Regular } from '@fluentui/react-icons';
 
 /* -------------------------------------------------------------------------- */
 /*  Types                                                                     */
 /* -------------------------------------------------------------------------- */
 
-export type WizardStepStatus =
-  | 'not-started'
-  | 'current'
-  | 'completed'
-  | 'error';
+export type WizardStepStatus = 'not-started' | 'current' | 'completed' | 'error';
 
 export interface WizardStep {
   /** Unique key for the step */
@@ -67,13 +60,13 @@ const useStyles = makeStyles({
   },
   stepVertical: {
     flexDirection: 'row',
-    gap: '12px',
+    gap: tokens.spacingHorizontalM,
   },
   stepHorizontal: {
     flexDirection: 'column',
     alignItems: 'center',
     flex: 1,
-    minWidth: '80px',
+    minWidth: '80px', // functional layout
   },
 
   /* ── Indicator column (circle + connector) ── */
@@ -94,13 +87,13 @@ const useStyles = makeStyles({
 
   /* ── Circle ── */
   circle: {
-    width: `${CIRCLE_SIZE}px`,
-    height: `${CIRCLE_SIZE}px`,
+    width: `${CIRCLE_SIZE}px`, // functional layout
+    height: `${CIRCLE_SIZE}px`, // functional layout
     borderRadius: '50%',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    fontSize: '14px',
+    fontSize: tokens.fontSizeBase300,
     fontWeight: 600,
     flexShrink: 0,
     transitionProperty: 'background, color, border-color',
@@ -113,67 +106,67 @@ const useStyles = makeStyles({
     border: 'none',
   },
   circleCompleted: {
-    backgroundColor: '#107c10',
-    color: '#ffffff',
+    backgroundColor: tokens.colorStatusSuccessBackground3,
+    color: tokens.colorNeutralForegroundOnBrand,
     border: 'none',
     cursor: 'pointer',
     ':hover': {
-      backgroundColor: '#0e6b0e',
+      backgroundColor: tokens.colorStatusSuccessForeground1,
     },
   },
   circleNotStarted: {
     backgroundColor: tokens.colorNeutralBackground1,
     color: tokens.colorNeutralForeground3,
-    border: `${CONNECTOR_THICKNESS}px solid ${tokens.colorNeutralStroke1}`,
+    border: `${CONNECTOR_THICKNESS}px solid ${tokens.colorNeutralStroke1}`, // functional layout
   },
   circleError: {
-    backgroundColor: '#d13438',
-    color: '#ffffff',
+    backgroundColor: tokens.colorStatusDangerBackground3,
+    color: tokens.colorNeutralForegroundOnBrand,
     border: 'none',
   },
 
   /* ── Connector lines ── */
   connectorVertical: {
-    width: `${CONNECTOR_THICKNESS}px`,
-    minHeight: '24px',
+    width: `${CONNECTOR_THICKNESS}px`, // functional layout
+    minHeight: '24px', // functional layout
     flex: 1,
     backgroundColor: tokens.colorNeutralStroke1,
   },
   connectorVerticalCompleted: {
-    backgroundColor: '#107c10',
+    backgroundColor: tokens.colorStatusSuccessBackground3,
   },
   connectorHorizontalWrapper: {
     flex: 1,
     display: 'flex',
     alignItems: 'center',
-    minWidth: '24px',
+    minWidth: '24px', // functional layout
   },
   connectorHorizontal: {
-    height: `${CONNECTOR_THICKNESS}px`,
+    height: `${CONNECTOR_THICKNESS}px`, // functional layout
     width: '100%',
     backgroundColor: tokens.colorNeutralStroke1,
   },
   connectorHorizontalCompleted: {
-    backgroundColor: '#107c10',
+    backgroundColor: tokens.colorStatusSuccessBackground3,
   },
 
   /* ── Labels ── */
   labelBlock: {
     display: 'flex',
     flexDirection: 'column',
-    paddingTop: '4px',
-    paddingBottom: '16px',
+    paddingTop: tokens.spacingVerticalXS,
+    paddingBottom: tokens.spacingVerticalL,
   },
   labelBlockHorizontal: {
     alignItems: 'center',
     textAlign: 'center',
-    paddingTop: '8px',
+    paddingTop: tokens.spacingVerticalS,
     paddingBottom: '0',
   },
   label: {
-    fontSize: '14px',
+    fontSize: tokens.fontSizeBase300,
     fontWeight: 600,
-    lineHeight: '20px',
+    lineHeight: tokens.lineHeightBase300,
     color: tokens.colorNeutralForeground1,
   },
   labelNotStarted: {
@@ -181,11 +174,11 @@ const useStyles = makeStyles({
     fontWeight: 400,
   },
   description: {
-    fontSize: '12px',
+    fontSize: tokens.fontSizeBase200,
     fontWeight: 400,
-    lineHeight: '16px',
+    lineHeight: tokens.lineHeightBase200,
     color: tokens.colorNeutralForeground3,
-    marginTop: '2px',
+    marginTop: tokens.spacingVerticalXXS,
   },
 });
 
@@ -250,29 +243,19 @@ export const WizardNav: React.FC<WizardNavProps> = ({
           status === 'error' && styles.circleError,
         );
 
-        const handleClick = clickable
-          ? () => onStepClick!(step.key)
-          : undefined;
+        const handleClick = clickable ? () => onStepClick!(step.key) : undefined;
 
         if (isVertical) {
           return (
-            <div
-              key={step.key}
-              className={mergeClasses(styles.step, styles.stepVertical)}
-            >
+            <div key={step.key} className={mergeClasses(styles.step, styles.stepVertical)}>
               {/* Indicator column: circle + connector */}
               <div className={styles.indicatorCol}>
-                <StepCircle
-                  index={i}
-                  status={status}
-                  className={circleClass}
-                />
+                <StepCircle index={i} status={status} className={circleClass} />
                 {!isLast && (
                   <div
                     className={mergeClasses(
                       styles.connectorVertical,
-                      status === 'completed' &&
-                        styles.connectorVerticalCompleted,
+                      status === 'completed' && styles.connectorVerticalCompleted,
                     )}
                   />
                 )}
@@ -295,11 +278,7 @@ export const WizardNav: React.FC<WizardNavProps> = ({
                 >
                   {step.label}
                 </span>
-                {step.description && (
-                  <span className={styles.description}>
-                    {step.description}
-                  </span>
-                )}
+                {step.description && <span className={styles.description}>{step.description}</span>}
               </div>
             </div>
           );
@@ -310,17 +289,10 @@ export const WizardNav: React.FC<WizardNavProps> = ({
           <React.Fragment key={step.key}>
             <div className={mergeClasses(styles.step, styles.stepHorizontal)}>
               {/* Circle */}
-              <StepCircle
-                index={i}
-                status={status}
-                className={circleClass}
-              />
+              <StepCircle index={i} status={status} className={circleClass} />
               {/* Label below */}
               <div
-                className={mergeClasses(
-                  styles.labelBlock,
-                  styles.labelBlockHorizontal,
-                )}
+                className={mergeClasses(styles.labelBlock, styles.labelBlockHorizontal)}
                 onClick={handleClick}
                 style={{ cursor: clickable ? 'pointer' : undefined }}
                 role={clickable ? 'button' : undefined}
@@ -335,11 +307,7 @@ export const WizardNav: React.FC<WizardNavProps> = ({
                 >
                   {step.label}
                 </span>
-                {step.description && (
-                  <span className={styles.description}>
-                    {step.description}
-                  </span>
-                )}
+                {step.description && <span className={styles.description}>{step.description}</span>}
               </div>
             </div>
             {/* Horizontal connector between steps */}
@@ -348,8 +316,7 @@ export const WizardNav: React.FC<WizardNavProps> = ({
                 <div
                   className={mergeClasses(
                     styles.connectorHorizontal,
-                    status === 'completed' &&
-                      styles.connectorHorizontalCompleted,
+                    status === 'completed' && styles.connectorHorizontalCompleted,
                   )}
                   style={{ marginTop: `${CIRCLE_SIZE / 2}px` }}
                 />

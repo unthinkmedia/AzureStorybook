@@ -1,14 +1,6 @@
 import React from 'react';
-import {
-  Text,
-  Button,
-  makeStyles,
-  tokens,
-} from '@fluentui/react-components';
-import {
-  MoreHorizontal24Regular,
-  Pin24Regular,
-} from '@fluentui/react-icons';
+import { Text, Button, makeStyles, tokens } from '@fluentui/react-components';
+import { MoreHorizontal24Regular, Pin24Regular } from '@fluentui/react-icons';
 
 /* -------------------------------------------------------------------------- */
 /*  Types                                                                     */
@@ -31,7 +23,7 @@ const useStyles = makeStyles({
   root: {
     display: 'flex',
     alignItems: 'center',
-    gap: '8px',
+    gap: tokens.spacingHorizontalS,
     flexShrink: 0,
   },
   titleIcon: {
@@ -62,7 +54,7 @@ const useStyles = makeStyles({
   },
   actions: {
     display: 'flex',
-    gap: '2px',
+    gap: tokens.spacingHorizontalXXS,
     flexShrink: 0,
   },
 });
@@ -98,18 +90,11 @@ export const PageTitleBar: React.FC<PageTitleBarProps> = ({
             <span className={styles.titleBold}>{title}</span>
           )}
         </span>
-        {subtitle && (
-          <Text className={styles.subtitle}>{subtitle}</Text>
-        )}
+        {subtitle && <Text className={styles.subtitle}>{subtitle}</Text>}
       </div>
       <div className={styles.actions}>
         {onPin && (
-          <Button
-            appearance="subtle"
-            icon={<Pin24Regular />}
-            aria-label="Pin"
-            onClick={onPin}
-          />
+          <Button appearance="subtle" icon={<Pin24Regular />} aria-label="Pin" onClick={onPin} />
         )}
         {onMore && (
           <Button

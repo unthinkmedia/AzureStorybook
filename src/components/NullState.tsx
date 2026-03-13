@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  Button,
-  Link,
-  Text,
-  makeStyles,
-  tokens,
-} from '@fluentui/react-components';
+import { Button, Link, Text, makeStyles, tokens } from '@fluentui/react-components';
 
 const useStyles = makeStyles({
   container: {
@@ -13,15 +7,15 @@ const useStyles = makeStyles({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: '64px 24px',
+    padding: `${tokens.spacingVerticalXXXL} ${tokens.spacingHorizontalXXL}`,
     textAlign: 'center',
-    gap: '12px',
-    minHeight: '300px',
+    gap: tokens.spacingVerticalM,
+    minHeight: '300px', // functional layout
   },
   illustration: {
-    width: '120px',
-    height: '120px',
-    marginBottom: '8px',
+    width: '120px', // layout constant (illustration size)
+    height: '120px', // layout constant (illustration size)
+    marginBottom: tokens.spacingVerticalS,
   },
   title: {
     fontSize: tokens.fontSizeBase400,
@@ -31,17 +25,17 @@ const useStyles = makeStyles({
   description: {
     fontSize: tokens.fontSizeBase300,
     color: tokens.colorNeutralForeground2,
-    maxWidth: '400px',
+    maxWidth: '400px', // functional layout max-width
   },
   actions: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    gap: '8px',
-    marginTop: '8px',
+    gap: tokens.spacingVerticalS,
+    marginTop: tokens.spacingVerticalS,
   },
   inlineText: {
-    padding: '16px 24px',
+    padding: `${tokens.spacingVerticalL} ${tokens.spacingHorizontalXXL}`,
     color: tokens.colorNeutralForeground2,
     fontSize: tokens.fontSizeBase300,
   },
@@ -63,7 +57,15 @@ const PlaceholderIllustration: React.FC = () => (
     <rect x="36" y="54" width="28" height="4" rx="2" fill={tokens.colorNeutralBackground5} />
     <circle cx="76" cy="70" r="12" fill={tokens.colorNeutralStroke2} />
     <circle cx="82" cy="76" r="6" fill={tokens.colorNeutralBackground5} />
-    <line x1="60" y1="70" x2="70" y2="80" stroke={tokens.colorNeutralStroke2} strokeWidth="3" strokeLinecap="round" />
+    <line
+      x1="60"
+      y1="70"
+      x2="70"
+      y2="80"
+      stroke={tokens.colorNeutralStroke2}
+      strokeWidth="3"
+      strokeLinecap="round"
+    />
   </svg>
 );
 
@@ -108,13 +110,9 @@ export const NullState: React.FC<NullStateProps> = ({
 
   return (
     <div className={styles.container}>
-      <div className={styles.illustration}>
-        {illustration ?? <PlaceholderIllustration />}
-      </div>
+      <div className={styles.illustration}>{illustration ?? <PlaceholderIllustration />}</div>
       <Text className={styles.title}>{title}</Text>
-      {description && (
-        <Text className={styles.description}>{description}</Text>
-      )}
+      {description && <Text className={styles.description}>{description}</Text>}
       {(primaryActionLabel || onLearnMore) && (
         <div className={styles.actions}>
           {primaryActionLabel && (
@@ -122,9 +120,7 @@ export const NullState: React.FC<NullStateProps> = ({
               {primaryActionLabel}
             </Button>
           )}
-          {onLearnMore && (
-            <Link onClick={onLearnMore}>{learnMoreLabel}</Link>
-          )}
+          {onLearnMore && <Link onClick={onLearnMore}>{learnMoreLabel}</Link>}
         </div>
       )}
     </div>

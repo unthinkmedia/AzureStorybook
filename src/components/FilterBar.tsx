@@ -38,16 +38,16 @@ export interface FilterBarProps {
 
 const useStyles = makeStyles({
   root: {
-    padding: '8px 16px',
+    padding: `${tokens.spacingVerticalS} ${tokens.spacingHorizontalL}`,
     display: 'flex',
-    gap: '8px',
+    gap: tokens.spacingHorizontalS,
     alignItems: 'center',
     flexWrap: 'wrap',
-    borderBottom: `1px solid ${tokens.colorNeutralStroke2}`,
+    borderBottom: `${tokens.strokeWidthThin} solid ${tokens.colorNeutralStroke2}`,
   },
   search: {
-    minWidth: '180px',
-    maxWidth: '220px',
+    minWidth: '180px', // functional layout minimum
+    maxWidth: '220px', // functional layout maximum
   },
 });
 
@@ -84,16 +84,8 @@ export const FilterBar: React.FC<FilterBarProps> = ({
           dismissible={f.dismissible}
           options={f.options}
           selectedKeys={f.selectedKeys}
-          onApply={
-            onFilterApply
-              ? (keys) => onFilterApply(f.label, keys)
-              : undefined
-          }
-          onDismiss={
-            onFilterDismiss
-              ? () => onFilterDismiss(f.label)
-              : undefined
-          }
+          onApply={onFilterApply ? (keys) => onFilterApply(f.label, keys) : undefined}
+          onDismiss={onFilterDismiss ? () => onFilterDismiss(f.label) : undefined}
         />
       ))}
       {showAddFilter && <AddFilterPill onClick={onAddFilter} />}

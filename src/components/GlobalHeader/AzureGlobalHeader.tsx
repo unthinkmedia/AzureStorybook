@@ -56,13 +56,13 @@ const useStyles = makeStyles({
   root: {
     display: 'flex',
     alignItems: 'center',
-    height: `${HEADER_HEIGHT}px`,
+    height: `${HEADER_HEIGHT}px`, // functional layout
     backgroundColor: tokens.colorBrandBackground,
     color: tokens.colorNeutralForegroundOnBrand,
-    paddingLeft: '8px',
-    paddingRight: '12px',
+    paddingLeft: tokens.spacingHorizontalS,
+    paddingRight: tokens.spacingHorizontalM,
     flexShrink: 0,
-    gap: '2px',
+    gap: tokens.spacingHorizontalXXS,
     zIndex: 1000,
     // The Azure Portal header uses a blue-brand bar
   },
@@ -71,17 +71,17 @@ const useStyles = makeStyles({
   leftSection: {
     display: 'flex',
     alignItems: 'center',
-    gap: '2px',
+    gap: tokens.spacingHorizontalXXS,
     flexShrink: 0,
   },
 
   iconButton: {
     color: tokens.colorNeutralForegroundOnBrand,
     backgroundColor: 'transparent',
-    minWidth: '32px',
-    width: '32px',
-    height: '32px',
-    borderRadius: '4px',
+    minWidth: '32px', // closest available token
+    width: '32px', // closest available token
+    height: '32px', // closest available token
+    borderRadius: tokens.borderRadiusMedium,
     border: 'none',
     ':hover': {
       backgroundColor: tokens.colorSubtleBackgroundInvertedHover,
@@ -96,9 +96,9 @@ const useStyles = makeStyles({
   branding: {
     display: 'flex',
     alignItems: 'center',
-    gap: '8px',
-    marginLeft: '4px',
-    marginRight: '8px',
+    gap: tokens.spacingHorizontalS,
+    marginLeft: tokens.spacingHorizontalXS,
+    marginRight: tokens.spacingHorizontalS,
     flexShrink: 0,
     userSelect: 'none',
   },
@@ -114,13 +114,13 @@ const useStyles = makeStyles({
     display: 'flex',
     justifyContent: 'center',
     minWidth: 0,
-    paddingLeft: '8px',
-    paddingRight: '8px',
+    paddingLeft: tokens.spacingHorizontalS,
+    paddingRight: tokens.spacingHorizontalS,
   },
 
   searchWrapper: {
     width: '100%',
-    maxWidth: '580px',
+    maxWidth: '580px', // functional layout max-width
   },
 
   searchInput: {
@@ -137,26 +137,26 @@ const useStyles = makeStyles({
   rightSection: {
     display: 'flex',
     alignItems: 'center',
-    gap: '2px',
+    gap: tokens.spacingHorizontalXXS,
     flexShrink: 0,
   },
 
   copilotButton: {
     display: 'flex',
     alignItems: 'center',
-    gap: '6px',
+    gap: tokens.spacingHorizontalSNudge,
     backgroundColor: tokens.colorNeutralBackground1,
     color: tokens.colorNeutralForeground1,
     border: 'none',
-    borderRadius: '16px',
-    padding: '4px 14px 4px 10px',
-    height: '28px',
+    borderRadius: tokens.borderRadiusCircular,
+    padding: `${tokens.spacingVerticalXS} 14px ${tokens.spacingVerticalXS} ${tokens.spacingHorizontalS}`, // functional layout
+    height: '28px', // closest available token
     fontSize: tokens.fontSizeBase300,
     fontWeight: tokens.fontWeightSemibold,
     cursor: 'pointer',
     whiteSpace: 'nowrap',
     flexShrink: 0,
-    marginRight: '4px',
+    marginRight: tokens.spacingHorizontalXS,
     ':hover': {
       backgroundColor: tokens.colorNeutralBackground1Hover,
     },
@@ -168,27 +168,27 @@ const useStyles = makeStyles({
 
   badge: {
     position: 'absolute' as const,
-    top: '2px',
-    right: '2px',
+    top: tokens.spacingVerticalXXS,
+    right: tokens.spacingHorizontalXXS,
   },
 
   divider: {
-    width: '1px',
-    height: '24px',
+    width: tokens.strokeWidthThin,
+    height: '24px', // functional layout
     backgroundColor: tokens.colorNeutralStrokeOnBrand2,
-    marginLeft: '6px',
-    marginRight: '6px',
+    marginLeft: tokens.spacingHorizontalSNudge,
+    marginRight: tokens.spacingHorizontalSNudge,
     flexShrink: 0,
   },
 
   profileSection: {
     display: 'flex',
     alignItems: 'center',
-    gap: '8px',
-    marginLeft: '4px',
+    gap: tokens.spacingHorizontalS,
+    marginLeft: tokens.spacingHorizontalXS,
     cursor: 'pointer',
-    borderRadius: '4px',
-    padding: '2px 8px',
+    borderRadius: tokens.borderRadiusMedium,
+    padding: `${tokens.spacingVerticalXXS} ${tokens.spacingHorizontalS}`,
     ':hover': {
       backgroundColor: tokens.colorSubtleBackgroundInvertedHover,
     },
@@ -205,7 +205,7 @@ const useStyles = makeStyles({
     fontSize: tokens.fontSizeBase200,
     color: tokens.colorNeutralForegroundOnBrand,
     whiteSpace: 'nowrap',
-    maxWidth: '180px',
+    maxWidth: '180px', // functional layout
     overflow: 'hidden',
     textOverflow: 'ellipsis',
   },
@@ -214,7 +214,7 @@ const useStyles = makeStyles({
     fontSize: tokens.fontSizeBase100,
     color: tokens.colorNeutralForegroundOnBrand,
     whiteSpace: 'nowrap',
-    maxWidth: '180px',
+    maxWidth: '180px', // functional layout
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     textTransform: 'uppercase',

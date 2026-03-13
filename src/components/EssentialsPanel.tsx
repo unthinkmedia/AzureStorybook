@@ -1,11 +1,5 @@
 import React, { useState } from 'react';
-import {
-  makeStyles,
-  tokens,
-  Text,
-  Link,
-  mergeClasses,
-} from '@fluentui/react-components';
+import { makeStyles, tokens, Text, Link, mergeClasses } from '@fluentui/react-components';
 import { ChevronUp20Regular, ChevronDown20Regular } from '@fluentui/react-icons';
 
 /* -------------------------------------------------------------------------- */
@@ -51,15 +45,15 @@ export interface EssentialsPanelProps {
 
 const useStyles = makeStyles({
   root: {
-    borderBottom: `1px solid ${tokens.colorNeutralStroke2}`,
+    borderBottom: `${tokens.strokeWidthThin} solid ${tokens.colorNeutralStroke2}`,
   },
   header: {
     display: 'flex',
     alignItems: 'center',
-    gap: '6px',
+    gap: tokens.spacingHorizontalSNudge,
     cursor: 'pointer',
-    paddingTop: '12px',
-    paddingBottom: '12px',
+    paddingTop: tokens.spacingVerticalM,
+    paddingBottom: tokens.spacingVerticalM,
     userSelect: 'none',
     background: 'none',
     border: 'none',
@@ -82,7 +76,7 @@ const useStyles = makeStyles({
     display: 'grid',
     gridTemplateColumns: '1fr 1fr',
     gap: '0',
-    paddingBottom: '16px',
+    paddingBottom: tokens.spacingVerticalL,
     '@media (max-width: 640px)': {
       gridTemplateColumns: '1fr',
     },
@@ -93,19 +87,19 @@ const useStyles = makeStyles({
   column: {
     display: 'flex',
     flexDirection: 'column',
-    gap: '8px',
+    gap: tokens.spacingVerticalS,
   },
   row: {
     display: 'flex',
     alignItems: 'baseline',
     gap: '0',
-    minHeight: '24px',
+    minHeight: '24px', // functional layout
   },
   label: {
     display: 'inline-flex',
     alignItems: 'baseline',
-    gap: '4px',
-    minWidth: '180px',
+    gap: tokens.spacingHorizontalXS,
+    minWidth: '180px', // functional layout
     flexShrink: 0,
     fontSize: tokens.fontSizeBase200,
     lineHeight: tokens.lineHeightBase200,
@@ -121,7 +115,7 @@ const useStyles = makeStyles({
     },
   },
   colon: {
-    marginRight: '8px',
+    marginRight: tokens.spacingHorizontalS,
     color: tokens.colorNeutralForeground3,
     fontSize: tokens.fontSizeBase200,
   },
@@ -137,8 +131,8 @@ const useStyles = makeStyles({
   actionsRow: {
     display: 'flex',
     justifyContent: 'flex-end',
-    gap: '16px',
-    paddingTop: '12px',
+    gap: tokens.spacingHorizontalL,
+    paddingTop: tokens.spacingVerticalM,
     paddingBottom: '0',
     position: 'absolute',
     top: '0',
@@ -184,11 +178,7 @@ export const EssentialsPanel: React.FC<EssentialsPanelProps> = ({
         {actions && actions.length > 0 && (
           <div className={styles.actionsRow}>
             {actions.map((action) => (
-              <Link
-                key={action.label}
-                className={styles.actionLink}
-                onClick={action.onClick}
-              >
+              <Link key={action.label} className={styles.actionLink} onClick={action.onClick}>
                 {action.label}
               </Link>
             ))}
@@ -196,12 +186,7 @@ export const EssentialsPanel: React.FC<EssentialsPanelProps> = ({
         )}
       </div>
 
-      <div
-        className={mergeClasses(
-          styles.body,
-          !expanded && styles.bodyCollapsed,
-        )}
-      >
+      <div className={mergeClasses(styles.body, !expanded && styles.bodyCollapsed)}>
         <div className={styles.column}>
           {leftItems.map((item) => (
             <EssentialRow key={item.label} item={item} styles={styles} />
@@ -233,11 +218,7 @@ const EssentialRow: React.FC<{
       {item.labelAction && (
         <>
           {' '}
-          <Link
-            className={styles.labelAction}
-            onClick={item.labelAction.onClick}
-            inline
-          >
+          <Link className={styles.labelAction} onClick={item.labelAction.onClick} inline>
             ({item.labelAction.text})
           </Link>
         </>

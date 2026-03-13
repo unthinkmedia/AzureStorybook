@@ -47,11 +47,11 @@ const useStyles = makeStyles({
   root: {
     display: 'flex',
     alignItems: 'center',
-    height: `${HEADER_HEIGHT}px`,
+    height: `${HEADER_HEIGHT}px`, // functional layout
     backgroundColor: tokens.colorNeutralBackground1,
-    borderBottom: `1px solid ${tokens.colorNeutralStroke2}`,
-    paddingLeft: '16px',
-    paddingRight: '16px',
+    borderBottom: `${tokens.strokeWidthThin} solid ${tokens.colorNeutralStroke2}`,
+    paddingLeft: tokens.spacingHorizontalL,
+    paddingRight: tokens.spacingHorizontalL,
     flexShrink: 0,
     zIndex: 1000,
   },
@@ -60,13 +60,13 @@ const useStyles = makeStyles({
   leftSection: {
     display: 'flex',
     alignItems: 'center',
-    gap: '10px',
+    gap: '10px', // closest available token
     flexShrink: 0,
   },
 
   logoIcon: {
-    width: '24px',
-    height: '24px',
+    width: '24px', // functional layout
+    height: '24px', // functional layout
     flexShrink: 0,
   },
 
@@ -85,13 +85,13 @@ const useStyles = makeStyles({
     fontWeight: tokens.fontWeightSemibold,
     color: tokens.colorBrandForeground1,
     backgroundColor: tokens.colorBrandBackground2,
-    border: `1px solid ${tokens.colorBrandStroke2}`,
-    borderRadius: '4px',
-    padding: '1px 8px',
+    border: `${tokens.strokeWidthThin} solid ${tokens.colorBrandStroke2}`,
+    borderRadius: tokens.borderRadiusMedium,
+    padding: `1px ${tokens.spacingHorizontalS}`, // closest available token
     lineHeight: tokens.lineHeightBase200,
     textTransform: 'uppercase',
     whiteSpace: 'nowrap',
-    letterSpacing: '0.5px',
+    letterSpacing: '0.5px', // closest available token
   },
 
   /* — Spacer to push right section — */
@@ -103,7 +103,7 @@ const useStyles = makeStyles({
   rightSection: {
     display: 'flex',
     alignItems: 'center',
-    gap: '4px',
+    gap: tokens.spacingHorizontalXS,
     flexShrink: 0,
   },
 
@@ -112,8 +112,8 @@ const useStyles = makeStyles({
     fontWeight: tokens.fontWeightRegular,
     color: tokens.colorNeutralForeground1,
     cursor: 'pointer',
-    padding: '6px 12px',
-    borderRadius: '4px',
+    padding: `${tokens.spacingVerticalSNudge} ${tokens.spacingHorizontalM}`,
+    borderRadius: tokens.borderRadiusMedium,
     border: 'none',
     backgroundColor: 'transparent',
     whiteSpace: 'nowrap',
@@ -125,10 +125,10 @@ const useStyles = makeStyles({
   iconButton: {
     color: tokens.colorNeutralForeground2,
     backgroundColor: 'transparent',
-    minWidth: '36px',
-    width: '36px',
-    height: '36px',
-    borderRadius: '4px',
+    minWidth: '36px', // functional layout
+    width: '36px', // functional layout
+    height: '36px', // functional layout
+    borderRadius: tokens.borderRadiusMedium,
     border: 'none',
     display: 'flex',
     alignItems: 'center',
@@ -149,12 +149,12 @@ const useStyles = makeStyles({
 
   badge: {
     position: 'absolute' as const,
-    top: '4px',
-    right: '4px',
+    top: tokens.spacingVerticalXS,
+    right: tokens.spacingHorizontalXS,
   },
 
   profileButton: {
-    marginLeft: '4px',
+    marginLeft: tokens.spacingHorizontalXS,
     cursor: 'pointer',
   },
 });
@@ -181,9 +181,9 @@ const SRELogo: React.FC<{ className?: string }> = ({ className }) => (
         y2="24"
         gradientUnits="userSpaceOnUse"
       >
-        <stop offset="0%" stopColor="#6366f1" />
-        <stop offset="50%" stopColor="#a855f7" />
-        <stop offset="100%" stopColor="#06b6d4" />
+        <stop offset="0%" stopColor="#6366f1" /> /* SVG gradient — exempt */
+        <stop offset="50%" stopColor="#a855f7" /> /* SVG gradient — exempt */
+        <stop offset="100%" stopColor="#06b6d4" /> /* SVG gradient — exempt */
       </linearGradient>
     </defs>
     <rect width="24" height="24" rx="6" fill="url(#sre-logo-grad)" />

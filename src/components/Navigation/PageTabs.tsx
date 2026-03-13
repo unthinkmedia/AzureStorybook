@@ -1,15 +1,6 @@
 import React from 'react';
-import {
-  TabList,
-  Tab,
-  makeStyles,
-  tokens,
-  mergeClasses,
-} from '@fluentui/react-components';
-import type {
-  SelectTabData,
-  SelectTabEvent,
-} from '@fluentui/react-components';
+import { TabList, Tab, makeStyles, tokens, mergeClasses } from '@fluentui/react-components';
+import type { SelectTabData, SelectTabEvent } from '@fluentui/react-components';
 
 /* -------------------------------------------------------------------------- */
 /*  Types                                                                     */
@@ -43,11 +34,11 @@ export interface PageTabsProps {
 
 const useStyles = makeStyles({
   root: {
-    borderBottomWidth: '1px',
+    borderBottomWidth: tokens.strokeWidthThin,
     borderBottomStyle: 'solid',
     borderBottomColor: tokens.colorNeutralStroke2,
-    paddingLeft: '24px',
-    paddingRight: '24px',
+    paddingLeft: tokens.spacingHorizontalXXL,
+    paddingRight: tokens.spacingHorizontalXXL,
   },
 });
 
@@ -76,12 +67,7 @@ export const PageTabs: React.FC<PageTabsProps> = ({
         size="medium"
       >
         {tabs.map((tab) => (
-          <Tab
-            key={tab.value}
-            value={tab.value}
-            icon={tab.icon}
-            disabled={tab.disabled}
-          >
+          <Tab key={tab.value} value={tab.value} icon={tab.icon} disabled={tab.disabled}>
             {tab.label}
           </Tab>
         ))}

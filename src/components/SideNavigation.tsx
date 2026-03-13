@@ -53,7 +53,7 @@ const useStyles = makeStyles({
     flexDirection: 'column',
     height: '100%',
     backgroundColor: tokens.colorNeutralBackground1,
-    borderRight: `1px solid ${tokens.colorNeutralStroke2}`,
+    borderRight: `${tokens.strokeWidthThin} solid ${tokens.colorNeutralStroke2}`,
     overflow: 'hidden',
     transitionProperty: 'width, min-width',
     transitionDuration: '200ms',
@@ -61,21 +61,21 @@ const useStyles = makeStyles({
     userSelect: 'none',
   },
   expanded: {
-    width: '260px',
-    minWidth: '260px',
+    width: '260px', // layout constant
+    minWidth: '260px', // layout constant
   },
   collapsed: {
-    width: '48px',
-    minWidth: '48px',
+    width: '48px', // layout constant
+    minWidth: '48px', // layout constant
   },
 
   // ── Header ──
   header: {
     display: 'flex',
     alignItems: 'center',
-    gap: '4px',
-    padding: '8px',
-    borderBottom: `1px solid ${tokens.colorNeutralStroke2}`,
+    gap: tokens.spacingHorizontalXS,
+    padding: tokens.spacingHorizontalS,
+    borderBottom: `${tokens.strokeWidthThin} solid ${tokens.colorNeutralStroke2}`,
     flexShrink: 0,
   },
   searchBox: {
@@ -86,8 +86,8 @@ const useStyles = makeStyles({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    width: '32px',
-    height: '32px',
+    width: tokens.spacingHorizontalXXXL, // closest available token
+    height: tokens.spacingHorizontalXXXL, // closest available token
     border: 'none',
     background: 'none',
     borderRadius: tokens.borderRadiusMedium,
@@ -101,7 +101,7 @@ const useStyles = makeStyles({
   },
   collapsedHeader: {
     justifyContent: 'center',
-    padding: '8px 0',
+    padding: `${tokens.spacingVerticalS} 0`,
   },
 
   // ── Items list ──
@@ -109,16 +109,16 @@ const useStyles = makeStyles({
     flex: 1,
     overflowY: 'auto',
     overflowX: 'hidden',
-    padding: '4px 0',
+    padding: `${tokens.spacingVerticalXS} 0`,
   },
 
   // ── Nav item ──
   navItem: {
     display: 'flex',
     alignItems: 'center',
-    gap: '12px',
-    padding: '6px 16px',
-    height: '36px',
+    gap: tokens.spacingHorizontalM,
+    padding: `${tokens.spacingVerticalSNudge} ${tokens.spacingHorizontalL}`,
+    height: tokens.spacingHorizontalXXXL, // closest available token
     boxSizing: 'border-box',
     border: 'none',
     background: 'none',
@@ -126,10 +126,10 @@ const useStyles = makeStyles({
     textAlign: 'left',
     cursor: 'pointer',
     color: tokens.colorNeutralForeground1,
-    fontSize: '13px',
+    fontSize: tokens.fontSizeBase200,
     fontWeight: 400,
-    lineHeight: '20px',
-    borderLeft: '3px solid transparent',
+    lineHeight: tokens.lineHeightBase300,
+    borderLeft: `${tokens.strokeWidthThick} solid transparent`,
     ':hover': {
       backgroundColor: tokens.colorNeutralBackground3,
     },
@@ -146,8 +146,8 @@ const useStyles = makeStyles({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    width: '20px',
-    height: '20px',
+    width: tokens.spacingHorizontalXL, // closest available token
+    height: tokens.spacingHorizontalXL, // closest available token
     flexShrink: 0,
     color: tokens.colorNeutralForeground3,
   },
@@ -165,9 +165,9 @@ const useStyles = makeStyles({
   groupHeader: {
     display: 'flex',
     alignItems: 'center',
-    gap: '8px',
-    padding: '6px 16px',
-    height: '36px',
+    gap: tokens.spacingHorizontalS,
+    padding: `${tokens.spacingVerticalSNudge} ${tokens.spacingHorizontalL}`,
+    height: tokens.spacingHorizontalXXXL, // closest available token
     boxSizing: 'border-box',
     border: 'none',
     background: 'none',
@@ -175,9 +175,9 @@ const useStyles = makeStyles({
     textAlign: 'left',
     cursor: 'pointer',
     color: tokens.colorNeutralForeground2,
-    fontSize: '13px',
+    fontSize: tokens.fontSizeBase200,
     fontWeight: 600,
-    lineHeight: '20px',
+    lineHeight: tokens.lineHeightBase300,
     ':hover': {
       backgroundColor: tokens.colorNeutralBackground3,
     },
@@ -186,20 +186,20 @@ const useStyles = makeStyles({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    width: '16px',
-    height: '16px',
+    width: tokens.spacingHorizontalL, // closest available token
+    height: tokens.spacingHorizontalL, // closest available token
     flexShrink: 0,
     color: tokens.colorNeutralForeground3,
   },
   groupChildren: {
-    paddingLeft: '8px',
+    paddingLeft: tokens.spacingHorizontalS,
   },
 
   // ── Footer ──
   footer: {
-    padding: '12px 16px',
-    borderTop: `1px solid ${tokens.colorNeutralStroke2}`,
-    fontSize: '12px',
+    padding: `${tokens.spacingVerticalM} ${tokens.spacingHorizontalL}`,
+    borderTop: `${tokens.strokeWidthThin} solid ${tokens.colorNeutralStroke2}`,
+    fontSize: tokens.fontSizeBase200,
     color: tokens.colorBrandForeground1,
     fontStyle: 'italic',
     flexShrink: 0,
@@ -410,7 +410,7 @@ export const SideNavigation: React.FC<SideNavigationProps> = ({
                   }}
                   aria-label={item.label}
                   aria-current={item.selected ? 'page' : undefined}
-                  style={{ justifyContent: 'center', padding: '6px 0', borderLeft: item.selected ? `3px solid ${tokens.colorBrandForeground1}` : '3px solid transparent' }}
+                  style={{ justifyContent: 'center', padding: `${tokens.spacingVerticalSNudge} 0`, borderLeft: item.selected ? `${tokens.strokeWidthThick} solid ${tokens.colorBrandForeground1}` : `${tokens.strokeWidthThick} solid transparent` }}
                   title={item.label}
                 >
                   <span className={mergeClasses(styles.navItemIcon, item.selected && styles.navItemIconSelected)}>
