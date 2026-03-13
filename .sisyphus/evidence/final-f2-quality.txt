@@ -1,0 +1,117 @@
+F2 Code Quality Review Evidence
+Date: 2026-03-13
+Worktree: /tmp/agentation-integration
+Branch: feat/agentation-integration
+
+Changed files reviewed (branch diff vs main):
+- .github/workflows/agentation-feedback.yml
+- .github/workflows/ci.yml
+- .gitignore
+- .storybook/preview.tsx
+- README.md
+- api/__tests__/feedback.test.ts
+- api/dist/src/functions/feedback.d.ts
+- api/dist/src/functions/feedback.js
+- api/dist/src/functions/feedback.js.map
+- api/host.json
+- api/package-lock.json
+- api/package.json
+- api/src/functions/.gitkeep
+- api/src/functions/feedback.ts
+- api/tsconfig.json
+- api/vitest.config.ts
+- package-lock.json
+- package.json
+
+Required grep checks:
+1) Type escapes in api/src + .storybook/preview.tsx
+Command: grep -rn 'as any\|@ts-ignore\|@ts-expect-error' api/src/ .storybook/preview.tsx
+Result: 0 matches (PASS)
+
+2) console.log in production feedback handler
+Command: grep -rn 'console\.log' api/src/functions/feedback.ts
+Result: 0 matches (PASS)
+
+3) TODO/HACK/FIXME markers
+Command: grep -rn '// TODO\|// HACK\|// FIXME' api/src/ .github/workflows/agentation-feedback.yml
+Result: 0 matches (PASS)
+
+4) Extra HTTP libraries in api/package.json
+Command: grep -rn 'node-fetch\|axios\|request\b' api/package.json
+Result: 0 matches (PASS)
+
+LSP diagnostics:
+- api/src/functions/feedback.ts: clean
+- .storybook/preview.tsx: clean
+- api/__tests__/feedback.test.ts: clean
+- .github/workflows/agentation-feedback.yml: clean
+- .github/workflows/ci.yml: clean
+- package.json: clean
+- api/package.json: clean
+- package-lock.json: clean
+- api/package-lock.json: clean
+- Note: markdown/.gitignore lack configured LSP support initially; not code errors.
+
+Manual review findings:
+
+1) api/src/functions/feedback.ts
+- HTTP trigger registration exists at module scope via app.http('feedback', ...).
+- Named export feedbackHandler present for testability.
+- JSON parse failure returns 400.
+- Payload size guard exists (MAX_PAYLOAD_BYTES = 1_000_000) and returns 413.
+- Event validation requires body.event === 'submit'.
+- Annotation validation requires non-empty array.
+- GitHub dispatch targets repository_dispatch endpoint.
+- Uses fetch with Bearer token from process.env.GITHUB_TOKEN.
+- No token logging found; only missing-token and upstream failure metadata are logged.
+- Error handling returns 502 on non-ok upstream response or fetch exception.
+- 204 success is accepted correctly via response.ok.
+- Issue: validation is minimal beyond event + annotations; output/url/timestamp are forwarded without shape validation. Not a build blocker, but quality gap.
+
+2) .storybook/preview.tsx
+- Agentation is imported and rendered inside FluentProvider.
+- Webhook configured as /api/feedback.
+- No NODE_ENV gating found.
+- Theme resolution remains wrapped by FluentProvider.
+- Docs container synchronizes globals and data-azure-theme.
+- Issue: file still uses an explicit any type on CustomDocsContainer props (`: any`). This is outside the mandatory grep scope but is a real type-quality issue.
+
+3) api/__tests__/feedback.test.ts
+- Contains exactly 6 test cases.
+- fetch is mocked with vi.stubGlobal; no real network calls.
+- Covers success, empty annotations, missing event, wrong event, upstream error, thrown fetch.
+- Issue: test file uses multiple `as any` casts. Test-only, but still a code quality concern if enforcing no type escapes repo-wide.
+
+4) .github/workflows/agentation-feedback.yml
+- Trigger is repository_dispatch with type agentation_feedback.
+- Creates issue body from payload annotations/output.
+- Ensures labels exist before issue creation.
+- Creates issue assigned to copilot with ui-feedback/copilot labels.
+- Issue: contains console.log in workflow script for success logging. Acceptable in workflow JS context, but if applying a blanket "no console.log in prod" policy repo-wide, this would need explicit exemption.
+
+5) .github/workflows/ci.yml
+- checkout step present in both jobs.
+- api_location: api present.
+- skip_app_build: true retained.
+
+Additional repo-quality observations from changed files:
+- api/tsconfig.json sets rootDir='.' but include only covers src/**/*; tests compile today because API build runs only src. This diverges from inherited note claiming __tests__/ compiles and may confuse future maintainers.
+- api/dist/* build artifacts are committed intentionally and match source behavior.
+- README documents token setup and local workflow clearly; examples avoid committing secrets, though it includes shell redirection example for local.settings.json.
+
+File quality verdict counts:
+- Files manually reviewed: 5
+- Clean with no notable issues: 2 (.github/workflows/ci.yml, README.md context/docs acceptable)
+- Files with issues or caveats: 3 (api/src/functions/feedback.ts, .storybook/preview.tsx, api/__tests__/feedback.test.ts)
+- Additional workflow caveat: .github/workflows/agentation-feedback.yml
+
+Verdict basis:
+- Build/lint/tests pass.
+- Mandatory grep checks pass.
+- But manual review found type-quality issues and validation gaps:
+  - `.storybook/preview.tsx` uses `any`
+  - `api/__tests__/feedback.test.ts` uses `as any`
+  - `api/src/functions/feedback.ts` lacks stronger payload shape validation
+
+VERDICT: REJECT
+Reason: quality review is not clean despite passing automation.

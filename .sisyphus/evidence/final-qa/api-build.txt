@@ -1,0 +1,23 @@
+
+> agentation-feedback-api@1.0.0 build
+> tsc
+
+
+> agentation-feedback-api@1.0.0 test
+> vitest run
+
+[33mThe CJS build of Vite's Node API is deprecated. See https://vite.dev/guide/troubleshooting.html#vite-cjs-node-api-deprecated for more details.[39m
+
+ RUN  v2.1.9 /private/tmp/agentation-integration/api
+
+stderr | __tests__/feedback.test.ts
+WARNING: Failed to detect the Azure Functions runtime. Switching "@azure/functions" package to test mode - not all features are supported.
+WARNING: Skipping call to register function "feedback" because the "@azure/functions" package is in test mode.
+
+ ✓ __tests__/feedback.test.ts (6 tests) 2ms
+
+ Test Files  1 passed (1)
+      Tests  6 passed (6)
+   Start at  16:19:50
+   Duration  223ms (transform 21ms, setup 0ms, collect 25ms, tests 2ms, environment 0ms, prepare 37ms)
+

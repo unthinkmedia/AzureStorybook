@@ -1,0 +1,4 @@
+git status --porcelain .gitignore
+
+touch test-nested.js && git status --porcelain test-nested.js
+?? api/test-nested.js

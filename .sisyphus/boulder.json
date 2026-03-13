@@ -1,7 +1,8 @@
 {
-  "active_plan": "/Users/erikdrouhard/Library/CloudStorage/OneDrive-Microsoft/Documents/dev/mini-azure/portal-playground/AzureStorybook/.sisyphus/plans/dark-mode-docs-fix.md",
-  "started_at": "2026-03-12T22:46:13.871Z",
-  "session_ids": ["ses_31c5a8161ffeo7c3u6cpsTUNuv"],
-  "plan_name": "dark-mode-docs-fix",
+  "active_plan": "/Users/erikdrouhard/Library/CloudStorage/OneDrive-Microsoft/Documents/dev/mini-azure/portal-playground/AzureStorybook/.sisyphus/plans/agentation-integration.md",
+  "started_at": "2026-03-13T19:41:05.793Z",
+  "session_ids": ["ses_3174880ffffesobC6Kzj3Uo28y"],
+  "plan_name": "agentation-integration",
+  "worktree_path": "/tmp/agentation-integration",
   "agent": "atlas"
 }

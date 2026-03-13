@@ -1,0 +1,79 @@
+F4 Scope Fidelity Check — Per-Commit Contamination Analysis
+
+Worktree analyzed: /tmp/agentation-integration
+Range: main...HEAD
+
+Expected commit scopes:
+- ccf9961 feat: add Agentation annotation toolbar to Storybook
+  Expected files: package.json, package-lock.json, .storybook/preview.tsx, api/package.json, api/host.json, api/tsconfig.json, api/package-lock.json, api/src/functions/.gitkeep, .gitignore
+- c0f67c1 feat: add agentation-feedback GitHub Actions workflow
+  Expected files: .github/workflows/agentation-feedback.yml
+- f4ab9d4 ci: update deploy job for SWA managed functions
+  Expected files: .github/workflows/ci.yml
+- 29e7eec feat: implement feedback API proxy
+  Expected files: api/src/functions/feedback.ts, api/dist/src/functions/feedback.js, api/dist/src/functions/feedback.js.map, api/dist/src/functions/feedback.d.ts, .gitignore
+- 722568f test: add API proxy unit tests
+  Expected files: api/__tests__/feedback.test.ts
+- d0dbfb8 docs: add Agentation integration setup to README
+  Expected files: README.md
+
+Actual commit file touches and compliance:
+
+1) ccf9961 feat: add Agentation annotation toolbar to Storybook
+   Actual files:
+   - .gitignore
+   - .storybook/preview.tsx
+   - api/host.json
+   - api/package-lock.json
+   - api/package.json
+   - api/src/functions/.gitkeep
+   - api/tsconfig.json
+   - package-lock.json
+   - package.json
+   Scope result: PASS
+
+2) c0f67c1 feat: add agentation-feedback GitHub Actions workflow
+   Actual files:
+   - .github/workflows/agentation-feedback.yml
+   Scope result: PASS
+
+3) f4ab9d4 ci: update deploy job for SWA managed functions
+   Actual files:
+   - .github/workflows/ci.yml
+   Scope result: PASS
+
+4) 29e7eec feat: implement feedback API proxy
+   Actual files:
+   - .gitignore
+   - api/dist/src/functions/feedback.d.ts
+   - api/dist/src/functions/feedback.js
+   - api/dist/src/functions/feedback.js.map
+   - api/src/functions/feedback.ts
+   - api/tsconfig.json
+   Scope result: FAIL
+   Contamination/unexpected in commit scope:
+   - api/tsconfig.json (not in designated scope for this commit)
+
+5) 722568f test: add API proxy unit tests
+   Actual files:
+   - api/__tests__/feedback.test.ts
+   - api/vitest.config.ts
+   Scope result: FAIL
+   Contamination/unexpected in commit scope:
+   - api/vitest.config.ts (not in designated scope for this commit)
+
+6) d0dbfb8 docs: add Agentation integration setup to README
+   Actual files:
+   - README.md
+   Scope result: PASS
+
+Cross-task contamination summary:
+- Commits checked: 6
+- Scope-compliant commits: 4
+- Scope-violating commits: 2
+
+Violations:
+- 29e7eec touched api/tsconfig.json outside its designated file set
+- 722568f touched api/vitest.config.ts outside its designated file set
+
+Commit-scope verdict: FAIL (cross-task contamination detected)

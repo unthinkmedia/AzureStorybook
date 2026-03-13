@@ -1,0 +1,36 @@
+TASK 4: CI Workflow Update for SWA Managed Functions
+=====================================================
+Date: 2026-03-13
+Status: COMPLETED
+
+CHANGES MADE:
+=============
+1. Added 'actions/checkout@v4' as first step in deploy job (before download-artifact)
+2. Added 'api_location: api' to Azure/static-web-apps-deploy action with block
+3. Maintained 'skip_app_build: true' (no changes)
+
+QA VERIFICATION:
+================
+✓ YAML syntax valid (python3 -c "import yaml; yaml.safe_load(open('.github/workflows/ci.yml'))")
+✓ actions/checkout@v4 present in deploy job
+✓ api_location: api present in Azure/static-web-apps-deploy with block
+✓ skip_app_build: true preserved
+✓ Step order correct: checkout → download-artifact → Azure/static-web-apps-deploy
+✓ Build job unchanged (no modifications to lines 10-29)
+✓ If condition unchanged: github.ref == 'refs/heads/main'
+✓ Permissions block unchanged
+
+COMMIT:
+=======
+Commit: f4ab9d4
+Message: "ci: update deploy job for SWA managed functions"
+Branch: feat/agentation-integration
+File: .github/workflows/ci.yml
+
+WHY THESE CHANGES:
+==================
+- checkout@v4: Needed so SWA deploy can see the api/ folder for managed functions
+- api_location: api: Tells SWA CLI to build/deploy managed functions from api/ folder
+- skip_app_build: true: Kept because Storybook is pre-built in the build job
+
+All requirements met. Task complete.

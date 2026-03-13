@@ -1,0 +1,48 @@
+F1 Plan Compliance Audit — Must NOT Have Checks
+Worktree: /tmp/agentation-integration
+
+CHECK 1: grep -rn 'GITHUB_TOKEN\|ghp_\|github_pat_' .storybook/ src/ --include='*.ts' --include='*.tsx'
+EXIT_CODE: 1
+RESULT: PASS (0 matches)
+
+CHECK 2: grep -rn '"type".*"module"' api/package.json
+EXIT_CODE: 1
+RESULT: PASS (0 matches)
+
+CHECK 3: grep -rn 'Azure.*AD\|azure-ad\|msal' .storybook/ src/ --include='*.ts' --include='*.tsx'
+EXIT_CODE: 1
+RESULT: PASS (0 matches)
+
+CHECK 4: grep -rn 'node-fetch\|axios' api/package.json
+EXIT_CODE: 1
+RESULT: PASS (0 matches)
+
+CHECK 5: grep '"agentation"' package.json | grep -v devDependencies
+    "agentation": "^2.3.2",
+EXIT_CODE: 0
+RESULT: PASS (manual review)
+MANUAL_CONTEXT:
+Lines 48-63 of package.json show agentation nested under the devDependencies block only.
+
+Relevant excerpt:
+  "devDependencies": {
+    "@fluentui/react-components": "^9.56.0",
+    "@fluentui/react-icons": "^2.0.260",
+    "@storybook/addon-a11y": "^10.2.16",
+    "@storybook/addon-docs": "^10.2.16",
+    "@storybook/addon-themes": "^10.2.16",
+    "@storybook/react": "^10.2.16",
+    "@storybook/react-vite": "^10.2.16",
+    "@storybook/test-runner": "^0.24.2",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@typescript-eslint/eslint-plugin": "^8.18.0",
+    "@typescript-eslint/parser": "^8.18.0",
+    "@vitejs/plugin-react": "^4.3.4",
+    "agentation": "^2.3.2",
+    "chromatic": "^11.22.0",
+
+INTERPRETATION: The pipeline command returns the matching dependency line because grep loses JSON nesting context, but file inspection confirms agentation appears only in devDependencies.
+
+SUMMARY: Must NOT Have 5/5 PASS
+VERDICT_BASIS: APPROVE
