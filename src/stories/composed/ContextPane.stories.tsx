@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { useState } from 'react';
+import { useState, type ReactNode } from 'react';
 import {
   Button,
   Field,
@@ -44,8 +44,8 @@ const ContextPaneDemo = ({
   width: ContextPaneWidth;
   title: string;
   subtitle?: string;
-  footer?: React.ReactNode;
-  children: React.ReactNode;
+  footer?: ReactNode;
+  children: ReactNode;
 }) => {
   const [open, setOpen] = useState(false);
   return (
@@ -79,7 +79,8 @@ const meta: Meta<typeof ContextPane> = {
     width: {
       control: 'select',
       options: ['narrow', 'medium', 'wide', 'extra-wide'],
-      description: 'Width preset: narrow (315px), medium (585px), wide (855px), extra-wide (1125px)',
+      description:
+        'Width preset: narrow (315px), medium (585px), wide (855px), extra-wide (1125px)',
     },
   },
   parameters: {
@@ -109,11 +110,7 @@ export const Narrow: Story = {
   render: () => {
     const styles = useFormStyles();
     return (
-      <ContextPaneDemo
-        width="narrow"
-        title="Resource details"
-        subtitle="Quick view"
-      >
+      <ContextPaneDemo width="narrow" title="Resource details" subtitle="Quick view">
         <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
           {[
             ['Name', 'my-web-app'],
@@ -135,7 +132,8 @@ export const Narrow: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Narrow context pane (315px) displaying a simple key-value property list. Best for quick details or status views.',
+        story:
+          'Narrow context pane (315px) displaying a simple key-value property list. Best for quick details or status views.',
       },
     },
   },
@@ -183,7 +181,8 @@ export const Medium: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Medium context pane (585px) with a create form and footer actions. This is the default width, suitable for forms, settings, and moderate content.',
+        story:
+          'Medium context pane (585px) with a create form and footer actions. This is the default width, suitable for forms, settings, and moderate content.',
       },
     },
   },
@@ -239,7 +238,8 @@ export const Wide: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Wide context pane (855px) for data-heavy views like IAM role assignments. Provides space for complex forms, tables, and multi-column layouts.',
+        story:
+          'Wide context pane (855px) for data-heavy views like IAM role assignments. Provides space for complex forms, tables, and multi-column layouts.',
       },
     },
   },
@@ -309,7 +309,8 @@ export const ExtraWide: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Extra-wide context pane (1125px) for complex side-by-side layouts. This example shows deployment details with a two-column grid.',
+        story:
+          'Extra-wide context pane (1125px) for complex side-by-side layouts. This example shows deployment details with a two-column grid.',
       },
     },
   },
