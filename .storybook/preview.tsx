@@ -61,16 +61,14 @@ const CustomDocsContainer = ({ children, context, ...rest }: any) => {
     };
   }, [context.channel]);
 
-  const productId = (globals[PRODUCT_THEME_GLOBAL] as string) ?? DEFAULT_PRODUCT;
   const appearance = ((globals[APPEARANCE_MODE_GLOBAL] as string) ?? DEFAULT_APPEARANCE) as AppearanceMode;
-  const fluentTheme = resolveTheme(productId, appearance);
 
-  // Sync data-azure-theme so preview.css dark-mode CSS rules apply to .sbdocs-preview
+  // Sync data-azure-theme so preview.css dark-mode CSS rules apply to .docs-story
   document.documentElement.setAttribute('data-azure-theme', appearance);
 
   return (
     <BaseDocsContainer context={context} theme={themes.light} {...rest}>
-      <FluentProvider theme={fluentTheme}>{children}</FluentProvider>
+      {children}
     </BaseDocsContainer>
   );
 };
