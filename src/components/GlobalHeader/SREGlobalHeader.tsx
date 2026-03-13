@@ -8,11 +8,7 @@ import {
   Badge,
   Text,
 } from '@fluentui/react-components';
-import {
-  Alert20Regular,
-  Settings20Regular,
-  Chat20Regular,
-} from '@fluentui/react-icons';
+import { Alert20Regular, Settings20Regular, Chat20Regular } from '@fluentui/react-icons';
 
 /* ------------------------------------------------------------------ */
 /*  Props                                                              */
@@ -52,7 +48,7 @@ const useStyles = makeStyles({
     display: 'flex',
     alignItems: 'center',
     height: `${HEADER_HEIGHT}px`,
-    backgroundColor: '#ffffff',
+    backgroundColor: tokens.colorNeutralBackground1,
     borderBottom: `1px solid ${tokens.colorNeutralStroke2}`,
     paddingLeft: '16px',
     paddingRight: '16px',
@@ -87,9 +83,9 @@ const useStyles = makeStyles({
     justifyContent: 'center',
     fontSize: '10px',
     fontWeight: 600,
-    color: '#0078d4',
-    backgroundColor: '#e6f2fb',
-    border: '1px solid #b3d7f2',
+    color: tokens.colorBrandForeground1,
+    backgroundColor: tokens.colorBrandBackground2,
+    border: `1px solid ${tokens.colorBrandStroke2}`,
     borderRadius: '4px',
     padding: '1px 8px',
     lineHeight: '16px',
@@ -168,9 +164,23 @@ const useStyles = makeStyles({
 /* ------------------------------------------------------------------ */
 
 const SRELogo: React.FC<{ className?: string }> = ({ className }) => (
-  <svg className={className} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg
+    className={className}
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
     <defs>
-      <linearGradient id="sre-logo-grad" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
+      <linearGradient
+        id="sre-logo-grad"
+        x1="0"
+        y1="0"
+        x2="24"
+        y2="24"
+        gradientUnits="userSpaceOnUse"
+      >
         <stop offset="0%" stopColor="#6366f1" />
         <stop offset="50%" stopColor="#a855f7" />
         <stop offset="100%" stopColor="#06b6d4" />
@@ -212,7 +222,7 @@ export const SREGlobalHeader: React.FC<SREGlobalHeaderProps> = ({
         .join('')
         .toUpperCase()
         .slice(0, 2)
-    : userEmail?.[0]?.toUpperCase() ?? '?';
+    : (userEmail?.[0]?.toUpperCase() ?? '?');
 
   return (
     <header className={mergeClasses(styles.root, className)} role="banner">
@@ -227,11 +237,7 @@ export const SREGlobalHeader: React.FC<SREGlobalHeaderProps> = ({
 
       {/* — Right: Docs + action icons + profile — */}
       <div className={styles.rightSection}>
-        <button
-          className={styles.docsLink}
-          onClick={onDocsClick}
-          aria-label="Documentation"
-        >
+        <button className={styles.docsLink} onClick={onDocsClick} aria-label="Documentation">
           Docs
         </button>
 
@@ -245,32 +251,19 @@ export const SREGlobalHeader: React.FC<SREGlobalHeaderProps> = ({
               <Alert20Regular />
             </button>
             {notificationCount > 0 && (
-              <Badge
-                className={styles.badge}
-                size="tiny"
-                color="danger"
-                appearance="filled"
-              />
+              <Badge className={styles.badge} size="tiny" color="danger" appearance="filled" />
             )}
           </div>
         </Tooltip>
 
         <Tooltip content="Chat" relationship="label">
-          <button
-            className={styles.iconButton}
-            onClick={onChatClick}
-            aria-label="Chat"
-          >
+          <button className={styles.iconButton} onClick={onChatClick} aria-label="Chat">
             <Chat20Regular />
           </button>
         </Tooltip>
 
         <Tooltip content="Settings" relationship="label">
-          <button
-            className={styles.iconButton}
-            onClick={onSettingsClick}
-            aria-label="Settings"
-          >
+          <button className={styles.iconButton} onClick={onSettingsClick} aria-label="Settings">
             <Settings20Regular />
           </button>
         </Tooltip>
