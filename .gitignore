@@ -6,6 +6,7 @@ storybook-static
 # Ignore built JS but keep config files
 *.js
 !eslint.config.js
+!.storybook/addons/**/*.js
 !vite.config.ts
 debug-storybook.log
 
