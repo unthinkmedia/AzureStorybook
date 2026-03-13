@@ -778,7 +778,7 @@ Max Concurrent: 5 (Waves 3 & 4 fan-outs)
 
 ---
 
-- [ ] 8. Thread designSystem Through preview.tsx + CSS Vars
+- [x] 8. Thread designSystem Through preview.tsx + CSS Vars
 
   **What to do**:
   - In `.storybook/preview.tsx`:
@@ -907,7 +907,7 @@ Max Concurrent: 5 (Waves 3 & 4 fan-outs)
 
 ---
 
-- [ ] 10. Replace Hardcoded Preview Backgrounds with CSS Custom Properties
+- [x] 10. Replace Hardcoded Preview Backgrounds with CSS Custom Properties
 
   **What to do**:
   - In `.storybook/preview.css`:
@@ -964,7 +964,7 @@ Max Concurrent: 5 (Waves 3 & 4 fan-outs)
 
 ### Wave 3 — Product Normalization and Skin Authoring
 
-- [ ] 11. Refactor Azure Product Theme to Brand/Identity-Only
+- [x] 11. Refactor Azure Product Theme to Brand/Identity-Only
 
   **What to do**:
   - In `src/themes/products/azure.ts`:
@@ -1304,7 +1304,7 @@ Max Concurrent: 5 (Waves 3 & 4 fan-outs)
 
 ### Wave 4 — Grouped Cleanup and Closure
 
-- [ ] 16. GROUPED — Cleanup Navigation/Command-Surface Hardcodes
+- [x] 16. GROUPED — Cleanup Navigation/Command-Surface Hardcodes
 
   **What to do**:
   - Replace ALL hardcoded px and hex values in these 7 component files with Fluent v9 tokens:
@@ -1394,7 +1394,7 @@ Max Concurrent: 5 (Waves 3 & 4 fan-outs)
 
 ---
 
-- [ ] 17. GROUPED — Cleanup Cards/Collection Surface Hardcodes
+- [x] 17. GROUPED — Cleanup Cards/Collection Surface Hardcodes
 
   **What to do**:
   - Replace ALL hardcoded px and hex values in these 5 component files:
@@ -1448,7 +1448,7 @@ Max Concurrent: 5 (Waves 3 & 4 fan-outs)
 
 ---
 
-- [ ] 18. GROUPED — Cleanup Panels/Drawers/Dialog Hardcodes
+- [x] 18. GROUPED — Cleanup Panels/Drawers/Dialog Hardcodes
 
   **What to do**:
   - Replace ALL hardcoded px and hex values in these 5 component files:
@@ -1506,7 +1506,7 @@ Max Concurrent: 5 (Waves 3 & 4 fan-outs)
 
 ---
 
-- [ ] 19. GROUPED — Cleanup Indicators/Empty States/Decorative Hardcodes
+- [x] 19. GROUPED — Cleanup Indicators/Empty States/Decorative Hardcodes
 
   **What to do**:
   - Replace ALL hardcoded px and hex values in these 5 component files:
