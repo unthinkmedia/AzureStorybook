@@ -571,6 +571,22 @@
     ]
   },
   {
+    "name": "ContextPane",
+    "category": "Composed",
+    "storyFile": "src/stories/composed/ContextPane.stories.tsx",
+    "stories": [
+      "Narrow",
+      "Medium",
+      "Wide",
+      "ExtraWide"
+    ],
+    "isComposed": true,
+    "tags": [
+      "composed",
+      "azure-specific"
+    ]
+  },
+  {
     "name": "SideNavigation",
     "category": "Composed",
     "storyFile": "src/stories/composed/SideNavigation.stories.tsx",
