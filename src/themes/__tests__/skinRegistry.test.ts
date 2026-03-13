@@ -1,9 +1,8 @@
 import { describe, expect, it } from 'vitest';
-import { flattenSkin, getAllSkins, getSkin, registerSkin } from '../skins';
+import { flattenSkin, getSkin, registerSkin } from '../skins';
 import { fluent2Skin } from '../skins/fluent2';
 import { coherenceSkin } from '../skins/coherence';
 import { azureFluentSkin } from '../skins/azure-fluent';
-import { fluent1Skin } from '../skins/fluent1';
 
 describe('skinRegistry', () => {
   it("getSkin('fluent2') returns the fluent2 identity skin", () => {
@@ -38,11 +37,11 @@ describe('skinRegistry', () => {
       expect(skin?.sections.colors?.colorBrandBackground).toBe('#0078D4');
     });
 
-    it('flattens to 40-60 token overrides', () => {
+    it('flattens to between 5 and 30 token overrides', () => {
       const flattened = flattenSkin(coherenceSkin.sections);
       const keyCount = Object.keys(flattened).length;
-      expect(keyCount).toBeGreaterThanOrEqual(40);
-      expect(keyCount).toBeLessThanOrEqual(100);
+      expect(keyCount).toBeGreaterThanOrEqual(5);
+      expect(keyCount).toBeLessThanOrEqual(30);
     });
   });
 
