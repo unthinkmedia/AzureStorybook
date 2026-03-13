@@ -75,7 +75,7 @@ appearance base (Fluent v9 light/dark/hc)
 
 - A skin can change border-radius, shadows, spacing, and typography tokens.
 - A skin cannot change brand color tokens if a product override sets them.
-- High-contrast appearance tokens are never overridden by skins (HC accessibility is non-negotiable).
+- Skin structural tokens (shape, spacing, elevation) still apply in high-contrast mode. Skin _color_ tokens are effectively overridden by HC base colors, since skins only set structural tokens and the HC base theme provides all color tokens. HC accessibility colors always win via the base theme layer (applied first).
 
 ---
 

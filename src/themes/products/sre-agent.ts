@@ -25,51 +25,15 @@ const sreAgentBrand: BrandVariants = {
 
 /**
  * SRE Agent product theme — site reliability engineering product.
- * Uses Fluent v9 light/dark themes with SRE Agent brand ramp and structural token overrides.
+ * Uses Fluent v9 light/dark themes with SRE Agent brand ramp.
  */
+// Structural tokens (borderRadius, spacing, strokeWidth, fontWeight) moved to design-system skin layer — see src/themes/skins/
 export const sreAgentProductTheme: ProductThemeDefinition = {
   id: 'sre-agent',
   displayName: 'SRE Agent',
   description: 'SRE Agent — site reliability engineering product theme',
   brand: sreAgentBrand,
-  lightOverrides: {
-    // Rounder corners — SRE Agent page containers use borderRadius: 24px
-    // Scale: 4 → 8 → 16 → 24 (vs Fluent default 2 → 4 → 8 → 12)
-    borderRadiusSmall: '4px',
-    borderRadiusMedium: '8px',
-    borderRadiusLarge: '16px',
-    borderRadiusXLarge: '24px',
-
-    // Slightly thicker strokes for a bolder feel
-    strokeWidthThin: '1.5px',
-    strokeWidthThick: '2.5px',
-
-    // Tighter spacing — toolbar/filter bars use gap: 10px
-    spacingHorizontalS: '6px',
-    spacingHorizontalM: '10px',
-    spacingHorizontalL: '14px',
-    spacingVerticalS: '6px',
-    spacingVerticalM: '10px',
-    spacingVerticalL: '14px',
-
-    // Heavier semibold for page titles (Text weight="semibold")
-    fontWeightSemibold: 650,
-  },
-  darkOverrides: {
-    // Same structural overrides as light
-    borderRadiusSmall: '4px',
-    borderRadiusMedium: '8px',
-    borderRadiusLarge: '16px',
-    borderRadiusXLarge: '24px',
-    strokeWidthThin: '1.5px',
-    strokeWidthThick: '2.5px',
-    spacingHorizontalS: '6px',
-    spacingHorizontalM: '10px',
-    spacingHorizontalL: '14px',
-    spacingVerticalS: '6px',
-    spacingVerticalM: '10px',
-    spacingVerticalL: '14px',
-    fontWeightSemibold: 650,
-  },
+  lightOverrides: {},
+  darkOverrides: {},
   highContrastOverrides: undefined,
 };

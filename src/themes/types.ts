@@ -46,6 +46,25 @@ export interface ProductThemeDefinition {
   highContrastOverrides?: Partial<Theme>;
 }
 
+export type DesignSystemId = 'fluent2' | 'coherence' | 'ibiza' | 'fluent1' | 'azure-fluent';
+
+export interface SkinSections {
+  colors: Partial<Theme>;
+  shape: Partial<Theme>;
+  elevation: Partial<Theme>;
+  density: Partial<Theme>;
+  typography: Partial<Theme>;
+}
+
+export interface DesignSystemSkin {
+  id: DesignSystemId;
+  displayName: string;
+  description: string;
+  sections: SkinSections;
+}
+
+export type FlattenedSkin = Partial<Theme>;
+
 /**
  * Internal registry mapping product IDs to their theme definitions.
  * Populated at runtime by `registerProductTheme()` calls in each product file.
@@ -62,6 +81,7 @@ export interface ResolvedThemeResult {
   theme: Theme;
   /** The product ID that was resolved (e.g., 'azure', 'sre-agent'). */
   productId: string;
+  skinId?: DesignSystemId;
   /** The appearance mode that was resolved. */
   appearance: AppearanceMode;
 }

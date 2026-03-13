@@ -6,10 +6,12 @@ import {
 import type { Theme } from '@fluentui/react-components';
 import type {
   AppearanceMode,
+  DesignSystemId,
   ProductThemeDefinition,
   ResolvedThemeResult,
   ThemeRegistry,
 } from './types';
+import { flattenSkin, getSkin } from './skins';
 import { azureProductTheme } from './products/azure';
 import { sreAgentProductTheme } from './products/sre-agent';
 
@@ -48,42 +50,73 @@ export function getAllProductThemes(): ProductThemeDefinition[] {
  * Resolves a Fluent v9 Theme for a product ID and appearance mode.
  * Throws when the product ID is not registered.
  */
-export function resolveTheme(productId: string, appearance: AppearanceMode): Theme {
+export function resolveTheme(
+  productId: string,
+  appearance: AppearanceMode,
+  designSystem?: DesignSystemId,
+): Theme {
   const definition = themeRegistry.get(productId);
 
   if (!definition) {
     throw new Error(`Product theme not found: ${productId}`);
   }
 
-  let theme: Theme;
+  let baseTheme: Theme;
 
   switch (appearance) {
     case 'light': {
-      theme = {
-        ...createLightTheme(definition.brand),
-        ...(definition.lightOverrides ?? {}),
-      };
+      baseTheme = createLightTheme(definition.brand);
       break;
     }
     case 'dark': {
-      theme = {
-        ...createDarkTheme(definition.brand),
-        ...(definition.darkOverrides ?? {}),
-      };
+      baseTheme = createDarkTheme(definition.brand);
       break;
     }
     case 'high-contrast': {
-      theme = {
-        ...createHighContrastTheme(),
-        ...(definition.highContrastOverrides ?? {}),
-      };
+      baseTheme = createHighContrastTheme();
       break;
     }
   }
 
+  let skinOverrides: Partial<Theme> = {};
+
+  if (designSystem !== undefined) {
+    const skin = getSkin(designSystem);
+
+    if (!skin) {
+      throw new Error(`Design system skin not found: ${designSystem}`);
+    }
+
+    skinOverrides = flattenSkin(skin.sections);
+  }
+
+  let productOverrides: Partial<Theme> = {};
+
+  switch (appearance) {
+    case 'light': {
+      productOverrides = definition.lightOverrides ?? {};
+      break;
+    }
+    case 'dark': {
+      productOverrides = definition.darkOverrides ?? {};
+      break;
+    }
+    case 'high-contrast': {
+      productOverrides = definition.highContrastOverrides ?? {};
+      break;
+    }
+  }
+
+  const theme: Theme = {
+    ...baseTheme,
+    ...skinOverrides,
+    ...productOverrides,
+  };
+
   const resolved: ResolvedThemeResult = {
     theme,
     productId,
+    skinId: designSystem,
     appearance,
   };
 
