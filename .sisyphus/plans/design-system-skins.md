@@ -12,7 +12,6 @@
 > - Third Storybook toolbar dropdown
 > - SRE Agent product theme refactored to brand-identity-only
 > - Hardcoded px/hex cleanup across 22 component files
-> - Semantic token layer for values Fluent Theme doesn't model
 > - Chromatic modes updated to curated 6-mode subset
 > - TDD tests for layering, validation, completeness
 >
@@ -88,8 +87,7 @@ Extend the theme system from 2 axes (Product × Appearance) to 3 axes (Product �
 - Updated `.storybook/addons/theme-switcher/manager.tsx` — Third dropdown component
 - Updated `.storybook/preview.tsx` — designSystem global + 3-axis resolveTheme call
 - Updated `.storybook/preview.css` — CSS custom properties for dark/HC backgrounds
-- Updated 22 component files — all hardcoded px/hex replaced with tokens
-- New semantic token definitions for values Fluent Theme doesn't model
+- Updated 22 component files — all hardcoded px/hex replaced with existing Fluent v9 tokens (closest match with comments where inexact)
 - TDD tests for resolveTheme layering, skin validation, token completeness
 - Updated Chromatic modes (curated 6-mode subset with skin axis)
 
@@ -118,7 +116,7 @@ Extend the theme system from 2 axes (Product × Appearance) to 3 axes (Product �
 - No actual legacy library imports (Coherence CDN, Fluent v1 packages, etc.)
 - No pixel-perfect reproduction — "recognizable era" fidelity only
 - No hardcoded px/hex in component makeStyles (layout constants exempt)
-- No semantic tokens for layout constants (context pane widths 315/585/855/1125px)
+- No new custom token definitions — use existing Fluent v9 tokens only (closest match with comments)
 - No Chromatic modes beyond curated 6-mode subset
 - No skin selector in DocsContainer sidebar — toolbar only
 - No breaking changes to `azureThemes.ts` exports
@@ -169,7 +167,7 @@ Evidence saved to `.sisyphus/evidence/task-{N}-{scenario-slug}.{ext}`.
 ```
 Wave 1 — Guardrails and Contracts (5 tasks):
 ├── Task 1: Freeze azureThemes legacy behavior with snapshots [quick]
-├── Task 2: Lock semantic token naming contract + theme type additions [deep]
+├── Task 2: Lock theme type additions + DesignSystemSkin type contract [deep]
 ├── Task 5: Add design-system globals to Storybook constants [quick]
 │   (1, 2, 5 run in PARALLEL — no dependencies)
 ├── Task 3: Add failing composition tests for 3-layer precedence [deep] (after 2)
