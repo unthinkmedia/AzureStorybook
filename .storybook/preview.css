@@ -13,7 +13,7 @@ body {
 
 /* Dark mode: story canvas gets dark background */
 [data-azure-theme="dark"] .docs-story {
-  background: #0A0A0A;
+  background: #1f1f1f;
 }
 
 [data-azure-theme="high-contrast"] .docs-story {
