@@ -253,7 +253,7 @@ Max Concurrent: 5 (Waves 3 & 4 fan-outs)
 
 ### Wave 1 — Guardrails and Contracts
 
-- [ ] 1. Freeze azureThemes Legacy Behavior with Snapshots
+- [x] 1. Freeze azureThemes Legacy Behavior with Snapshots
 
   **What to do**:
   - Create `src/themes/__tests__/azureThemes.snapshot.test.ts`
@@ -325,7 +325,7 @@ Max Concurrent: 5 (Waves 3 & 4 fan-outs)
 
 ---
 
-- [ ] 2. Lock Semantic Token Naming Contract + Theme Type Additions
+- [x] 2. Lock Semantic Token Naming Contract + Theme Type Additions
 
   **What to do**:
   - Define `DesignSystemId` type: `'fluent2' | 'coherence' | 'ibiza' | 'fluent1' | 'azure-fluent'`
@@ -407,7 +407,7 @@ Max Concurrent: 5 (Waves 3 & 4 fan-outs)
 
 ---
 
-- [ ] 3. Add Failing Composition Tests for 3-Layer Precedence
+- [x] 3. Add Failing Composition Tests for 3-Layer Precedence
 
   **What to do**:
   - In `src/themes/__tests__/themeRegistry.test.ts`, add a new `describe('3-axis composition')` block
@@ -468,7 +468,7 @@ Max Concurrent: 5 (Waves 3 & 4 fan-outs)
 
 ---
 
-- [ ] 4. Refactor SRE Agent to Brand/Identity-Only
+- [x] 4. Refactor SRE Agent to Brand/Identity-Only
 
   **What to do**:
   - Remove structural token overrides from `src/themes/products/sre-agent.ts`:
@@ -540,7 +540,7 @@ Max Concurrent: 5 (Waves 3 & 4 fan-outs)
 
 ---
 
-- [ ] 5. Add Design-System Globals to Storybook Constants
+- [x] 5. Add Design-System Globals to Storybook Constants
 
   **What to do**:
   - In `.storybook/addons/theme-switcher/constants.ts`:
@@ -606,7 +606,7 @@ Max Concurrent: 5 (Waves 3 & 4 fan-outs)
 
 ### Wave 2 — Core Composition and Storybook Plumbing
 
-- [ ] 6. Scaffold Skin Registry + Fluent 2 Identity Skin
+- [x] 6. Scaffold Skin Registry + Fluent 2 Identity Skin
 
   **What to do**:
   - Create directory `src/themes/skins/`
@@ -853,7 +853,7 @@ Max Concurrent: 5 (Waves 3 & 4 fan-outs)
 
 ---
 
-- [ ] 9. Add Third Toolbar Dropdown to Storybook Manager
+- [x] 9. Add Third Toolbar Dropdown to Storybook Manager
 
   **What to do**:
   - In `.storybook/addons/theme-switcher/manager.tsx`:
@@ -1563,7 +1563,7 @@ Max Concurrent: 5 (Waves 3 & 4 fan-outs)
 
 ---
 
-- [ ] 20. Final Regression — Chromatic Subset + Contract Docs + Exception Ledger
+- [x] 20. Final Regression — Chromatic Subset + Contract Docs + Exception Ledger
 
   **What to do**:
   - Update `.storybook/preview.tsx` chromatic modes (lines 80-118):

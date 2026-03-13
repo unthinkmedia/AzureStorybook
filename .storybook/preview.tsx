@@ -3,12 +3,14 @@ import { useState, useEffect } from 'react';
 import { FluentProvider } from '@fluentui/react-components';
 import { Agentation } from 'agentation';
 import { getProductTheme, resolveTheme } from '../src/themes/themeRegistry';
-import type { AppearanceMode } from '../src/themes/types';
+import type { AppearanceMode, DesignSystemId } from '../src/themes/types';
 import {
   PRODUCT_THEME_GLOBAL,
   APPEARANCE_MODE_GLOBAL,
+  DESIGN_SYSTEM_GLOBAL,
   DEFAULT_PRODUCT,
   DEFAULT_APPEARANCE,
+  DEFAULT_DESIGN_SYSTEM,
 } from './addons/theme-switcher/constants';
 import { DocsContainer as BaseDocsContainer } from '@storybook/addon-docs/blocks';
 import { themes } from 'storybook/theming';
@@ -24,6 +26,10 @@ export const globalTypes = {
   appearanceMode: {
     name: 'Appearance',
     defaultValue: DEFAULT_APPEARANCE,
+  },
+  designSystem: {
+    name: 'Design System',
+    defaultValue: DEFAULT_DESIGN_SYSTEM,
   },
 };
 
@@ -65,9 +71,12 @@ const CustomDocsContainer = ({ children, context, ...rest }: any) => {
 
   const appearance = ((globals[APPEARANCE_MODE_GLOBAL] as string) ??
     DEFAULT_APPEARANCE) as AppearanceMode;
+  const designSystem = ((globals[DESIGN_SYSTEM_GLOBAL] as string) ??
+    DEFAULT_DESIGN_SYSTEM) as DesignSystemId;
 
   // Sync data-azure-theme so preview.css dark-mode CSS rules apply to .docs-story
   document.documentElement.setAttribute('data-azure-theme', appearance);
+  document.documentElement.setAttribute('data-design-system', designSystem);
 
   return (
     <BaseDocsContainer context={context} theme={themes.light} {...rest}>
@@ -80,40 +89,46 @@ const preview: Preview = {
   parameters: {
     chromatic: {
       modes: {
-        'azure-light': {
+        'fluent2-light': {
           globals: {
             [PRODUCT_THEME_GLOBAL]: 'azure',
             [APPEARANCE_MODE_GLOBAL]: 'light',
+            [DESIGN_SYSTEM_GLOBAL]: 'fluent2',
           },
         },
-        'azure-dark': {
-          globals: {
-            [PRODUCT_THEME_GLOBAL]: 'azure',
-            [APPEARANCE_MODE_GLOBAL]: 'dark',
-          },
-        },
-        'azure-hc': {
+        'fluent2-hc': {
           globals: {
             [PRODUCT_THEME_GLOBAL]: 'azure',
             [APPEARANCE_MODE_GLOBAL]: 'high-contrast',
+            [DESIGN_SYSTEM_GLOBAL]: 'fluent2',
           },
         },
-        'sreagent-light': {
+        'coherence-light': {
           globals: {
-            [PRODUCT_THEME_GLOBAL]: 'sre-agent',
+            [PRODUCT_THEME_GLOBAL]: 'azure',
             [APPEARANCE_MODE_GLOBAL]: 'light',
+            [DESIGN_SYSTEM_GLOBAL]: 'coherence',
           },
         },
-        'sreagent-dark': {
+        'azure-fluent-dark': {
           globals: {
-            [PRODUCT_THEME_GLOBAL]: 'sre-agent',
+            [PRODUCT_THEME_GLOBAL]: 'azure',
             [APPEARANCE_MODE_GLOBAL]: 'dark',
+            [DESIGN_SYSTEM_GLOBAL]: 'azure-fluent',
           },
         },
-        'sreagent-hc': {
+        'ibiza-light': {
           globals: {
-            [PRODUCT_THEME_GLOBAL]: 'sre-agent',
-            [APPEARANCE_MODE_GLOBAL]: 'high-contrast',
+            [PRODUCT_THEME_GLOBAL]: 'azure',
+            [APPEARANCE_MODE_GLOBAL]: 'light',
+            [DESIGN_SYSTEM_GLOBAL]: 'ibiza',
+          },
+        },
+        'fluent1-dark': {
+          globals: {
+            [PRODUCT_THEME_GLOBAL]: 'azure',
+            [APPEARANCE_MODE_GLOBAL]: 'dark',
+            [DESIGN_SYSTEM_GLOBAL]: 'fluent1',
           },
         },
       },
@@ -150,10 +165,13 @@ const preview: Preview = {
       const productId = getProductTheme(requestedProductId) ? requestedProductId : DEFAULT_PRODUCT;
       const appearance = ((context.globals[APPEARANCE_MODE_GLOBAL] as string | undefined) ??
         DEFAULT_APPEARANCE) as AppearanceMode;
-      const theme = resolveTheme(productId, appearance);
+      const designSystem = ((context.globals[DESIGN_SYSTEM_GLOBAL] as string | undefined) ??
+        DEFAULT_DESIGN_SYSTEM) as DesignSystemId;
+      const theme = resolveTheme(productId, appearance, designSystem);
 
       // Backward compat: sync data-azure-theme attribute for any external CSS/tooling
       document.documentElement.setAttribute('data-azure-theme', appearance);
+      document.documentElement.setAttribute('data-design-system', designSystem);
 
       return (
         <FluentProvider theme={theme}>

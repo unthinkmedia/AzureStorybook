@@ -1,0 +1,18 @@
+=== Task 20: Chromatic Modes Update ===
+Date: Fri Mar 13 2026
+
+Replaced 6 old Chromatic modes (azure-light, azure-dark, azure-hc, sreagent-light, sreagent-dark, sreagent-hc)
+with 6 new design-system-axis modes:
+
+NEW MODES:
+  fluent2-light    → productTheme: azure | appearance: light        | designSystem: fluent2
+  fluent2-hc       → productTheme: azure | appearance: high-contrast | designSystem: fluent2
+  coherence-light  → productTheme: azure | appearance: light        | designSystem: coherence
+  azure-fluent-dark → productTheme: azure | appearance: dark        | designSystem: azure-fluent
+  ibiza-light      → productTheme: azure | appearance: light        | designSystem: ibiza
+  fluent1-dark     → productTheme: azure | appearance: dark         | designSystem: fluent1
+
+File modified: .storybook/preview.tsx (lines 91-134)
+All 3 globals constants used: PRODUCT_THEME_GLOBAL, APPEARANCE_MODE_GLOBAL, DESIGN_SYSTEM_GLOBAL
+No hardcoded string literals — all keys use imported constants.
+Count: exactly 6 modes (≤ maximum allowed per plan constraint).

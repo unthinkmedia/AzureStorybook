@@ -1,0 +1,27 @@
+=== Task 20 Full Regression ===
+Date: Fri Mar 13 18:39:57 EDT 2026
+
+=== TEST RESULTS ===
+
+[1m[46m RUN [49m[22m [36mv4.1.0 [39m[90m/private/tmp/design-system-skins[39m
+
+
+[2m Test Files [22m [1m[32m4 passed[39m[22m[90m (4)[39m
+[2m      Tests [22m [1m[32m42 passed[39m[22m[90m (42)[39m
+[2m   Start at [22m 18:39:57
+[2m   Duration [22m 541ms[2m (transform 98ms, setup 0ms, import 965ms, tests 15ms, environment 0ms)[22m
+
+
+=== BUILD RESULTS ===
+│
+◇  Output directory: /private/tmp/design-system-skins/storybook-static
+│
+└  Storybook build completed successfully
+
+
+=== LINT RESULTS ===
+/private/tmp/design-system-skins/src/themes/skins/coherence.ts
+  17:37  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+✖ 17 problems (0 errors, 17 warnings)
+

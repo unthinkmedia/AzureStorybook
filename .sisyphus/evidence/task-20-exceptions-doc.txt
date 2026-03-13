@@ -1,0 +1,16 @@
+=== Task 20: EXCEPTIONS.md Created ===
+Date: Fri Mar 13 2026
+
+File: src/themes/EXCEPTIONS.md
+
+Sections documented:
+1. Layout Constants (7 entries: ContextPane 315/585/855/1125px, SideNav 48/260px, SearchBanner 480px,
+   CardButton 104px, NullState 120px, ServiceFlyout 540/28px, EssentialsPanel 180px)
+2. Animation Boundaries (ServiceFlyout 0px→500px max-height expand)
+3. SVG Gradient Stop Colors (AzureGlobalHeader #0078D4→#50E6FF, SREGlobalHeader #6B69D6→#C4B9FE)
+4. Skin Fidelity Policy ("recognizable era, not pixel-perfect")
+5. Composition Rule (appearance → skin → product, product always wins)
+6. Zero-Value Exemptions (Ibiza borderRadiusNone='0px', shadow*='none')
+
+All documented exceptions correspond to comments in source files.
+No exceptions added that are not already marked in source code.
