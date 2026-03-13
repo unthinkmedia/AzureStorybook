@@ -1,5 +1,3 @@
-import '../products';
-
 import { describe, expect, it } from 'vitest';
 import { azureBrand } from '../azureThemes';
 import { getAllProductThemes, getThemeRegistrySnapshot, resolveTheme } from '../themeRegistry';

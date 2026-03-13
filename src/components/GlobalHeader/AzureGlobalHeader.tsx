@@ -57,8 +57,8 @@ const useStyles = makeStyles({
     display: 'flex',
     alignItems: 'center',
     height: `${HEADER_HEIGHT}px`,
-    backgroundColor: '#0f6cbd',
-    color: '#ffffff',
+    backgroundColor: tokens.colorBrandBackground,
+    color: tokens.colorNeutralForegroundOnBrand,
     paddingLeft: '8px',
     paddingRight: '12px',
     flexShrink: 0,
@@ -76,7 +76,7 @@ const useStyles = makeStyles({
   },
 
   iconButton: {
-    color: '#ffffff',
+    color: tokens.colorNeutralForegroundOnBrand,
     backgroundColor: 'transparent',
     minWidth: '32px',
     width: '32px',
@@ -84,12 +84,12 @@ const useStyles = makeStyles({
     borderRadius: '4px',
     border: 'none',
     ':hover': {
-      backgroundColor: 'rgba(255, 255, 255, 0.15)',
-      color: '#ffffff',
+      backgroundColor: tokens.colorSubtleBackgroundInvertedHover,
+      color: tokens.colorNeutralForegroundOnBrand,
     },
     ':active': {
-      backgroundColor: 'rgba(255, 255, 255, 0.25)',
-      color: '#ffffff',
+      backgroundColor: tokens.colorSubtleBackgroundInvertedPressed,
+      color: tokens.colorNeutralForegroundOnBrand,
     },
   },
 
@@ -104,15 +104,11 @@ const useStyles = makeStyles({
   },
 
   portalName: {
-    fontSize: '14px',
-    fontWeight: 600,
-    color: '#ffffff',
+    fontSize: tokens.fontSizeBase300,
+    fontWeight: tokens.fontWeightSemibold,
+    color: tokens.colorNeutralForegroundOnBrand,
     whiteSpace: 'nowrap',
   },
-
-
-
-  /* — Center: search bar — */
   centerSection: {
     flex: 1,
     display: 'flex',
@@ -130,7 +126,7 @@ const useStyles = makeStyles({
   searchInput: {
     width: '100%',
     '& input': {
-      fontSize: '13px',
+      fontSize: tokens.fontSizeBase300,
     },
     '& input::placeholder': {
       color: tokens.colorNeutralForeground4,
@@ -149,20 +145,20 @@ const useStyles = makeStyles({
     display: 'flex',
     alignItems: 'center',
     gap: '6px',
-    backgroundColor: '#ffffff',
-    color: '#242424',
+    backgroundColor: tokens.colorNeutralBackground1,
+    color: tokens.colorNeutralForeground1,
     border: 'none',
     borderRadius: '16px',
     padding: '4px 14px 4px 10px',
     height: '28px',
-    fontSize: '13px',
-    fontWeight: 600,
+    fontSize: tokens.fontSizeBase300,
+    fontWeight: tokens.fontWeightSemibold,
     cursor: 'pointer',
     whiteSpace: 'nowrap',
     flexShrink: 0,
     marginRight: '4px',
     ':hover': {
-      backgroundColor: '#f0f0f0',
+      backgroundColor: tokens.colorNeutralBackground1Hover,
     },
   },
 
@@ -179,7 +175,7 @@ const useStyles = makeStyles({
   divider: {
     width: '1px',
     height: '24px',
-    backgroundColor: 'rgba(255, 255, 255, 0.3)',
+    backgroundColor: tokens.colorNeutralStrokeOnBrand2,
     marginLeft: '6px',
     marginRight: '6px',
     flexShrink: 0,
@@ -194,7 +190,7 @@ const useStyles = makeStyles({
     borderRadius: '4px',
     padding: '2px 8px',
     ':hover': {
-      backgroundColor: 'rgba(255, 255, 255, 0.15)',
+      backgroundColor: tokens.colorSubtleBackgroundInvertedHover,
     },
   },
 
@@ -202,12 +198,12 @@ const useStyles = makeStyles({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-end',
-    lineHeight: 1.2,
+    lineHeight: tokens.lineHeightBase100,
   },
 
   profileEmail: {
-    fontSize: '12px',
-    color: '#ffffff',
+    fontSize: tokens.fontSizeBase200,
+    color: tokens.colorNeutralForegroundOnBrand,
     whiteSpace: 'nowrap',
     maxWidth: '180px',
     overflow: 'hidden',
@@ -215,8 +211,8 @@ const useStyles = makeStyles({
   },
 
   profileOrg: {
-    fontSize: '10px',
-    color: 'rgba(255, 255, 255, 0.85)',
+    fontSize: tokens.fontSizeBase100,
+    color: tokens.colorNeutralForegroundOnBrand,
     whiteSpace: 'nowrap',
     maxWidth: '180px',
     overflow: 'hidden',
@@ -286,7 +282,7 @@ export const AzureGlobalHeader: React.FC<AzureGlobalHeaderProps> = ({
         .join('')
         .toUpperCase()
         .slice(0, 2)
-    : userEmail?.[0]?.toUpperCase() ?? '?';
+    : (userEmail?.[0]?.toUpperCase() ?? '?');
 
   return (
     <header className={mergeClasses(styles.root, className)} role="banner">
@@ -354,16 +350,15 @@ export const AzureGlobalHeader: React.FC<AzureGlobalHeaderProps> = ({
 
         <Tooltip content="Notifications" relationship="label">
           <div className={styles.notificationBadge}>
-            <button className={styles.iconButton} aria-label="Notifications" style={{ border: 'none' }}>
+            <button
+              className={styles.iconButton}
+              aria-label="Notifications"
+              style={{ border: 'none' }}
+            >
               <Alert20Regular />
             </button>
             {notificationCount > 0 && (
-              <Badge
-                className={styles.badge}
-                size="tiny"
-                color="danger"
-                appearance="filled"
-              />
+              <Badge className={styles.badge} size="tiny" color="danger" appearance="filled" />
             )}
           </div>
         </Tooltip>
@@ -389,17 +384,17 @@ export const AzureGlobalHeader: React.FC<AzureGlobalHeaderProps> = ({
         <div className={styles.divider} />
 
         {/* Profile */}
-        <div className={styles.profileSection} role="button" tabIndex={0} aria-label="Account manager">
+        <div
+          className={styles.profileSection}
+          role="button"
+          tabIndex={0}
+          aria-label="Account manager"
+        >
           <div className={styles.profileText}>
             <span className={styles.profileEmail}>{userEmail}</span>
             <span className={styles.profileOrg}>{organization}</span>
           </div>
-          <Avatar
-            name={userName ?? userEmail}
-            initials={initials}
-            size={28}
-            color="brand"
-          />
+          <Avatar name={userName ?? userEmail} initials={initials} size={28} color="brand" />
         </div>
       </div>
     </header>

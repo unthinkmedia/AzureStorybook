@@ -10,8 +10,13 @@ import type {
   ResolvedThemeResult,
   ThemeRegistry,
 } from './types';
+import { azureProductTheme } from './products/azure';
+import { sreAgentProductTheme } from './products/sre-agent';
 
-const themeRegistry: ThemeRegistry = new Map<string, ProductThemeDefinition>();
+const themeRegistry: ThemeRegistry = new Map<string, ProductThemeDefinition>([
+  [azureProductTheme.id, azureProductTheme],
+  [sreAgentProductTheme.id, sreAgentProductTheme],
+]);
 
 /**
  * Registers a product theme definition in the in-memory theme registry.

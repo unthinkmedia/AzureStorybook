@@ -1,5 +1,4 @@
 import type { ProductThemeDefinition } from '../types';
-import { registerProductTheme } from '../themeRegistry';
 import type { BrandVariants } from '@fluentui/react-components';
 
 /**
@@ -74,5 +73,3 @@ export const sreAgentProductTheme: ProductThemeDefinition = {
   },
   highContrastOverrides: undefined,
 };
-
-registerProductTheme(sreAgentProductTheme);

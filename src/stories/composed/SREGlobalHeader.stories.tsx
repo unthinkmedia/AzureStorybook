@@ -1,8 +1,6 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { FluentProvider } from '@fluentui/react-components';
 import { SREGlobalHeader } from '../../components/GlobalHeader';
-import { azureLightTheme } from '../../themes';
 
 export default {
   title: 'Composed/Global Header/SREGlobalHeader',
@@ -17,13 +15,6 @@ export default {
       },
     },
   },
-  decorators: [
-    (Story) => (
-      <FluentProvider theme={azureLightTheme}>
-        <Story />
-      </FluentProvider>
-    ),
-  ],
   argTypes: {
     portalName: { control: 'text' },
     badge: { control: 'text' },
