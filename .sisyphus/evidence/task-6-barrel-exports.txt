@@ -1,0 +1,4 @@
+Command: grep 'azureProductTheme\|logicAppsProductTheme' src/themes/products/index.ts
+Output:
+export { azureProductTheme } from './azure';
+export { logicAppsProductTheme } from './logic-apps';

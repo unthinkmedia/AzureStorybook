@@ -1,0 +1,4 @@
+grep output: addons.register count, addons.add count, addon-themes in main.ts count
+addons.register count (manager.tsx): 1
+addons.add count (manager.tsx): 2
+addon-themes in main.ts count: 0

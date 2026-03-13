@@ -1,0 +1,7 @@
+import { resolveTheme } from '../src/themes/themeRegistry';
+export const globalTypes = {
+        (context.globals[PRODUCT_THEME_GLOBAL] as string | undefined) ?? DEFAULT_PRODUCT;
+      const appearance = ((context.globals[APPEARANCE_MODE_GLOBAL] as string | undefined) ??
+      const theme = resolveTheme(productId, appearance);
+      // Backward compat: sync data-azure-theme attribute for any external CSS/tooling
+      document.documentElement.setAttribute('data-azure-theme', appearance);

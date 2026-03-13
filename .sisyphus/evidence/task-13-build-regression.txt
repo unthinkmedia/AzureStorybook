@@ -1,0 +1,172 @@
+================================================================================
+TASK 13: FULL BUILD REGRESSION VERIFICATION
+Timestamp: 2026-03-12 16:50:00 UTC
+Project: @azure-fluent-storybook/components@0.1.2
+================================================================================
+
+COMMAND 1: TypeScript Type Check
+================================================================================
+Command: ./node_modules/.bin/tsc --noEmit && echo 'TSC_OK'
+Status: ✓ PASSED (exit code 0)
+Output:
+TSC_OK
+
+COMMAND 2: ESLint Linting
+================================================================================
+Command: npm run lint 2>&1
+Status: ✓ PASSED (exit code 0)
+Output:
+> @azure-fluent-storybook/components@0.1.2 lint
+> eslint 'src/**/*.{ts,tsx}'
+
+
+/Users/erikdrouhard/Library/CloudStorage/OneDrive-Microsoft/Documents/dev/mini-azure/portal-playground/AzureStorybook/src/stories/components/Cards/StatusCard.stories.tsx
+  1:8  warning  'React' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/erikdrouhard/Library/CloudStorage/OneDrive-Microsoft/Documents/dev/mini-azure/portal-playground/AzureStorybook/src/stories/components/FilterPill.stories.tsx
+  109:10  warning  'scopeSelection' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  110:10  warning  'typeSelection' is assigned a value but never used   @typescript-eslint/no-unused-vars
+
+/Users/erikdrouhard/Library/CloudStorage/OneDrive-Microsoft/Documents/dev/mini-azure/portal-playground/AzureStorybook/src/stories/components/Form Elements/Input.stories.tsx
+   4:3   warning  'Label' is defined but never used            @typescript-eslint/no-unused-vars
+  10:10  warning  'Search24Regular' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/erikdrouhard/Library/CloudStorage/OneDrive-Microsoft/Documents/dev/mini-azure/portal-playground/AzureStorybook/src/stories/components/MessageBar.stories.tsx
+  8:3  warning  'tokens' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/erikdrouhard/Library/CloudStorage/OneDrive-Microsoft/Documents/dev/mini-azure/portal-playground/AzureStorybook/src/stories/composed/CommandBar.stories.tsx
+  11:3  warning  'MoreHorizontal20Regular' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/erikdrouhard/Library/CloudStorage/OneDrive-Microsoft/Documents/dev/mini-azure/portal-playground/AzureStorybook/src/stories/composed/NullState.stories.tsx
+  1:8   warning  'React' is defined but never used           @typescript-eslint/no-unused-vars
+  4:15  warning  'NullStateProps' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/erikdrouhard/Library/CloudStorage/OneDrive-Microsoft/Documents/dev/mini-azure/portal-playground/AzureStorybook/src/stories/composed/SearchBanner.stories.tsx
+  1:8   warning  'React' is defined but never used              @typescript-eslint/no-unused-vars
+  4:15  warning  'SearchBannerProps' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/erikdrouhard/Library/CloudStorage/OneDrive-Microsoft/Documents/dev/mini-azure/portal-playground/AzureStorybook/src/stories/templates/ContainerLayouts.stories.tsx
+  14:3   warning  'CommandBar' is defined but never used       @typescript-eslint/no-unused-vars
+  17:15  warning  'CommandBarGroup' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/erikdrouhard/Library/CloudStorage/OneDrive-Microsoft/Documents/dev/mini-azure/portal-playground/AzureStorybook/src/stories/templates/SREContainerLayouts.stories.tsx
+  12:3  warning  'CommandBar' is defined but never used  @typescript-eslint/no-unused-vars
+
+✖ 14 problems (0 errors, 14 warnings)
+
+NOTE: All 14 warnings are pre-existing (in story files only, not in Wave 1-3 code).
+No NEW errors or warnings from Wave 1-3 implementation.
+
+COMMAND 3: Vitest Unit Tests
+================================================================================
+Command: ./node_modules/.bin/vitest run && echo 'VITEST_OK'
+Status: ✓ PASSED (exit code 0)
+Output:
+[1m[46m RUN [49m[22m [36mv4.1.0 [39m[90m/Users/erikdrouhard/Library/CloudStorage/OneDrive-Microsoft/Documents/dev/mini-azure/portal-playground/AzureStorybook[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m (1)[39m
+[2m      Tests [22m [1m[32m9 passed[39m[22m (9)[39m
+[2m   Start at [22m 16:49:41
+[2m   Duration [22m 839ms[2m (transform 31ms, setup 0ms, import 765ms, tests 5ms, environment 0ms)[39m
+
+VITEST_OK
+
+All 9 tests from themeRegistry.test.ts passed successfully.
+
+COMMAND 4: Build Storybook Static Site
+================================================================================
+Command: npm run build && echo 'BUILD_OK'
+Status: ✓ PASSED (exit code 0)
+Duration: ~4.89 seconds
+Output Summary:
+> @azure-fluent-storybook/components@0.1.2 build
+> storybook build -o storybook-static
+
+┌  Building storybook v10.2.16
+│
+◇  Cleaning outputDir: storybook-static
+◇  Loading presets
+◇  Building manager..
+●  Building preview..
+│  Vite vite v6.4.1 building for production...
+│  Vite transforming...
+│  Vite ✓ 2305 modules transformed.
+│  Vite rendering chunks...
+│  Vite computing gzip size...
+│
+▲  Vite: (!) Some chunks are larger than 500 kB after minification
+│  (Warning is pre-existing, not from Wave 1-3)
+│  Vite ✓ built in 4.89s
+│
+◇  Output directory:
+│  /Users/erikdrouhard/Library/CloudStorage/OneDrive-Microsoft/Documents/dev/mini-azure/portal-playground/AzureStorybook/storybook-static
+│
+└  Storybook build completed successfully
+
+BUILD_OK
+
+COMMAND 5: Build Library with tsup
+================================================================================
+Command: npm run build:lib && echo 'BUILDLIB_OK'
+Status: ✓ PASSED (exit code 0)
+Duration: ~1.4 seconds
+Output:
+> @azure-fluent-storybook/components@0.1.2 build:lib
+> tsup
+
+CLI Building entry: src/index.ts
+CLI Using tsconfig: tsconfig.json
+CLI tsup v8.5.1
+CLI Using tsup config: /Users/erikdrouhard/Library/CloudStorage/OneDrive-Microsoft/Documents/dev/mini-azure/portal-playground/AzureStorybook/tsup.config.ts
+CLI Target: es2020
+CLI Cleaning output folder
+ESM Build start
+CJS Build start
+DTS Build start
+ESM dist/index.js     113.46 KB
+ESM dist/index.js.map 252.35 KB
+ESM ⚡️ Build success in 165ms
+CJS dist/index.cjs     125.72 KB
+CJS dist/index.cjs.map 253.83 KB
+CJS ⚡️ Build success in 165ms
+DTS ⚡️ Build success in 1227ms
+DTS dist/index.d.ts  23.26 KB
+DTS dist/index.d.cts 23.26 KB
+
+BUILDLIB_OK
+
+COMMAND 6: Build LLM Bundle
+================================================================================
+Command: npm run build:llm && echo 'BUILDLLM_OK'
+Status: ✓ PASSED (exit code 0)
+Duration: <1 second
+Output:
+> @azure-fluent-storybook/components@0.1.2 build:llm
+> tsx scripts/generate-llm-bundle.ts
+
+LLM bundle → /Users/erikdrouhard/Library/CloudStorage/OneDrive-Microsoft/Documents/dev/mini-azure/portal-playground/AzureStorybook/public/llm-context-bundle.json (served at /llm-context-bundle.json)
+LLM bundle → /Users/erikdrouhard/Library/CloudStorage/OneDrive-Microsoft/Documents/dev/mini-azure/portal-playground/AzureStorybook/storybook-static/llm-context-bundle.json (static build)
+
+  Components: 35
+  Context files: 3
+  Guidelines: 4
+  Component docs: 47
+  Theme products: 2
+  Appearances: 3
+  With descriptions: 47/47
+
+BUILDLLM_OK
+
+================================================================================
+SUMMARY: ALL 6 BUILD COMMANDS PASSED ✓
+================================================================================
+Exit Codes:
+  1. TypeScript check: 0 ✓
+  2. ESLint lint:      0 ✓ (14 pre-existing warnings only)
+  3. Vitest tests:     0 ✓ (9/9 tests passing)
+  4. Storybook build:  0 ✓
+  5. tsup build:lib:   0 ✓
+  6. tsx build:llm:    0 ✓
+
+NO NEW ERRORS OR REGRESSIONS DETECTED
+Wave 1-3 implementation is clean and regression-free.

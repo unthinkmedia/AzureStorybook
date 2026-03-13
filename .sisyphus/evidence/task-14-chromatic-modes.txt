@@ -1,0 +1,25 @@
+Chromatic version: 11.29.0
+
+Preview mode evidence from .storybook/preview.tsx:
+7:  PRODUCT_THEME_GLOBAL,
+8:  APPEARANCE_MODE_GLOBAL,
+30:        'azure-light': {
+32:            [PRODUCT_THEME_GLOBAL]: 'azure',
+33:            [APPEARANCE_MODE_GLOBAL]: 'light',
+36:        'azure-dark': {
+38:            [PRODUCT_THEME_GLOBAL]: 'azure',
+39:            [APPEARANCE_MODE_GLOBAL]: 'dark',
+42:        'azure-hc': {
+44:            [PRODUCT_THEME_GLOBAL]: 'azure',
+45:            [APPEARANCE_MODE_GLOBAL]: 'high-contrast',
+48:        'logicapps-light': {
+50:            [PRODUCT_THEME_GLOBAL]: 'logic-apps',
+51:            [APPEARANCE_MODE_GLOBAL]: 'light',
+54:        'logicapps-dark': {
+56:            [PRODUCT_THEME_GLOBAL]: 'logic-apps',
+57:            [APPEARANCE_MODE_GLOBAL]: 'dark',
+60:        'logicapps-hc': {
+62:            [PRODUCT_THEME_GLOBAL]: 'logic-apps',
+63:            [APPEARANCE_MODE_GLOBAL]: 'high-contrast',
+95:        (context.globals[PRODUCT_THEME_GLOBAL] as string | undefined) ?? DEFAULT_PRODUCT;
+96:      const appearance = ((context.globals[APPEARANCE_MODE_GLOBAL] as string | undefined) ??

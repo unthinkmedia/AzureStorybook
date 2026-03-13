@@ -10,3 +10,18 @@ body {
 .docs-story > div:first-child {
   padding: 16px;
 }
+
+/* Dark mode: story canvas gets dark background */
+[data-azure-theme="dark"] .docs-story {
+  background: #1f1f1f;
+}
+
+[data-azure-theme="high-contrast"] .docs-story {
+  background: #000000;
+}
+
+/* Make FluentProvider inside story canvas transparent so .docs-story background shows through */
+[data-azure-theme="dark"] .docs-story .fui-FluentProvider,
+[data-azure-theme="high-contrast"] .docs-story .fui-FluentProvider {
+  background: transparent;
+}

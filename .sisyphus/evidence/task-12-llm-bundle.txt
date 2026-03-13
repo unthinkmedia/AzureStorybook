@@ -1,0 +1,16 @@
+
+> @azure-fluent-storybook/components@0.1.2 build:llm
+> tsx scripts/generate-llm-bundle.ts
+
+LLM bundle → /Users/erikdrouhard/Library/CloudStorage/OneDrive-Microsoft/Documents/dev/mini-azure/portal-playground/AzureStorybook/public/llm-context-bundle.json (served at /llm-context-bundle.json)
+
+  Components: 35
+  Context files: 3
+  Guidelines: 4
+  Component docs: 47
+  Theme products: 2
+  Appearances: 3
+  With descriptions: 47/47
+version: 2.0.0
+hasThemeRegistry: true
+products: 2

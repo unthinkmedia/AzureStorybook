@@ -1,0 +1,56 @@
+2026-03-12 F2 re-run audit
+Build PASS | Lint PASS | Tests 9 pass/0 fail | Files 14 clean/2 issues | VERDICT: REJECT
+
+Automated checks
+- ./node_modules/.bin/tsc --noEmit: PASS
+- npm run lint: PASS (0 errors, 14 warnings; all warnings are under src/stories/ and explicitly out of scope/pre-existing)
+- ./node_modules/.bin/vitest run: PASS (1 file, 9 tests)
+
+Changed-file review summary
+- Clean: src/themes/types.ts
+- Clean: src/themes/themeRegistry.ts
+- Clean: src/themes/products/azure.ts
+- Clean: src/themes/products/logic-apps.ts
+- Clean: src/themes/products/index.ts
+- Clean: src/themes/index.ts
+- Clean: src/themes/__tests__/themeRegistry.test.ts
+- Clean: .storybook/addons/theme-switcher/constants.ts
+- Clean: .storybook/addons/theme-switcher/manager.tsx
+- Clean: .storybook/addons/theme-switcher/manager.js
+- Clean: .storybook/main.ts
+- Clean: .storybook/preview.tsx
+- Issue: scripts/generate-llm-bundle.ts — hardcoding is allowed by plan Task 12, but the Logic Apps description string does not exactly match the registered product metadata source (`src/themes/products/logic-apps.ts`).
+- Issue: llm-context/azure-theme.md — Logic Apps docs omit the `(placeholder tokens)` qualifier present in the registered product metadata, creating consumer-facing metadata drift.
+- Clean: vitest.config.ts
+- Clean: README.md
+
+Prior F2 concern determinations
+1. Concern 1 (`resolveTheme()` has no runtime fallback/default branch): FALSE POSITIVE / ACCEPTABLE BY DESIGN.
+   - `tsconfig.json` uses `strict: true`.
+   - `src/themes/themeRegistry.ts` uses an exhaustive switch over `AppearanceMode` (`light` | `dark` | `high-contrast`).
+   - `.storybook/preview.tsx` defaults globals to `azure` + `light`, and `.storybook/addons/theme-switcher/manager.tsx` only exposes valid toolbar values from `.storybook/addons/theme-switcher/constants.ts`.
+   - The cast in preview is the Storybook boundary from unknown globals into the typed resolver API. There is no evidence of a failing in-repo path, so this does not justify rejection.
+
+2. Concern 2 (`logic-apps.ts` contains placeholder brand values and TODO comments): BY DESIGN.
+   - `.sisyphus/plans/product-theme-switcher.md` Task 7 explicitly requires placeholder overrides and a TODO comment for future token overrides.
+   - `src/themes/products/logic-apps.ts` matches that requirement exactly.
+
+3. Concern 3 (`generate-llm-bundle.ts` hardcodes product metadata and a description diverges): PARTIALLY GENUINE.
+   - Hardcoding the bundle payload is BY DESIGN per plan Task 12.
+   - However, the Logic Apps description in `scripts/generate-llm-bundle.ts` is `Azure Logic Apps workflow automation product theme (placeholder tokens)`, while the registered runtime source in `src/themes/products/logic-apps.ts` is `Azure Logic Apps — workflow automation product theme (placeholder tokens)`.
+   - `llm-context/azure-theme.md` diverges further by omitting the placeholder qualifier entirely.
+   - This is real metadata drift in the LLM/AI-consumption surface, so it remains a valid quality issue.
+
+Code-quality scan findings
+- No `as any` in reviewed implementation files.
+- No `@ts-ignore` in reviewed implementation files.
+- No empty catch blocks in reviewed implementation files.
+- No commented-out dead code patterns found in reviewed implementation files.
+- No unused-import diagnostics on changed TS/TSX/JS files.
+- `console.log` appears only in the CLI bundle-generation script, which is acceptable tooling output rather than production runtime logging.
+
+Final rationale
+- Functional/type/test gates all pass.
+- The previous fallback/TODO concerns were false positives or by-design decisions.
+- The remaining metadata inconsistency across runtime registry vs generated LLM surfaces is a genuine quality defect for external consumers.
+- Final verdict remains REJECT.

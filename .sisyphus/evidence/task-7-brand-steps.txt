@@ -1,0 +1,30 @@
+EVIDENCE: Logic Apps Brand Variant Steps Verification
+=====================================================
+
+FILE: src/themes/products/logic-apps.ts
+
+COMMAND: grep -oE '(10|20|30|40|50|60|70|80|90|100|110|120|130|140|150|160):' src/themes/products/logic-apps.ts | wc -l
+
+OUTPUT: 16
+
+BREAKDOWN — Brand Steps Found:
+==============================
+10: '#090E1F'
+20: '#101C3D'
+30: '#15295E'
+40: '#1A377F'
+50: '#1F45A0'
+60: '#2554C0'
+70: '#2E60D9'
+80: '#4F6BED'       (Primary — Logic Apps brand purple-blue)
+90: '#6B83F0'
+100: '#879BF3'
+110: '#9DAFFA'
+120: '#B0C0FC'
+130: '#C4D1FD'
+140: '#D8E1FE'
+150: '#E8EDFE'
+160: '#F4F6FF'
+
+COUNT: 16 ✓ VERIFIED
+All required BrandVariants steps (10-160) present as required by Fluent v9 theme system.

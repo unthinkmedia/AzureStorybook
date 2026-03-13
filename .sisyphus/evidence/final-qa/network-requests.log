@@ -1,0 +1,4 @@
+[GET] http://localhost:6200/index.json => [200] OK
+[GET] http://localhost:6200/index.json => [200] OK
+[GET] http://localhost:6200/index.json => [200] OK
+[GET] http://localhost:6200/index.json => [200] OK
