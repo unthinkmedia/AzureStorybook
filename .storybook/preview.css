@@ -11,15 +11,11 @@ body {
   padding: 16px;
 }
 
-/* Dark mode: only story canvas preview blocks get dark background */
-[data-azure-theme="dark"] .sbdocs-preview,
+/* Dark mode: story canvas gets dark background */
 [data-azure-theme="dark"] .docs-story {
   background: #222325;
-  border-color: rgba(255, 255, 255, 0.1);
 }
 
-[data-azure-theme="high-contrast"] .sbdocs-preview,
 [data-azure-theme="high-contrast"] .docs-story {
   background: #222325;
-  border-color: rgba(255, 255, 255, 0.1);
 }

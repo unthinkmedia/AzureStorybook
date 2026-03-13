@@ -12,7 +12,7 @@ import {
 } from './addons/theme-switcher/constants';
 import { DocsContainer as BaseDocsContainer } from '@storybook/addon-docs/blocks';
 import { themes } from 'storybook/theming';
-import { GLOBALS_UPDATED } from 'storybook/internal/core-events';
+import { GLOBALS_UPDATED, SET_GLOBALS } from 'storybook/internal/core-events';
 
 import './preview.css';
 
@@ -28,31 +28,37 @@ export const globalTypes = {
 };
 
 const CustomDocsContainer = ({ children, context, ...rest }: any) => {
-  const parseGlobalsFromUrl = (): Record<string, string> => {
+  const getInitialGlobals = (): Record<string, string> => {
     try {
-      const search = window.parent?.location?.search ?? window.location.search;
-      const params = new URLSearchParams(search);
-      const globalsParam = params.get('globals');
-      if (!globalsParam) return {};
-      return Object.fromEntries(
-        globalsParam.split(/[;,]/).map(pair => {
-          const [key, ...rest] = pair.split(':');
-          return [key, rest.join(':')];
-        })
-      );
+      const ch = context.channel;
+      // Channel stores past events in ch.data — read the most recent globals
+      const data = ch.data as Record<string, Array<{ globals?: Record<string, string> }>> | undefined;
+      const globalsUpdated = data?.['globalsUpdated'];
+      if (globalsUpdated?.length) {
+        return globalsUpdated[globalsUpdated.length - 1].globals ?? {};
+      }
+      const setGlobalsData = data?.['setGlobals'];
+      if (setGlobalsData?.length) {
+        return setGlobalsData[setGlobalsData.length - 1].globals ?? {};
+      }
+      return {};
     } catch {
       return {};
     }
   };
 
-  const [globals, setGlobals] = useState(() => parseGlobalsFromUrl());
+  const [globals, setGlobals] = useState(() => getInitialGlobals());
 
   useEffect(() => {
     const handler = (changed: { globals: Record<string, unknown> }) => {
       setGlobals(changed.globals as Record<string, string>);
     };
     context.channel.on(GLOBALS_UPDATED, handler);
-    return () => context.channel.off(GLOBALS_UPDATED, handler);
+    context.channel.on(SET_GLOBALS, handler);
+    return () => {
+      context.channel.off(GLOBALS_UPDATED, handler);
+      context.channel.off(SET_GLOBALS, handler);
+    };
   }, [context.channel]);
 
   const productId = (globals[PRODUCT_THEME_GLOBAL] as string) ?? DEFAULT_PRODUCT;

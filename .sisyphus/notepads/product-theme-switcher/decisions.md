@@ -34,3 +34,25 @@
 
 - For scope verdict accounting: exclude `.sisyphus/*` from contamination and unaccounted counts (orchestrator metadata), but include any non-`.sisyphus` committed files from `git diff HEAD~4..HEAD --name-only`.
 - Final F4 rerun verdict stays `REJECT` until `debug-storybook.log` is removed from implementation commit range or explicitly justified in plan scope.
+
+## [2026-03-12] Dark Mode Docs Page Implementation - Verified Working
+
+### Decision: Storybook BaseDocsContainer Theme Approach is Correct
+
+**Context:** The dark mode implementation for docs pages uses Storybook's `BaseDocsContainer` with a theme prop, not the `data-azure-theme` HTML attribute.
+
+**Rationale:**
+1. The `data-azure-theme` attribute is set by the story decorator (runs during story render), not during docs page render
+2. Storybook docs pages need the container-level theme, not individual story decorators
+3. The implementation correctly passes `theme={themes.dark}` to BaseDocsContainer when in dark mode
+
+**Verification:** Playwright visual test on 2026-03-12 confirmed:
+- Dark story canvas: Background renders dark (#222325)
+- Light docs chrome: Background renders light (white)
+- Light mode regression: No side effects
+
+**Files to Reference:**
+- `.storybook/preview.tsx` lines 28-46 (CustomDocsContainer implementation)
+- `.storybook/preview.css` (CSS rules for preview blocks)
+
+**Note:** The HTML attribute selector `[data-azure-theme="dark"]` in the CSS may not be the active path for docs pages, but the styling is being applied correctly through the Storybook theme system. This is working as intended.

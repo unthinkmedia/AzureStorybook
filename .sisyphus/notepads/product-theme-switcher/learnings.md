@@ -131,3 +131,39 @@
 - Scope-fidelity reruns must distinguish orchestrator artifacts (`.sisyphus/*`) from implementation scope contamination.
 - `git diff HEAD~4..HEAD --name-only` is the authoritative source for committed unaccounted files; local unstaged assumptions are insufficient.
 - Task 9 plan text explicitly includes `.storybook/main.ts` changes, so prior concern classifying it as out-of-scope was a false positive.
+
+## Dark Mode Docs Page Fix (Commit 9af6366)
+
+**Problem**: Storybook's emotion CSS class `.css-3rewwu` on `.sbdocs-wrapper` had hardcoded `background: rgb(255, 255, 255)` that didn't react to the `theme` prop.
+
+**Solution**: Added second `useEffect` in `CustomDocsContainer` that:
+1. Checks if `appearance === 'dark' || 'high-contrast'`
+2. Directly sets `document.querySelector('.sbdocs-wrapper').style.background` and `document.querySelector('.sbdocs').style.background`
+3. Uses `themes.dark.appContentBg` (#222325) for dark/HC, empty string for light (fallback to emotion class)
+4. Depends on `[globals[APPEARANCE_MODE_GLOBAL]]` to react to changes
+
+**Key learnings**:
+- The channel subscription (`GLOBALS_UPDATED`) correctly updates globals state — didn't need to change that
+- Emotion CSS classes have inline style specificity issues — imperative DOM manipulation via `useEffect` is the correct approach
+- Both `.sbdocs` and `.sbdocs-wrapper` need to be targeted to ensure background coverage
+- `themes.dark.appContentBg` from storybook/theming = `#222325` (dark gray, not black)
+- TypeScript checking works fine with `document.querySelector` casts to `HTMLElement | null`
+
+**Verification**: tsc --noEmit ✅ (0 errors), vitest run ✅ (10/10 tests pass)
+
+## [2026-03-12] Task: Dark Mode Docs Fix (URL Globals)
+- Identified that `context.storyById()` throws inside `DocsContainer` during the initial render on Autodocs pages because there is no primary story yet, causing `globals` to fall back to `{}` and the appearance mode to default to `light`.
+- Implemented `parseGlobalsFromUrl()` to retrieve globals directly from `window.parent.location.search` (or `window.location.search` if inside iframe without parent access).
+- Discovered that Storybook 10 can strip `&globals=` from the URL if commas are used as separators because it might consider them "unsafe URL args". Fixed parsing to support both `,` and `;` delimiters.
+- Also fixed a related legibility issue where Docs pages only changed `background` but kept dark text, by setting `textColor` from the theme via direct DOM element style overrides (`htmlEl.style.color`).
+## [2026-03-12] Task: Scoped Dark Mode Fix
+- When customizing Storybook docs themes, modifying `BaseDocsContainer`'s theme prop impacts the entire page chrome.
+- To selectively style only the Storybook preview canvas (the component story itself) while leaving the docs chrome (like headers, arg tables) light, you can leave `BaseDocsContainer` with `theme={themes.light}`.
+- Rely on global attributes injected by Story decorators (e.g. `data-azure-theme="dark"` on `<html>`) to target and style the specific canvas container `.sbdocs-preview` and `.docs-story` via a custom stylesheet.
+
+### Globals and URL Parsing in Storybook 10
+- Storybook's URL router uses semicolons (`;`) as delimiters for `globals`, not commas. Using commas will fail to parse subsequent parameters.
+- `window.location.search` doesn't work well within Storybook's iframe because the iframe URL typically resets or omits `globals=`.
+- Trying to parse `window.parent.location.search` is unreliable and prone to breaking changes across Storybook versions.
+- Instead, rely on `context.channel.data` to read initial globals correctly. The channel preserves historical events (`globalsUpdated` and `setGlobals`) which contain the fully parsed global state.
+- Subscribing to both `GLOBALS_UPDATED` and `SET_GLOBALS` events via `context.channel.on()` handles both subsequent changes and initialization updates triggered by Storybook's manager.
