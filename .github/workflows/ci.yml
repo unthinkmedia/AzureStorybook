@@ -36,6 +36,8 @@ jobs:
       id-token: write
       contents: read
     steps:
+      - uses: actions/checkout@v4
+
       - uses: actions/download-artifact@v4
         with:
           name: storybook-dist
@@ -47,5 +49,6 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: upload
           app_location: storybook-static
+          api_location: api
           output_location: ''
           skip_app_build: true
