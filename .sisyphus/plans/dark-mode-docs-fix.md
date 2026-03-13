@@ -150,7 +150,7 @@ Critical Path: Task 1 → Task 2 → F1-F4
 
 ## TODOs
 
-- [ ] 1. Add custom DocsContainer to `.storybook/preview.tsx`
+- [x] 1. Add custom DocsContainer to `.storybook/preview.tsx`
 
   **What to do**:
   1. Add two new imports at the top of `.storybook/preview.tsx`:
@@ -216,8 +216,8 @@ Critical Path: Task 1 → Task 2 → F1-F4
   **Acceptance Criteria**:
 
   **Regression:**
-  - [ ] `./node_modules/.bin/vitest run` → 10/10 tests PASS (unchanged)
-  - [ ] `./node_modules/.bin/tsc --noEmit` → clean (no errors)
+  - [x] `./node_modules/.bin/vitest run` → 10/10 tests PASS (unchanged)
+  - [x] `./node_modules/.bin/tsc --noEmit` → clean (no errors)
   - [ ] `npx eslint .storybook/preview.tsx` → 0 errors
 
   **Build:**
@@ -273,7 +273,7 @@ Critical Path: Task 1 → Task 2 → F1-F4
 
 ---
 
-- [ ] 2. Visual QA — verify all appearance modes render correctly
+- [x] 2. Visual QA — verify all appearance modes render correctly
 
   **What to do**:
   1. Start Storybook dev server (`npm run dev`)

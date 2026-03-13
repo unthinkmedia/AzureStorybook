@@ -13,9 +13,15 @@ body {
 
 /* Dark mode: story canvas gets dark background */
 [data-azure-theme="dark"] .docs-story {
-  background: #222325;
+  background: #0A0A0A;
 }
 
 [data-azure-theme="high-contrast"] .docs-story {
-  background: #222325;
+  background: #000000;
+}
+
+/* Make FluentProvider inside story canvas transparent so .docs-story background shows through */
+[data-azure-theme="dark"] .docs-story .fui-FluentProvider,
+[data-azure-theme="high-contrast"] .docs-story .fui-FluentProvider {
+  background: transparent;
 }

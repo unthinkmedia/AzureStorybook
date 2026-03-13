@@ -1,9 +1,7 @@
 {
-  "active_plan": "/Users/erikdrouhard/Library/CloudStorage/OneDrive-Microsoft/Documents/dev/mini-azure/portal-playground/AzureStorybook/.sisyphus/plans/product-theme-switcher.md",
-  "started_at": "2026-03-12T20:03:19.870Z",
-  "session_ids": [
-    "ses_31c5a8161ffeo7c3u6cpsTUNuv"
-  ],
-  "plan_name": "product-theme-switcher",
+  "active_plan": "/Users/erikdrouhard/Library/CloudStorage/OneDrive-Microsoft/Documents/dev/mini-azure/portal-playground/AzureStorybook/.sisyphus/plans/dark-mode-docs-fix.md",
+  "started_at": "2026-03-12T22:46:13.871Z",
+  "session_ids": ["ses_31c5a8161ffeo7c3u6cpsTUNuv"],
+  "plan_name": "dark-mode-docs-fix",
   "agent": "atlas"
 }
