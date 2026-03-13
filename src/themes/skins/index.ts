@@ -4,7 +4,7 @@ import { coherenceSkin } from './coherence';
 import { azureFluentSkin } from './azure-fluent';
 import { fluent1Skin } from './fluent1';
 
-export { flattenSkin } from './types';
+export { flattenSkin, flattenSkinStructural } from './types';
 export type { DesignSystemId, DesignSystemSkin, FlattenedSkin, SkinSections } from './types';
 
 const skinRegistry = new Map<DesignSystemId, DesignSystemSkin>();

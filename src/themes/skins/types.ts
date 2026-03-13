@@ -16,3 +16,17 @@ export function flattenSkin(sections: SkinSections): FlattenedSkin {
     ...sections.typography,
   };
 }
+
+/**
+ * Flattens only structural (non-color) skin sections for high-contrast mode.
+ * HC base provides all color tokens — skin color overrides would break accessibility.
+ * Only shape, elevation, density, and typography are applied.
+ */
+export function flattenSkinStructural(sections: SkinSections): FlattenedSkin {
+  return {
+    ...sections.shape,
+    ...sections.elevation,
+    ...sections.density,
+    ...sections.typography,
+  };
+}

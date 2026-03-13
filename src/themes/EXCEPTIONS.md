@@ -38,10 +38,12 @@ SVG `<stop>` elements require inline `stopColor` / `stop-color` attributes.
 CSS custom properties cannot be applied to SVG gradient stops without `@property` declarations
 (which would require adding custom token infrastructure). These are documented and exempt.
 
-| File                                                | Colors                | Comment in source          | Rationale                                                                           |
-| --------------------------------------------------- | --------------------- | -------------------------- | ----------------------------------------------------------------------------------- |
-| `src/components/GlobalHeader/AzureGlobalHeader.tsx` | `#0078D4` → `#50E6FF` | `// SVG gradient — exempt` | Azure brand gradient in SVG defs. Cannot be replaced by CSS vars without @property. |
-| `src/components/GlobalHeader/SREGlobalHeader.tsx`   | `#6B69D6` → `#C4B9FE` | `// SVG gradient — exempt` | SRE Agent brand gradient in SVG defs. Same constraint.                              |
+| File                                                | Colors                 | Comment in source             | Rationale                                                                           |
+| --------------------------------------------------- | ---------------------- | ----------------------------- | ----------------------------------------------------------------------------------- |
+| `src/components/GlobalHeader/AzureGlobalHeader.tsx` | `#0078D4` → `#50E6FF`  | `// SVG gradient — exempt`    | Azure brand gradient in SVG defs. Cannot be replaced by CSS vars without @property. |
+| `src/components/GlobalHeader/SREGlobalHeader.tsx`   | `#6366f1` → `#06b6d4`  | `/* SVG gradient — exempt */` | SRE Agent brand gradient in SVG defs. Same constraint.                              |
+| `src/components/ServiceFlyout.tsx`                  | `#6264A7` → `#E0588E`  | `/* SVG gradient — exempt */` | Decorative gradient in flyout SVG illustration. Same constraint.                    |
+| `src/components/CopilotSuggestionsBar.tsx`          | Multiple (6 gradients) | `/* SVG gradient — exempt */` | Copilot sparkle/gradient SVG illustrations. 17 stop colors across 6 gradient defs.  |
 
 ---
 
@@ -75,7 +77,7 @@ appearance base (Fluent v9 light/dark/hc)
 
 - A skin can change border-radius, shadows, spacing, and typography tokens.
 - A skin cannot change brand color tokens if a product override sets them.
-- Skin structural tokens (shape, spacing, elevation) still apply in high-contrast mode. Skin _color_ tokens are effectively overridden by HC base colors, since skins only set structural tokens and the HC base theme provides all color tokens. HC accessibility colors always win via the base theme layer (applied first).
+- Skin structural tokens (shape, spacing, elevation) still apply in high-contrast mode. Skin color tokens are **excluded** from HC resolution (`flattenSkinStructural` omits the `colors` section). HC accessibility colors always come from the HC base theme and are never overridden.
 
 ---
 

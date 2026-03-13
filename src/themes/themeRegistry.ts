@@ -11,7 +11,7 @@ import type {
   ResolvedThemeResult,
   ThemeRegistry,
 } from './types';
-import { flattenSkin, getSkin } from './skins';
+import { flattenSkin, flattenSkinStructural, getSkin } from './skins';
 import { azureProductTheme } from './products/azure';
 import { sreAgentProductTheme } from './products/sre-agent';
 
@@ -87,7 +87,10 @@ export function resolveTheme(
       throw new Error(`Design system skin not found: ${designSystem}`);
     }
 
-    skinOverrides = flattenSkin(skin.sections);
+    skinOverrides =
+      appearance === 'high-contrast'
+        ? flattenSkinStructural(skin.sections)
+        : flattenSkin(skin.sections);
   }
 
   let productOverrides: Partial<Theme> = {};

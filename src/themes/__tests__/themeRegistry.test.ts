@@ -149,5 +149,16 @@ describe('themeRegistry', () => {
       // Even with skin applied, product override should survive
       expect(theme.colorNeutralBackground1).toBe('#ffffff');
     });
+
+    it('high-contrast: skin color tokens are excluded, only structural tokens apply', () => {
+      const hcBase = resolveTheme('azure', 'high-contrast');
+      const hcWithSkin = resolveTheme('azure', 'high-contrast', 'coherence');
+
+      // HC base colorBrandBackground must NOT be overridden by coherence skin
+      expect(hcWithSkin.colorBrandBackground).toBe(hcBase.colorBrandBackground);
+
+      // But structural tokens (shape) SHOULD apply from the skin
+      expect(hcWithSkin.borderRadiusMedium).toBe('2px');
+    });
   });
 });
