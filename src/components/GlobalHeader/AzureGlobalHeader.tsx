@@ -104,8 +104,8 @@ const useStyles = makeStyles({
   },
 
   portalName: {
-    fontSize: '14px',
-    fontWeight: 600,
+    fontSize: tokens.fontSizeBase300,
+    fontWeight: tokens.fontWeightSemibold,
     color: tokens.colorNeutralForegroundOnBrand,
     whiteSpace: 'nowrap',
   },
@@ -126,7 +126,7 @@ const useStyles = makeStyles({
   searchInput: {
     width: '100%',
     '& input': {
-      fontSize: '13px',
+      fontSize: tokens.fontSizeBase300,
     },
     '& input::placeholder': {
       color: tokens.colorNeutralForeground4,
@@ -151,8 +151,8 @@ const useStyles = makeStyles({
     borderRadius: '16px',
     padding: '4px 14px 4px 10px',
     height: '28px',
-    fontSize: '13px',
-    fontWeight: 600,
+    fontSize: tokens.fontSizeBase300,
+    fontWeight: tokens.fontWeightSemibold,
     cursor: 'pointer',
     whiteSpace: 'nowrap',
     flexShrink: 0,
@@ -198,11 +198,11 @@ const useStyles = makeStyles({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-end',
-    lineHeight: 1.2,
+    lineHeight: tokens.lineHeightBase100,
   },
 
   profileEmail: {
-    fontSize: '12px',
+    fontSize: tokens.fontSizeBase200,
     color: tokens.colorNeutralForegroundOnBrand,
     whiteSpace: 'nowrap',
     maxWidth: '180px',
@@ -211,8 +211,8 @@ const useStyles = makeStyles({
   },
 
   profileOrg: {
-    fontSize: '10px',
-    color: tokens.colorNeutralForegroundInverted2,
+    fontSize: tokens.fontSizeBase100,
+    color: tokens.colorNeutralForegroundOnBrand,
     whiteSpace: 'nowrap',
     maxWidth: '180px',
     overflow: 'hidden',
