@@ -77,3 +77,6 @@ export type { PageTabsProps, PageTab } from './Navigation/PageTabs';
 
 export { StatusCard as HealthStatusCard } from './Cards';
 export type { StatusCardProps as HealthStatusCardProps } from './Cards';
+
+export { ContextPane } from './ContextPane';
+export type { ContextPaneProps, ContextPaneWidth } from './ContextPane';
