@@ -1,0 +1,75 @@
+name: Agentation Feedback
+
+on:
+  repository_dispatch:
+    types: [agentation_feedback]
+
+jobs:
+  create-issue:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      contents: read
+
+    steps:
+      - name: Create feedback issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const payload = context.payload.client_payload;
+            const annotations = payload.annotations || [];
+            const annotationCount = annotations.length;
+            const pageUrl = payload.url || 'unknown';
+            const timestamp = payload.timestamp ? new Date(payload.timestamp).toISOString() : new Date().toISOString();
+
+            let body = `## UI Feedback — ${annotationCount} annotation(s)\n\n`;
+            body += `**Submitted from**: ${pageUrl}\n`;
+            body += `**Timestamp**: ${timestamp}\n\n`;
+
+            if (payload.output) {
+              body += `## Annotations\n\n${payload.output}\n\n`;
+            } else {
+              body += `## Annotations\n\n`;
+              annotations.forEach((annotation, index) => {
+                body += `### Annotation ${index + 1}\n`;
+                body += `- **Element**: \`${annotation.elementPath || annotation.element || 'unknown'}\`\n`;
+                if (annotation.reactComponents && annotation.reactComponents.length > 0) {
+                  body += `- **React Components**: ${annotation.reactComponents.join(' > ')}\n`;
+                }
+                body += `- **Comment**: ${annotation.comment || '(no comment)'}\n\n`;
+              });
+            }
+
+            body += `---\n@copilot please review and fix the UI issues described above.`;
+
+            // Ensure labels exist before creating issue
+            const labelsToCreate = ['ui-feedback', 'copilot'];
+            for (const label of labelsToCreate) {
+              try {
+                await github.rest.issues.getLabel({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  name: label,
+                });
+              } catch (e) {
+                if (e.status === 404) {
+                  await github.rest.issues.createLabel({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    name: label,
+                    color: label === 'ui-feedback' ? '0075ca' : '6e40c9',
+                  });
+                }
+              }
+            }
+
+            const issue = await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `[UI Feedback] ${annotationCount} annotation(s) from Storybook`,
+              body: body,
+              assignees: ['copilot'],
+              labels: ['ui-feedback', 'copilot'],
+            });
+
+            console.log(`Created issue #${issue.data.number}: ${issue.data.html_url}`);
