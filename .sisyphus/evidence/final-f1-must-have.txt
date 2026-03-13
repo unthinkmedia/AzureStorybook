@@ -1,0 +1,85 @@
+F1 Plan Compliance Audit — Must Have Checks
+Worktree: /tmp/agentation-integration
+
+CHECK 1: grep -r 'agentation\|Agentation' .storybook/preview.tsx
+.storybook/preview.tsx:import { Agentation } from 'agentation';
+.storybook/preview.tsx:          <Agentation webhookUrl="/api/feedback" />
+EXIT_CODE: 0
+RESULT: PASS
+
+CHECK 2: ls api/src/functions/feedback.ts
+api/src/functions/feedback.ts
+EXIT_CODE: 0
+RESULT: PASS
+
+CHECK 3: ls .github/workflows/agentation-feedback.yml
+.github/workflows/agentation-feedback.yml
+EXIT_CODE: 0
+RESULT: PASS
+
+CHECK 4: grep 'api_location' .github/workflows/ci.yml
+          api_location: api
+EXIT_CODE: 0
+RESULT: PASS
+
+CHECK 5: grep 'copilot' .github/workflows/agentation-feedback.yml
+            body += `---\n@copilot please review and fix the UI issues described above.`;
+            const labelsToCreate = ['ui-feedback', 'copilot'];
+              assignees: ['copilot'],
+              labels: ['ui-feedback', 'copilot'],
+EXIT_CODE: 0
+RESULT: PASS
+
+CHECK 6: ls api/__tests__/feedback.test.ts
+api/__tests__/feedback.test.ts
+EXIT_CODE: 0
+RESULT: PASS
+
+CHECK 7: grep 'Agentation Integration' README.md
+## Agentation Integration
+EXIT_CODE: 0
+RESULT: PASS
+
+CHECK 8: grep '!api/' .gitignore
+!api/
+!api/dist/
+!api/**/*.js
+!api/package.json
+!api/package-lock.json
+!api/host.json
+!api/tsconfig.json
+!api/src/
+!api/src/functions/
+!api/src/functions/.gitkeep
+EXIT_CODE: 0
+RESULT: PASS
+
+CHECK 9: cd /tmp/agentation-integration/api && npm test 2>&1 | tail -10
+WARNING: Failed to detect the Azure Functions runtime. Switching "@azure/functions" package to test mode - not all features are supported.
+WARNING: Skipping call to register function "feedback" because the "@azure/functions" package is in test mode.
+
+ ✓ __tests__/feedback.test.ts (6 tests) 3ms
+
+ Test Files  1 passed (1)
+      Tests  6 passed (6)
+   Start at  16:16:13
+   Duration  257ms (transform 17ms, setup 0ms, collect 26ms, tests 3ms, environment 0ms, prepare 29ms)
+
+EXIT_CODE: 0
+RESULT: PASS
+
+CHECK 10: cd /tmp/agentation-integration && npm run build:all 2>&1 | tail -10
+│  - Use build.rollupOptions.output.manualChunks to improve chunking:
+│  https://rollupjs.org/configuration-options/#output-manualchunks
+│  - Adjust chunk size limit for this warning via
+│  build.chunkSizeWarningLimit.
+│  Vite ✓ built in 4.81s
+│
+◇  Output directory: /private/tmp/agentation-integration/storybook-static
+│
+└  Storybook build completed successfully
+
+EXIT_CODE: 0
+RESULT: PASS
+
+SUMMARY: Must Have 10/10 PASS

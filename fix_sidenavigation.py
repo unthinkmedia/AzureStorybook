@@ -1,0 +1,37 @@
+import re
+
+with open('/tmp/design-system-skins/src/components/SideNavigation.tsx', 'r') as f:
+    content = f.read()
+
+content = content.replace("width: '260px',", "width: '260px', // layout constant")
+content = content.replace("minWidth: '260px',", "minWidth: '260px', // layout constant")
+content = content.replace("width: '48px',", "width: '48px', // layout constant")
+content = content.replace("minWidth: '48px',", "minWidth: '48px', // layout constant")
+content = content.replace("gap: '4px',", "gap: tokens.spacingHorizontalXS,")
+content = content.replace("padding: '8px',", "padding: tokens.spacingHorizontalS,")
+content = content.replace("borderBottom: `1px solid ${tokens.colorNeutralStroke2}`", "borderBottom: `${tokens.strokeWidthThin} solid ${tokens.colorNeutralStroke2}`")
+content = content.replace("width: '32px',", "width: tokens.spacingHorizontalXXXL, // closest available token")
+content = content.replace("height: '32px',", "height: tokens.spacingHorizontalXXXL, // closest available token")
+content = content.replace("padding: '8px 0',", "padding: `${tokens.spacingVerticalS} 0`,")
+content = content.replace("padding: '4px 0',", "padding: `${tokens.spacingVerticalXS} 0`,")
+content = content.replace("gap: '12px',", "gap: tokens.spacingHorizontalM,")
+content = content.replace("padding: '6px 16px',", "padding: `${tokens.spacingVerticalSNudge} ${tokens.spacingHorizontalL}`,")
+content = content.replace("height: '36px',", "height: tokens.spacingHorizontalXXXL, // closest available token")
+content = content.replace("fontSize: '13px',", "fontSize: tokens.fontSizeBase200,")
+content = content.replace("lineHeight: '20px',", "lineHeight: tokens.lineHeightBase300,")
+content = content.replace("borderLeft: '3px solid transparent',", "borderLeft: `${tokens.strokeWidthThick} solid transparent`,")
+content = content.replace("width: '20px',", "width: tokens.spacingHorizontalXL, // closest available token")
+content = content.replace("height: '20px',", "height: tokens.spacingHorizontalXL, // closest available token")
+content = content.replace("gap: '8px',", "gap: tokens.spacingHorizontalS,")
+content = content.replace("width: '16px',", "width: tokens.spacingHorizontalL, // closest available token")
+content = content.replace("height: '16px',", "height: tokens.spacingHorizontalL, // closest available token")
+content = content.replace("paddingLeft: '8px',", "paddingLeft: tokens.spacingHorizontalS,")
+content = content.replace("padding: '12px 16px',", "padding: `${tokens.spacingVerticalM} ${tokens.spacingHorizontalL}`,")
+content = content.replace("borderTop: `1px solid ${tokens.colorNeutralStroke2}`", "borderTop: `${tokens.strokeWidthThin} solid ${tokens.colorNeutralStroke2}`")
+content = content.replace("fontSize: '12px',", "fontSize: tokens.fontSizeBase200,")
+content = content.replace("padding: '6px 0'", "padding: `${tokens.spacingVerticalSNudge} 0`")
+content = content.replace("borderLeft: item.selected ? `3px solid ${tokens.colorBrandForeground1}` : '3px solid transparent'", "borderLeft: item.selected ? `${tokens.strokeWidthThick} solid ${tokens.colorBrandForeground1}` : `${tokens.strokeWidthThick} solid transparent`")
+content = content.replace("borderRight: `1px solid ${tokens.colorNeutralStroke2}`,", "borderRight: `${tokens.strokeWidthThin} solid ${tokens.colorNeutralStroke2}`,")
+
+with open('/tmp/design-system-skins/src/components/SideNavigation.tsx', 'w') as f:
+    f.write(content)

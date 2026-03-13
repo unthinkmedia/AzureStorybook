@@ -8,3 +8,17 @@ storybook-static
 !eslint.config.js
 !vite.config.ts
 debug-storybook.log
+
+# Allow api/ config files and source, but ignore build and dependencies
+!api/
+!api/dist/
+!api/**/*.js
+!api/package.json
+!api/package-lock.json
+!api/host.json
+!api/tsconfig.json
+!api/src/
+!api/src/functions/
+!api/src/functions/.gitkeep
+
+api/node_modules/

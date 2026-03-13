@@ -1,7 +1,8 @@
 {
-  "active_plan": "/Users/erikdrouhard/Library/CloudStorage/OneDrive-Microsoft/Documents/dev/mini-azure/portal-playground/AzureStorybook/.sisyphus/plans/dark-mode-docs-fix.md",
-  "started_at": "2026-03-12T22:46:13.871Z",
-  "session_ids": ["ses_31c5a8161ffeo7c3u6cpsTUNuv"],
-  "plan_name": "dark-mode-docs-fix",
+  "active_plan": "/Users/erikdrouhard/Library/CloudStorage/OneDrive-Microsoft/Documents/dev/mini-azure/portal-playground/AzureStorybook/.sisyphus/plans/design-system-skins.md",
+  "started_at": "2026-03-13T21:53:57.628Z",
+  "session_ids": ["ses_316cedce3ffeILXDfrHK1aNt8F"],
+  "plan_name": "design-system-skins",
+  "worktree_path": "/tmp/design-system-skins",
   "agent": "atlas"
 }

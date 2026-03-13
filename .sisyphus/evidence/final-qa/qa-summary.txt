@@ -1,0 +1,37 @@
+Scenarios [3/3 pass] | Themes [azure/light, azure/dark, azure/high-contrast, sre-agent/light, sre-agent/dark, sre-agent/high-contrast] | Screenshots [4 captured] | APPROVE
+
+Storybook:
+- Dev server started successfully on port 6006 from /tmp/agentation-integration
+- Main UI verified at http://localhost:6006
+- Story iframe verified on /?path=/story/components-buttons-button--primary
+- In iframe DOM, Agentation rendered with selector [data-feedback-toolbar] (count: 3)
+- Toolbar visible in bottom-right region; default iframe rect approx x=823 y=696 w=297 h=44
+- Toolbar text included: "Send Annotations", "Copy feedback", "Settings"
+
+Theme verification:
+- azure/light: toolbar visible, data-azure-theme=light
+- azure/dark: toolbar visible, data-azure-theme=dark
+- azure/high-contrast: toolbar visible, data-azure-theme=high-contrast
+- sre-agent/light: toolbar visible, data-azure-theme=light
+- sre-agent/dark: toolbar visible, data-azure-theme=dark
+- sre-agent/high-contrast: toolbar visible, data-azure-theme=high-contrast
+
+Artifacts:
+- storybook-main.png
+- submit-flow.png
+- agentation-azure-dark.png
+- agentation-sre-light.png
+- yaml-validation.txt
+- api-build.txt
+- playwright-console-errors.log
+
+Validation:
+- agentation-feedback.yml: VALID
+- ci.yml: VALID
+- API build: PASS
+- API tests: 6/6 PASS
+- Playwright console errors in final capture: 0
+
+Notes:
+- Direct iframe navigation was used for theme-combination verification after confirming #storybook-preview-iframe exists in Storybook main UI.
+- API test output includes non-failing environment/deprecation warnings only; no test failures.

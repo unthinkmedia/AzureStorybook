@@ -1,10 +1,6 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import {
-  makeStyles,
-  tokens,
-  Text,
-} from '@fluentui/react-components';
+import { makeStyles, tokens, Text } from '@fluentui/react-components';
 import {
   AzureBreadcrumb,
   AzureGlobalHeader,
@@ -68,7 +64,7 @@ const useStyles = makeStyles({
     alignItems: 'center',
     justifyContent: 'center',
     margin: '16px',
-    borderRadius: '8px',
+    borderRadius: tokens.borderRadiusLarge,
     border: `2px dashed ${tokens.colorNeutralStroke2}`,
     backgroundColor: tokens.colorNeutralBackground2,
     color: tokens.colorNeutralForeground3,
@@ -78,38 +74,100 @@ const useStyles = makeStyles({
 // ─── Shared Data ─────────────────────────────────────────────────
 
 const resourceManagerNavItems: NavItem[] = [
-  { key: 'resource-manager', label: 'Resource Manager', icon: <AzureServiceIcon name="resource-manager" size={18} /> },
-  { key: 'all-resources', label: 'All resources', icon: <AzureServiceIcon name="all-resources" size={18} />, selected: true },
-  { key: 'favorite-resources', label: 'Favorite resources', icon: <AzureServiceIcon name="favorites" size={18} /> },
-  { key: 'recent-resources', label: 'Recent resources', icon: <AzureServiceIcon name="recent" size={18} /> },
-  { key: 'resource-groups', label: 'Resource groups', icon: <AzureServiceIcon name="resource-groups" size={18} /> },
+  {
+    key: 'resource-manager',
+    label: 'Resource Manager',
+    icon: <AzureServiceIcon name="resource-manager" size={18} />,
+  },
+  {
+    key: 'all-resources',
+    label: 'All resources',
+    icon: <AzureServiceIcon name="all-resources" size={18} />,
+    selected: true,
+  },
+  {
+    key: 'favorite-resources',
+    label: 'Favorite resources',
+    icon: <AzureServiceIcon name="favorites" size={18} />,
+  },
+  {
+    key: 'recent-resources',
+    label: 'Recent resources',
+    icon: <AzureServiceIcon name="recent" size={18} />,
+  },
+  {
+    key: 'resource-groups',
+    label: 'Resource groups',
+    icon: <AzureServiceIcon name="resource-groups" size={18} />,
+  },
   { key: 'tags', label: 'Tags', icon: <AzureServiceIcon name="tags" size={18} /> },
-  { key: 'organization', label: 'Organization', icon: <AzureServiceIcon name="organization" size={18} />, children: [] },
+  {
+    key: 'organization',
+    label: 'Organization',
+    icon: <AzureServiceIcon name="organization" size={18} />,
+    children: [],
+  },
   {
     key: 'tools',
     label: 'Tools',
     children: [
-      { key: 'resource-graph-explorer', label: 'Resource graph explorer', icon: <AzureServiceIcon name="resource-graph-explorer" size={18} /> },
-      { key: 'resource-graph-queries', label: 'Resource graph queries', icon: <AzureServiceIcon name="resource-graph-queries" size={18} /> },
-      { key: 'resource-visualizer', label: 'Resource visualizer', icon: <AzureServiceIcon name="resource-visualizer" size={18} /> },
-      { key: 'resource-explorer', label: 'Resource explorer', icon: <AzureServiceIcon name="resource-explorer" size={18} /> },
-      { key: 'arm-api-playground', label: 'ARM API playground', icon: <AzureServiceIcon name="arm-api-playground" size={18} /> },
-      { key: 'resource-mover', label: 'Resource mover', icon: <AzureServiceIcon name="resource-mover" size={18} /> },
+      {
+        key: 'resource-graph-explorer',
+        label: 'Resource graph explorer',
+        icon: <AzureServiceIcon name="resource-graph-explorer" size={18} />,
+      },
+      {
+        key: 'resource-graph-queries',
+        label: 'Resource graph queries',
+        icon: <AzureServiceIcon name="resource-graph-queries" size={18} />,
+      },
+      {
+        key: 'resource-visualizer',
+        label: 'Resource visualizer',
+        icon: <AzureServiceIcon name="resource-visualizer" size={18} />,
+      },
+      {
+        key: 'resource-explorer',
+        label: 'Resource explorer',
+        icon: <AzureServiceIcon name="resource-explorer" size={18} />,
+      },
+      {
+        key: 'arm-api-playground',
+        label: 'ARM API playground',
+        icon: <AzureServiceIcon name="arm-api-playground" size={18} />,
+      },
+      {
+        key: 'resource-mover',
+        label: 'Resource mover',
+        icon: <AzureServiceIcon name="resource-mover" size={18} />,
+      },
     ],
   },
   {
     key: 'deployments',
     label: 'Deployments',
     children: [
-      { key: 'templates', label: 'Templates', icon: <AzureServiceIcon name="templates" size={18} /> },
-      { key: 'template-specs', label: 'Template specs', icon: <AzureServiceIcon name="template-specs" size={18} /> },
+      {
+        key: 'templates',
+        label: 'Templates',
+        icon: <AzureServiceIcon name="templates" size={18} />,
+      },
+      {
+        key: 'template-specs',
+        label: 'Template specs',
+        icon: <AzureServiceIcon name="template-specs" size={18} />,
+      },
     ],
   },
   {
     key: 'help',
     label: 'Help',
     children: [
-      { key: 'support', label: 'Support + troubleshooting', icon: <AzureServiceIcon name="support" size={18} /> },
+      {
+        key: 'support',
+        label: 'Support + troubleshooting',
+        icon: <AzureServiceIcon name="support" size={18} />,
+      },
     ],
   },
 ];
@@ -120,7 +178,9 @@ const ContentPlaceholder: React.FC<{ label: string }> = ({ label }) => {
   const styles = useStyles();
   return (
     <div className={styles.contentPlaceholder}>
-      <Text size={400} weight="semibold">{label}</Text>
+      <Text size={400} weight="semibold">
+        {label}
+      </Text>
     </div>
   );
 };
@@ -159,7 +219,8 @@ export const SidePanelLayout: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Full chrome with breadcrumb, page title bar, Copilot suggestions, and side navigation panel. Used for Resource Manager and service pages with sub-navigation.',
+        story:
+          'Full chrome with breadcrumb, page title bar, Copilot suggestions, and side navigation panel. Used for Resource Manager and service pages with sub-navigation.',
       },
     },
   },
@@ -201,7 +262,8 @@ export const FullWidthWithHeader: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Breadcrumb and page title bar with Copilot suggestions but no side navigation. Used for service browse pages like Load Balancers, Virtual Machines, etc.',
+        story:
+          'Breadcrumb and page title bar with Copilot suggestions but no side navigation. Used for service browse pages like Load Balancers, Virtual Machines, etc.',
       },
     },
   },
@@ -211,10 +273,12 @@ export const FullWidthWithHeader: Story = {
       <div className={styles.page}>
         <AzureGlobalHeader />
         <div className={styles.content}>
-          <AzureBreadcrumb items={[
-            { label: 'Load balancing and content delivery' },
-            { label: 'Load balancers', current: true },
-          ]} />
+          <AzureBreadcrumb
+            items={[
+              { label: 'Load balancing and content delivery' },
+              { label: 'Load balancers', current: true },
+            ]}
+          />
           <PageHeader
             title="Load balancing and content delivery | Load balancers"
             subtitle="Preview"
@@ -242,7 +306,8 @@ export const ContentOnly: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Global header only — no breadcrumb, no page title, no side navigation. Content is centred within a `max-width: 1200px` container. Used for home pages, dashboards, or portal-style landing views.',
+        story:
+          'Global header only — no breadcrumb, no page title, no side navigation. Content is centred within a `max-width: 1200px` container. Used for home pages, dashboards, or portal-style landing views.',
       },
     },
   },

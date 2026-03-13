@@ -1,0 +1,30 @@
+=== QA CHECK 1: Agentation import and usage in preview.tsx ===
+4:import { Agentation } from 'agentation';
+
+=== QA CHECK 2: Verify NO NODE_ENV check ===
+PASS: No NODE_ENV check found
+
+=== QA CHECK 3: Agentation in devDependencies ===
+    "agentation": "^2.3.2",
+
+=== QA CHECK 4: Build verification (last 20 lines) ===
+│  Vite storybook-static/assets/useTabsterAttributes-CRw79Enm.js
+│  80.62 kB │ gzip:  22.34 kB
+│  Vite storybook-static/assets/axe-Dtxj2Z2u.js
+│  580.46 kB │ gzip: 159.94 kB
+│  Vite storybook-static/assets/iframe-D8RWFxDr.js
+│  2,352.53 kB │ gzip: 695.83 kB
+│
+▲  Vite
+│  (!) Some chunks are larger than 500 kB after minification. Consider:
+│  - Using dynamic import() to code-split the application
+│  - Use build.rollupOptions.output.manualChunks to improve chunking:
+│  ]8;;https://rollupjs.org/configuration-options/#output-manualchunkshttps://rollupjs.org/configuration-options/#output-manualchunks]8;;
+│  - Adjust chunk size limit for this warning via
+│  build.chunkSizeWarningLimit.
+│  Vite ✓ built in 4.51s
+│
+◇  Output directory: /private/tmp/agentation-integration/storybook-static
+│
+└  Storybook build completed successfully
+
