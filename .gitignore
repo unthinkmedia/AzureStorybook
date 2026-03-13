@@ -8,3 +8,7 @@ storybook-static
 !eslint.config.js
 !vite.config.ts
 debug-storybook.log
+api/dist/
+api/node_modules/
+!api/
+!api/**/*.js

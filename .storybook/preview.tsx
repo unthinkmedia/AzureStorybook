@@ -1,6 +1,7 @@
 import type { Preview } from '@storybook/react';
 import { useState, useEffect } from 'react';
 import { FluentProvider } from '@fluentui/react-components';
+import { Agentation } from 'agentation';
 import { getProductTheme, resolveTheme } from '../src/themes/themeRegistry';
 import type { AppearanceMode } from '../src/themes/types';
 import {
@@ -157,6 +158,7 @@ const preview: Preview = {
       return (
         <FluentProvider theme={theme}>
           <Story />
+          <Agentation webhookUrl="/api/feedback" />
         </FluentProvider>
       );
     },
