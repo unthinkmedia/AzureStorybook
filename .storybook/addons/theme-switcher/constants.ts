@@ -14,3 +14,14 @@ export const APPEARANCE_MODES = [
   { id: 'dark', displayName: 'Dark' },
   { id: 'high-contrast', displayName: 'High Contrast' },
 ] as const;
+
+export const DESIGN_SYSTEM_GLOBAL = 'designSystem';
+export const DEFAULT_DESIGN_SYSTEM = 'fluent2';
+
+export const DESIGN_SYSTEMS = [
+  { id: 'fluent2', displayName: 'Fluent 2' },
+  { id: 'coherence', displayName: 'Coherence' },
+  { id: 'ibiza', displayName: 'Ibiza' },
+  { id: 'fluent1', displayName: 'Fluent 1' },
+  { id: 'azure-fluent', displayName: 'Azure Fluent' },
+] as const;

@@ -5,7 +5,10 @@ import {
   APPEARANCE_MODE_GLOBAL,
   APPEARANCE_MODES,
   DEFAULT_APPEARANCE,
+  DEFAULT_DESIGN_SYSTEM,
   DEFAULT_PRODUCT,
+  DESIGN_SYSTEM_GLOBAL,
+  DESIGN_SYSTEMS,
   PRODUCT_THEME_GLOBAL,
   PRODUCT_THEMES,
 } from './constants';
@@ -37,7 +40,8 @@ function ProductThemeToolbar() {
 
 function AppearanceModeToolbar() {
   const [globals, updateGlobals] = useGlobals();
-  const selectedMode = (globals[APPEARANCE_MODE_GLOBAL] as string | undefined) ?? DEFAULT_APPEARANCE;
+  const selectedMode =
+    (globals[APPEARANCE_MODE_GLOBAL] as string | undefined) ?? DEFAULT_APPEARANCE;
 
   return React.createElement(
     'label',
@@ -60,6 +64,32 @@ function AppearanceModeToolbar() {
   );
 }
 
+function DesignSystemToolbar() {
+  const [globals, updateGlobals] = useGlobals();
+  const selectedSystem =
+    (globals[DESIGN_SYSTEM_GLOBAL] as string | undefined) ?? DEFAULT_DESIGN_SYSTEM;
+
+  return React.createElement(
+    'label',
+    {
+      title: 'Design System',
+      style: { display: 'inline-flex', alignItems: 'center', gap: 6 },
+    },
+    React.createElement('span', { style: { fontSize: 12, opacity: 0.9 } }, 'Design System'),
+    React.createElement(
+      'select',
+      {
+        value: selectedSystem,
+        onChange: (event: React.ChangeEvent<HTMLSelectElement>) =>
+          updateGlobals({ [DESIGN_SYSTEM_GLOBAL]: event.target.value }),
+      },
+      DESIGN_SYSTEMS.map((system) =>
+        React.createElement('option', { key: system.id, value: system.id }, system.displayName),
+      ),
+    ),
+  );
+}
+
 addons.register(ADDON_ID, () => {
   addons.add(`${ADDON_ID}/product-theme`, {
     type: types.TOOL,
@@ -71,5 +101,11 @@ addons.register(ADDON_ID, () => {
     type: types.TOOL,
     title: 'Appearance',
     render: () => React.createElement(AppearanceModeToolbar),
+  });
+
+  addons.add(`${ADDON_ID}/design-system`, {
+    type: types.TOOL,
+    title: 'Design System',
+    render: () => React.createElement(DesignSystemToolbar),
   });
 });

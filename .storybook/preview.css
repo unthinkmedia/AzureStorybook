@@ -1,9 +1,20 @@
+:root {
+  --azure-storybook-bg-dark: #1f1f1f;
+  --azure-storybook-bg-hc: #000000;
+}
+
 /* Global styles for the Storybook canvas */
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Segoe UI', 'Segoe UI Web (West European)', -apple-system,
-    BlinkMacSystemFont, Roboto, 'Helvetica Neue', sans-serif;
+  font-family:
+    'Segoe UI',
+    'Segoe UI Web (West European)',
+    -apple-system,
+    BlinkMacSystemFont,
+    Roboto,
+    'Helvetica Neue',
+    sans-serif;
 }
 
 /* Story container padding */
@@ -12,16 +23,16 @@ body {
 }
 
 /* Dark mode: story canvas gets dark background */
-[data-azure-theme="dark"] .docs-story {
-  background: #1f1f1f;
+[data-azure-theme='dark'] .docs-story {
+  background: var(--azure-storybook-bg-dark);
 }
 
-[data-azure-theme="high-contrast"] .docs-story {
-  background: #000000;
+[data-azure-theme='high-contrast'] .docs-story {
+  background: var(--azure-storybook-bg-hc);
 }
 
 /* Make FluentProvider inside story canvas transparent so .docs-story background shows through */
-[data-azure-theme="dark"] .docs-story .fui-FluentProvider,
-[data-azure-theme="high-contrast"] .docs-story .fui-FluentProvider {
+[data-azure-theme='dark'] .docs-story .fui-FluentProvider,
+[data-azure-theme='high-contrast'] .docs-story .fui-FluentProvider {
   background: transparent;
 }
