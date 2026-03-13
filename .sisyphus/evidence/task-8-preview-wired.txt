@@ -1,0 +1,25 @@
+## Task 8 evidence (preview.tsx wiring)
+
+- File checked: `/tmp/design-system-skins/.storybook/preview.tsx`
+- Required tokens present (grep):
+  - `DESIGN_SYSTEM_GLOBAL` (import + globals usage)
+  - `resolveTheme(productId, appearance, designSystem)`
+  - `data-design-system` (set in docs container + decorator)
+
+### grep output
+```
+/tmp/design-system-skins/.storybook/preview.tsx
+  10: DESIGN_SYSTEM_GLOBAL,
+  74: const designSystem = ((globals[DESIGN_SYSTEM_GLOBAL] as string) ??
+  79: document.documentElement.setAttribute('data-design-system', designSystem);
+  162: const designSystem = ((context.globals[DESIGN_SYSTEM_GLOBAL] as string | undefined) ??
+  164: const theme = resolveTheme(productId, appearance, designSystem);
+  168: document.documentElement.setAttribute('data-design-system', designSystem);
+```
+
+### build verification
+- Command: `bun run build`
+- BUILD_EXIT_CODE=0
+
+### build output note
+- Storybook build completed successfully (no TypeScript errors)

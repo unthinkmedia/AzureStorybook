@@ -1,0 +1,19 @@
+Task 19 - GROUPED: Cleanup Indicators/Empty States/Decorative Hardcodes
+
+Successfully replaced all hardcoded `px` and `#hex` values in the 5 specified component files.
+
+Files updated:
+1. `src/components/NullState.tsx`
+2. `src/components/CopilotSuggestionsBar.tsx`
+3. `src/components/Navigation/WizardNav.tsx`
+4. `src/components/GlobalHeader/AzureGlobalHeader.tsx`
+5. `src/components/GlobalHeader/SREGlobalHeader.tsx`
+
+Verification steps completed:
+- `grep -n "'[0-9]\+px'"` verified that the only remaining px values are those commented with `// functional layout` or `// layout constant (illustration size)`.
+- `grep -n "'#[0-9a-fA-F]"` and similar patterns verified no hardcoded standard colors remain.
+- All SVG gradient `<stop>` tags are successfully commented with `/* SVG gradient — exempt */`.
+- Replaced values utilize proper `@fluentui/react-components` `tokens.*` mappings.
+- Replaced WizardNav semantic colors with appropriate status tokens (e.g., `tokens.colorStatusSuccessBackground3`).
+- Replaced pixel sizes in AzureGlobalHeader / SREGlobalHeader with appropriate padding, border-radius, stroke widths, and spacing mappings as per the instruction list.
+- Run `bun run build && bun run lint && bun run test` successfully; test suite maintained 42 passing tests with no failures.

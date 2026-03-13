@@ -1,0 +1,15 @@
+Task 17 Evidence: Cards and Collection Surface Hardcodes Cleaned Up
+
+Replaced all hardcoded spacing, typography, and color values with `tokens.*` mappings from Fluent v9 across the following 5 files:
+1. /tmp/design-system-skins/src/components/Buttons/CardButton.tsx
+2. /tmp/design-system-skins/src/components/Cards/CardButton.tsx
+3. /tmp/design-system-skins/src/components/Cards/StatusCard.tsx
+4. /tmp/design-system-skins/src/components/Cards/InfoCard.tsx
+5. /tmp/design-system-skins/src/components/InfoTable.tsx
+
+Verification results:
+- `grep -n "'[0-9]\+px'"` confirms only exempted layout constants or functional min/max boundaries remain (all correctly documented via comments).
+- `grep -n "'#[0-9a-fA-F]"` confirms no stray hardcoded hex strings remain.
+- `bun run build` completed successfully.
+- `bun run lint` completed with 0 errors (only pre-existing warnings).
+- `bun run test` verified that 42/42 tests still pass.

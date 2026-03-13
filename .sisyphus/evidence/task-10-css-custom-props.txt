@@ -1,0 +1,43 @@
+=== TASK 10: Replace Hardcoded Preview Backgrounds with CSS Custom Properties ===
+
+CHANGES MADE:
+1. Added :root block at top of preview.css with CSS custom properties:
+   - --azure-storybook-bg-dark: #1f1f1f;
+   - --azure-storybook-bg-hc: #000000;
+
+2. Replaced hardcoded colors:
+   - [data-azure-theme="dark"] .docs-story:
+     FROM: background: #1f1f1f;
+     TO: background: var(--azure-storybook-bg-dark);
+   
+   - [data-azure-theme="high-contrast"] .docs-story:
+     FROM: background: #000000;
+     TO: background: var(--azure-storybook-bg-hc);
+
+VERIFICATION:
+grep -n "#1f1f1f\|#000000" /tmp/design-system-skins/.storybook/preview.css
+Result:
+2:  --azure-storybook-bg-dark: #1f1f1f;
+3:  --azure-storybook-bg-hc: #000000;
+
+✓ Only hardcodes are in :root definitions (lines 2-3)
+✓ No bare #1f1f1f or #000000 remain in selector rules
+
+BUILD TEST:
+cd /tmp/design-system-skins && bun run build
+Result: "Storybook build completed successfully"
+Exit code: 0
+
+✓ BUILD PASSED
+
+CHECKLIST:
+[✓] :root block added at top of preview.css
+[✓] --azure-storybook-bg-dark and --azure-storybook-bg-hc defined
+[✓] #1f1f1f replaced with var(--azure-storybook-bg-dark)
+[✓] #000000 replaced with var(--azure-storybook-bg-hc)
+[✓] data-azure-theme attribute mechanism preserved
+[✓] Transparent FluentProvider rule preserved
+[✓] No extraneous changes
+[✓] Build passes (exit 0)
+
+STATUS: ✓ COMPLETE

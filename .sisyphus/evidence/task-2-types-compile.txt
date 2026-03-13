@@ -1,0 +1,43 @@
+Task 2: Lock Semantic Token Naming Contract + Theme Type Additions
+Date: 2026-03-13
+
+Changed files:
+- src/themes/types.ts
+- src/themes/__tests__/types.test.ts
+
+QA Evidence
+
+1) bun run build
+- Command: bun run build
+- Result: PASS (storybook build completed successfully)
+- Key line: "Storybook build completed successfully"
+
+2) grep "export type DesignSystemId" src/themes/types.ts
+- Result: PASS
+- Match: 49: export type DesignSystemId = 'fluent2' | 'coherence' | 'ibiza' | 'fluent1' | 'azure-fluent';
+
+3) grep "export interface SkinSections" src/themes/types.ts
+- Result: PASS
+- Match: 51: export interface SkinSections {
+
+4) grep "export interface DesignSystemSkin" src/themes/types.ts
+- Result: PASS
+- Match: 59: export interface DesignSystemSkin {
+
+5) grep "skinId?: DesignSystemId" src/themes/types.ts
+- Result: PASS
+- Match: 84: skinId?: DesignSystemId;
+
+6) bun run test src/themes/__tests__/types.test.ts
+- Command: bun run test src/themes/__tests__/types.test.ts
+- Result: PASS
+- Output: 1 file passed, 4 tests passed
+
+7) bun run test src/themes/__tests__/themeRegistry.test.ts
+- Command: bun run test src/themes/__tests__/themeRegistry.test.ts
+- Result: PASS
+- Output: 1 file passed, 10 tests passed
+
+LSP diagnostics
+- src/themes/types.ts: No diagnostics found
+- src/themes/__tests__/types.test.ts: No diagnostics found

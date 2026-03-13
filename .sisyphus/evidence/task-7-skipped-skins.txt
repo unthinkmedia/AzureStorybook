@@ -1,0 +1,3 @@
+113:    it.skip('coherence shape: applies coherence era shape overrides (no border radius)', () => {
+120:    it.skip('ibiza shape: applies ibiza era shape overrides (no border radius)', () => {
+127:    it.skip('product-color-precedence: product overrides always win over skin', () => {

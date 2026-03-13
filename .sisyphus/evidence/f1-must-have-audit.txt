@@ -1,0 +1,21 @@
+Must Have: [12/12]
+  ✓ 1. `/src/themes/skins/` contains all required files: `types.ts`, `fluent2.ts`, `coherence.ts`, `ibiza.ts`, `fluent1.ts`, `azure-fluent.ts`, `index.ts`.
+  ✓ 2. `bun run test` passed: 42 passed, 0 failures.
+  ✓ 3. `bun run build` passed and reported `Storybook build completed successfully`.
+  ✓ 4. `src/themes/themeRegistry.ts:53-56` defines `resolveTheme(productId, appearance, designSystem?)`; `designSystem` is the 3rd parameter.
+  ✓ 5. `.storybook/addons/theme-switcher/manager.tsx:67-109` includes `DesignSystemToolbar` and registers it.
+  ✓ 6. `.storybook/preview.tsx:170` calls `resolveTheme(productId, appearance, designSystem)` with 3 arguments.
+  ✓ 7. `src/themes/EXCEPTIONS.md` exists.
+  ✓ 8. `.sisyphus/evidence/` contains 100 files (minimum required: 20).
+  ✓ 9. `.storybook/preview.tsx` contains all 6 required chromatic mode names; grep count = 6.
+  ✓ 10. `src/themes/skins/ibiza.ts:24-27` sets `borderRadiusMedium: '0px'`.
+  ✓ 11. `src/themes/skins/coherence.ts:10` sets `borderRadiusMedium: '2px'`.
+  ✓ 12. `.storybook/preview.tsx:7-14` imports `DESIGN_SYSTEM_GLOBAL`; `.storybook/preview.tsx:96,103,110,117,124,131` uses it in all 6 chromatic modes.
+Must NOT Have: [5/5]
+  ✓ 1. No remaining hardcoded 6-digit hex colors found in `src/components/**/*.tsx` after exclusions (0 matches).
+  ✓ 2. No `borderRadius`, `strokeWidth`, or `fontWeight` overrides remain in `src/themes/products/sre-agent.ts` outside comments (0 matches).
+  ✓ 3. No forbidden skin imports found for `@fluentui/react-northstar`, `@coherence`, or `office-ui-fabric` in `src/themes/skins/` (0 matches).
+  ✓ 4. `bun run test src/themes/__tests__/azureThemes.snapshot.test.ts` passed: 3 passed, no snapshot changes.
+  ✓ 5. `.storybook/preview.tsx` has `globals:` count = 7, which is within the required maximum of 7.
+
+VERDICT: APPROVE

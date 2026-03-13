@@ -1,0 +1,43 @@
+Task 11 Evidence: Azure Product Theme refactor is behavior-preserving
+
+Worktree: /tmp/design-system-skins
+Date: 2026-03-13
+
+1) Snapshot test (must pass unchanged)
+Command:
+bun run test src/themes/__tests__/azureThemes.snapshot.test.ts
+
+Output:
+$ vitest run src/themes/__tests__/azureThemes.snapshot.test.ts
+
+ RUN  v4.1.0 /private/tmp/design-system-skins
+
+ Test Files  1 passed (1)
+      Tests  3 passed (3)
+   Start at  18:17:43
+   Duration  735ms (transform 17ms, setup 0ms, import 667ms, tests 3ms, environment 0ms)
+
+2) Structural token grep check in azure.ts
+Command:
+grep -nE "^[[:space:]]*(borderRadius|spacing|strokeWidth|fontWeight)[A-Za-z0-9_]*[[:space:]]*:" /tmp/design-system-skins/src/themes/products/azure.ts
+
+Output:
+(no matches)
+
+Note: A broad grep for those words only matched the required JSDoc explanatory text, not token assignments.
+
+3) Full test suite
+Command:
+bun run test
+
+Output:
+$ vitest run
+
+ RUN  v4.1.0 /private/tmp/design-system-skins
+
+ Test Files  4 passed (4)
+      Tests  26 passed | 3 skipped (29)
+   Start at  18:17:46
+   Duration  530ms (transform 88ms, setup 0ms, import 939ms, tests 14ms, environment 0ms)
+
+Result: PASS

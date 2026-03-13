@@ -1,0 +1,35 @@
+F2 Code Quality Review — feat/design-system-skins
+Repo: /tmp/design-system-skins
+Date: 2026-03-13
+
+Summary
+Build PASS | Lint PASS | Tests 42 pass/0 fail | Files 1 clean/5 issues | VERDICT: REJECT
+
+Specific violations
+- `src/stories/templates/ContainerLayouts.stories.tsx:10` — unused `CommandBar` import.
+- `src/stories/templates/ContainerLayouts.stories.tsx:13` — unused `CommandBarGroup` import.
+- `src/stories/templates/SREContainerLayouts.stories.tsx:8` — unused `CommandBar` import.
+- `.storybook/preview.tsx:36` — `CustomDocsContainer` uses `any` for props; weak typing at a framework boundary.
+- `.storybook/preview.tsx:77` — render-time DOM mutation via `document.documentElement.setAttribute('data-azure-theme', appearance)`.
+- `.storybook/preview.tsx:78` — render-time DOM mutation via `document.documentElement.setAttribute('data-design-system', designSystem)`.
+- `.storybook/preview.tsx:173` — render-time DOM mutation in decorator via `document.documentElement.setAttribute('data-azure-theme', appearance)`.
+- `.storybook/preview.tsx:174` — render-time DOM mutation in decorator via `document.documentElement.setAttribute('data-design-system', designSystem)`.
+- `src/themes/themeRegistry.ts:83` — code applies skin overrides even when `appearance === 'high-contrast'`.
+- `src/themes/EXCEPTIONS.md:78` — docs claim high-contrast tokens are never overridden by skins, conflicting with implementation.
+
+Non-failing flags
+- No `@ts-ignore` found.
+- No `@ts-expect-error` found.
+- No empty catch blocks found.
+- No TODOs without task reference found in `src/themes/`.
+- No `as any` in changed theme files.
+- Ignored pre-existing findings per task context:
+  - `src/themes/skins/coherence.ts:17` explicit any
+  - `src/themes/__tests__/skinRegistry.test.ts:2`
+  - `src/themes/__tests__/skinRegistry.test.ts:6`
+  - unrelated story warnings outside changed file set
+
+Execution evidence
+- `npx tsc --noEmit` => exit 0
+- `bun run lint` => 17 warnings, 0 errors
+- `bun run test` => 42 passed, 0 failed

@@ -1,0 +1,15 @@
+Task 18 - Panels/Drawers/Dialog Hardcodes Cleanup
+
+Files edited:
+- /tmp/design-system-skins/src/components/ContextPane.tsx
+- /tmp/design-system-skins/src/components/EssentialsPanel.tsx
+- /tmp/design-system-skins/src/components/ServiceFlyout.tsx
+- /tmp/design-system-skins/src/components/SearchBanner.tsx
+- /tmp/design-system-skins/src/components/PageHeader.tsx
+
+Verified:
+- ContextPane width constants (315/585/855/1125px) are preserved.
+- No forbidden px or hex strings remain.
+- Exempt functional/animation layout values correctly noted with comments.
+- Tests passed (42 tests).
+- Build and Lint completed successfully.

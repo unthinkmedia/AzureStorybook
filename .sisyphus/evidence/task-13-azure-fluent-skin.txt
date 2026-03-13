@@ -1,0 +1,13 @@
+Azure Fluent skin successfully registered and tested.
+Test output from 'bun run test':
+
+$ vitest run
+ RUN  v4.1.0 /tmp/design-system-skins
+
+ Test Files  4 passed (4)
+      Tests  28 passed | 3 skipped (31)
+
+Comparison of shadow values (azure-fluent vs coherence):
+Azure Fluent shadow4: '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.14)'
+Coherence shadow4 (mocked for test): '0 0 2px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.14)'
+Verified they are explicitly different, with azure-fluent being slightly more pronounced.

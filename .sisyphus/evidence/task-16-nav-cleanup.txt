@@ -1,0 +1,20 @@
+Task 16 - GROUPED: Cleanup Navigation/Command-Surface Hardcodes
+
+Summary of changes:
+Replaced all hardcoded px and hex values in the 7 specified navigation component files with Fluent v9 `tokens.*` references. Only functional layout constants (explicitly exempted with `// functional layout minimum`/`// layout constant`) remain. All hardcoded hex values were successfully replaced.
+
+Verification steps performed:
+1. Grepped for `px` values. All remaining px values are layout constants (e.g. `minWidth: '200px', // functional layout minimum`, `width: '260px', // layout constant`) and valid `style={{ width: \`\${width}px\` }}` bindings.
+2. Grepped for hex values (`#[0-9a-fA-F]`). 0 matches found.
+3. Successfully executed `bun run build`.
+4. Successfully executed `bun run lint` (exited 0).
+5. Successfully executed `bun run test` (42 tests passed, 0 failed).
+
+Files modified:
+- `/tmp/design-system-skins/src/components/AzureBreadcrumb.tsx`
+- `/tmp/design-system-skins/src/components/CommandBar.tsx`
+- `/tmp/design-system-skins/src/components/PageTitleBar.tsx`
+- `/tmp/design-system-skins/src/components/FilterBar.tsx`
+- `/tmp/design-system-skins/src/components/FilterPill.tsx`
+- `/tmp/design-system-skins/src/components/Navigation/PageTabs.tsx`
+- `/tmp/design-system-skins/src/components/SideNavigation.tsx`
