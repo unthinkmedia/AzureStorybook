@@ -1,5 +1,4 @@
 import type { ProductThemeDefinition } from '../types';
-import { registerProductTheme } from '../themeRegistry';
 import { azureBrand } from '../azureThemes';
 
 export const azureProductTheme: ProductThemeDefinition = {
@@ -63,5 +62,3 @@ export const azureProductTheme: ProductThemeDefinition = {
   },
   highContrastOverrides: undefined,
 };
-
-registerProductTheme(azureProductTheme);

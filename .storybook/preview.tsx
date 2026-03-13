@@ -1,8 +1,7 @@
 import type { Preview } from '@storybook/react';
 import { useState, useEffect } from 'react';
 import { FluentProvider } from '@fluentui/react-components';
-import { resolveTheme } from '../src/themes/themeRegistry';
-import '../src/themes/products';
+import { getProductTheme, resolveTheme } from '../src/themes/themeRegistry';
 import type { AppearanceMode } from '../src/themes/types';
 import {
   PRODUCT_THEME_GLOBAL,
@@ -32,7 +31,9 @@ const CustomDocsContainer = ({ children, context, ...rest }: any) => {
     try {
       const ch = context.channel;
       // Channel stores past events in ch.data — read the most recent globals
-      const data = ch.data as Record<string, Array<{ globals?: Record<string, string> }>> | undefined;
+      const data = ch.data as
+        | Record<string, Array<{ globals?: Record<string, string> }>>
+        | undefined;
       const globalsUpdated = data?.['globalsUpdated'];
       if (globalsUpdated?.length) {
         return globalsUpdated[globalsUpdated.length - 1].globals ?? {};
@@ -61,7 +62,8 @@ const CustomDocsContainer = ({ children, context, ...rest }: any) => {
     };
   }, [context.channel]);
 
-  const appearance = ((globals[APPEARANCE_MODE_GLOBAL] as string) ?? DEFAULT_APPEARANCE) as AppearanceMode;
+  const appearance = ((globals[APPEARANCE_MODE_GLOBAL] as string) ??
+    DEFAULT_APPEARANCE) as AppearanceMode;
 
   // Sync data-azure-theme so preview.css dark-mode CSS rules apply to .docs-story
   document.documentElement.setAttribute('data-azure-theme', appearance);
@@ -142,8 +144,9 @@ const preview: Preview = {
   tags: ['autodocs'],
   decorators: [
     (Story, context) => {
-      const productId =
+      const requestedProductId =
         (context.globals[PRODUCT_THEME_GLOBAL] as string | undefined) ?? DEFAULT_PRODUCT;
+      const productId = getProductTheme(requestedProductId) ? requestedProductId : DEFAULT_PRODUCT;
       const appearance = ((context.globals[APPEARANCE_MODE_GLOBAL] as string | undefined) ??
         DEFAULT_APPEARANCE) as AppearanceMode;
       const theme = resolveTheme(productId, appearance);
