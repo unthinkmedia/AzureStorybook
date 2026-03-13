@@ -97,7 +97,7 @@ Extend the theme system from 2 axes (Product × Appearance) to 3 axes (Product �
 - [ ] `bun run build` succeeds — zero TypeScript errors
 - [ ] `bun run lint` clean — zero ESLint errors
 - [ ] All 5 skins registered and selectable in Storybook toolbar
-- [ ] Switching skins produces visibly different component rendering
+- [ ] Switching skins produces measurably different component rendering (verified via getComputedStyle: border-radius, box-shadow, padding differ between skins)
 - [ ] `resolveTheme('azure', 'light')` with no skin param returns identical output to current
 - [ ] Zero hardcoded px/hex in dynamic styling across all 22 component files (layout constants exempt)
 - [ ] `azureThemes.ts` legacy exports produce identical values (snapshot test)
@@ -105,7 +105,7 @@ Extend the theme system from 2 axes (Product × Appearance) to 3 axes (Product �
 ### Must Have
 
 - Third dropdown in Storybook toolbar for Design System selection
-- All 5 skins with visually distinct characteristics per the historical era table
+- All 5 skins with measurably distinct characteristics per the historical era table (verified via getComputedStyle)
 - Token-only dynamic values — no hardcoded px/hex in component styles
 - TDD — tests written before implementation
 - Backward compatibility — existing 2-arg resolveTheme calls unchanged
@@ -331,7 +331,7 @@ Max Concurrent: 5 (Waves 3 & 4 fan-outs)
   - Define `DesignSystemId` type: `'fluent2' | 'coherence' | 'ibiza' | 'fluent1' | 'azure-fluent'`
   - Define `SkinSections` interface with structured groups:
     ```
-    colors: Partial<Theme>       // Brand/neutral color overrides
+    colors: Partial<Theme>       // Brand/accent color overrides ONLY (NOT neutral backgrounds/foregrounds — those are appearance-sensitive)
     shape: Partial<Theme>        // borderRadius tokens
     elevation: Partial<Theme>    // shadow tokens
     density: Partial<Theme>      // spacing tokens
@@ -414,7 +414,7 @@ Max Concurrent: 5 (Waves 3 & 4 fan-outs)
   - Write RED tests (they WILL fail until Task 7 implements the composer):
     1. `resolveTheme('azure', 'light', 'coherence')` returns theme with Coherence-era borderRadius (2px)
     2. `resolveTheme('azure', 'light', 'fluent2')` returns IDENTICAL output to `resolveTheme('azure', 'light')` (identity skin)
-    3. `resolveTheme('sre-agent', 'light', 'coherence')` — product overrides (SRE borderRadius) WIN over skin overrides (Coherence borderRadius) — product layer precedence
+    3. `resolveTheme('azure', 'dark', 'coherence')` with Azure dark overrides — product color overrides WIN over skin color overrides (Azure's `colorBrandForeground1: azureBrand[110]` from `azure.ts:60` beats Coherence skin's brand foreground value) — product layer precedence
     4. `resolveTheme('azure', 'dark', 'ibiza')` — appearance base + skin + product all composed correctly
     5. `resolveTheme('azure', 'light')` (2-arg) still works identically — backward compat
   - Mark the new tests with `it.skip` initially since they need Task 6+7 infrastructure — but include a comment `// RED: Enable after Task 7 implements 3-axis resolveTheme`
@@ -440,7 +440,7 @@ Max Concurrent: 5 (Waves 3 & 4 fan-outs)
   - `src/themes/__tests__/themeRegistry.test.ts` — Extend this file; follow existing patterns (lines 1-98)
   - `src/themes/themeRegistry.ts:51-91` — Current `resolveTheme` 2-arg signature to extend
   - `src/themes/types.ts` — New `DesignSystemId` type (from Task 2)
-  - `src/themes/products/sre-agent.ts:38-41` — SRE borderRadius overrides used to test product-wins-over-skin precedence
+  - `src/themes/products/azure.ts:59-62` — Azure explicit dark overrides (`colorBrandForeground1: azureBrand[110]`, `colorBrandForeground2: azureBrand[120]`) used to test product-wins-over-skin precedence in dark mode
 
   **Acceptance Criteria**:
   - [ ] `src/themes/__tests__/themeRegistry.test.ts` contains `describe('3-axis composition')` with 5 new test cases
@@ -705,7 +705,7 @@ Max Concurrent: 5 (Waves 3 & 4 fan-outs)
     - Un-skip: `resolveTheme('azure', 'light', 'fluent2')` identity test
     - Un-skip: backward-compat 2-arg test (already active from Task 3)
     - Un-skip: invalid skin ID throws test
-    - LEAVE SKIPPED: `coherence`, `ibiza`, and SRE-precedence (`resolveTheme('sre-agent', 'light', 'coherence')`) tests — those skins don't exist yet (created in Tasks 12/14). Add a comment: `// RED: Enable after Tasks 12-15 deliver era skins`
+    - LEAVE SKIPPED: `coherence`, `ibiza`, and product-color-precedence (`resolveTheme('azure', 'dark', 'coherence')` — asserts Azure product dark overrides beat Coherence skin brand colors) tests — those skins don't exist yet (created in Tasks 12/14). Add a comment: `// RED: Enable after Tasks 12-15 deliver era skins`
 
   **Must NOT do**:
   - Do NOT change the 2-arg call path behavior at all
@@ -737,7 +737,7 @@ Max Concurrent: 5 (Waves 3 & 4 fan-outs)
   - [ ] `resolveTheme('azure', 'light', 'nonexistent' as any)` throws descriptive error
   - [ ] Product overrides win over skin overrides in conflicts (tested once era skins exist)
   - [ ] Fluent2 identity test and backward-compat test un-skipped and passing
-  - [ ] Coherence/ibiza/SRE-precedence tests remain `it.skip` with comment referencing Tasks 12-15
+  - [ ] Coherence/ibiza/product-color-precedence tests remain `it.skip` with comment referencing Tasks 12-15
   - [ ] `bun run test` → all tests pass (existing + newly-unskipped)
 
   **QA Scenarios**:
@@ -756,19 +756,19 @@ Max Concurrent: 5 (Waves 3 & 4 fan-outs)
     Tool: Bash
     Steps:
       1. Run `bun run test src/themes/__tests__/themeRegistry.test.ts`
-      2. Grep output for "skipped" — should show 3 skipped (coherence, ibiza, SRE-precedence tests), NOT 4
+      2. Grep output for "skipped" — should show 3 skipped (coherence, ibiza, product-color-precedence tests), NOT 4
       3. Verify fluent2 identity test passes: resolveTheme('azure', 'light', 'fluent2') === resolveTheme('azure', 'light')
       4. Verify invalid skin test passes: resolveTheme('azure', 'light', 'nonexistent') throws
-    Expected Result: 13+ tests pass, 3 skipped (coherence/ibiza/SRE-precedence), 0 failed
+    Expected Result: 13+ tests pass, 3 skipped (coherence/ibiza/product-color-precedence), 0 failed
     Evidence: .sisyphus/evidence/task-7-composition-pass.txt
 
   Scenario: Skin-dependent tests remain skipped with explanatory comment
     Tool: Bash
     Steps:
       1. Grep `src/themes/__tests__/themeRegistry.test.ts` for `it.skip`
-      2. Verify exactly 3 occurrences (coherence, ibiza, SRE-precedence tests)
+      2. Verify exactly 3 occurrences (coherence, ibiza, product-color-precedence tests)
       3. Grep for "Tasks 12-15" or "era skins" in the skip comment
-    Expected Result: 3 it.skip calls with comments explaining they await era skin creation (coherence, SRE-precedence, ibiza)
+    Expected Result: 3 it.skip calls with comments explaining they await era skin creation (coherence, product-color-precedence, ibiza)
     Evidence: .sisyphus/evidence/task-7-skipped-skins.txt
   ```
 
@@ -1050,7 +1050,7 @@ Max Concurrent: 5 (Waves 3 & 4 fan-outs)
   - Create `src/themes/skins/coherence.ts` implementing `DesignSystemSkin`
   - Use `coherenceTokens.ts` (220+ tokens) as a visual reference guide — do NOT import it programmatically
   - Structured sections (target ~40-60 total overrides):
-    - **colors**: Azure-style neutral backgrounds/foregrounds, `#0078D4` brand blue
+    - **colors**: Brand/accent overrides ONLY — `#0078D4` brand blue for `colorBrandBackground`, `colorBrandForeground1`, `colorBrandForeground2`, etc. Do NOT override neutral backgrounds/foregrounds (those are appearance-sensitive and come from the appearance base layer). Note: `colorBrandForeground1` MUST be included — the product-color-precedence test verifies that Azure's dark override (`azureBrand[110]`) beats this skin value.
     - **shape**: `borderRadiusMedium: '2px'`, `borderRadiusLarge: '4px'`, `borderRadiusXLarge: '8px'` (subtle rounding)
     - **elevation**: Minimal shadows — `shadow4: '0 0 2px rgba(0,0,0,0.12)'` etc.
     - **density**: Compact spacing — `spacingHorizontalM: '8px'`, `spacingVerticalM: '8px'`
@@ -1061,12 +1061,12 @@ Max Concurrent: 5 (Waves 3 & 4 fan-outs)
     - `flattenSkin(coherenceSkin.sections)` has expected key count (~40-60)
     - Key visual tokens match Coherence era (borderRadiusMedium === '2px')
   - **Un-skip the Coherence composition test** in `src/themes/__tests__/themeRegistry.test.ts` — change `it.skip` to `it` for the `resolveTheme('azure', 'light', 'coherence')` test. Verify it passes with real Coherence skin overrides applied (e.g., borderRadiusMedium === '2px').
-  - **Un-skip the SRE-precedence composition test** — change `it.skip` to `it` for the `resolveTheme('sre-agent', 'light', 'coherence')` test. This test can now run because the coherence skin exists. Verify product overrides (SRE brand color) WIN over skin overrides.
+  - **Un-skip the product-color-precedence composition test** — change `it.skip` to `it` for the `resolveTheme('azure', 'dark', 'coherence')` product-precedence test. This test can now run because the coherence skin exists. Verify Azure's explicit product dark overrides (`colorBrandForeground1: azureBrand[110]`) WIN over Coherence skin's brand foreground value.
 
   **Must NOT do**:
   - Do NOT import `coherenceTokens.ts` — it's a reference, not a runtime dependency
   - Do NOT aim for pixel-perfect Coherence — "recognizable era" fidelity
-  - Do NOT add dark-mode-specific overrides in sections (skin tokens are appearance-agnostic — they override structural properties like borderRadius, spacing, shadow that don't change between light/dark; the appearance base already handles light vs dark color semantics before skin overrides are applied per the composition order: `appearance base → skin → product`)
+  - Do NOT add dark-mode-specific overrides in sections. Skins are appearance-agnostic: they override structural properties (borderRadius, spacing, shadow) that don't change between light/dark, plus brand/accent colors that are also mode-independent. Neutral backgrounds/foregrounds (colorNeutralBackground1, etc.) are NEVER overridden by skins — those come from the appearance base layer which already handles light vs dark semantics. Composition order: `appearance base → skin → product`
 
   **Recommended Agent Profile**:
   - **Category**: `visual-engineering`
@@ -1111,10 +1111,10 @@ Max Concurrent: 5 (Waves 3 & 4 fan-outs)
     Tool: Bash
     Steps:
       1. Run `bun run test src/themes/__tests__/themeRegistry.test.ts`
-      2. Verify "skipped" count decreased from 3 to 1 (coherence + SRE-precedence un-skipped — only ibiza remains)
+      2. Verify "skipped" count decreased from 3 to 1 (coherence + product-color-precedence un-skipped — only ibiza remains)
       3. Verify resolveTheme('azure', 'light', 'coherence') test passes with Coherence-era borderRadius
-      4. Verify SRE-precedence test passes (product override beats skin for brand color)
-    Expected Result: Coherence + SRE-precedence composition tests pass, 1 test still skipped (ibiza)
+      4. Verify product-color-precedence test passes (Azure's explicit dark overrides — `colorBrandForeground1: azureBrand[110]` — beat Coherence skin's brand foreground)
+    Expected Result: Coherence + product-color-precedence composition tests pass, 1 test still skipped (ibiza)
     Evidence: .sisyphus/evidence/task-12-coherence-composition.txt
   ```
 
@@ -1129,7 +1129,7 @@ Max Concurrent: 5 (Waves 3 & 4 fan-outs)
   **What to do**:
   - Create `src/themes/skins/azure-fluent.ts` implementing `DesignSystemSkin`
   - Azure Fluent = transitional era between Coherence and Fluent 2. Characteristics:
-    - **colors**: Same `#0078D4` brand as Coherence
+    - **colors**: Brand/accent ONLY — same `#0078D4` brand as Coherence (no neutral overrides)
     - **shape**: `borderRadiusMedium: '2px'` — same subtle rounding as Coherence
     - **elevation**: Slightly more shadow than Coherence — `shadow4: '0 1px 3px rgba(0,0,0,0.12)'`
     - **density**: Compact (same as Coherence) — `spacingHorizontalM: '8px'`
@@ -1184,7 +1184,7 @@ Max Concurrent: 5 (Waves 3 & 4 fan-outs)
   **What to do**:
   - Create `src/themes/skins/ibiza.ts` implementing `DesignSystemSkin`
   - Ibiza (~2014) = oldest era. Sharp, flat, ultra-compact. Characteristics:
-    - **colors**: `#0072C6` brand blue (pre-Fluent), cooler neutrals
+    - **colors**: Brand/accent ONLY — `#0072C6` brand blue (pre-Fluent era blue, no neutral overrides)
     - **shape**: `borderRadiusMedium: '0px'`, `borderRadiusLarge: '0px'` — completely sharp corners
     - **elevation**: `shadow4: 'none'`, `shadow8: 'none'` — flat design, no depth
     - **density**: Ultra-compact — `spacingHorizontalM: '6px'`, `spacingVerticalM: '4px'`, `spacingHorizontalS: '4px'`
@@ -1237,7 +1237,7 @@ Max Concurrent: 5 (Waves 3 & 4 fan-outs)
     Tool: Bash
     Steps:
       1. Run `bun run test src/themes/__tests__/themeRegistry.test.ts`
-      2. Verify 0 skipped tests (coherence, ibiza, and SRE-precedence all un-skipped)
+      2. Verify 0 skipped tests (coherence, ibiza, and product-color-precedence all un-skipped)
       3. Grep themeRegistry.test.ts for `it.skip` — 0 occurrences
       4. Verify all 16+ tests pass
     Expected Result: All composition tests active and passing, zero skipped
@@ -1255,7 +1255,7 @@ Max Concurrent: 5 (Waves 3 & 4 fan-outs)
   **What to do**:
   - Create `src/themes/skins/fluent1.ts` implementing `DesignSystemSkin`
   - Fluent 1 (~2020) = bridge between Coherence and Fluent 2. Characteristics:
-    - **colors**: `#0078D4` brand blue (same as Coherence era)
+    - **colors**: Brand/accent ONLY — `#0078D4` brand blue, same as Coherence era (no neutral overrides)
     - **shape**: `borderRadiusMedium: '2px'` — same subtle rounding as Coherence
     - **elevation**: Standard Fluent 1 shadows — moderate depth, less than Fluent 2
     - **density**: Standard (not compact, not spacious) — `spacingHorizontalM: '10px'`
@@ -1372,14 +1372,18 @@ Max Concurrent: 5 (Waves 3 & 4 fan-outs)
     Expected Result: All dynamic values use tokens, build clean
     Evidence: .sisyphus/evidence/task-16-nav-cleanup.txt
 
-  Scenario: Visual appearance unchanged in Storybook
+  Scenario: Components still render correctly after cleanup
     Tool: Playwright
     Preconditions: Storybook running, Fluent 2 skin selected
     Steps:
       1. Navigate to CommandBar story
-      2. Take screenshot
-      3. Compare visually — layout and colors should match pre-cleanup appearance
-    Expected Result: No visual regression
+      2. Query a Button element inside the CommandBar — verify `getComputedStyle` shows:
+         - `border-radius` is NOT '0px' (token-driven, not hardcoded)
+         - `font-size` is '14px' (matches tokens.fontSizeBase300)
+      3. Verify the CommandBar container has a `background-color` that resolves to a CSS custom property (not a hardcoded hex)
+      4. Take screenshot for evidence archive
+      5. Verify no error overlay or blank screen in the story iframe
+    Expected Result: Components render with correct token-derived styles, no visual breakage
     Evidence: .sisyphus/evidence/task-16-nav-visual.png
   ```
 
@@ -1582,7 +1586,7 @@ Max Concurrent: 5 (Waves 3 & 4 fan-outs)
     - `bun run build` — zero errors
     - `bun run lint` — clean
     - Snapshot tests from Task 1 still pass (azureThemes unchanged)
-  - Verify all 5 skins are selectable and produce visibly different output
+  - Verify all 5 skins are selectable and produce measurably different output (verified via getComputedStyle assertions on Button border-radius, box-shadow)
 
   **Must NOT do**:
   - Do NOT add more than 6 Chromatic modes (matching current count)
@@ -1612,7 +1616,7 @@ Max Concurrent: 5 (Waves 3 & 4 fan-outs)
   - [ ] `bun run test` → all pass (including snapshot tests)
   - [ ] `bun run build` → zero errors
   - [ ] `bun run lint` → clean
-  - [ ] All 5 skins produce visibly different rendering in Storybook
+  - [ ] All 5 skins produce measurably different rendering in Storybook (verified via getComputedStyle: border-radius differs between Ibiza/Coherence/Fluent 2)
 
   **QA Scenarios**:
 
@@ -1627,7 +1631,7 @@ Max Concurrent: 5 (Waves 3 & 4 fan-outs)
     Expected Result: Complete green across test/build/lint
     Evidence: .sisyphus/evidence/task-20-full-regression.txt
 
-  Scenario: All 5 skins visually distinct in Storybook
+  Scenario: All 5 skins produce measurably different styling
     Tool: Playwright
     Preconditions: Storybook running (`bun run dev`)
     Steps:
@@ -1635,12 +1639,15 @@ Max Concurrent: 5 (Waves 3 & 4 fan-outs)
       2. For each skin (Fluent 2, Coherence, Ibiza, Fluent 1, Azure Fluent):
          a. Select skin from Design System dropdown
          b. Wait 2s for theme to apply
-         c. Take screenshot: .sisyphus/evidence/task-20-skin-{id}.png
-      3. Compare screenshots — each should look visibly different:
-         - Ibiza: sharp corners, no shadows, smaller text
-         - Coherence: subtle rounding, compact
-         - Fluent 2: rounded corners, deeper shadows, spacious
-    Expected Result: 5 distinct screenshots showing era-appropriate styling
+         c. Query a primary Button element and read `getComputedStyle`:
+            - Record `border-radius`, `font-size`, `padding`, `box-shadow`
+         d. Take screenshot: .sisyphus/evidence/task-20-skin-{id}.png
+      3. Assert computed style differences between skins:
+         - Ibiza `border-radius` === '0px' (sharp corners) vs Fluent 2 `border-radius` === '4px' (rounded)
+         - Ibiza `box-shadow` === 'none' vs Fluent 2 has non-'none' shadow
+         - Coherence `border-radius` < Fluent 2 `border-radius` (2px < 4px)
+      4. Verify at least 3 of the 4 measured properties differ between Ibiza and Fluent 2
+    Expected Result: Each skin produces distinct computed style values on the same component, with at least border-radius and shadow measurably different between Ibiza/Coherence/Fluent 2
     Evidence: .sisyphus/evidence/task-20-skin-*.png
 
   Scenario: Chromatic modes include design-system axis
@@ -1758,8 +1765,11 @@ Max Concurrent: 5 (Waves 3 & 4 fan-outs)
          b. Navigate to a component story (e.g., Button)
          c. Take screenshot: `.sisyphus/evidence/final-qa/skin-{name}-button.png`
          d. Verify the component renders (no error overlay, no blank screen)
-      5. Compare screenshots — all 5 must be visually distinct from each other
-    Expected Result: 3 dropdowns visible, 5 skins render distinct component appearances, zero error overlays
+       5. Assert skin distinction via computed styles — for each skin, read Button `getComputedStyle` (border-radius, box-shadow, padding):
+          - Fluent 2 border-radius should be '4px', Ibiza '0px', Coherence '2px'
+          - Fluent 2 box-shadow should be non-'none', Ibiza 'none'
+          - At least 2 of 3 measured properties must differ between each pair of skins
+    Expected Result: 3 dropdowns visible, 5 skins render with measurably distinct computed styles (verified via getComputedStyle assertions), zero error overlays
     Evidence: .sisyphus/evidence/final-qa/all-skins-toolbar.png + per-skin screenshots
 
   Scenario: Cross-axis integration — skin + product + appearance combinations
@@ -1851,7 +1861,7 @@ bun run dev                     # Expected: Storybook starts, 3 dropdowns visibl
 - [ ] All "Must Have" items present and verified
 - [ ] All "Must NOT Have" items absent — verified by grep/search
 - [ ] All tests pass (existing + new)
-- [ ] All 5 skins produce visually distinct rendering
+- [ ] All 5 skins produce measurably distinct rendering (verified via getComputedStyle assertions)
 - [ ] Backward compat — `resolveTheme` 2-arg calls work identically
 - [ ] `azureThemes.ts` exports unchanged (snapshot verified)
 - [ ] Zero hardcoded px/hex in component styles (layout constants exempt, SVG gradients documented)
